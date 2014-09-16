@@ -1,0 +1,14 @@
+<launch>
+
+ <node name="ueye_stereo" pkg="ueye" type="stereo" output="screen"/>
+
+ <node name="demo_spherical_oculus" pkg="omni_localization" type="demo_spherical_oculus" args="1 $(find omni_localization)" output="screen">
+  <rosparam param="/spherical_vision/topics">
+   - left/image_raw
+   - right/image_raw
+  </rosparam>
+ </node>
+
+ <node name="rviz" pkg="rviz" type="rviz" output="screen"/>
+
+</launch>
