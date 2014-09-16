@@ -1,3 +1,10 @@
+/*
+ *  omni_camera.h
+ *  Copyright (c) 2014 PAL Robotics sl. All Rights Reserved
+ *  Created on: 07/2014
+ *      Author: Jéremie Deray
+ */
+
 #ifndef OMNI_CAMERA_H
 #define OMNI_CAMERA_H
 

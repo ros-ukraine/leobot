@@ -1,3 +1,10 @@
+/*
+ *  poly_omni.cpp
+ *  Copyright (c) 2014 PAL Robotics sl. All Rights Reserved
+ *  Created on: 07/2014
+ *      Author: Jéremie Deray
+ */
+
 #include "omnidirectional_rig/poly_omni.h"
 
 OmniCameraRig::OmniCameraRig()

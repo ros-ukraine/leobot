@@ -1,3 +1,10 @@
+/*
+ *  usefull.h
+ *  Copyright (c) 2014 PAL Robotics sl. All Rights Reserved
+ *  Created on: 07/2014
+ *      Author: Jéremie Deray
+ */
+
 #ifndef USEFULL_H
 #define USEFULL_H
 

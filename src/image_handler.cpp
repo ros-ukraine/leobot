@@ -1,3 +1,10 @@
+/*
+ *  image_handler.cpp
+ *  Copyright (c) 2014 PAL Robotics sl. All Rights Reserved
+ *  Created on: 07/2014
+ *      Author: Jéremie Deray
+ */
+
 #include "omnidirectional_rig/image_handler.h"
 
 #include <ros/ros.h>

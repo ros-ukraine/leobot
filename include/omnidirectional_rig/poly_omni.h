@@ -1,3 +1,10 @@
+/*
+ *  poly_omni.h
+ *  Copyright (c) 2014 PAL Robotics sl. All Rights Reserved
+ *  Created on: 07/2014
+ *      Author: Jéremie Deray
+ */
+
 #ifndef POLY_OMNI_H
 #define POLY_OMNI_H
 
