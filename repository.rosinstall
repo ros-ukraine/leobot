@@ -1,0 +1,4 @@
+- git:
+    uri: https://github.com/ros-teleop/teleop_twist_keyboard.git
+    version: master
+    local-name: teleop_twist_keyboard

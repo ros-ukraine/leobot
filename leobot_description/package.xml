@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package>
+  <name>leobot_description</name>
+  <version>0.0.1</version>
+  <description>The leobot_description package</description>
+  <maintainer email="Andriy.Petlovanyy@todo.todo">Andriy Petlovanyy</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
