@@ -1,7 +1,7 @@
-| Build server  | Status |
+| Service  | Status |
 |---------------|--------|
-| Code Style | [![CircleCI](https://circleci.com/gh/ros-ukraine/leobot.svg?style=shield)](https://circleci.com/gh/ros-ukraine/leobot) |
-| Unit Tests | [![Build Status](https://api.shippable.com/projects/5a1348e66301ee07008ca23f/badge?branchName=kinetic-devel)](https://app.shippable.com/projects/5a1348e66301ee07008ca23f/builds/latest) |
+| Code Style Checks | [![CircleCI](https://circleci.com/gh/ros-ukraine/leobot.svg?style=shield)](https://circleci.com/gh/ros-ukraine/leobot) |
+| Unit Tests | [![Build Status](https://img.shields.io/shippable/5a1348e66301ee07008ca23f.svg)](https://app.shippable.com/github/ros-ukraine/leobot) |
 | Install Tests | [![Build Status](https://travis-ci.org/ros-ukraine/leobot.svg?branch=kinetic-devel)](https://travis-ci.org/ros-ukraine/leobot) |
 | Code Coverage | [![Coverage Badge](https://api.shippable.com/projects/5a1348e66301ee07008ca23f/coverageBadge?branch=kinetic-devel)](https://app.shippable.com/github/ros-ukraine/leobot) |
 
