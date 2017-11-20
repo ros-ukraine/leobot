@@ -1,0 +1,9 @@
+<launch>
+    <arg name="world_file" default="office"/>
+    <include file="$(find leobot_gazebo)/launch/gazebo.launch">
+        <arg name="world_file" value="$(arg world_file)"/>
+    </include>
+
+    <!--<rosparam file="$(find leobot_control)/config/gazebo/leobot_control.yml" command="load" />-->
+    <!--<include file="$(find leobot_control)/launch/control.launch" />-->
+</launch>
