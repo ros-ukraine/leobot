@@ -56,7 +56,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/shadow-robot/sr-build-tools/ma
 
 ```
 
-Add sourcing of workspace which is located here `~/workspace/leobot/base/` to `.bashrc` file.
+Add sourcing of workspace which is located here `~/workspace/leobot/base/` to `.bashrc` file
 ```bash
 echo 'source $HOME/workspace/leobot/base/devel/setup.bash' >> ~/.bashrc
 source ~/.bashrc
