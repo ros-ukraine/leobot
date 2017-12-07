@@ -22,10 +22,10 @@ Please follow these steps to run Docker container on your machine.
 sudo usermod -aG docker $USER
 ```
  4. Logout and login to your machine again :)
- 5. For development [the following](https://hub.docker.com/r/shadowrobot/build-tools/) docker container was used.
+ 5. For development [the following](hub.docker.com/r/rosukraine/leobot/) docker container was used.
  6. To pull it please run
 ```bash
-docker pull shadowrobot/build-tools:xenial-kinetic-ide
+docker pull rosukraine/leobot:latest
 ```
  7. Use the following command to start Docker container
 ```bash
