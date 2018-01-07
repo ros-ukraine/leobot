@@ -120,9 +120,6 @@ include_directories(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/leobot_web_server.cpp
 # )
-add_library(${PROJECT_NAME}
-  src/${PROJECT_NAME}/leobot_web_server.cpp
-)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
