@@ -10,5 +10,6 @@
   <url type="website">https://github.com/ros-ukraine/leobot</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>rosnodejs</depend>
 
 </package>
