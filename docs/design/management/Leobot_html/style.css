@@ -161,6 +161,15 @@ main {
     padding-right: 0;
 }
 
+.control-panel-button:active {
+    background-color: #dcdcdc;
+
+}
+
+.control-panel-button:focus {
+    outline: 0;
+}
+
 .left-right {
     width: 700px;
     display: flex;
@@ -170,10 +179,6 @@ main {
 .small-buttons {
     display: none;
 }
-
-/*.small-control-panel-button {
-    display: none;
-}*/
 
 footer p {
     font-family: "GlacialIndifference-Bold", sans-serif;
@@ -198,9 +203,7 @@ footer {
 }
 
 @media all and (max-width: 1279px) and (min-width: 900px), (min-height: 700px) and (max-height: 800px) {
-    /*main {
-        background-color: darkblue;
-    }*/
+
     .header-wrapper {
         width: 870px;
     }
@@ -265,9 +268,6 @@ footer {
 }
 
 @media all and (max-width: 899px) and (min-width: 670px){
-   /* main {
-        background-color: aqua;
-    }*/
 
     header {
         height: 90px;
@@ -345,9 +345,6 @@ footer {
 }
 
 @media all and (max-width: 669px) and (min-width: 320px){
-    /*main {
-        background-color: blueviolet;
-    }*/
 
     header {
         height: 65px;
@@ -419,14 +416,6 @@ footer {
         height: 163px;
     }
 
-    /*.control-panel-header {
-        font-size: 14px;
-    }
-
-    .control-panel-button {
-        display: none;
-    }*/
-
     .control-panel {
         display: none;
         width: 300px;
@@ -441,29 +430,75 @@ footer {
     .control-panel-header {
         font-size: 12px;
     }
-    .small-control-panel-button {
+    .small-button-top {
         border: none;
         background-color: transparent;
-    }
-
-    .arrow {
-        height: 30px;
         width: 30px;
-        margin-top: -15px;
-        margin-bottom: -15px;
-    }
-    .small-left-right .arrow {
-        margin-left: 40px;
-        margin-right: 40px;
+        height: 30px;
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,h_30,w_30/a_270/v1515333945/arrow-right-01-256_b40xbs.png");
     }
 
+    .small-left-right {
+        display: flex;
+    }
+
+    .small-button-left {
+        border: none;
+        background-color: transparent;
+        width: 30px;
+        height: 30px;
+        margin-right: 40px;
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,h_30,w_30/a_180/v1515333945/arrow-right-01-256_b40xbs.png");
+    }
+
+    .small-button-right {
+        border: none;
+        background-color: transparent;
+        width: 30px;
+        height: 30px;
+        margin-left: 40px;
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,h_30,w_30/a_0/v1515333945/arrow-right-01-256_b40xbs.png");
+    }
+
+    .small-button-bottom {
+        border: none;
+        background-color: transparent;
+        width: 30px;
+        height: 30px;
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,h_30,w_30/a_90/v1515333945/arrow-right-01-256_b40xbs.png");
+    }
+
+    .small-button-top:active {
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,e_negate,h_30,w_30/a_270/v1515333945/arrow-right-01-256_b40xbs.png");
+        outline: none;
+    }
+
+    .small-button-left:active {
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,e_negate,h_30,w_30/a_180/v1515333945/arrow-right-01-256_b40xbs.png");
+        outline: none;
+    }
+    .small-button-right:active {
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,e_negate,h_30,w_30/a_0/v1515333945/arrow-right-01-256_b40xbs.png");
+        outline: none;
+    }
+    .small-button-bottom:active {
+        background-image: url("http://res.cloudinary.com/dvhn8lvvz/image/upload/c_scale,e_negate,h_30,w_30/a_90/v1515333945/arrow-right-01-256_b40xbs.png");
+        outline: none;
+    }
+
+    .small-button-top:focus {
+        outline: 0;
+    }
+    .small-button-left:focus {
+        outline: 0;
+    }
+    .small-button-right:focus {
+        outline: 0;
+    }
+    .small-button-bottom:focus {
+        outline: 0;
+    }
     footer p {
         font-size: 8px;
     }
 }
-
-/*@media (min-height: 680px) and (max-height: 800px){
-    main {
-        background-color: chartreuse;
-    }
-}*/
