@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leobot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-image"></div>
+            <h1>OPEN SOURCE TELEPRESENSE ROBOT</h1>
+        </div>
+    </header>
+    <main>
+        <div class="wrapper">
+            <section class="video">
+                <h3 class="video-header">VIDEOSTREAMING FROM CAMERA 1</h3>
+                <iframe class="video-streaming" src="http://res.cloudinary.com/dvhn8lvvz/video/upload/c_fill,g_east,h_504,w_671/v1515307396/Localization_and_Mapping_SLAM_on_ROS_zbqkjf.mp4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+            </section>
+            <section class="map">
+                <h3 class="map-header">RVIZ MAP (PLEASE SELECT YOUR GOAL POSITION)</h3>
+                <div class="smallscreen-wraper">
+                    <iframe class="map-tracking" src="http://res.cloudinary.com/dvhn8lvvz/video/upload/c_fill,g_east,h_342,w_458/v1515308962/Navigation_in_ROS_using_navigation_stack_I-robot_Create_hws1cf.mp4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    <div class="map-counter">
+                        <div class="map-counter-item">
+                            <label for="position">POSITION:</label>
+                            <input id="position" class="no-spinners" type="number" value="47"/>
+                        </div>
+                        <div class="map-counter-item">
+                            <label for="goal">GOAL:</label>
+                            <input id="goal" class="no-spinners" type="number" value="135"/>
+                        </div>
+                        <div class="map-counter-item">
+                            <label for="velosity">VELOSITY:</label>
+                            <input id="velosity" class="no-spinners" type="number" value="6"/>
+                        </div>
+                        <div class="map-counter-item">
+                            <label for="angel">ANGEL:</label>
+                            <input id="angel" class="no-spinners" type="number" value="45"/>
+                        </div>
+                        <div class="map-counter-item">
+                            <label for="time">TIME:</label>
+                            <input id="time" class="no-spinners" type="number" value="3"/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <section class="control-panel">
+            <h2 class="control-panel-header">ROBOT CONTROL VIA TELEOPERATION</h2>
+            <button class="control-panel-button">FORWARD</button>
+            <div class="left-right">
+                <button class="control-panel-button">LEFT</button>
+                <button class="control-panel-button">RIGHT</button>
+            </div>
+            <button class="control-panel-button">BACKWARD</button>
+        </section>
+        <div class="small-buttons">
+                <h2 class="control-panel-header">ROBOT CONTROL VIA TELEOPERATION</h2>
+                <button class="small-button-top"></button>
+                <div class="small-left-right">
+                    <button class="small-button-left"></button>
+                    <button class="small-button-right"></button>
+                </div>
+                <button class="small-button-bottom"></button>
+        </div>
+    </main>
+    <footer>
+        <p>LEO BOT©2018 Created by SYSTEMDI <br>Developed by Yaryna Demkiv</p>
+    </footer>
+</body>
+</html>
