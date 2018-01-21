@@ -112,6 +112,12 @@ It should install Node JS and NPM and finish with message
 ```
 #All required rosdeps installed successfully
 ```
+Install the NPM dependencies
+
+```bash
+roscd leobot_web_server
+npm i
+```
 
 Launch the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
 ```bash

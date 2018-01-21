@@ -1,6 +1,6 @@
 <launch>
 
   <node pkg="leobot_web_server" type="web_server.js"
-        name="leobot_web_server" output="screen"/>
+        name="leobot_web_server" launch-prefix="sudo" output="screen"/>
 
 </launch>
