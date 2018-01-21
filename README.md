@@ -123,3 +123,9 @@ Launch the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server
 ```bash
 roslaunch web_server.launch
 ```
+
+If everything goes well, you'll see such message
+```
+Web server started at port 80
+```
+After that the web server will become available on your host Ubuntu OS at http://localhost as well as from LAN.
