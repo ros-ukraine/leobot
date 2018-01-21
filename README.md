@@ -98,28 +98,13 @@ rosrun map_server map_saver -f <map_file_name>
 
 ## Starting the web server
 
-Update all packages within docker container to prevent the issue with rosdep failing to find the nodejs and npm packages
-```bash
-sudo apt-get update
-```
-
-Navigate to `~/workspace/leobot/base` and install the rosdep packages
-```bash
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
-```
-
-It should install Node JS and NPM and finish with message 
-```
-#All required rosdeps installed successfully
-```
-Install the NPM dependencies
-
+This module requires up-to-date system packages and additional rosdep and npm dependencies before running. Install them with such command
 ```bash
 roscd leobot_web_server
-npm i
+./init.sh
 ```
 
-Launch the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
+Then you can start the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
 ```bash
 roslaunch web_server.launch
 ```
