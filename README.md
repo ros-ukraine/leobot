@@ -95,3 +95,20 @@ Save map to file
 ```bash
 rosrun map_server map_saver -f <map_file_name>
 ```
+
+## Starting the web server
+
+Update all packages within docker container to prevent issue with rosdep failing to find the npm and nodejs packages
+```bash
+sudo apt-get update
+```
+
+Navigate to `~/workspace/leobot/base` and install the rosdep packages
+```bash
+rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+```
+
+Launch the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
+```bash
+roslaunch web_server.launch
+```
