@@ -1,0 +1,13 @@
+material roomd/img1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roomd_img1.jpg
+      }
+    }
+  }
+}

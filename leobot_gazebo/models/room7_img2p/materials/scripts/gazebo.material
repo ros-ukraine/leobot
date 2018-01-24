@@ -1,0 +1,13 @@
+material room7/img2p
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture room7_img2p.jpg
+      }
+    }
+  }
+}
