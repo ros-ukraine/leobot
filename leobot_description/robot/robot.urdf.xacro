@@ -14,7 +14,7 @@
     <xacro:cylinder_collision radius="0.25" height="1.0"/>
     <xacro:cylinder_inertia mass="10" radius="0.25" height="1.0"/>
   </link>
-
+<!--
   <link name="camera_left_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
@@ -44,5 +44,5 @@
     <parent link="base_link"/>
     <child link="camera_right_link"/>
   </joint>
-
+-->
 </robot>

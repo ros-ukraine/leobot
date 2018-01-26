@@ -17,7 +17,7 @@
     <kd value="1.0"/>
     <material>Gazebo/White</material>
   </gazebo>
-
+<!--
   <gazebo reference="camera_left_link">
     <material>Gazebo/Green</material>
     <sensor type="multicamera" name="stereo_camera">
@@ -78,5 +78,5 @@
   <gazebo reference="camera_right_link">
     <material>Gazebo/Green</material>
   </gazebo>
-
+-->
 </robot>
