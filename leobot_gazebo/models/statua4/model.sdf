@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="statua4">
+
+      <pose>0 0 0 0 0 0</pose>
+
+
+      <link name="link">
+
+      <collision name='collision'>
+
+        <geometry>
+
+          <box>
+
+            <size>0.4 0.4 2</size>
+
+          </box>
+
+        </geometry>
+
+      </collision>
+
+
+
+      <visual name='visual'>
+
+        <geometry>
+
+          <box>
+
+            <size>0.4 0.4 2</size>
+
+          </box>
+
+        </geometry>
+
+
+
+        <material>
+
+          <script>
+
+            <uri>model://leobot_gazebo/models/statua4/materials/scripts</uri>
+            <uri>model://leobot_gazebo/models/statua4/materials/textures</uri>
+
+            <name>statua4/img1</name>
+
+          </script>
+
+        </material>
+
+      </visual>
+
+    </link>
+
+  </model>
+
+</sdf>

@@ -1,0 +1,13 @@
+material room7/img5
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture room7_img5.jpg
+      }
+    }
+  }
+}

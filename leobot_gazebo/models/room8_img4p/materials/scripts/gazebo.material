@@ -1,0 +1,13 @@
+material room8/img4p
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture room8_img4p.jpg
+      }
+    }
+  }
+}
