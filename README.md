@@ -7,11 +7,12 @@
 | Code Coverage | [![Coverage Badge](https://api.shippable.com/projects/5a1348e66301ee07008ca23f/coverageBadge?branch=kinetic-devel)](https://app.shippable.com/github/ros-ukraine/leobot) |
 
 # leobot
-LeoBot telepresence robot
+![LeoBot](https://raw.githubusercontent.com/ros-ukraine/leobot/kinetic-devel/docs/design/LeoBotLogo.jpg "LeoBot telepresence robot")
+
+LeoBot telepresence robot 
 
 [![License](https://img.shields.io/github/license/ros-ukraine/leobot.svg)](https://github.com/ros-ukraine/leobot/blob/kinetic-devel/LICENSE)
 
-![LeoBot](https://raw.githubusercontent.com/ros-ukraine/leobot/kinetic-devel/docs/design/LeoBotLogo.jpg "LeoBot telepresence robot")
 
 ## Docker
 For convenience it is recommended to use Docker containers.
