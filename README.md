@@ -11,6 +11,8 @@ LeoBot telepresence robot
 
 [![License](https://img.shields.io/github/license/ros-ukraine/leobot.svg)](https://github.com/ros-ukraine/leobot/blob/kinetic-devel/LICENSE)
 
+![LeoBot](https://raw.githubusercontent.com/ros-ukraine/leobot/kinetic-devel/docs/design/LeoBotLogo.jpg "LeoBot telepresence robot")
+
 ## Docker
 For convenience it is recommended to use Docker containers.
 Please follow these steps to run Docker container on your machine.
@@ -60,10 +62,15 @@ qtcreator
 
 ## Navigating on known map
 
-Start simulation
+Start office simulation
 
 ```bash
 roslaunch leobot_launch simulation.launch
+```
+
+Start art gallery simulation
+```bash
+roslaunch leobot_launch simulation.launch world_file:=artgallery.world
 ```
 
 Launch navigation stack (in order to launch second command split Terminator window by two using Ctrl-Shift-E. More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
