@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>leobot_videostreaming</name>
+  <version>0.0.1</version>
+  <description>The leobot_videostreaming package</description>
+  <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
+  <maintainer email="Andriy.Petlovanyy@todo.todo">Andriy Petlovanyy</maintainer>
+  <maintainer email="SystemDi@todo.todo">SystemDi</maintainer>
+  <license>MIT</license>
+  <url type="website">https://github.com/ros-ukraine/leobot</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+</package>
+
+
