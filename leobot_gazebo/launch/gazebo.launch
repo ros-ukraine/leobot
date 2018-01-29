@@ -18,7 +18,7 @@
   </include>
 
   <param name="robot_description"
-         command="$(find xacro)/xacro --inorder '$(find leobot_description)/robot/leobot.gazebo.xacro'"/>
+         command="$(find xacro)/xacro --inorder '$(find leobot_description)/TempRobot/temp.leobot.gazebo.xacro'"/>
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
         args="-urdf -model leobot -param robot_description"/>
