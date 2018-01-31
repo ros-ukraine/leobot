@@ -344,14 +344,14 @@ footer {
     }
 }
 
-@media all and (max-width: 669px) and (min-width: 320px){
+@media all and (max-width: 669px) and (min-width: 300px){
 
     header {
         height: 65px;
     }
 
     .header-wrapper {
-        width: 320px;
+        width: 290px;
         justify-content: center;
     }
 
@@ -364,31 +364,31 @@ footer {
     }
 
     h1 {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 1.13;
         text-align: center;
         margin-right: 0;
     }
 
     .wrapper {
-        width: 320px;
+        width: 290px;
         flex-direction: column;
         align-items: center;
     }
 
     .video {
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     .video-header, .map-header {
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1.3;
         text-align: center;
     }
 
     .map .map-counter-item input {
-        width: 35px;
-        font-size: 9px;
+        width: 25px;
+        font-size: 8px;
     }
 
     .smallscreen-wraper {
@@ -396,24 +396,24 @@ footer {
     }
 
     .map-counter {
-        margin-left: 7px;
+        margin-left: 4px;
     }
     .map .map-counter-item label {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .video-header, .map-header {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .video-streaming {
-        width: 315px;
-        height: 236px;
+        width: 305px;
+        height: 226px;
     }
 
     .map-tracking {
-        width: 220px;
-        height: 163px;
+        width: 205px;
+        height: 150px;
     }
 
     .control-panel {
@@ -428,7 +428,7 @@ footer {
     }
 
     .control-panel-header {
-        font-size: 12px;
+        font-size: 10px;
     }
     .small-button-top {
         border: none;
