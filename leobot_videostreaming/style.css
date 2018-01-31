@@ -1,0 +1,53 @@
+html, body {
+    weight:100%;
+    height: 100%;
+    margin:0;
+    padding: 0;
+
+}
+
+div.one {
+
+    overflow:hidden;
+    width:100%;
+    height:100%;
+
+}
+
+div.left_camera {
+
+    float:left;
+    width:50%;
+    height:100%;
+}
+
+div.right_camera {
+
+    float:right;
+    width:50%;
+    height:100%;
+
+}
+
+iframe#left_iframe{
+
+    border:none;
+    width:100%;
+    height:100%;
+    display:block;
+    overflow:hidden;
+    margin:0;
+    padding:0;
+
+}
+
+iframe#right_iframe{
+
+    border:none;
+    width:100%;
+    height:100%;
+    display:block;
+    overflow:hidden;
+    margin:0;
+    padding:0;
+}
