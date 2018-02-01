@@ -16,8 +16,8 @@ document.addEventListener("orientationchange", function(event){
 });
 
 //gyro_test
-
-
+var d = document.getElementById("elem");
+d.innerHTML = 0 + " " + 1;
 
 function handleOrientation(event) {
     console.log("hello");
@@ -26,7 +26,7 @@ function handleOrientation(event) {
   var z = event.alpha;
   var absolute = event.absolute;
   console.log(x,y,z);
-
+  d.innerHTML = x + ", " + y + ", " + z;
 
   }
 
