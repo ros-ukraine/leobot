@@ -14,3 +14,20 @@ document.addEventListener("orientationchange", function(event){
             /* Device is in portrait mode */
     }
 });
+
+//gyro_test
+
+
+
+function handleOrientation(event) {
+    console.log("hello");
+  var x = event.beta;  // In degree in the range [-180,180]
+  var y = event.gamma; // In degree in the range [-90,90]
+  var z = event.alpha;
+  var absolute = event.absolute;
+  console.log(x,y,z);
+
+
+  }
+
+window.addEventListener('deviceorientation', handleOrientation);
