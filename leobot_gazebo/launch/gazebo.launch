@@ -7,7 +7,7 @@
   <arg name="verbose" default="true"/>
   <arg name="world_file" default="office"/>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include file="$(find gazebo_ros)/launch/office.launch">
     <arg name="world_name" value="$(find leobot_gazebo)/worlds/$(arg world_file).world"/>
     <arg name="debug" value="$(arg debug)"/>
     <arg name="gui" value="$(arg gui)"/>

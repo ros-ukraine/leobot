@@ -5,16 +5,106 @@
   <xacro:include filename="$(find leobot_description)/urdf/materials.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/common.urdf.xacro"/>
 
-  <!-- Robot links -->
-  <link name="base_link">
+  <!-- Loebody -->
+  <link name="body_link">
     <visual>
-      <xacro:cylinder_geometry radius="0.25" height="1.0"/>
+      <xacro:cylinder_geometry radius="0.3" height="0.1"/>
       <xacro:navajo_white_material/>
     </visual>
-    <xacro:cylinder_collision radius="0.25" height="1.0"/>
-    <xacro:cylinder_inertia mass="10" radius="0.25" height="1.0"/>
+    <xacro:cylinder_collision radius="0.3" height="0.1"/>
+    <xacro:cylinder_inertia mass="20" radius="0.3" height="0.1"/>
   </link>
-<!--
+
+  <!-- Leoehead -->
+  <link name="head_link">
+    <visual>
+      <xacro:sphere_geometry radius="0.1"/>
+      <xacro:black_material/>
+    </visual>
+    <xacro:sphere_collision radius="0.25"/>
+    <xacro:sphere_inertia mass="5" radius="0.25"/>
+  </link>
+
+  <!-- head-body -->
+  <joint name="head_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.22 0.0 0.12"/>
+    <parent link="body_link"/>
+    <child link="head_link"/>
+  </joint>
+
+
+  <!-- Leotail -->
+    <link name="tail_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.03" height="0.3"/>
+      <xacro:black_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.03" height="0.3"/>
+    <xacro:cylinder_inertia mass="1" radius="0.03" height="0.3"/>
+  </link>
+
+  <!-- tail-body -->
+  <joint name="tail_body_joint" type="fixed">
+    <origin rpy="0 -0.55 0" xyz="-0.32 0.0 0.15"/>
+    <parent link="body_link"/>
+    <child link="tail_link"/>
+  </joint>
+
+   <!-- Leo_left_wheel -->
+    <link name="left_wheel_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.1" height="0.05"/>
+      <xacro:red_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.1" height="0.05"/>
+    <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
+  </link>
+
+    <!-- left_wheel-body -->
+  <joint name="left_wheel_body_joint" type="continuous">
+    <origin rpy="1.570795 0 0" xyz="0.0 0.32 -0.05"/>
+    <parent link="body_link"/>
+    <child link="left_wheel_link"/>
+  </joint>
+
+
+       <!-- Leo_right_wheel -->
+    <link name="right_wheel_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.1" height="0.05"/>
+      <xacro:red_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.1" height="0.05"/>
+    <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
+  </link>
+
+      <!-- right_wheel-body -->
+  <joint name="right_wheel_body_joint" type="continuous">
+    <origin rpy="1.570795 0 0" xyz="0.0 -0.32 -0.05"/>
+    <parent link="body_link"/>
+    <child link="right_wheel_link"/>
+  </joint>
+
+       <!-- Leo_caster_wheel -->
+    <link name="caster_wheel_link">
+    <visual>
+      <xacro:sphere_geometry radius="0.08"/>
+      <xacro:red_material/>
+    </visual>
+    <xacro:sphere_collision radius="0.08"/>
+    <xacro:sphere_inertia mass="1" radius="0.08"/>
+  </link>
+
+      <!-- left_wheel-body -->
+  <joint name="caster_wheel_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.2 0.0 -0.08"/>
+    <parent link="body_link"/>
+    <child link="caster_wheel_link"/>
+  </joint>
+
+
+
+
   <link name="camera_left_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
@@ -25,8 +115,8 @@
   </link>
 
   <joint name="camera_left_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.075 0.525"/>
-    <parent link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.075 0.075 0.025"/>
+    <parent link="head_link"/>
     <child link="camera_left_link"/>
   </joint>
 
@@ -40,9 +130,9 @@
   </link>
 
   <joint name="camera_right_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 -0.075 0.525"/>
-    <parent link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.075 -0.075 0.025"/>
+    <parent link="head_link"/>
     <child link="camera_right_link"/>
   </joint>
--->
+
 </robot>

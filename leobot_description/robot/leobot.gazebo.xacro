@@ -10,14 +10,56 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="base_link">
+  <gazebo reference="body_link">
     <mu1 value="1.0"/>
     <mu2 value="1.0"/>
     <kp value="10000000.0"/>
     <kd value="1.0"/>
     <material>Gazebo/White</material>
   </gazebo>
-<!--
+
+  <gazebo reference="head_link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+   <gazebo reference="tail_link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+   <gazebo reference="left_wheel_link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/White</material>
+  </gazebo>
+
+   <gazebo reference="right_wheel_link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/White</material>
+  </gazebo>
+
+     <gazebo reference="caster_wheel_link">
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+
+
   <gazebo reference="camera_left_link">
     <material>Gazebo/Green</material>
     <sensor type="multicamera" name="stereo_camera">
@@ -78,5 +120,5 @@
   <gazebo reference="camera_right_link">
     <material>Gazebo/Green</material>
   </gazebo>
--->
+
 </robot>
