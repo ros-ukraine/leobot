@@ -65,6 +65,7 @@
     <origin rpy="1.570795 0 0" xyz="0.0 0.32 -0.05"/>
     <parent link="body_link"/>
     <child link="left_wheel_link"/>
+    <axis xyz="0 0 1" />
   </joint>
 
 
@@ -83,6 +84,7 @@
     <origin rpy="1.570795 0 0" xyz="0.0 -0.32 -0.05"/>
     <parent link="body_link"/>
     <child link="right_wheel_link"/>
+    <axis xyz="0 0 1" />
   </joint>
 
        <!-- Leo_caster_wheel -->
