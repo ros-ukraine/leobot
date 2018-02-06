@@ -14,8 +14,8 @@
     <xacro:cylinder_collision radius="0.25" height="1.0"/>
     <xacro:cylinder_inertia mass="10" radius="0.25" height="1.0"/>
   </link>
-       <!-- Leo_left_wheel -->
-    <link name="left_wheel_link">
+
+  <link name="left_wheel_link">
     <visual>
       <xacro:cylinder_geometry radius="0.1" height="0.05"/>
       <xacro:red_material/>
@@ -24,17 +24,14 @@
     <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
   </link>
 
-    <!-- left_wheel-body -->
   <joint name="left_wheel_body_joint" type="continuous">
-    <origin rpy="1.570795 0 0" xyz="0.0 0.275 -0.55"/>
+    <origin rpy="${pi / 2} 0 0" xyz="0.0 0.275 -0.55"/>
     <parent link="base_link"/>
     <child link="left_wheel_link"/>
     <axis xyz="0 0 1" />
   </joint>
 
-
-       <!-- Leo_right_wheel -->
-    <link name="right_wheel_link">
+  <link name="right_wheel_link">
     <visual>
       <xacro:cylinder_geometry radius="0.1" height="0.05"/>
       <xacro:red_material/>
@@ -43,16 +40,14 @@
     <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
   </link>
 
-      <!-- right_wheel-body -->
   <joint name="right_wheel_body_joint" type="continuous">
-    <origin rpy="1.570795 0 0" xyz="0.0 -0.275 -0.55"/>
+    <origin rpy="${pi / 2} 0 0" xyz="0.0 -0.275 -0.55"/>
     <parent link="base_link"/>
     <child link="right_wheel_link"/>
     <axis xyz="0 0 1" />
   </joint>
 
-       <!-- Leo_caster_wheel -->
-    <link name="caster_wheel_link">
+  <link name="caster_wheel_link">
     <visual>
       <xacro:sphere_geometry radius="0.08"/>
       <xacro:red_material/>
@@ -61,7 +56,6 @@
     <xacro:sphere_inertia mass="1" radius="0.08"/>
   </link>
 
-      <!-- left_wheel-body -->
   <joint name="caster_wheel_body_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.2 0.0 -0.57"/>
     <parent link="base_link"/>
