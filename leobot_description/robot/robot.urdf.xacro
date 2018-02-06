@@ -15,6 +15,26 @@
     <xacro:cylinder_inertia mass="10" radius="0.25" height="1.0"/>
   </link>
 
+  <!-- Head link -->
+  <link name="head_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.15" height="0.1"/>
+      <xacro:navajo_white_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.15" height="0.1"/>
+    <xacro:cylinder_inertia mass="1" radius="0.15" height="0.1"/>
+  </link>
+
+  <joint name="head_link_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.525"/>
+    <axis xyz="0 0 1" />
+    <parent link="base_link"/>
+    <child link="head_link"/>
+    <limit effort="10" velocity="10" lower="-1.57" upper="1.57" />
+    <dynamics damping="10" friction="1" />
+  </joint>
+
+  <!-- Left camera link -->
   <link name="camera_left_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
@@ -25,11 +45,12 @@
   </link>
 
   <joint name="camera_left_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.075 0.525"/>
-    <parent link="base_link"/>
+    <origin rpy="0 0 0" xyz="0 0.075 0.1"/>
+    <parent link="head_link"/>
     <child link="camera_left_link"/>
   </joint>
 
+  <!-- Right camera link-->
   <link name="camera_right_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
@@ -40,8 +61,8 @@
   </link>
 
   <joint name="camera_right_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 -0.075 0.525"/>
-    <parent link="base_link"/>
+    <origin rpy="0 0 0" xyz="0 -0.075 0.1"/>
+    <parent link="head_link"/>
     <child link="camera_right_link"/>
   </joint>
 
