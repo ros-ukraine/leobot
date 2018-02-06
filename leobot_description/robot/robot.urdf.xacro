@@ -29,7 +29,7 @@
     <axis xyz="0 0 1" />
     <parent link="base_link"/>
     <child link="head_link"/>
-    <limit effort="10" velocity="10" lower="${90/180*pi}" upper="${90/180*pi}" />
+    <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping="10" friction="1" />
   </joint>
 
