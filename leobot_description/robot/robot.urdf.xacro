@@ -30,13 +30,13 @@
     <parent link="base_link"/>
     <child link="head_link"/>
     <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
-    <dynamics damping="10" friction="1" />
+
   </joint>
 
   <transmission name="head_transmission">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="head_link_joint">
-       <hardwareInterface>EffortJointInterface</hardwareInterface>
+       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
      </joint>
      <actuator name="head_motor">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
