@@ -18,6 +18,14 @@
     <material>Gazebo/White</material>
   </gazebo>
 
+  <gazebo reference="head_link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/White</material>
+  </gazebo>
+
   <gazebo reference="camera_left_link">
     <material>Gazebo/Green</material>
     <sensor type="multicamera" name="stereo_camera">
