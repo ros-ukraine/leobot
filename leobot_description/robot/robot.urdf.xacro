@@ -33,6 +33,17 @@
     <dynamics damping="10" friction="1" />
   </joint>
 
+  <transmission name="head_transmission">
+     <type>transmission_interface/SimpleTransmission</type>
+     <joint name="head_link_joint">
+       <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
+     <actuator name="head_motor">
+       <hardwareInterface>EffortJointInterface</hardwareInterface>
+       <mechanicalReduction>1</mechanicalReduction>
+     </actuator>
+  </transmission>
+
   <link name="camera_left_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
