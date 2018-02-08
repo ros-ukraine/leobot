@@ -29,7 +29,7 @@ docker pull rosukraine/leobot:latest
 ```
  7. Use the following command to start Docker container
 ```bash
-docker run -it --name leobot_dev -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
+docker run -it --name leobot_dev -p 80:80 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
@@ -98,28 +98,19 @@ rosrun map_server map_saver -f <map_file_name>
 
 ## Starting the web server
 
-Update all packages within docker container to prevent the issue with rosdep failing to find the nodejs and npm packages
-```bash
-sudo apt-get update
-```
-
-Navigate to `~/workspace/leobot/base` and install the rosdep packages
-```bash
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
-```
-
-It should install Node JS and NPM and finish with message 
-```
-#All required rosdeps installed successfully
-```
-Install the NPM dependencies
-
+This module requires up-to-date system packages and additional rosdep and npm dependencies before running. Install them with such command
 ```bash
 roscd leobot_web_server
-npm i
+./init.sh
 ```
 
-Launch the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
+Then you can start the web server from `~/workspace/leobot/base/src/leobot/leobot_web_server/launch`
 ```bash
 roslaunch web_server.launch
 ```
+
+If everything goes well, you'll see such message
+```
+Web server started at port 80
+```
+After that the web server will become available on your host Ubuntu OS at http://localhost as well as from LAN.
