@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path')
 
 const port = 80;
-const webContentFolderPath = '../../docs/design/management/Leobot_html';
+const webContentFolderPath = '../web_content';
 const webContentFolderAbsolutePath = path.join(__dirname, webContentFolderPath);
 console.log('Starting the web server in folder ' + webContentFolderAbsolutePath);
 // This command will fail if path is incorrect
