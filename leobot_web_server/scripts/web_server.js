@@ -7,12 +7,12 @@ const path = require('path');
 const rosnodejs = require('rosnodejs');
 
 rosnodejs.initNode('leobot_web_server').then(() => {
-    var nh = rosnodejs.nh;
+    const nh = rosnodejs.nh;
 
     console.log('rosnodejs handle: ' + nh);
 
     nh.getParam('test').then((p) => {
-        var port = p;
+        const port = p;
 
         console.log('Port parameter: ' + port);
     });
