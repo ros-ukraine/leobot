@@ -62,8 +62,8 @@
      </actuator>
   </transmission>
 
+  <link name="camera_left_link">
 
-   <link name="camera_left_link">
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
       <xacro:green_material/>
