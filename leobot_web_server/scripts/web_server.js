@@ -5,7 +5,7 @@ const static = require('node-static');
 const fs = require('fs');
 const path = require('path')
 
-const port = 80;
+const port = 8080;
 const webContentFolderPath = '../web_content';
 const webContentFolderAbsolutePath = path.join(__dirname, webContentFolderPath);
 console.log('Starting the web server in folder ' + webContentFolderAbsolutePath);
