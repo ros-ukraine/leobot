@@ -57,6 +57,7 @@ To get all needed packages do the following.
 ```bash
 roscd
 cd ../src
+sudo apt-get update
 depkinetic
+catkin_make_here
 ``` 
-After that recompile code again.
