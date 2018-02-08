@@ -10,7 +10,7 @@
   <xacro:property name="base_radius" value="0.25"/>
   <xacro:property name="base_height" value="1.0"/>
 
-  <xacro:property name="caster_radius" value="0.08"/>
+  <xacro:property name="caster_radius" value="0.05"/>
   <xacro:property name="caster_mass" value="10"/>
 
   <xacro:property name="wheel_width" value="0.005"/>
@@ -29,7 +29,7 @@
     <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
   </link>
 
-  <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" x="0.2" y="0.0" z="-0.57"/>
+  <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
   <xacro:standard_wheel prefix="left" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
   <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
 

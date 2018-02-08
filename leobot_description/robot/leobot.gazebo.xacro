@@ -18,7 +18,6 @@
     <material>Gazebo/White</material>
   </gazebo>
 
-
   <gazebo reference="left_wheel_link">
     <mu1 value="1.0"/>
     <mu2 value="1.0"/>
@@ -35,14 +34,13 @@
     <material>Gazebo/Red</material>
   </gazebo>
 
-  <gazebo reference="right_bearing_link">
+  <gazebo reference="left_bearing_link">
     <mu1 value="0.0"/>
     <mu2 value="0.0"/>
     <kp value="10000000.0"/>
     <kd value="1.0"/>
     <material>Gazebo/Blue</material>
   </gazebo>
-
 
   <gazebo reference="right_bearing_link">
     <mu1 value="0.0"/>
@@ -59,7 +57,6 @@
     <kd value="1.0"/>
     <material>Gazebo/Red</material>
   </gazebo>
-
 
   <gazebo reference="head_link">
     <mu1 value="1.0"/>
