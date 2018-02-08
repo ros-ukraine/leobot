@@ -9,6 +9,7 @@ install(FILES
   launch/display.launch
   urdf/common.urdf.xacro
   urdf/materials.urdf.xacro
+  urdf/wheels.urdf.xacro
   robot/robot.urdf.xacro
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
