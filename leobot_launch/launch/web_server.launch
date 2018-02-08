@@ -2,5 +2,5 @@
     <arg name="port" default="8080"/>
     <include file="$(find leobot_web_server)/launch/web_server.launch">
         <arg name="port" value="$(arg port)"/>
-   </include>
+    </include>
 </launch>
