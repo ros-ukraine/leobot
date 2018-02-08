@@ -29,7 +29,7 @@ docker pull rosukraine/leobot:latest
 ```
  7. Use the following command to start Docker container
 ```bash
-docker run -it --name leobot_dev -p 80:80 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
+docker run -it --name leobot_dev -p 8080:8080 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
@@ -111,6 +111,6 @@ roslaunch web_server.launch
 
 If everything goes well, you'll see such message
 ```
-Web server started at port 80
+Web server started at port 8080
 ```
-After that the web server will become available on your host Ubuntu OS at http://localhost as well as from LAN.
+After that the web server will become available on your host Ubuntu OS at http://localhost:8080 as well as from LAN.
