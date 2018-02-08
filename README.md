@@ -114,12 +114,12 @@ Then you can start the web server with such command
 roslaunch leobot_launch web_server.launch
 ```
 
-Additionally you can specify a custom port for the web server in docker container:
+Additionally you can specify a custom port for the web server in docker container
 ```bash
 roslaunch leobot_launch web_server.launch port:=1234
 ```
 In this case you'll need to re-build the docker container
-to publish the specified port to your host machine (see `docker run` command at [Docker](#docker) section).
+to publish the specified port to your host machine (see `docker run -p` command at [Docker](#docker) section).
 
 If everything goes well, you'll see the message
 ```
