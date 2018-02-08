@@ -34,6 +34,23 @@
     <material>Gazebo/Red</material>
   </gazebo>
 
+  <gazebo reference="right_bearing_link">
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+
+  <gazebo reference="right_bearing_link">
+    <mu1 value="0.0"/>
+    <mu2 value="0.0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0"/>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
   <gazebo reference="caster_wheel_link">
     <mu1 value="0.0"/>
     <mu2 value="0.0"/>
@@ -49,35 +66,6 @@
     <kd value="1.0"/>
     <material>Gazebo/Red</material>
   </gazebo>
-
-  <link name="head_link">
-    <visual>
-      <xacro:cylinder_geometry radius="0.15" height="0.1"/>
-      <xacro:navajo_white_material/>
-    </visual>
-    <xacro:cylinder_collision radius="0.15" height="0.1"/>
-    <xacro:cylinder_inertia mass="1" radius="0.15" height="0.1"/>
-  </link>
-
-  <joint name="head_link_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0.525"/>
-    <axis xyz="0 0 1" />
-    <parent link="base_link"/>
-    <child link="head_link"/>
-    <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
-
-  </joint>
-
-  <transmission name="head_transmission">
-     <type>transmission_interface/SimpleTransmission</type>
-     <joint name="head_link_joint">
-       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-     </joint>
-     <actuator name="head_motor">
-       <hardwareInterface>EffortJointInterface</hardwareInterface>
-       <mechanicalReduction>1</mechanicalReduction>
-     </actuator>
-  </transmission>
 
   <gazebo reference="camera_left_link">
     <material>Gazebo/Green</material>

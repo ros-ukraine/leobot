@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+    <xacro:macro name="standard_wheel" params="prefix direction bearing_radius radius width mass base_radius">
+        <link name="${prefix}_bearing_link">>
+            <visual>
+              <xacro:sphere_geometry radius="${bearing_radius}"/>
+              <xacro:blue_material/>
+            </visual>
+        <xacro:sphere_collision radius="${bearing_radius}"/>
+        <xacro:sphere_inertia mass="0.1" radius="${bearing_radius}"/>
+        </link>
+        <joint name="${prefix}_bearing_base_joint" type="fixed">
+            <origin rpy="0 0 0" xyz="0.0 ${direction * (base_radius + bearing_radius - 0.0001)} ${-(base_height/2 - bearing_radius)}"/>
+            <parent link="base_link"/>
+            <child link="${prefix}_bearing_link"/>
+        </joint>
+        <link name="${prefix}_wheel_link">
+            <visual>
+              <xacro:cylinder_geometry radius="${radius}" height="${width}"/>
+              <xacro:red_material/>
+            </visual>
+            <xacro:cylinder_collision radius="${radius}" height="${width}"/>
+            <xacro:cylinder_inertia mass="${mass}" radius="${radius}" height="${width}"/>
+        </link>
+        <joint name="${prefix}_wheel_bearing_joint" type="continuous">
+            <origin rpy="${pi / 2} 0 0" xyz="0.0 ${direction * (bearing_radius + width/2 - 0.0001)} 0.0"/>
+            <parent link="${prefix}_bearing_link"/>
+            <child link="${prefix}_wheel_link"/>
+            <axis xyz="0 0 1" />
+        </joint>
+
+        <transmission name="${prefix}_wheel_transmission">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_wheel_joint">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_wheel_motor">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+<!--
+  <link name="left_wheel_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.1" height="0.05"/>
+      <xacro:red_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.1" height="0.05"/>
+    <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
+  </link>
+
+  <joint name="left_wheel_body_joint" type="continuous">
+    <origin rpy="${pi / 2} 0 0" xyz="0.0 0.275 -0.55"/>
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="right_wheel_link">
+    <visual>
+      <xacro:cylinder_geometry radius="0.1" height="0.05"/>
+      <xacro:red_material/>
+    </visual>
+    <xacro:cylinder_collision radius="0.1" height="0.05"/>
+    <xacro:cylinder_inertia mass="10" radius="0.1" height="0.05"/>
+  </link>
+
+  <joint name="right_wheel_body_joint" type="continuous">
+    <origin rpy="${pi / 2} 0 0" xyz="0.0 -0.275 -0.55"/>
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <axis xyz="0 0 1" />
+  </joint>
+
+
+-->
+    <xacro:macro name="caster_wheel" params="radius mass x y z">
+
+        <link name="caster_wheel_link">
+            <visual>
+                <xacro:sphere_geometry radius="${radius}"/>
+                <xacro:red_material/>
+            </visual>
+            <xacro:sphere_collision radius="${radius}"/>
+            <xacro:sphere_inertia mass="${mass}" radius="${radius}"/>
+        </link>
+
+        <joint name="caster_wheel_base_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="caster_wheel_link"/>
+            <origin rpy="0 0 0" xyz="${x} ${y} ${z}"/>
+        </joint>
+
+    </xacro:macro>
+
+
+</robot>
