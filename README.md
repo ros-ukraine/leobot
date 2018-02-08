@@ -109,7 +109,7 @@ rosrun map_server map_saver -f <map_file_name>
 This module requires up-to-date system packages and additional rosdep and npm dependencies before running.
 You need to install them using commands described in [Code Update](CONTRIBUTING.md#code-update) section.
 
-Then you can start the web server with such command:
+Then you can start the web server with such command
 ```bash
 roslaunch leobot_launch web_server.launch
 ```
@@ -119,9 +119,9 @@ Additionally you can specify a custom port for the web server in docker containe
 roslaunch leobot_launch web_server.launch port:=1234
 ```
 In this case you'll need to re-build the docker container
-to publish the specified port to your host machine (see `docker run` command at [Docker](#Docker) section).
+to publish the specified port to your host machine (see `docker run` command at [Docker](#docker) section).
 
-If everything goes well, you'll see such message
+If everything goes well, you'll see the message
 ```
 Web server started at port 8080
 ```
