@@ -1,0 +1,15 @@
+material statuaf/img1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture statuaf.jpg
+	filtering anistropic
+        max_anisotropy 16
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+material room3/img5p
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture room3_img5p.jpg
+      }
+    }
+  }
+}

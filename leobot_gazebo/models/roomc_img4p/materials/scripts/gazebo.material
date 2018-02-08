@@ -1,0 +1,13 @@
+material roomc/img4p
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roomc_img4p.jpg
+      }
+    }
+  }
+}

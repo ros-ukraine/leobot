@@ -1,0 +1,15 @@
+material statua6/img1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture statua6.jpg
+	filtering anistropic
+        max_anisotropy 16
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="room1_img5">
+    
+      <pose>0 0 1.2 0 0 0</pose>
+
+      <static>true</static>
+
+      <link name="link">
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>1 0.05 1.6</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>1 0.05 1.6</size>
+          </box>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>model://leobot_gazebo/models/room1_img5/materials/scripts</uri>
+            <uri>model://leobot_gazebo/models/room1_img5/materials/textures</uri>
+            <name>room1/img5</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

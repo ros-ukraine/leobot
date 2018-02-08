@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="statuac">
+
+      <pose>0 0 0 0 0 0</pose>
+
+
+      <link name="link">
+
+      <collision name='collision'>
+
+        <geometry>
+
+          <box>
+
+            <size>0.4 0.4 2</size>
+
+          </box>
+
+        </geometry>
+
+      </collision>
+
+
+
+      <visual name='visual'>
+
+        <geometry>
+
+          <box>
+
+            <size>0.4 0.4 2</size>
+
+          </box>
+
+        </geometry>
+
+
+
+        <material>
+
+          <script>
+
+             <uri>model://leobot_gazebo/models/statuac/materials/scripts</uri>
+             <uri>model://leobot_gazebo/models/statuac/materials/textures</uri>
+
+            <name>statuac/img1</name>
+
+          </script>
+
+        </material>
+
+      </visual>
+
+    </link>
+
+  </model>
+
+</sdf>
