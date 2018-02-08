@@ -1,6 +1,7 @@
 <launch>
-
-  <node pkg="leobot_web_server" type="web_server.js"
-        name="leobot_web_server" output="screen"/>
-
+    <arg name="port" default="8080"/>
+    <node pkg="leobot_web_server" type="web_server.js"
+          name="leobot_web_server" output="screen">
+        <param name="port" value="$(arg port)"/>
+    </node>
 </launch>

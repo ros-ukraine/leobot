@@ -3,9 +3,22 @@
 const static = require('node-static');
 
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
+const rosnodejs = require('rosnodejs');
 
-const port = 8080;
+rosnodejs.initNode('leobot_web_server').then(() => {
+    var nh = rosnodejs.nh;
+
+    console.log('rosnodejs handle: ' + nh);
+
+    nh.getParam('test').then((p) => {
+        var port = p;
+
+        console.log('Port parameter: ' + port);
+    });
+});
+
+const port = 8080; // hard-coded for now
 const webContentFolderPath = '../web_content';
 const webContentFolderAbsolutePath = path.join(__dirname, webContentFolderPath);
 console.log('Starting the web server in folder ' + webContentFolderAbsolutePath);
