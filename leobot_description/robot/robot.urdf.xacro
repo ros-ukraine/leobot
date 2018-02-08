@@ -53,7 +53,7 @@
       <xacro:red_material/>
     </visual>
     <xacro:sphere_collision radius="0.08"/>
-    <xacro:sphere_inertia mass="1" radius="0.08"/>
+    <xacro:sphere_inertia mass="10" radius="0.08"/>
   </link>
 
   <joint name="caster_wheel_body_joint" type="fixed">
@@ -61,7 +61,6 @@
     <parent link="base_link"/>
     <child link="caster_wheel_link"/>
   </joint>
-
 
   <link name="camera_left_link">
     <visual>
@@ -77,9 +76,6 @@
     <parent link="base_link"/>
     <child link="camera_left_link"/>
   </joint>
-
-
-
 
   <link name="camera_right_link">
     <visual>
