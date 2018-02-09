@@ -11,3 +11,9 @@ add_custom_target(install_nodejs ALL
   COMMENT "Installing NodeJS dependencies"
   VERBATIM
 )
+
+install(FILES
+  scripts/**/*
+  web_content/**/*
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
