@@ -13,5 +13,6 @@
   <run_depend>joint_state_controller</run_depend>
   <run_depend>controller_manager</run_depend>
   <run_depend>effort_controllers</run_depend>
-
+  <run_depend>diff_drive_controller</run_depend>
+  <run_depend>teleop_twist_keyboard</run_depend>
 </package>

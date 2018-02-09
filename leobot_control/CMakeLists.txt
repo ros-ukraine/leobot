@@ -6,6 +6,3 @@ find_package(catkin REQUIRED)
 catkin_package(
   CATKIN_DEPENDS effort_controllers joint_state_controller controller_manager diff_drive_controller teleop_twist_keyboard
 )
-
-
-
