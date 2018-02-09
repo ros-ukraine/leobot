@@ -11,7 +11,7 @@ rosnodejs.initNode('leobot_web_server').then(() => {
 
     console.log('rosnodejs handle: ' + nh);
 
-    nh.getParam('test').then((p) => {
+    nh.getParam('port').then((p) => {
         const port = p;
 
         console.log('Port parameter: ' + port);
