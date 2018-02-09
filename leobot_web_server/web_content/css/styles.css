@@ -1,6 +1,6 @@
 @font-face {
     font-family: "GlacialIndifference-Bold";
-    src: url("fonts/GlacialIndifference-Bold.otf");
+    src: url(../fonts/GlacialIndifference-Bold.otf);
 }
 
 body {
@@ -29,7 +29,7 @@ header {
     width: 242px;
     height: 52px;
     margin-left: 15px;
-    background-image: url("images/site-logo-wide.png");
+    background-image: url(../images/site-logo-large.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -359,7 +359,7 @@ footer {
         width: 43px;
         height: 43px;
         margin-left: 5px;
-        background-image: url(images/site-logo-narrow.png);
+        background-image: url(../images/site-logo-narrow.png);
         background-size: cover;
     }
 
@@ -435,7 +435,7 @@ footer {
         background-color: transparent;
         width: 30px;
         height: 30px;
-        background-image: url(images/arrow-dark-up.png);
+        background-image: url(../images/arrow-dark-up.png);
     }
 
     .small-left-right {
@@ -448,7 +448,7 @@ footer {
         width: 30px;
         height: 30px;
         margin-right: 40px;
-        background-image: url(images/arrow-dark-left.png);
+        background-image: url(../images/arrow-dark-left.png);
     }
 
     .small-button-right {
@@ -457,7 +457,7 @@ footer {
         width: 30px;
         height: 30px;
         margin-left: 40px;
-        background-image: url(images/arrow-dark-right.png);
+        background-image: url(../images/arrow-dark-right.png);
     }
 
     .small-button-bottom {
@@ -465,24 +465,24 @@ footer {
         background-color: transparent;
         width: 30px;
         height: 30px;
-        background-image: url(images/arrow-dark-down.png);
+        background-image: url(../images/arrow-dark-down.png);
     }
 
     .small-button-top:active {
-        background-image: url(images/arrow-light-up.png);
+        background-image: url(../images/arrow-light-up.png);
         outline: none;
     }
 
     .small-button-left:active {
-        background-image: url(images/arrow-light-left.png);
+        background-image: url(../images/arrow-light-left.png);
         outline: none;
     }
     .small-button-right:active {
-        background-image: url(images/arrow-light-right.png);
+        background-image: url(../images/arrow-light-right.png);
         outline: none;
     }
     .small-button-bottom:active {
-        background-image: url(images/arrow-light-bottom.png);
+        background-image: url(../images/arrow-light-bottom.png);
         outline: none;
     }
 
