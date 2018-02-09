@@ -14,5 +14,4 @@
   <run_depend>controller_manager</run_depend>
   <run_depend>effort_controllers</run_depend>
 
-
 </package>
