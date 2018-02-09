@@ -106,7 +106,7 @@ rosrun map_server map_saver -f <map_file_name>
 
 ## Starting the web server
 
-Once you install all dependencies, you can start the web server with such command
+Once you install all project dependencies, you can start the web server with such command
 ```bash
 roslaunch leobot_launch web_server.launch
 ```
