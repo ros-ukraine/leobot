@@ -106,10 +106,7 @@ rosrun map_server map_saver -f <map_file_name>
 
 ## Starting the web server
 
-This module requires up-to-date system packages and additional rosdep and npm dependencies before running.
-You need to install them using commands described in [Code Update](CONTRIBUTING.md#code-update) section.
-
-Then you can start the web server with such command
+Once you install all dependencies, you can start the web server with such command
 ```bash
 roslaunch leobot_launch web_server.launch
 ```
