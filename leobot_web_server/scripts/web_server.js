@@ -1,10 +1,11 @@
 #!/usr/bin/env nodejs
 
-const static = require('node-static');
+'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const rosnodejs = require('rosnodejs');
+const nodeStatic = require('node-static');
 
 rosnodejs.initNode('leobot_web_server').then(() => {
     const nh = rosnodejs.nh;
@@ -25,7 +26,7 @@ console.log('Starting the web server in folder ' + webContentFolderAbsolutePath)
 // This command will fail if path is incorrect
 const webContentFolderRealPath = fs.realpathSync(webContentFolderAbsolutePath);
 
-const file = new(static.Server)(webContentFolderRealPath);
+const file = new(nodeStatic.Server)(webContentFolderRealPath);
 
 require('http').createServer(function (request, response) {
     file.serve(request, response);
