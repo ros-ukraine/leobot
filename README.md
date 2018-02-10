@@ -32,7 +32,7 @@ docker pull rosukraine/leobot:latest
 ```
  7. Use the following command to start Docker container
 ```bash
-docker run -it --name leobot_dev -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
+docker run -it --name leobot_dev -p 8080:8080 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
@@ -103,3 +103,23 @@ Save map to file
 ```bash
 rosrun map_server map_saver -f <map_file_name>
 ```
+
+## Starting the web server
+
+Once you install all project dependencies, you can start the web server with such command
+```bash
+roslaunch leobot_launch web_server.launch
+```
+
+Additionally you can specify a custom port for the web server in docker container
+```bash
+roslaunch leobot_launch web_server.launch port:=1234
+```
+In this case you'll need to re-build the docker container
+to publish the specified port to your host machine (see `docker run -p` command at [Docker](#docker) section).
+
+If everything goes well, you'll see the message
+```
+Web server started at port 8080
+```
+After that the web server will become available on your host Ubuntu OS at http://localhost:8080 as well as from LAN.

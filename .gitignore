@@ -3,6 +3,7 @@ bin/
 lib/
 msg_gen/
 srv_gen/
+node_modules/
 msg/*Action.msg
 msg/*ActionFeedback.msg
 msg/*ActionGoal.msg
