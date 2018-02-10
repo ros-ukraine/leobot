@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(leobot_control)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+    controller_interface
+    nav_msgs
+    realtime_tools
+    tf
+    urdf
+)
 
 catkin_package(
   CATKIN_DEPENDS effort_controllers joint_state_controller controller_manager diff_drive_controller teleop_twist_keyboard
