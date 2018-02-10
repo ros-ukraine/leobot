@@ -12,8 +12,8 @@ add_custom_target(install_nodejs ALL
   VERBATIM
 )
 
-install(FILES
-  scripts/**/*
-  web_content/**/*
+install(DIRECTORY
+  scripts
+  web_content
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
