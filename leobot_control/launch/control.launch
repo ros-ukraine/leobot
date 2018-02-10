@@ -1,13 +1,7 @@
 <launch>
-  <!-- Load leobot model -->
-  <param name="robot_description"
-         command="$(find xacro)/xacro '$(find leobot_description)/robot/leobot.rviz.xacro' --inorder" />
-
-<!-- Load controller config -->
-  <rosparam command="load" file="$(find leobot_control)/config/gazebo/leobot_control.yml" />
 
   <node name="controller_spawner"
         pkg="controller_manager" type="spawner" respawn="false"
     output="screen" ns="/leobot"
-        args="head_position_controller joint_state_controller diff_drive_controller" />
+        args="head_position_controller joint_state_controller wheel_diff_drive_controller" />
 </launch>

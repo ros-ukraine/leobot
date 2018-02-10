@@ -7,7 +7,7 @@ head_position_controller:
   joint: head_link_joint
   pid: {p: 100.0, i: 0.01, d: 10.0}
 
-diff_drive_controller:
+wheel_diff_drive_controller:
   type: "diff_drive_controller/DiffDriveController"
   left_wheel: 'left_wheel_bearing_joint'
   right_wheel: 'right_wheel_bearing_joint'
