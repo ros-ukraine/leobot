@@ -10,6 +10,5 @@ catkin_package(
 install(FILES
   config/gazebo/leobot_control.yml
   launch/control.launch
-  launch/teleop.launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
