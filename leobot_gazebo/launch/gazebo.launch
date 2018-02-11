@@ -17,13 +17,15 @@
     <arg name="verbose" value="$(arg verbose)"/>
   </include>
 
-  <param name="robot_description"
+  <param name="leobot/robot_description"
          command="$(find xacro)/xacro --inorder '$(find leobot_description)/robot/leobot.gazebo.xacro'"/>
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-        args="-urdf -model leobot -param robot_description"/>
+        args="-urdf -model leobot -param leobot/robot_description"/>
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-        respawn="false" output="screen"/>
+        respawn="false" output="screen">
+      <remap from="robot_description" to="leobot/robot_description" />
+  </node>
 </launch>
