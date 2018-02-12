@@ -1,7 +1,12 @@
 <launch>
     <arg name="port" default="8080"/>
+    <arg name="web_port" default="8090"/>
     <node pkg="leobot_web_server" type="web_server.js"
           name="leobot_web_server" output="screen">
         <param name="port" value="$(arg port)"/>
+    </node>
+    <node pkg="web_video_server" type="web_video_server"
+          name="web_video_server" output="screen">
+        <param name="port" value="$(arg web_port)"/>
     </node>
 </launch>

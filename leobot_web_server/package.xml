@@ -12,5 +12,6 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>nodejs</depend>
   <depend>npm</depend>
+  <depend>web_video_server</depend>
 
 </package>
