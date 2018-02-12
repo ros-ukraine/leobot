@@ -1,4 +1,7 @@
 <launch>
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/leobot" args="head_position_controller joint_state_controller" />
+
+  <node name="controller_spawner"
+        pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/leobot"
+        args="head_position_controller joint_state_controller wheel_diff_drive_controller" />
 </launch>
