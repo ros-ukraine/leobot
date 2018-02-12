@@ -129,6 +129,7 @@
 
   <!-- Hokuyo LIDAR for simulation -->
    <gazebo reference="laser_link">
+      <material>Gazebo/Green</material>
       <sensor type="ray" name="laser">
         <pose>0 0 0 0 0 0</pose>
         <visualize>false</visualize>
@@ -153,9 +154,8 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-        <!--<plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">-->
         <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
-          <topicName>/lidar_scan</topicName>
+          <topicName>/leobot/lidar/scan</topicName>
           <frameName>laser_link</frameName>
         </plugin>
       </sensor>
