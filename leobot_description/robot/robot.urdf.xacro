@@ -33,7 +33,7 @@
   <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
   <xacro:standard_wheel prefix="left" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
   <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
-  <xacro:LIDAR_hokuyo base_radius="${base_radius}" base_height="${base_height}"/>
+  <xacro:lidar_hokuyo base_radius="${base_radius}" base_height="${base_height}"/>
 
   <link name="head_link">
     <visual>

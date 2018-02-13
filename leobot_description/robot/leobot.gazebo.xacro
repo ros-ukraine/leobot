@@ -132,7 +132,7 @@
       <material>Gazebo/Green</material>
       <sensor type="ray" name="laser">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>40</update_rate>
         <ray>
           <scan>
@@ -149,7 +149,7 @@
             <resolution>0.01</resolution>
           </range>
           <noise>
-            <type>Gaussian</type>
+            <type>gaussian</type>
             <mean>0.0</mean>
             <stddev>0.01</stddev>
           </noise>

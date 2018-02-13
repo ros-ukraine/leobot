@@ -3,9 +3,7 @@ project(leobot_description)
 
 find_package(catkin REQUIRED)
 
-catkin_package(
-  CATKIN_DEPENDS urg_node
-)
+catkin_package()
 
 install(FILES
   launch/display.launch
