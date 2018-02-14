@@ -10,6 +10,7 @@ install(FILES
   urdf/common.urdf.xacro
   urdf/materials.urdf.xacro
   urdf/wheels.urdf.xacro
+  urdf/sensors/hokuyo.urdf.xacro
   robot/robot.urdf.xacro
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
