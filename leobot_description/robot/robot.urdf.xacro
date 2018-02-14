@@ -5,8 +5,9 @@
   <xacro:include filename="$(find leobot_description)/urdf/materials.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/common.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
+  <xacro:include filename="$(find leobot_description)/urdf/sensors/hokuyo.urdf.xacro"/>
 
-    <!-- Robot properties -->
+  <!-- Robot properties -->
   <xacro:property name="base_radius" value="0.25"/>
   <xacro:property name="base_height" value="1.0"/>
 
@@ -32,6 +33,7 @@
   <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
   <xacro:standard_wheel prefix="left" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
   <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
+  <xacro:lidar_hokuyo base_radius="${base_radius}" base_height="${base_height}"/>
 
   <link name="head_link">
     <visual>
@@ -48,22 +50,20 @@
     <parent link="base_link"/>
     <child link="head_link"/>
     <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
-
   </joint>
 
   <transmission name="head_transmission">
-     <type>transmission_interface/SimpleTransmission</type>
-     <joint name="head_link_joint">
-       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-     </joint>
-     <actuator name="head_motor">
-       <hardwareInterface>EffortJointInterface</hardwareInterface>
-       <mechanicalReduction>1</mechanicalReduction>
-     </actuator>
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="head_link_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="head_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
   </transmission>
 
   <link name="camera_left_link">
-
     <visual>
       <xacro:box_geometry width="0.05" height="0.05" depth="0.05"/>
       <xacro:green_material/>
