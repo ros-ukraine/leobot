@@ -4,4 +4,8 @@
           name="leobot_web_server" output="screen">
         <param name="port" value="$(arg port)"/>
     </node>
+    <node pkg="web_video_server" type="web_video_server"
+          name="web_video_server" output="screen">
+        <param name="port" value="8090"/>
+    </node>
 </launch>
