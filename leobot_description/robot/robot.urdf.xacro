@@ -22,11 +22,12 @@
   <!-- Robot links -->
   <link name="base_link">
     <visual>
-      <xacro:cylinder_geometry radius="${base_radius}" height="${base_height}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+          <mesh filename="package://leobot_description/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>      
       <xacro:navajo_white_material/>
     </visual>
-    <xacro:cylinder_collision radius="${base_radius}" height="${base_height}"/>
-    <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
   </link>
 
   <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
