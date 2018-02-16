@@ -4,8 +4,10 @@
     <xacro:macro name="standard_wheel" params="prefix direction bearing_radius radius width mass base_radius">
         <link name="${prefix}_bearing_link">>
             <visual>
-                <mesh filename="package://leobot_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
-                <xacro:blue_material/>
+                <geometry>
+                    <mesh filename="package://leobot_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+                    <xacro:blue_material/>
+                </geometry>
             </visual>
             <xacro:sphere_collision radius="${bearing_radius}"/>
             <xacro:sphere_inertia mass="0.1" radius="${bearing_radius}"/>
@@ -47,8 +49,10 @@
     <xacro:macro name="caster_wheel" params="radius mass base_radius base_height">
         <link name="caster_wheel_link">
             <visual>
-                <mesh filename="package://leobot_description/meshes/wheel-2-with-ball.stl" scale="0.001 0.001 0.001"/>
-                <xacro:red_material/>
+                <geometry>
+                    <mesh filename="package://leobot_description/meshes/wheel-2-with-ball.stl" scale="0.001 0.001 0.001"/>
+                    <xacro:red_material/>
+                </geometry>
             </visual>
             <xacro:sphere_collision radius="${radius}"/>
             <xacro:sphere_inertia mass="${mass}" radius="${radius}"/>
