@@ -18,7 +18,7 @@
   <xacro:property name="caster_radius" value="0.05"/>
   <xacro:property name="caster_mass" value="10"/>
 
-  <xacro:property name="wheel_width" value="0.005"/>
+  <xacro:property name="wheel_width" value="0.035"/>
   <xacro:property name="wheel_radius" value="0.1"/>
   <xacro:property name="wheel_mass" value="10"/>
 
