@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>moon_2dnav</name>
+  <version>0.0.0</version>
+  <description>The leobot_2dnav package</description>
+
+  <maintainer email="ROS.Ukraine@todo.todo">ROS.Ukraine</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>gmapping</run_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>rviz</run_depend>
+</package>

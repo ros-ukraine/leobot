@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <remap from="scan" to="/laser/scan" />
+        <rosparam file="$(find moon_2dnav)/config/gmapping.yml" command="load" />
+  </node>
+</launch>
