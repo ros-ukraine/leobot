@@ -3,7 +3,7 @@
     <arg name="use_map_topic" default="false"/>
     <!-- topic name for the sensor values from the distance sensor. -->
     <!-- alternatively <remap from="scan" to="laser/scan"/>-->
-    <arg name="scan_topic" default="/laser/scan"/>
+    <arg name="scan_topic" default="/leobot/laser/scan"/>
     <!-- used as the initial x-coordinate value of the Gaussian distribution in initial pose
     estimation.-->
     <arg name="initial_pose_x" default="0.0"/>
@@ -48,7 +48,7 @@
         <!-- Initial pose covariance (y*y), used to initialize filter with Gaussian distribution. (meters) -->
         <param name="initial_cov_yy" value="0.5 * 0.5"/>
         <!-- Initial pose covariance (yaw*yaw), used to initialize filter with Gaussian distribution. (radians) -->
-        <param name="initial_cov_aa" value="$((pi / 12)*(pi / 12))"/>
+        <param name="initial_cov_aa" value="${(pi / 12)*(pi / 12)}"/>
         <!-- max period to visually displaying scan and path info -->
         <!-- example: 10Hz = 0.1sec, deactivated if -1.0 -->
         <param name="gui_publish_rate" value="10.0"/>
@@ -88,7 +88,7 @@
         <param name="laser_model_type" value="likelihood_field"/> 	<!--<param	name="laser_model_type"	value="beam"/>	-->
         <!-- parameter related to odometry -->
         <!-- robot driving methods. "diff" or "omni" can be selected -->
-        <param name="odom_model_type"value="diff-corrected"/>
+        <param name="odom_model_type" value="diff-corrected"/>
         <!--	translation	std	dev,	m	-->
         <!-- estimated rotational motion noise of the odometry during rotational motion -->
         <param name="odom_alpha1" value="0.1"/> <!--0.2 or 0.8-->
