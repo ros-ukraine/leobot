@@ -7,12 +7,12 @@
   <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
 
   <!-- Robot properties -->
-  <xacro:property name="base_width" value="0.7"/>
-  <xacro:property name="base_length" value="1.132"/>
-  <xacro:property name="base_height" value="0.4"/>
+  <xacro:property name="base_width" value="${(1.132/1.7)}"/>
+  <xacro:property name="base_length" value="${(0.7 / 2)}"/>
+  <xacro:property name="base_height" value="${(0.4 / 2.5)}"/>
 
-  <xacro:property name="base_radius" value="0.25"/>
-  <xacro:property name="tower_height" value="1.225"/>
+  <xacro:property name="base_radius" value="0.5"/>
+  <xacro:property name="tower_height" value="${(1.225 * 2.7)}"/>
 
 
   <xacro:property name="caster_radius" value="0.05"/>
@@ -27,7 +27,7 @@
   <!-- Robot links -->
   <link name="base_link">
     <visual>
-      <origin xyz="0 -0.25 0" rpy="0 0 ${pi}"/>
+      <origin xyz="0 -0.25 -0.08" rpy="0 0 ${pi}"/>
       <geometry>
           <mesh filename="package://leobot_description/meshes/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>      
@@ -38,7 +38,7 @@
 
 
    <link name="base_link_inertia">
-    <xacro:box_collision width="${base_width + 0.05}" depth="${base_length+0.05}" height="${base_height + 0.05}"/>
+    <xacro:box_collision width="${base_width + 0.05}" depth="${base_length + 0.05}" height="${base_height + 0.05}"/>
     <xacro:box_inertia mass="3.0" width="${base_length}" depth="${base_height}" height="${base_width}"/>
   </link>
 
@@ -52,8 +52,8 @@
 
 
   <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
-  <xacro:standard_wheel prefix="left" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
-  <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
+  <xacro:standard_wheel prefix="left" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius/1.8}"/>
+  <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius/1.8}"/>
 
     <link name="tower_link">
         <visual>
@@ -66,9 +66,9 @@
 
       </link>
 
-       <joint name="tower_link_joint" type="fixed">
+     <joint name="tower_link_joint" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="base_link_inertia"/>
+        <parent link="base_link"/>
         <child link="tower_link"/>
       </joint>
 
@@ -83,7 +83,7 @@
   </link>
 
   <joint name="head_link_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.3 0.0 ${(tower_height / 2)}"/>
     <axis xyz="0 0 1" />
     <parent link="tower_link"/>
     <child link="head_link"/>
