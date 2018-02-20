@@ -1,6 +1,8 @@
 <launch>
   <arg name="map_file" default="office"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find leobot_2dnav)/maps/$(arg map_file).yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find leobot_2dnav)/maps/$(arg map_file).yaml">
+    <!--<param name="frame_id" value="/odom" />-->
+  </node>
 
   <include file="$(find leobot_2dnav)/launch/amcl.launch"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">

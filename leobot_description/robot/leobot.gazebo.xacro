@@ -155,7 +155,7 @@
           </noise>
         </ray>
         <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
-          <topicName>/leobot/lidar/scan</topicName>
+          <topicName>/leobot/laser/scan</topicName>
           <frameName>laser_link</frameName>
         </plugin>
       </sensor>

@@ -1,0 +1,11 @@
+<launch>
+    <arg name="map_file" default="art_gallery"/>
+    <param name="robot_description"
+         command="$(find xacro)/xacro --inorder '$(find leobot_description)/robot/leobot.rviz.xacro'"/>
+   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+    <include file="$(find leobot_2dnav)/launch/move_base.launch">
+        <arg name="map_file" value="$(arg map_file)"/>
+    </include>
+    <include file="$(find leobot_2dnav)/launch/rviz.launch" />
+</launch>

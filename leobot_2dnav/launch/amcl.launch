@@ -6,10 +6,10 @@
     <arg name="scan_topic" default="/leobot/laser/scan"/>
     <!-- used as the initial x-coordinate value of the Gaussian distribution in initial pose
     estimation.-->
-    <arg name="initial_pose_x" default="0.0"/>
+    <arg name="initial_pose_x" default="1.0"/>
     <!-- used as the initial y-coordinate value of the Gaussian distribution in the initial pose
     estimation.-->
-    <arg name="initial_pose_y" default="0.0"/>
+    <arg name="initial_pose_y" default="1.0"/>
     <!-- used as the initial yaw coordinate value of the Gaussian distribution in the initial pose
     estimation. -->
     <arg name="initial_pose_a" default="0.0"/>
@@ -103,8 +103,8 @@
         <!-- odometry frame -->
         <param name="odom_frame_id" value="odom"/>
         <!-- robot base frame -->
-        <param name="base_frame_id" value="base_footprint"/>
+        <param name="base_frame_id" value="base_link"/>
         <!-- Set this to false to prevent amcl from publishing the transform between the global and the odometry frames -->
-        <param name="tf_broadcast " value="false"/>
+        <param name="tf_broadcast " value="true"/>
     </node>
 </launch>
