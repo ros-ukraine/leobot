@@ -13,6 +13,7 @@
 
   <xacro:property name="base_radius" value="0.25"/>
   <xacro:property name="tower_height" value="1.225"/>
+  <xacro:property name="head_height" value="0.1"/>
 
 
   <xacro:property name="caster_radius" value="0.05"/>
@@ -27,7 +28,7 @@
   <!-- Robot links -->
   <link name="base_link">
     <visual>
-      <origin xyz="0 -0.25 0" rpy="0 0 ${pi}"/>
+      <origin xyz="0 0 0" rpy="0 0 ${-pi}"/>
       <geometry>
           <mesh filename="package://leobot_description/meshes/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>      
@@ -57,7 +58,7 @@
 
     <link name="tower_link">
         <visual>
-          <origin xyz="0 -0.25 0" rpy="0 0 ${pi}"/>
+          <origin xyz="0 0 0" rpy="0 0 ${-pi}"/>
           <geometry>
               <mesh filename="package://leobot_description/meshes/tower.stl" scale="0.001 0.001 0.001"/>
           </geometry>
@@ -75,7 +76,7 @@
 
   <link name="head_link">
     <visual>
-      <xacro:cylinder_geometry radius="0.15" height="0.1"/>
+      <xacro:cylinder_geometry radius="0.15" height="${head_height}"/>
       <xacro:navajo_white_material/>
     </visual>
     <xacro:cylinder_collision radius="0.15" height="0.1"/>
@@ -83,7 +84,7 @@
   </link>
 
   <joint name="head_link_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.75 0 ${base_height+tower_height+head_height/2}"/>
     <axis xyz="0 0 1" />
     <parent link="tower_link"/>
     <child link="head_link"/>
