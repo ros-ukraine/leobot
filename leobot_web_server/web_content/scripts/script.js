@@ -1,0 +1,1 @@
+document.getElementById('video-streaming').src = window.location.protocol + '//' + window.location.hostname + ":8090/stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470";
