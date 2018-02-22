@@ -18,11 +18,11 @@ TrajectoryPlannerROS:
                                   #it reaches the goal xy location
         # Forward Simulation Parameters
         sim_time: 1.5 # trajectory forward-simulation time  in seconds
-        sim_granularity: 0.025 # the step size, in meters, between points of trajectory
-        angular_sim_granularity: 0.02 # the step size, in radians, between angular samples of trajectory
-        vx_samples: 10 # the number of samples to use when exploring the x velocity space
-        vtheta_samples: 20 # the number of samples to use when exploring the theta velocity space
-        controller_frequency: 5.0 # the frequency at which this controller will be called in Hz.
+        sim_granularity: 0.25 # the step size, in meters, between points of trajectory
+        angular_sim_granularity: 0.2 # the step size, in radians, between angular samples of trajectory
+        vx_samples: 20 # the number of samples to use when exploring the x velocity space
+        vtheta_samples: 40 # the number of samples to use when exploring the theta velocity space
+        controller_frequency: 2.0 # the frequency at which this controller will be called in Hz.
         # Trajectory scoring parameters
         meter_scoring: true # Whether the gdist_scale and pdist_scale parameters should assume that goal_distance and path_distance are expressed in units of meters or cells. Cells are assumed by default (false).
         occdist_scale:  0.1 #The weighting for how much the controller should attempt to avoid obstacles. default 0.01
@@ -31,7 +31,7 @@ TrajectoryPlannerROS:
         heading_lookahead: 0.325  #How far to look ahead in meters when scoring different in-place-rotation trajectories
         heading_scoring: false  #Whether to score based on the robot's heading to the path or its distance from the path. default false
         heading_scoring_timestep: 0.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
-        dwa: true #whether to use the DWA or Trajectory Rollout
+        dwa: false #whether to use the DWA or Trajectory Rollout
         publish_cost_grid_pc: true # whether or not to publish the cost grid that the planner will use when planning
         global_frame_id: "odom" # the frame to set for the cost_cloud
         oscillation_reset_dist: 0.2 #How far the robot must travel in meters before oscillation flags are reset

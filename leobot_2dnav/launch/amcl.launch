@@ -1,6 +1,6 @@
 <launch>
     <!-- if true, AMCL receives map topic instead of service call. -->
-    <arg name="use_map_topic" default="false"/>
+    <arg name="use_map_topic" default="true"/>
     <!-- topic name for the sensor values from the distance sensor. -->
     <!-- alternatively <remap from="scan" to="laser/scan"/>-->
     <arg name="scan_topic" default="/leobot/laser/scan"/>
@@ -17,9 +17,9 @@
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
         <!-- filter related parameter -->
         <!-- min number of particles allowed -->
-        <param name="min_particles" value="500"/>
+        <param name="min_particles" value="300"/>
         <!-- max number of particles allowed (the higher the better; set based on PC performance) -->
-        <param name="max_particles" value="3000"/> <!--or 5000 or 1000-->
+        <param name="max_particles" value="1000"/> <!--or 5000 or 1000-->
         <!-- max error between the actual distribution and the estimated distribution -->
         <param name="kld_err" value="0.02"/> <!-- 0.05 or 0.001-->
         <!-- Upper standard normal quantile for (1 - p), where p is the probability that the error on the estimated
@@ -51,7 +51,7 @@
         <param name="initial_cov_aa" value="${(pi / 12)*(pi / 12)}"/>
         <!-- max period to visually displaying scan and path info -->
         <!-- example: 10Hz = 0.1sec, deactivated if -1.0 -->
-        <param name="gui_publish_rate" value="10.0"/>
+        <param name="gui_publish_rate" value="2.0"/>
         <!-- Maximum rate (Hz) at which to store the last estimated pose and covariance to the parameter server -->
         <!--, in the variables ~initial_pose_* and ~initial_cov_*. This saved pose will be used on subsequent -->
         <!-- runs to initialize the filter. -1.0 to disable.  -->
