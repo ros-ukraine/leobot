@@ -8,4 +8,7 @@
           name="web_video_server" output="screen">
         <param name="port" value="8090"/>
     </node>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+        <arg name="port" value="9090"/>
+    </include>
 </launch>
