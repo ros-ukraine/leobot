@@ -12,7 +12,7 @@
   <xacro:property name="base_height" value="0.4"/>
 
   <xacro:property name="base_radius" value="0.25"/>
-  <xacro:property name="tower_height" value="1.225"/>
+  <xacro:property name="tower_height" value="1.125"/>
   <xacro:property name="head_height" value="0.1"/>
 
 
@@ -76,7 +76,12 @@
 
   <link name="head_link">
     <visual>
-      <xacro:cylinder_geometry radius="0.15" height="${head_height}"/>
+      <origin xyz="-0.75 0 -${base_height+tower_height+head_height/2}" rpy="0 0 ${-pi}"/>
+          <geometry>
+              <mesh filename="package://leobot_description/meshes/head.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
+
+      <!--<xacro:cylinder_geometry radius="0.15" height="${head_height}"/>-->
       <xacro:navajo_white_material/>
     </visual>
     <xacro:cylinder_collision radius="0.15" height="0.1"/>
