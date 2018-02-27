@@ -81,7 +81,7 @@
               <mesh filename="package://leobot_description/meshes/head.stl" scale="0.001 0.001 0.001"/>
           </geometry>
 
-      <!--<xacro:cylinder_geometry radius="0.15" height="${head_height}"/>-->
+      
       <xacro:navajo_white_material/>
     </visual>
     <xacro:cylinder_collision radius="0.15" height="0.1"/>
