@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+  <group ns="teleop_twist_keyboard">
+    <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml" />
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen"/>
+  </group>
+
+</launch>
