@@ -13,5 +13,6 @@
   <depend>nodejs</depend>
   <depend>nodejs-legacy</depend>
   <depend>npm</depend>
+  <depend>web_video_server</depend>
 
 </package>
