@@ -1,14 +1,15 @@
 topics:
 - name    : keyboard
-  topic   : /teleop_twist_keyboard/leobot/wheel_diff_drive_controller/cmd_vel
+  topic   : teleop_twist_keyboard/cmd_vel
   timeout : 0.5
   priority: 10
 - name    : external
-  topic   : /leobot/wheel_diff_drive_controller/cmd_vel
+  topic   : cmd_vel
   timeout : 0.5
   priority: 1
+
 locks:
 - name    : e_stop
   topic   : e_stop
   timeout : 0.0
-priority: 255
+  priority: 255
