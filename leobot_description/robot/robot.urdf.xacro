@@ -39,9 +39,10 @@
 
 
    <link name="base_link_inertia">
-    <xacro:box_collision width="${base_width + 0.05}" depth="${base_length+0.05}" height="${base_height + 0.05}"/>
+    <origin xyz="${-base_length/2} 0 ${base_height/2}" rpy="0 0 ${-pi}"/>
+    <xacro:box_collision width="${base_width + 0.05}" depth="${base_length+0.05}" height="${base_height + 0.05}" />
     <xacro:box_inertia mass="3.0" width="${base_length}" depth="${base_height}" height="${base_width}"/>
-  </link>
+   </link>
 
   <joint name="base_link_inertia_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>

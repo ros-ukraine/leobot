@@ -51,7 +51,7 @@ Visualization Manager:
       Value: true
     - Alpha: 1
       Class: rviz/RobotModel
-      Collision Enabled: true
+      Collision Enabled: false
       Enabled: true
       Links:
         All Links Enabled: true
@@ -60,6 +60,11 @@ Visualization Manager:
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link_inertia:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -100,6 +105,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tower_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -117,6 +127,8 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
+        base_link_inertia:
+          Value: true
         camera_left_link:
           Value: true
         camera_right_link:
@@ -133,6 +145,8 @@ Visualization Manager:
           Value: true
         right_wheel_link:
           Value: true
+        tower_link:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -140,13 +154,15 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
+          base_link_inertia:
+            tower_link:
+              head_link:
+                camera_left_link:
+                  {}
+                camera_right_link:
+                  {}
           caster_wheel_link:
             {}
-          head_link:
-            camera_left_link:
-              {}
-            camera_right_link:
-              {}
           left_bearing_link:
             left_wheel_link:
               {}
@@ -195,10 +211,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.445398182
+      Pitch: -0.060203556
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.380397856
+      Yaw: 0.875392139
     Saved: ~
 Window Geometry:
   Displays:
@@ -216,5 +232,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 975
-  X: 49
-  Y: 18
+  X: 578
+  Y: 62
