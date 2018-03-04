@@ -6,7 +6,7 @@ ros.on('connection', function() {
     console.log('Connected to websocket server.');
 });
 ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
+    console.error('Error connecting to websocket server: ', error);
 });
 ros.on('close', function() {
     console.log('Connection to websocket server closed.');
