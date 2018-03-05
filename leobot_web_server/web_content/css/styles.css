@@ -95,13 +95,11 @@ main {
     height: 504px;
 }
 
-.head-control-buttons{
+.head-control-buttons {
     text-align:center;
 }
 
-
-
-.head-control-header{
+.head-control-header {
     font-family: "GlacialIndifference-Bold", sans-serif;
     font-size: 22px;
     font-weight: bold;
@@ -136,7 +134,6 @@ main {
 
 #head-control-button-left:active {
     background-color: #dcdcdc;
-
 }
 
 #head-control-button-left:focus {
@@ -166,7 +163,6 @@ main {
 
 #head-control-button-center:active {
     background-color: #dcdcdc;
-
 }
 
 #head-control-button-center:focus {

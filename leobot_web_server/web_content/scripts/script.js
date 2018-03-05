@@ -17,18 +17,12 @@ var headControl = new ROSLIB.Topic({
     name : '/leobot/head_position_controller/command',
     messageType : 'std_msgs/Float64'
 });
-var headControl = new ROSLIB.Topic({
-    ros : ros,
-    name : '/leobot/head_position_controller/command',
-    messageType : 'std_msgs/Float64'
-});
 var listener = new ROSLIB.Topic({
     ros : ros,
     name : '/leobot/head_position_controller/command',
     messageType : 'std_msgs/Float64'
 });
 listener.subscribe(function(message) {
-    console.log('Received message on ' + listener.name + ': ' + message.data);
     delta = message.data * 180 / Math.PI;
 });
 var publishHeadPosition = function() {

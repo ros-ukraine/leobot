@@ -14,5 +14,5 @@
   <depend>nodejs-legacy</depend>
   <depend>npm</depend>
   <depend>web_video_server</depend>
-  <depend>rosbridge_suite</depend>
+  <depend>rosbridge_server</depend>
 </package>
