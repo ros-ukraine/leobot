@@ -39,8 +39,12 @@
 
 
    <link name="base_link_inertia">
-    <origin xyz="${-base_length/2} 0 ${base_height/2}" rpy="0 0 ${-pi}"/>
-    <xacro:box_collision width="${base_width + 0.05}" depth="${base_length+0.05}" height="${base_height + 0.05}" />
+     <collision>
+       <origin xyz="${base_length/2} 0 ${base_height/2} " rpy="0 0 0"/>
+       <geometry>
+         <box size="${base_length+0.05} ${base_width + 0.05}  ${base_height + 0.05}"/>
+       </geometry>
+      </collision>
     <xacro:box_inertia mass="3.0" width="${base_length}" depth="${base_height}" height="${base_width}"/>
    </link>
 
@@ -65,7 +69,12 @@
           </geometry>
           <xacro:navajo_white_material/>
         </visual>
-
+        <collision>
+            <origin xyz="${base_length/2} 0 ${base_height+tower_height/2} " rpy="0 0 0"/>
+            <geometry>
+              <box size="${base_length+0.05} ${base_width + 0.05}  ${tower_height + 0.05}"/>
+            </geometry>
+        </collision>
       </link>
 
        <joint name="tower_link_joint" type="fixed">
@@ -85,8 +94,14 @@
 
       <xacro:navajo_white_material/>
     </visual>
-    <xacro:cylinder_collision radius="0.15" height="0.1"/>
-    <xacro:cylinder_inertia mass="1" radius="0.15" height="0.1"/>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.35"/>
+      </geometry>
+
+    </collision>
+
+    <xacro:cylinder_inertia mass="1" radius="0.35" height="0.1"/>
   </link>
 
   <joint name="head_link_joint" type="revolute">
