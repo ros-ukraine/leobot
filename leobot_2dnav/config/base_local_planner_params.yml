@@ -32,8 +32,8 @@ TrajectoryPlannerROS:
         heading_scoring: false  #Whether to score based on the robot's heading to the path or its distance from the path. default false
         heading_scoring_timestep: 0.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
         dwa: false #whether to use the DWA or Trajectory Rollout
-        publish_cost_grid_pc: true # whether or not to publish the cost grid that the planner will use when planning
-        global_frame_id: "odom" # the frame to set for the cost_cloud
+        publish_cost_grid_pc: false # whether or not to publish the cost grid that the planner will use when planning
+        global_frame_id: odom # the frame to set for the cost_cloud
         oscillation_reset_dist: 0.2 #How far the robot must travel in meters before oscillation flags are reset
         prune_plan: true #whether or not to eat up the plan as the robot moves along the path
                        #If set to true, points will fall off the end of the plan once the robot moves 1 meter past them
