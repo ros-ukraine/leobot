@@ -12,7 +12,12 @@ add_custom_target(install_nodejs ALL
   VERBATIM
 )
 
-configure_file("node_modules/roslib/build/roslib.js" "web_content/scripts/" COPYONLY)
+add_custom_target(copy_roslib_js ALL
+  COMMAND cp "node_modules/roslib/build/roslib.min.js" "web_content/scripts/"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+  COMMENT "Copying roslib to web folder"
+  VERBATIM
+)
 
 install(DIRECTORY
   scripts
