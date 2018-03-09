@@ -21,7 +21,7 @@ var topic = new ROSLIB.Topic({
 });
 
 topic.subscribe(function(message) {
-    console.log('Received message on ' + topic.name + ': ', message);
+    console.debug('Received message on ' + topic.name + ': ', message);
 });
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -36,5 +36,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
-    publishMessageOnClick('button-forward', { linear: { x: 1, y: 0, z: 0 } });
+    var forwardMessage  = {  linear: { x:  1, y:  0, z:   0 } };
+    var leftMessage     = { angular: { x:  0, y:  0, z: -15 } };
+    var rightMessage    = { angular: { x:  0, y:  0, z:  15 } };
+    var backwardMessage = {  linear: { x: -1, y:  0, z:   0 } };
+
+    publishMessageOnClick('button-forward',  forwardMessage);
+    publishMessageOnClick('button-left',     leftMessage);
+    publishMessageOnClick('button-right',    rightMessage);
+    publishMessageOnClick('button-backward', backwardMessage);
 });
