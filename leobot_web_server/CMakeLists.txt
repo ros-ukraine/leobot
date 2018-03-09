@@ -12,6 +12,8 @@ add_custom_target(install_nodejs ALL
   VERBATIM
 )
 
+configure_file("node_modules/roslib/build/roslib.js" "web_content/scripts/" COPYONLY)
+
 install(DIRECTORY
   scripts
   web_content
