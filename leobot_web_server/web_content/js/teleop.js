@@ -24,7 +24,7 @@ topic.subscribe(function(message) {
     console.debug('Received message on ' + topic.name + ': ', message);
 });
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function(event) {
     function publishMessageOnClick(elementsClass, message) {
         var elements = document.getElementsByClassName(elementsClass);
 
