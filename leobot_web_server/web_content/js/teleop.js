@@ -25,18 +25,16 @@ topic.subscribe(function(message) {
 });
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    var buttons = document.getElementsByClassName('button-forward');
+    function publishMessageOnClick(elementsClass, message) {
+        var elements = document.getElementsByClassName(elementsClass);
 
-    for (var i=0; i<buttons.length; i++) {
-        buttons[i].onclick = function() {
-            var positionMessage = new ROSLIB.Message({
-                linear: {
-                    x: 0.5,
-                    y: 0,
-                    z: 0
-                }
-            });
-            topic.publish(positionMessage);
-        };
+        for (var i=0; i<elements.length; i++) {
+            elements[i].onclick = function() {
+                var positionMessage = new ROSLIB.Message(message);
+                topic.publish(positionMessage);
+            };
+        }
     }
+
+    publishMessageOnClick('button-forward', { linear: { x: 1, y: 0, z: 0 } });
 });
