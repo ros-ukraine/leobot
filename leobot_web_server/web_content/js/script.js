@@ -19,7 +19,7 @@ var headControl = new ROSLIB.Topic({
 });
 var listener = new ROSLIB.Topic({
     ros : ros,
-    name : '/leobot/head_position_controller/command',
+    name : '/leobot/head_position_controller/state',
     messageType : 'std_msgs/Float64'
 });
 listener.subscribe(function(message) {
