@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:macro name="standard_wheel" params="prefix direction bearing_radius radius width mass base_radius">
+    <xacro:macro name="standard_wheel" params="prefix direction bearing_radius radius width mass distance_between_wheels position_x position_z">
         <link name="${prefix}_bearing_link">>
             <visual>
 
@@ -13,7 +13,7 @@
             <xacro:sphere_inertia mass="0.1" radius="${bearing_radius}"/>
         </link>
         <joint name="${prefix}_bearing_base_joint" type="fixed">
-            <origin rpy="0 0 0" xyz="0.35 ${direction * (base_radius + bearing_radius - 0.0001)} 0.04"/>
+            <origin rpy="0 0 0" xyz="${position_x} ${direction * (distance_between_wheels/2 + bearing_radius - 0.0001)} ${position_z}"/>
             <parent link="base_link"/>
             <child link="${prefix}_bearing_link"/>
         </joint>
@@ -33,7 +33,7 @@
         </link>
         <joint name="${prefix}_wheel_bearing_joint" type="continuous">
 
-            <origin rpy="${pi / 2} 0 0" xyz="0.0 ${direction * (bearing_radius + width/2 - 0.0001)} 0.0"/>
+            <origin rpy="${pi / 2} 0 0" xyz="0.0 0.0 0.0"/>
 
             <parent link="${prefix}_bearing_link"/>
             <child link="${prefix}_wheel_link"/>
@@ -53,7 +53,7 @@
         </transmission>
     </xacro:macro>
 
-    <xacro:macro name="caster_wheel" params="radius mass base_radius base_height">
+    <xacro:macro name="caster_wheel" params="radius mass position_x position_z">
         <link name="caster_wheel_link">
             <visual>
                 <geometry>
@@ -67,7 +67,7 @@
         <joint name="caster_wheel_base_joint" type="fixed">
             <parent link="base_link"/>
             <child link="caster_wheel_link"/>
-            <origin rpy="0 0 0" xyz="1 0.0 -0.04"/>
+            <origin rpy="0 0 0" xyz="${position_x} 0.0 ${position_z}"/>
         </joint>
     </xacro:macro>
 

@@ -11,7 +11,7 @@
   <xacro:property name="base_length" value="1.132"/>
   <xacro:property name="base_height" value="0.4"/>
 
-  <xacro:property name="base_radius" value="0.25"/>
+  <xacro:property name="distance_between_wheels" value="0.55"/>
   <xacro:property name="tower_height" value="1.125"/>
   <xacro:property name="head_height" value="0.1"/>
 
@@ -22,6 +22,10 @@
   <xacro:property name="wheel_width" value="0.035"/>
   <xacro:property name="wheel_radius" value="0.1"/>
   <xacro:property name="wheel_mass" value="10"/>
+  <xacro:property name="wheel_position_x" value="0.35"/>
+  <xacro:property name="wheel_position_z" value="0.04"/>
+  <xacro:property name="caster_wheel_position_x" value="1"/>
+  <xacro:property name="caster_wheel_position_z" value="-0.04"/>
 
   <xacro:property name="bearing_radius" value="0.01"/>
 
@@ -57,9 +61,9 @@
 
 
 
-  <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" base_radius="${base_radius}" base_height="${base_height}"/>
-  <xacro:standard_wheel prefix="left" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
-  <xacro:standard_wheel prefix="right" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" base_radius="${base_radius}"/>
+  <xacro:caster_wheel radius="${caster_radius}" mass="${caster_mass}" position_x="${caster_wheel_position_x}" position_z="${caster_wheel_position_z}"/>
+  <xacro:standard_wheel prefix="left" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" distance_between_wheels="${distance_between_wheels}" position_x="${wheel_position_x}" position_z="${wheel_position_z}"/>
+  <xacro:standard_wheel prefix="right" direction="1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}" width="${wheel_width}" mass="${wheel_mass}" distance_between_wheels="${distance_between_wheels}" position_x="${wheel_position_x}" position_z="${wheel_position_z}"/>
 
     <link name="tower_link">
         <visual>
