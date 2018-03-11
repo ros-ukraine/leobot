@@ -45,3 +45,6 @@ document.getElementById('head-control-button-right').onclick = function() {
      delta = (delta < -85) ? -90 : delta - 5;
      publishHeadPosition()
 };
+
+var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
+document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
