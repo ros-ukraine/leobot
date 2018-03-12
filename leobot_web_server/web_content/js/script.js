@@ -23,8 +23,7 @@ var listener = new ROSLIB.Topic({
     messageType : 'control_msgs/JointControllerState'
 });
 listener.subscribe(function(message) {
-    console.log(message);
-    delta = message.data * 180 / Math.PI;
+    delta = message.process_value * 180 / Math.PI;
 });
 var publishHeadPosition = function() {
         var delta_radians =  delta / 180.0 * Math.PI;
