@@ -20,9 +20,10 @@ var headControl = new ROSLIB.Topic({
 var listener = new ROSLIB.Topic({
     ros : ros,
     name : '/leobot/head_position_controller/state',
-    messageType : 'std_msgs/Float64'
+    messageType : 'control_msgs/JointControllerState'
 });
 listener.subscribe(function(message) {
+    console.log(message);
     delta = message.data * 180 / Math.PI;
 });
 var publishHeadPosition = function() {
