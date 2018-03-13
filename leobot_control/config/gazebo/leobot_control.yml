@@ -20,7 +20,7 @@ wheel_diff_drive_controller:
   wheel_radius: 0.10
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 0.95 #DO NOT CHANGE, PLEASE # default: 1.0
+  wheel_separation_multiplier: 0.950 #DO NOT CHANGE, PLEASE # default: 1.0
   wheel_radius_multiplier    : 0.96 # default: 1.0
 
   # Velocity commands timeout [s], default 0.5
