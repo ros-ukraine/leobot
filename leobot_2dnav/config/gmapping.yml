@@ -1,8 +1,8 @@
 # SLAM Gmapping parameters
   base_frame: base_link # The frame attached to the mobile base
   odom_frame: odom # The frame attached to the odometry system
-  map_update_interval: 3.0 # Map update interval (sec)
-  maxUrange: 50.0 # Max Range of laser sensor to use (meter)
+  map_update_interval: 1.0 # Map update interval (sec)
+  maxUrange: 10.0 # Max Range of laser sensor to use (meter)
   minimumScore : 0.0 # Min Score considering the results of scan matching
   linearUpdate: 0.3 # Min travel distance required for processing
   angularUpdate: 0.02 # Min rotation angle required for processing
@@ -10,7 +10,7 @@
   #scan is performed. Negative values will be ignored and not used.
   delta: 0.025 # Map Resolution: Distance / Pixel
   lskip: 0 #Number of beams to skip in each scan
-  particles: 180 # Number of particles in particle filter
+  particles: 250 # Number of particles in particle filter
   sigma: 0.05 # Standard deviation of laser-assisted search
   kernelSize: 1 #Window size of laser-assisted search
   lstep: 0.05 # Initial search step (translation)
