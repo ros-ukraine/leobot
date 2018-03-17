@@ -55,7 +55,7 @@
         <joint name="caster_wheel_base_joint" type="fixed">
             <parent link="base_link"/>
             <child link="caster_wheel_link"/>
-            <origin rpy="0 0 0" xyz="${base_radius - radius - 0.01} 0.0 ${-(base_height/2 + radius - 0.01)}"/>
+            <origin rpy="0 0 0" xyz="${-(base_radius - radius - 0.01)} 0.0 ${-(base_height/2 + radius - 0.01)}"/>
         </joint>
     </xacro:macro>
 

@@ -1,5 +1,5 @@
 <launch>
-    <arg name="map_file" default="office"/>
+    <arg name="map_file" default="map_artgallery"/>
     <param name="robot_description"
          command="$(find xacro)/xacro --inorder '$(find leobot_description)/robot/leobot.rviz.xacro'"/>
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
