@@ -11,5 +11,6 @@
     <rosparam file="$(find leobot_2dnav)/config/local_costmap_params.yml" command="load"/>
     <rosparam file="$(find leobot_2dnav)/config/global_costmap_params.yml" command="load"/>
     <rosparam file="$(find leobot_2dnav)/config/base_local_planner_params.yml" command="load"/>
+    <remap from="/cmd_vel" to="/leobot/wheel_diff_drive_controller/cmd_vel" />
   </node>
 </launch>
