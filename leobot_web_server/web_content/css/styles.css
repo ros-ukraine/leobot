@@ -95,6 +95,110 @@ main {
     height: 504px;
 }
 
+.head-control-buttons {
+    text-align:center;
+}
+
+.head-control-header {
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #595959;
+}
+
+#head-control-button-left {
+    width: 120px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(89,89,89,.4);
+    box-shadow: 2.5px 4.3px 5px 0 rgba(0, 0, 0, 0.75);
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#head-control-button-left:active {
+    background-color: #dcdcdc;
+}
+
+#head-control-button-left:focus {
+    outline: 0;
+}
+
+#head-control-button-center {
+    width: 120px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(89,89,89,.4);
+    box-shadow: 2.5px 4.3px 5px 0 rgba(0, 0, 0, 0.75);
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#head-control-button-center:active {
+    background-color: #dcdcdc;
+}
+
+#head-control-button-center:focus {
+    outline: 0;
+}
+
+#head-control-button-right {
+    width: 120px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(89,89,89,.4);
+    box-shadow: 2.5px 4.3px 5px 0 rgba(0, 0, 0, 0.75);
+    font-family: "GlacialIndifference-Bold", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#head-control-button-right:active {
+    background-color: #dcdcdc;
+
+}
+
+#head-control-button-right:focus {
+    outline: 0;
+}
+
 .map-tracking {
     width: 458px;
     height: 342px;
