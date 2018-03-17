@@ -6,10 +6,10 @@
     <arg name="scan_topic" default="/leobot/laser/scan"/>
     <!-- used as the initial x-coordinate value of the Gaussian distribution in initial pose
     estimation.-->
-    <arg name="initial_pose_x" default="1.0"/>
+    <arg name="initial_pose_x" default="0.0"/>
     <!-- used as the initial y-coordinate value of the Gaussian distribution in the initial pose
     estimation.-->
-    <arg name="initial_pose_y" default="1.0"/>
+    <arg name="initial_pose_y" default="0.0"/>
     <!-- used as the initial yaw coordinate value of the Gaussian distribution in the initial pose
     estimation. -->
     <arg name="initial_pose_a" default="0.0"/>
@@ -17,7 +17,7 @@
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
         <!-- filter related parameter -->
         <!-- min number of particles allowed -->
-        <param name="min_particles" value="300"/>
+        <param name="min_particles" value="400"/>
         <!-- max number of particles allowed (the higher the better; set based on PC performance) -->
         <param name="max_particles" value="1000"/> <!--or 5000 or 1000-->
         <!-- max error between the actual distribution and the estimated distribution -->
@@ -28,13 +28,13 @@
         <!-- translational motion required for filter update (meter) -->
         <param name="update_min_d" value="0.2"/>
         <!-- rotational motion required for filter update (radian) -->
-        <param name="update_min_a" value="0.2"/> <!--0.5-->
+        <param name="update_min_a" value="0.02"/> <!--0.5-->
         <!-- resampling interval -->
         <param name="resample_interval" value="1"/>
         <!-- conversion allowed time (by sec) -->
-        <param name="transform_tolerance" value="0.5"/> <!--0.2 or 0.05-->
+        <param name="transform_tolerance" value="0.05"/> <!--0.2 or 0.05-->
         <!-- index drop rate(slow average weight filter), deactivated if 0.0 -->
-        <param name="recovery_alpha_slow" value="0.000"/>
+        <param name="recovery_alpha_slow" value="0.001"/>
         <!-- index drop rate(fast average weight filter), deactivated if 0.0 -->
         <param name="recovery_alpha_fast" value="0.1"/>
         <!-- refer to above initial_pose_x -->
@@ -65,13 +65,13 @@
         <!-- change the sensor topic name -->
         <remap from="scan" to="$(arg scan_topic)"/>
         <!-- min distance of laser sensing distance (meter) -->
-        <param name="laser_min_range" value="-1.0"/>
+        <param name="laser_min_range" value="0.5"/>
         <!-- max distance of laser sensing distance (meter) -->
-        <param name="laser_max_range" value="3.5"/>
+        <param name="laser_max_range" value="10"/>
         <!-- max number of laser beams used during filter update -->
-        <param name="laser_max_beams" value="180"/> <!-- 30 or 500-->
+        <param name="laser_max_beams" value="500"/> <!-- 30 or 500-->
         <!-- z_hit mixed weight of sensor model (mixture weight) -->
-        <param name="laser_z_hit" value="0.5"/> <!--0.95-->
+        <param name="laser_z_hit" value="0.95"/> <!--0.95-->
         <!-- z_short mixed weight of sensor model (mixture weight) -->
         <param name="laser_z_short" value="0.05"/>
         <!-- z_max mixed weight of sensor model (mixture weight) -->
@@ -91,13 +91,13 @@
         <param name="odom_model_type" value="diff-corrected"/>
         <!--	translation	std	dev,	m	-->
         <!-- estimated rotational motion noise of the odometry during rotational motion -->
-        <param name="odom_alpha1" value="0.1"/> <!--0.2 or 0.8-->
+        <param name="odom_alpha1" value="0.8"/> <!--0.2 or 0.8-->
         <!-- estimated rotational motion noise of the odometry during translation motion -->
-        <param name="odom_alpha2" value="0.1"/> <!--0.2 or 0.8-->
+        <param name="odom_alpha2" value="1.8"/> <!--0.2 or 0.8-->
         <!-- estimated translation motion noise of the odometry during translation motion -->
-        <param name="odom_alpha3" value="0.1"/> <!--0.8 or 0.2-->
+        <param name="odom_alpha3" value="0.4"/> <!--0.8 or 0.2-->
         <!-- estimated translation motion noise of the odometry during rotational motion -->
-        <param name="odom_alpha4" value="0.1"/> <!--0.2-->
+        <param name="odom_alpha4" value="0.4"/> <!--0.2-->
         <!-- odom_alpha_5 is used only ifodom_model_type = omni
         <param	name="odom_alpha5"	value="0.1"	/> -->
         <!-- odometry frame -->

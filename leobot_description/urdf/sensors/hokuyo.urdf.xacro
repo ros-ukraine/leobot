@@ -14,7 +14,7 @@
             </link>
 
             <joint name="laser_base_joint" type="fixed">
-              <origin xyz="${(base_radius - 0.0001)} 0.0 ${-base_height/2 + 0.01}" rpy="0.0 ${pi} 0.0" />
+              <origin xyz="${(base_radius - 0.0001)} 0.0 ${-base_height/2 + 0.01}" rpy="0.0 0.0 0.0" />
               <parent link="base_link" />
               <child link="laser_link" />
             </joint>
