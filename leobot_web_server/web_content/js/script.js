@@ -1,4 +1,4 @@
-var delta = 0;
+var headDelta = 0;
 // Connection to ROS
 var ros = new ROSLIB.Ros({
     url : 'ws://' + window.location.hostname + ':9090'
@@ -23,26 +23,26 @@ var listener = new ROSLIB.Topic({
     messageType : 'control_msgs/JointControllerState'
 });
 listener.subscribe(function(message) {
-    delta = message.process_value * 180 / Math.PI;
+    headDelta = message.process_value * 180 / Math.PI;
 });
 var publishHeadPosition = function() {
-        var delta_radians =  delta / 180.0 * Math.PI;
-        console.log('degrees = ' + delta + ' radians = ' + delta_radians);
+        var delta_radians =  headDelta / 180.0 * Math.PI;
+        console.log('degrees = ' + headDelta + ' radians = ' + delta_radians);
         var positionMess = new ROSLIB.Message({
             data : delta_radians
         });
         headControl.publish(positionMess);
 }
 document.getElementById('head-control-button-left').onclick = function() {
-     delta = (delta > 85) ? 90 : delta + 5;
+     headDelta = (headDelta > 85) ? 90 : headDelta + 5;
      publishHeadPosition()
 };
 document.getElementById('head-control-button-center').onclick = function() {
-     delta = 0;
+     headDelta = 0;
      publishHeadPosition()
 };
 document.getElementById('head-control-button-right').onclick = function() {
-     delta = (delta < -85) ? -90 : delta - 5;
+     headDelta = (headDelta < -85) ? -90 : headDelta - 5;
      publishHeadPosition()
 };
 
