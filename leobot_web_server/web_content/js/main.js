@@ -1,4 +1,3 @@
-// todo: rename
 var wheelsTopicName = '/leobot/wheel_diff_drive_controller/cmd_vel';
 
 // Connection to ROS
@@ -15,7 +14,6 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-// todo: rename
 var wheelsTopic = new ROSLIB.Topic({
     ros : ros,
     name : wheelsTopicName,
