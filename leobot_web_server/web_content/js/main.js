@@ -1,19 +1,5 @@
 var headDelta = 0;
 
-// Connection to ROS
-var ros = new ROSLIB.Ros({
-    url : 'ws://' + window.location.hostname + ':9090'
-});
-ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-});
-ros.on('error', function(error) {
-    console.error('Error connecting to websocket server: ', error);
-});
-ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-});
-
 function createTopic(name, type) {
     return new ROSLIB.Topic({
         ros: ros,
@@ -42,21 +28,12 @@ function publishHeadPosition() {
     publishMessage({data: delta_radians}, headControlTopic);
 }
 
-var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
-var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
-var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
-
-wheelsTopic.subscribe(function(message) {
-    console.debug('Received message on ' + wheelsTopic.name + ': ', message);
-});
-headListenerTopic.subscribe(function(message) {
-    headDelta = message.process_value * 180 / Math.PI;
-});
-
-document.addEventListener('DOMContentLoaded', function(event) {
+function initVideoStreaming(){
     var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
     document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
+}
 
+function initWheelsOperation() {
     var forwardMessage  = {  linear: { x:  1, y: 0, z:   0 } };
     var leftMessage     = { angular: { x:  0, y: 0, z: -15 } };
     var rightMessage    = { angular: { x:  0, y: 0, z:  15 } };
@@ -87,7 +64,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 break;
         }
     });
+}
 
+function initHeadOperation() {
     document.getElementById('head-control-button-left').onclick = function() {
          headDelta = (headDelta > 85) ? 90 : headDelta + 5;
          publishHeadPosition()
@@ -100,4 +79,35 @@ document.addEventListener('DOMContentLoaded', function(event) {
          headDelta = (headDelta < -85) ? -90 : headDelta - 5;
          publishHeadPosition()
     };
+}
+
+// Connection to ROS
+var ros = new ROSLIB.Ros({
+    url : 'ws://' + window.location.hostname + ':9090'
+});
+ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+});
+ros.on('error', function(error) {
+    console.error('Error connecting to websocket server: ', error);
+});
+ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+});
+
+var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
+var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
+var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
+
+wheelsTopic.subscribe(function(message) {
+    console.debug('Received message on ' + wheelsTopic.name + ': ', message);
+});
+headListenerTopic.subscribe(function(message) {
+    headDelta = message.process_value * 180 / Math.PI;
+});
+
+document.addEventListener('DOMContentLoaded', function(event) {
+    initVideoStreaming();
+    initWheelsOperation();
+    initHeadOperation();
 });
