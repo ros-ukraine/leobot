@@ -14,17 +14,6 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
-var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
-var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
-
-wheelsTopic.subscribe(function(message) {
-    console.debug('Received message on ' + wheelsTopic.name + ': ', message);
-});
-headListenerTopic.subscribe(function(message) {
-    headDelta = message.process_value * 180 / Math.PI;
-});
-
 function createTopic(name, type) {
     return new ROSLIB.Topic({
         ros: ros,
@@ -52,6 +41,17 @@ function publishHeadPosition() {
     console.log('degrees = ' + headDelta + ' radians = ' + delta_radians);
     publishMessage({data: delta_radians}, headControlTopic);
 }
+
+var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
+var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
+var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
+
+wheelsTopic.subscribe(function(message) {
+    console.debug('Received message on ' + wheelsTopic.name + ': ', message);
+});
+headListenerTopic.subscribe(function(message) {
+    headDelta = message.process_value * 180 / Math.PI;
+});
 
 document.addEventListener('DOMContentLoaded', function(event) {
     var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
