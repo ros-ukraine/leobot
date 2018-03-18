@@ -1,3 +1,4 @@
+// todo: rename
 var topicName = '/leobot/wheel_diff_drive_controller/cmd_vel';
 
 // Connection to ROS
@@ -14,19 +15,50 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
+// todo: rename
 var topic = new ROSLIB.Topic({
     ros : ros,
     name : topicName,
     messageType : 'geometry_msgs/Twist'
 });
 
+var headControlTopic = new ROSLIB.Topic({
+    ros : ros,
+    name : '/leobot/head_position_controller/command',
+    messageType : 'std_msgs/Float64'
+});
+var headListenerTopic = new ROSLIB.Topic({
+    ros : ros,
+    name : '/leobot/head_position_controller/state',
+    messageType : 'control_msgs/JointControllerState'
+});
+
 topic.subscribe(function(message) {
     console.debug('Received message on ' + topic.name + ': ', message);
 });
 
+headListenerTopic.subscribe(function(message) {
+    headDelta = message.process_value * 180 / Math.PI;
+});
+
 document.addEventListener('DOMContentLoaded', function(event) {
+    var headDelta = 0;
+
+    var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
+    document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
+
+    function publishHeadPosition() {
+        var delta_radians =  headDelta / 180.0 * Math.PI;
+        console.log('degrees = ' + headDelta + ' radians = ' + delta_radians);
+        var positionMess = new ROSLIB.Message({
+            data : delta_radians
+        });
+        headControlTopic.publish(positionMess);
+    }
+
     function publishMessage(message) {
         var positionMessage = new ROSLIB.Message(message);
+        // todo: pass as parameter
         topic.publish(positionMessage);
     }
 
@@ -70,4 +102,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 break;
         }
     });
+
+    document.getElementById('head-control-button-left').onclick = function() {
+         headDelta = (headDelta > 85) ? 90 : headDelta + 5;
+         publishHeadPosition()
+    };
+    document.getElementById('head-control-button-center').onclick = function() {
+         headDelta = 0;
+         publishHeadPosition()
+    };
+    document.getElementById('head-control-button-right').onclick = function() {
+         headDelta = (headDelta < -85) ? -90 : headDelta - 5;
+         publishHeadPosition()
+    };
 });
