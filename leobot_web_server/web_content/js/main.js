@@ -1,5 +1,3 @@
-var wheelsTopicName = '/leobot/wheel_diff_drive_controller/cmd_vel';
-
 // Connection to ROS
 var ros = new ROSLIB.Ros({
     url : 'ws://' + window.location.hostname + ':9090'
@@ -16,7 +14,7 @@ ros.on('close', function() {
 
 var wheelsTopic = new ROSLIB.Topic({
     ros : ros,
-    name : wheelsTopicName,
+    name : '/leobot/wheel_diff_drive_controller/cmd_vel',
     messageType : 'geometry_msgs/Twist'
 });
 
