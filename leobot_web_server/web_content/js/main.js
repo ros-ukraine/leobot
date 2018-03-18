@@ -24,7 +24,7 @@ function publishMessageOnClick(elementsClass, message, topic) {
 
 function publishHeadPosition() {
     var delta_radians =  headDelta / 180.0 * Math.PI;
-    console.log('degrees = ' + headDelta + ' radians = ' + delta_radians);
+    console.debug('degrees = ' + headDelta + ' radians = ' + delta_radians);
     publishMessage({data: delta_radians}, headControlTopic);
 }
 
