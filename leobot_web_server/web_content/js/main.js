@@ -14,22 +14,9 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-// todo: create function
-var wheelsTopic = new ROSLIB.Topic({
-    ros: ros,
-    name: '/leobot/wheel_diff_drive_controller/cmd_vel',
-    messageType : 'geometry_msgs/Twist'
-});
-var headControlTopic = new ROSLIB.Topic({
-    ros: ros,
-    name : '/leobot/head_position_controller/command',
-    messageType : 'std_msgs/Float64'
-});
-var headListenerTopic = new ROSLIB.Topic({
-    ros: ros,
-    name: '/leobot/head_position_controller/state',
-    messageType : 'control_msgs/JointControllerState'
-});
+var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
+var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
+var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
 
 wheelsTopic.subscribe(function(message) {
     console.debug('Received message on ' + wheelsTopic.name + ': ', message);
@@ -37,6 +24,14 @@ wheelsTopic.subscribe(function(message) {
 headListenerTopic.subscribe(function(message) {
     headDelta = message.process_value * 180 / Math.PI;
 });
+
+function createTopic(name, type) {
+    return new ROSLIB.Topic({
+        ros: ros,
+        name: name,
+        messageType: type
+    });
+}
 
 function publishMessage(message, topic) {
     topic.publish(new ROSLIB.Message(message));
