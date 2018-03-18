@@ -1,5 +1,5 @@
 // todo: rename
-var topicName = '/leobot/wheel_diff_drive_controller/cmd_vel';
+var wheelsTopicName = '/leobot/wheel_diff_drive_controller/cmd_vel';
 
 // Connection to ROS
 var ros = new ROSLIB.Ros({
@@ -16,9 +16,9 @@ ros.on('close', function() {
 });
 
 // todo: rename
-var topic = new ROSLIB.Topic({
+var wheelsTopic = new ROSLIB.Topic({
     ros : ros,
-    name : topicName,
+    name : wheelsTopicName,
     messageType : 'geometry_msgs/Twist'
 });
 
@@ -33,8 +33,8 @@ var headListenerTopic = new ROSLIB.Topic({
     messageType : 'control_msgs/JointControllerState'
 });
 
-topic.subscribe(function(message) {
-    console.debug('Received message on ' + topic.name + ': ', message);
+wheelsTopic.subscribe(function(message) {
+    console.debug('Received message on ' + wheelsTopic.name + ': ', message);
 });
 
 headListenerTopic.subscribe(function(message) {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     function publishMessage(message) {
         var positionMessage = new ROSLIB.Message(message);
         // todo: pass as parameter
-        topic.publish(positionMessage);
+        wheelsTopic.publish(positionMessage);
     }
 
     function publishMessageOnClick(elementsClass, message) {
