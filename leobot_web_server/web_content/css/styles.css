@@ -280,10 +280,6 @@ main {
     justify-content: space-between;
 }
 
-.small-buttons {
-    display: none;
-}
-
 footer p {
     font-family: "GlacialIndifference-Bold", sans-serif;
     font-size: 12px;
@@ -344,10 +340,6 @@ footer {
         height: 238px;
     }
 
-    .small-buttons {
-        display: none;
-    }
-
     .control-panel-header {
         font-size: 16px;
         margin-top: 10px;
@@ -372,7 +364,6 @@ footer {
 }
 
 @media all and (max-width: 899px) and (min-width: 670px){
-
     header {
         height: 90px;
     }
@@ -424,10 +415,6 @@ footer {
         height: 156px;
     }
 
-    .small-buttons {
-        display: none;
-    }
-
     .control-panel-header {
         font-size: 14px;
         margin-top: 15px;
@@ -445,6 +432,21 @@ footer {
 
     footer p {
         font-size: 9px;
+    }
+}
+
+@media (min-width: 670px){
+    .button-forward:before {
+        content: 'FORWARD';
+    }
+    .button-left:before {
+        content: 'LEFT';
+    }
+    .button-right:before {
+        content: 'RIGHT';
+    }
+    .button-backward:before {
+        content: 'BACKWARD';
     }
 }
 
@@ -521,11 +523,6 @@ footer {
     }
 
     .control-panel {
-        display: none;
-        width: 300px;
-    }
-
-    .small-buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -534,7 +531,7 @@ footer {
     .control-panel-header {
         font-size: 12px;
     }
-    .small-button-top {
+    .button-forward {
         border: none;
         background-color: transparent;
         width: 30px;
@@ -542,11 +539,12 @@ footer {
         background-image: url(../images/arrow-dark-up.png);
     }
 
-    .small-left-right {
+    .left-right {
         display: flex;
+        justify-content: center;
     }
 
-    .small-button-left {
+    .button-left {
         border: none;
         background-color: transparent;
         width: 30px;
@@ -555,7 +553,7 @@ footer {
         background-image: url(../images/arrow-dark-left.png);
     }
 
-    .small-button-right {
+    .button-right {
         border: none;
         background-color: transparent;
         width: 30px;
@@ -564,7 +562,7 @@ footer {
         background-image: url(../images/arrow-dark-right.png);
     }
 
-    .small-button-bottom {
+    .button-backward {
         border: none;
         background-color: transparent;
         width: 30px;
@@ -572,34 +570,34 @@ footer {
         background-image: url(../images/arrow-dark-down.png);
     }
 
-    .small-button-top:active {
+    .button-forward:active {
         background-image: url(../images/arrow-light-up.png);
         outline: none;
     }
 
-    .small-button-left:active {
+    .button-left:active {
         background-image: url(../images/arrow-light-left.png);
         outline: none;
     }
-    .small-button-right:active {
+    .button-right:active {
         background-image: url(../images/arrow-light-right.png);
         outline: none;
     }
-    .small-button-bottom:active {
+    .button-backward:active {
         background-image: url(../images/arrow-light-bottom.png);
         outline: none;
     }
 
-    .small-button-top:focus {
+    .button-forward:focus {
         outline: 0;
     }
-    .small-button-left:focus {
+    .button-left:focus {
         outline: 0;
     }
-    .small-button-right:focus {
+    .button-right:focus {
         outline: 0;
     }
-    .small-button-bottom:focus {
+    .button-backward:focus {
         outline: 0;
     }
     footer p {
