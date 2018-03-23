@@ -1,0 +1,33 @@
+# SLAM Gmapping parameters
+  base_frame: base_link # The frame attached to the mobile base
+  odom_frame: odom # The frame attached to the odometry system
+  map_update_interval: 1.0 # Map update interval (sec)
+  maxUrange: 10.0 # Max Range of laser sensor to use (meter)
+  minimumScore : 0.0 # Min Score considering the results of scan matching
+  linearUpdate: 0.3 # Min travel distance required for processing
+  angularUpdate: 0.02 # Min rotation angle required for processing
+  temporalUpdate: -1.0 # If the last scan time exceeds this update time, the
+  #scan is performed. Negative values will be ignored and not used.
+  delta: 0.025 # Map Resolution: Distance / Pixel
+  lskip: 0 #Number of beams to skip in each scan
+  particles: 250 # Number of particles in particle filter
+  sigma: 0.05 # Standard deviation of laser-assisted search
+  kernelSize: 1 #Window size of laser-assisted search
+  lstep: 0.05 # Initial search step (translation)
+  astep: 0.05 # Initial search step (rotation)
+  iterations: 5 # Number of scan-matching iterations
+  lsigma: 0.075 # The sigma of a beam used for likelihood computation
+  ogain: 3.0 # Gain to be used while evaluating the likelihood
+  srr: 0.01 # Odometry error (translation→ translation)
+  srt: 0.02 # Odometry error (translation→ rotaion)
+  str: 0.01 # Odometry error (rotation → translation)
+  stt: 0.02 # Odometry error (rotation → rotation)
+  resampleThreshold: 0.5 # Resampling threshold value
+  xmin: -100.0 # Initial map size (min x)
+  ymin: -100.0 # Initial map size (min y)
+  xmax: 100.0 # Initial map size (max x)
+  ymax: 100.0 # Initial map size (max y)
+  llsamplerange: 0.01 # Translational sampling range for the likelihood
+  llsamplestep: 0.01 #Translational sampling step for the likelihood
+  lasamplerange: 0.005 # Angular sampling range for the likelihood
+  lasamplestep: 0.005 # Angular sampling step for the likelihood
