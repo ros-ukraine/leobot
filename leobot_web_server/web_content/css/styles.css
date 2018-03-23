@@ -95,6 +95,10 @@ main {
     height: 504px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .head-control-buttons {
     text-align:center;
 }

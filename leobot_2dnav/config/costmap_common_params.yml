@@ -1,0 +1,20 @@
+obstacle_range: 2.5 #range where obstacle is sensed
+raytrace_range: 3.0 #range for making sure that there are no obstacles in that direction
+#footprint: footprint_padding: 0.1 # planar size of the robot
+footprint: [[0.15, 0.15], [0.15, -0.15], [-0.15, -0.15], [-0.15, 0.15]]
+robot_radius: 0.30 # perhaps a radius of the robot. I made it bigger that leobot by 0.05
+inflation_radius: 0.5 # the radius that assures that there is no collision possibility of different kind. See wiki for more
+cost_scaling_factor: 10.0 # setting leobot to be aggressive close to the obstacle by scaling the cost function
+transform_tolerance: 0.8 # delay of tf for the case if connection/communicaton with the robot is lost. It is low since loebot will drive in museum
+controller_patience: 2.0 # how long to continue operation when controller stops
+
+lidar_scan: {
+  sensor_frame: laser_link, #where sensor is situated on the robot
+  observation_persistence: 1.0, #How long to keep each sensor reading in seconds. A value of 0.0 will only keep the most recent reading.
+  max_obstacle_height: 2.5, #maximum height of the obstacle
+  min_obstacle_height: 0.0, #minimum heiht of the obstacle.
+  data_type: LaserScan, # where is the data obtained from
+  topic: leobot/laser/scan, # the name of the topic where lidar publishes
+  marking: true, #shall ROS mark the obstacles
+  clearing: true #shall ROS clear deprecated marking
+}
