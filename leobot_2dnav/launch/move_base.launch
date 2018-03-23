@@ -1,0 +1,16 @@
+<launch>
+  <arg name="map_file" default="office"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find leobot_2dnav)/maps/$(arg map_file).yaml">
+    <!--<param name="frame_id" value="/odom" />-->
+  </node>
+
+  <include file="$(find leobot_2dnav)/launch/amcl.launch"/>
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find leobot_2dnav)/config/costmap_common_params.yml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find leobot_2dnav)/config/costmap_common_params.yml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find leobot_2dnav)/config/local_costmap_params.yml" command="load"/>
+    <rosparam file="$(find leobot_2dnav)/config/global_costmap_params.yml" command="load"/>
+    <rosparam file="$(find leobot_2dnav)/config/base_local_planner_params.yml" command="load"/>
+    <remap from="/cmd_vel" to="/leobot/wheel_diff_drive_controller/cmd_vel" />
+  </node>
+</launch>
