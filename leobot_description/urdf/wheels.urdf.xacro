@@ -32,9 +32,7 @@
             <xacro:cylinder_inertia mass="${mass}" radius="${radius}" height="${width}"/>
         </link>
         <joint name="${prefix}_wheel_bearing_joint" type="continuous">
-
             <origin rpy="${pi / 2} 0 0" xyz="0.0 0.0 0.0"/>
-
             <parent link="${prefix}_bearing_link"/>
             <child link="${prefix}_wheel_link"/>
             <axis xyz="0 0 1" />
@@ -48,7 +46,7 @@
             <actuator name="${prefix}_wheel_motor">
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
                 <mechanicalReduction>1</mechanicalReduction>
-                <motorTorqueConstant>8</motorTorqueConstant>
+                <motorTorqueConstant>1</motorTorqueConstant>
             </actuator>
         </transmission>
     </xacro:macro>
