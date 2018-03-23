@@ -71,7 +71,7 @@ roslaunch leobot_launch simulation.launch
 
 Start art gallery simulation
 ```bash
-roslaunch leobot_launch simulation.launch world_file:=artgallery.world
+roslaunch leobot_launch simulation.launch world_file:=artgallery
 ```
 
 Launch navigation stack (in order to launch second command split Terminator window by two using Ctrl-Shift-E. More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
