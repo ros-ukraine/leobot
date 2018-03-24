@@ -1,0 +1,5 @@
+<launch>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find leobot_2dnav)/rviz/navigation.rviz" />
+
+</launch>
