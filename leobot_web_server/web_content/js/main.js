@@ -12,14 +12,10 @@ function publishMessage(message, topic) {
     topic.publish(new ROSLIB.Message(message));
 }
 
-function publishMessageOnClick(elementsClass, message, topic) {
-    var elements = document.getElementsByClassName(elementsClass);
-
-    for (var i=0; i<elements.length; i++) {
-        elements[i].onclick = function() {
-            publishMessage(message, topic);
-        };
-    }
+function publishMessageOnClick(selector, message, topic) {
+    $(selector).click(function() {
+        publishMessage(message, topic);
+    });
 }
 
 function publishHeadPosition() {
@@ -29,7 +25,7 @@ function publishHeadPosition() {
 }
 
 function initVideoStreaming(){
-    var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
+    var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
     document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
 }
 
@@ -39,10 +35,10 @@ function initWheelsOperation() {
     var rightMessage    = { angular: { x:  0, y: 0, z:  15 } };
     var backwardMessage = {  linear: { x: -1, y: 0, z:   0 } };
 
-    publishMessageOnClick('button-forward',  forwardMessage,  wheelsTopic);
-    publishMessageOnClick('button-left',     leftMessage,     wheelsTopic);
-    publishMessageOnClick('button-right',    rightMessage,    wheelsTopic);
-    publishMessageOnClick('button-backward', backwardMessage, wheelsTopic);
+    publishMessageOnClick('.button-forward',  forwardMessage,  wheelsTopic);
+    publishMessageOnClick('.button-left',     leftMessage,     wheelsTopic);
+    publishMessageOnClick('.button-right',    rightMessage,    wheelsTopic);
+    publishMessageOnClick('.button-backward', backwardMessage, wheelsTopic);
 
     window.addEventListener('keydown', function(e) {
         switch(e.key){
@@ -83,7 +79,7 @@ function initHeadOperation() {
 
 // Connection to ROS
 var ros = new ROSLIB.Ros({
-    url : 'ws://' + window.location.hostname + ':9090'
+    url : 'ws://' + location.hostname + ':9090'
 });
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -106,7 +102,7 @@ headListenerTopic.subscribe(function(message) {
     headDelta = message.process_value * 180 / Math.PI;
 });
 
-document.addEventListener('DOMContentLoaded', function(event) {
+$(function(event) {
     initVideoStreaming();
     initWheelsOperation();
     initHeadOperation();
