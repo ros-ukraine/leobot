@@ -3,7 +3,7 @@
     <arg name="use_map_topic" default="true"/>
     <!-- topic name for the sensor values from the distance sensor. -->
     <!-- alternatively <remap from="scan" to="laser/scan"/>-->
-    <arg name="scan_topic" default="/leobot/laser/scan"/>
+    <arg name="scan_topic" default="/laser/scan"/>
     <!-- used as the initial x-coordinate value of the Gaussian distribution in initial pose
     estimation.-->
     <arg name="initial_pose_x" default="0.0"/>

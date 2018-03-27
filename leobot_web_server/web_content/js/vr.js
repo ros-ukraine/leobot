@@ -3,8 +3,8 @@ var frameWidth = window.innerWidth;
 var frameWidthHalf = Math.round(frameWidth/2);
 var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
 
-document.getElementById('right_iframe').src = siteRoot + "stream?topic=/leobot/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
-document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/leobot/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
 
 var alpha, beta, gamma;
 // setup event handler to capture the orientation event and store the most recent data in a variable
@@ -30,7 +30,7 @@ ros.on('close', function() {
 });
 var headControl = new ROSLIB.Topic({
     ros : ros,
-    name : '/leobot/head_position_controller/command',
+    name : '/head_position_controller/command',
     messageType : 'std_msgs/Float64'
 });
 function imusetorientation() {

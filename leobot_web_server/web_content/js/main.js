@@ -26,14 +26,14 @@ function publishHeadPosition() {
 
 function initVideoStreaming(){
     var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
-    document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
+    document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/stereocamera/left/image_raw&width=640&height=470';
 }
 
 function initWheelsOperation() {
-    var forwardMessage  = {  linear: { x:  1, y: 0, z:   0 } };
-    var leftMessage     = { angular: { x:  0, y: 0, z: -15 } };
-    var rightMessage    = { angular: { x:  0, y: 0, z:  15 } };
-    var backwardMessage = {  linear: { x: -1, y: 0, z:   0 } };
+    var forwardMessage  = {  linear: { x:  1, y: 0, z: 0 } };
+    var leftMessage     = { angular: { x:  0, y: 0, z: 0.1 } };
+    var rightMessage    = { angular: { x:  0.1, y: 0, z:  -0.1 } };
+    var backwardMessage = {  linear: { x: -1, y: 0, z: 0 } };
 
     publishMessageOnClick('.button-forward',  forwardMessage,  wheelsTopic);
     publishMessageOnClick('.button-left',     leftMessage,     wheelsTopic);
@@ -91,9 +91,9 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-var wheelsTopic       = createTopic('/leobot/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
-var headControlTopic  = createTopic('/leobot/head_position_controller/command', 'std_msgs/Float64');
-var headListenerTopic = createTopic('/leobot/head_position_controller/state', 'control_msgs/JointControllerState');
+var wheelsTopic       = createTopic('/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
+var headControlTopic  = createTopic('/head_position_controller/command', 'std_msgs/Float64');
+var headListenerTopic = createTopic('/head_position_controller/state', 'control_msgs/JointControllerState');
 
 wheelsTopic.subscribe(function(message) {
     console.debug('Received message on ' + wheelsTopic.name + ': ', message);

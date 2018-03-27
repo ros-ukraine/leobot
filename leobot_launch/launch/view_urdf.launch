@@ -1,5 +1,5 @@
 <launch>
-   <arg name="gui" default="false"/>
+   <arg name="gui" default="true"/>
    <include file="$(find leobot_description)/launch/display.launch">
       <arg name="gui" value="$(arg gui)"/>
    </include>

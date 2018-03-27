@@ -5,7 +5,7 @@
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/leobot</robotNamespace>
+      <robotNamespace>/</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
@@ -108,7 +108,7 @@
       <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>leobot/stereocamera</cameraName>
+        <cameraName>stereocamera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_left_link</frameName>
@@ -155,7 +155,7 @@
           </noise>
         </ray>
         <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
-          <topicName>/leobot/laser/scan</topicName>
+          <topicName>laser/scan</topicName>
           <frameName>laser_link</frameName>
         </plugin>
       </sensor>
