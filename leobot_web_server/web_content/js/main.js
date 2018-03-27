@@ -25,8 +25,7 @@ function publishHeadPosition() {
 }
 
 function initVideoStreaming(){
-    // todo: remove "window"
-    var siteRoot = window.location.protocol + '//' + window.location.hostname + ':8090' + '/';
+    var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
     document.getElementsByClassName('video-streaming')[0].src = siteRoot + 'stream?topic=/leobot/stereocamera/left/image_raw&width=640&height=470';
 }
 
@@ -80,7 +79,7 @@ function initHeadOperation() {
 
 // Connection to ROS
 var ros = new ROSLIB.Ros({
-    url : 'ws://' + window.location.hostname + ':9090'
+    url : 'ws://' + location.hostname + ':9090'
 });
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
