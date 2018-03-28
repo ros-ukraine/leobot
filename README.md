@@ -52,13 +52,32 @@ After some time Terminator window will reappear.
 In case if you want to run PyCharm in Docker container please run
 
 ```bash
-/etc/pycharm/bin/pycharm.sh
+pycharm
 ```
 
 To launch QtCreator please run
 
 ```bash
 qtcreator
+```
+
+For VSCode type
+
+```bash
+vscode
+```
+
+## URDF and RViz
+In order to debug URDF please launch
+
+```bash
+roslaunch leobot_launch view_urdf.launch
+```
+
+To have a look on the state of the robot in RViz run
+
+```bash
+roslaunch leobot_launch rviz.launch
 ```
 
 ## Navigating on known map
