@@ -32,7 +32,7 @@ function initVideoStreaming(){
 function initWheelsOperation() {
     var forwardMessage  = {  linear: { x:  1, y: 0, z: 0 } };
     var leftMessage     = { angular: { x:  0, y: 0, z: 0.1 } };
-    var rightMessage    = { angular: { x:  0.1, y: 0, z:  -0.1 } };
+    var rightMessage    = { angular: { x:  0, y: 0, z: -0.1 } };
     var backwardMessage = {  linear: { x: -1, y: 0, z: 0 } };
 
     publishMessageOnClick('.button-forward',  forwardMessage,  wheelsTopic);
