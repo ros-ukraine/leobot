@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find leobot_description)/rviz/leobot.rviz" output="screen"/>
+</launch>
