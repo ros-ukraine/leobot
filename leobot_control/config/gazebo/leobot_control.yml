@@ -14,6 +14,9 @@ wheel_diff_drive_controller:
   publish_rate: 50.0 # defaults to 50 Hz
   pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
   twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  Kp: 200
+  Ki: 20
+  Kd: 150
 
   wheel_separation: 0.55
   wheel_radius: 0.10
