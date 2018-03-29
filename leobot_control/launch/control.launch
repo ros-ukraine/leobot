@@ -1,10 +1,9 @@
 <launch>
-    <node name="controller_spawner"
-          pkg="controller_manager" type="spawner" respawn="false"
-          output="screen" ns="/leobot"
-          args="head_position_controller joint_state_controller wheel_diff_drive_controller" />
+    <node name="controller_spawner" pkg="controller_manager"
+          type="spawner" respawn="false" output="screen" ns="/leobot"
+          args="head_position_controller joint_state_controller wheel_diff_drive_controller"/>
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-    <rosparam command="load" file="$(find leobot_control)/config/common/twist_mux.yml" />
-    <remap from="cmd_vel_out" to="leobot/wheel_diff_drive_controller/cmd_vel"/>
-</node>
+        <rosparam command="load" file="$(find leobot_control)/config/common/twist_mux.yml"/>
+        <remap from="cmd_vel_out" to="leobot/wheel_diff_drive_controller/cmd_vel"/>
+    </node>
 </launch>
