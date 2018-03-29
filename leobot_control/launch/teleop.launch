@@ -1,13 +1,18 @@
-<?xml version="1.0"?>
 <launch>
-  <arg name="joy_dev" default="/dev/input/js0" />
-  <arg name="joystick" default="true" />
+  <arg name="joy_dev" default="/dev/input/js0"/>
+  <arg name="joystick" default="true"/>
+
+    <group ns="teleop_twist_keyboard">
+        <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml"/>
+        <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
+              name="teleop_twist_keyboard" output="screen"/>
+    </group>
 
   <group ns="joy_teleop">
-    <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml" />
+    <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml"/>
 
     <node pkg="joy" type="joy_node" name="joy_node">
-      <param name="dev" value="$(arg joy_dev)" />
+      <param name="dev" value="$(arg joy_dev)"/>
     </node>
 
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>

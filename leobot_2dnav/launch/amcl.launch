@@ -1,0 +1,110 @@
+<launch>
+    <!-- if true, AMCL receives map topic instead of service call. -->
+    <arg name="use_map_topic" default="true"/>
+    <!-- topic name for the sensor values from the distance sensor. -->
+    <!-- alternatively <remap from="scan" to="laser/scan"/>-->
+    <arg name="scan_topic" default="/laser/scan"/>
+    <!-- used as the initial x-coordinate value of the Gaussian distribution in initial pose
+    estimation.-->
+    <arg name="initial_pose_x" default="0.0"/>
+    <!-- used as the initial y-coordinate value of the Gaussian distribution in the initial pose
+    estimation.-->
+    <arg name="initial_pose_y" default="0.0"/>
+    <!-- used as the initial yaw coordinate value of the Gaussian distribution in the initial pose
+    estimation. -->
+    <arg name="initial_pose_a" default="0.0"/>
+    <!-- execute the amcl node by referring to the parameter settings below. -->
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+        <!-- filter related parameter -->
+        <!-- min number of particles allowed -->
+        <param name="min_particles" value="400"/>
+        <!-- max number of particles allowed (the higher the better; set based on PC performance) -->
+        <param name="max_particles" value="1000"/> <!--or 5000 or 1000-->
+        <!-- max error between the actual distribution and the estimated distribution -->
+        <param name="kld_err" value="0.02"/> <!-- 0.05 or 0.001-->
+        <!-- Upper standard normal quantile for (1 - p), where p is the probability that the error on the estimated
+        distrubition will be less than kld_err.-->
+        <param	name="kld_z"	value="0.99"	/>
+        <!-- translational motion required for filter update (meter) -->
+        <param name="update_min_d" value="0.2"/>
+        <!-- rotational motion required for filter update (radian) -->
+        <param name="update_min_a" value="0.02"/> <!--0.5-->
+        <!-- resampling interval -->
+        <param name="resample_interval" value="1"/>
+        <!-- conversion allowed time (by sec) -->
+        <param name="transform_tolerance" value="0.05"/> <!--0.2 or 0.05-->
+        <!-- index drop rate(slow average weight filter), deactivated if 0.0 -->
+        <param name="recovery_alpha_slow" value="0.001"/>
+        <!-- index drop rate(fast average weight filter), deactivated if 0.0 -->
+        <param name="recovery_alpha_fast" value="0.1"/>
+        <!-- refer to above initial_pose_x -->
+        <param name="initial_pose_x" value="$(arg initial_pose_x)"/>
+        <!-- refer to above initial_pose_y -->
+        <param name="initial_pose_y" value="$(arg initial_pose_y)"/>
+        <!-- refer to above initial_pose_a -->
+        <param name="initial_pose_a" value="$(arg initial_pose_a)"/>
+        <!-- Initial pose covariance (x*x), used to initialize filter with Gaussian distribution. (meters) -->
+        <param name="initial_cov_xx" value="0.5 * 0.5"/>
+        <!-- Initial pose covariance (y*y), used to initialize filter with Gaussian distribution. (meters) -->
+        <param name="initial_cov_yy" value="0.5 * 0.5"/>
+        <!-- Initial pose covariance (yaw*yaw), used to initialize filter with Gaussian distribution. (radians) -->
+        <param name="initial_cov_aa" value="${(pi / 12)*(pi / 12)}"/>
+        <!-- max period to visually displaying scan and path info -->
+        <!-- example: 10Hz = 0.1sec, deactivated if -1.0 -->
+        <param name="gui_publish_rate" value="2.0"/>
+        <!-- Maximum rate (Hz) at which to store the last estimated pose and covariance to the parameter server -->
+        <!--, in the variables ~initial_pose_* and ~initial_cov_*. This saved pose will be used on subsequent -->
+        <!-- runs to initialize the filter. -1.0 to disable.  -->
+        <param name="save_pose_rate " value="-1"/>
+        <!-- same as the explanation for use_map_topic -->
+        <param name="use_map_topic" value="$(arg use_map_topic)"/>
+        <!-- When set to true, AMCL will only use the first map it subscribes to, -->
+        <!-- rather than updating each time a new one is received -->
+        <param name="first_map_only " value="false"/>
+        <!--distance sensor parameter -->
+        <!-- change the sensor topic name -->
+        <remap from="scan" to="$(arg scan_topic)"/>
+        <!-- min distance of laser sensing distance (meter) -->
+        <param name="laser_min_range" value="0.5"/>
+        <!-- max distance of laser sensing distance (meter) -->
+        <param name="laser_max_range" value="10"/>
+        <!-- max number of laser beams used during filter update -->
+        <param name="laser_max_beams" value="500"/> <!-- 30 or 500-->
+        <!-- z_hit mixed weight of sensor model (mixture weight) -->
+        <param name="laser_z_hit" value="0.95"/> <!--0.95-->
+        <!-- z_short mixed weight of sensor model (mixture weight) -->
+        <param name="laser_z_short" value="0.05"/>
+        <!-- z_max mixed weight of sensor model (mixture weight) -->
+        <param name="laser_z_max" value="0.05"/>
+        <!-- x_rand mixed weight of sensor model (mixture weight) -->
+        <param name="laser_z_rand" value="0.5"/> <!--0.05-->
+        <!-- standard deviation of Gaussian model using z_hit of sensor -->
+        <param name="laser_sigma_hit" value="0.2"/>
+        <!-- index drop rate parameter for z_short of sensor -->
+        <param name="laser_lambda_short" value="0.1"/>
+        <!-- max distance and obstacle for likelihood_field method sensor -->
+        <param name="laser_likelihood_max_dist" value="2.0"/> <!--0.3-->
+        <!-- sensor type(select likelihood_field or beam) -->
+        <param name="laser_model_type" value="likelihood_field"/> 	<!--<param	name="laser_model_type"	value="beam"/>	-->
+        <!-- parameter related to odometry -->
+        <!-- robot driving methods. "diff" or "omni" can be selected -->
+        <param name="odom_model_type" value="diff-corrected"/>
+        <!--	translation	std	dev,	m	-->
+        <!-- estimated rotational motion noise of the odometry during rotational motion -->
+        <param name="odom_alpha1" value="0.8"/> <!--0.2 or 0.8-->
+        <!-- estimated rotational motion noise of the odometry during translation motion -->
+        <param name="odom_alpha2" value="1.8"/> <!--0.2 or 0.8-->
+        <!-- estimated translation motion noise of the odometry during translation motion -->
+        <param name="odom_alpha3" value="0.4"/> <!--0.8 or 0.2-->
+        <!-- estimated translation motion noise of the odometry during rotational motion -->
+        <param name="odom_alpha4" value="0.4"/> <!--0.2-->
+        <!-- odom_alpha_5 is used only ifodom_model_type = omni
+        <param	name="odom_alpha5"	value="0.1"	/> -->
+        <!-- odometry frame -->
+        <param name="odom_frame_id" value="odom"/>
+        <!-- robot base frame -->
+        <param name="base_frame_id" value="base_link"/>
+        <!-- Set this to false to prevent amcl from publishing the transform between the global and the odometry frames -->
+        <param name="tf_broadcast " value="true"/>
+    </node>
+</launch>

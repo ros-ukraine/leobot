@@ -12,6 +12,14 @@ add_custom_target(install_nodejs ALL
   VERBATIM
 )
 
+add_custom_target(copy_js_libs ALL
+  COMMAND xargs -a js_files.txt cp -u -t "web_content/js"
+  DEPENDS install_nodejs
+  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+  COMMENT "Copying JS libraries to web folder"
+  VERBATIM
+)
+
 install(DIRECTORY
   scripts
   web_content
