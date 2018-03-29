@@ -40,7 +40,36 @@ function initWheelsOperation() {
     publishMessageOnClick('.button-right',    rightMessage,    wheelsTopic);
     publishMessageOnClick('.button-backward', backwardMessage, wheelsTopic);
 
+    function mylog(prefix, e) {
+        var log = $('.log');
+
+        var json = JSON.stringify({e});
+
+        //log.val(log.val()  + '\n' + prefix + e.which + ' ' + ": " + json);
+        log.val(log.val()  + ' ' + prefix + e.which);
+
+        console.log(e);
+    }
+
+    $(document).keypress(function(e){
+        mylog('', e);
+        return false;
+    });
+
+    $('.clear').click(function() {
+        $('.log').val('');
+    });
+
+/*
+    $(document).keyup(function(e){
+        mylog('U', e);
+    });
+*/
+
+/*
     window.addEventListener('keydown', function(e) {
+        mylog("D", e);
+
         switch(e.key){
             case 'ArrowUp':
                 publishMessage(forwardMessage, wheelsTopic);
@@ -60,7 +89,9 @@ function initWheelsOperation() {
                 break;
         }
     });
+    */
 }
+
 
 function initHeadOperation() {
     document.getElementById('head-control-button-left').onclick = function() {
