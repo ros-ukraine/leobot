@@ -1,28 +1,26 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:macro name="standard_wheel" params="prefix direction bearing_radius radius width mass distance_between_wheels position_x position_z">
+    <xacro:macro name="standard_wheel"
+                 params="prefix direction bearing_radius radius width mass distance_between_wheels x z">
         <link name="${prefix}_bearing_link">>
             <visual>
-
-                <xacro:sphere_geometry radius="${bearing_radius}"/>
+                <xacro:cylinder_geometry radius="${bearing_radius}" height="${2 * wheel_width}"/>
                 <xacro:blue_material/>
-
             </visual>
-            <xacro:sphere_collision radius="${bearing_radius}"/>
-            <xacro:sphere_inertia mass="0.1" radius="${bearing_radius}"/>
+            <xacro:cylinder_collision radius="${bearing_radius}" height="${2 * wheel_width}"/>
+            <xacro:cylinder_inertia mass="0.01" radius="${bearing_radius}" height="${2 * wheel_width}"/>
         </link>
         <joint name="${prefix}_bearing_base_joint" type="fixed">
-            <origin rpy="0 0 0" xyz="${position_x} ${direction * (distance_between_wheels/2 + bearing_radius - 0.0001)} ${position_z}"/>
-            <parent link="base_link"/>
+            <origin rpy="${-pi / 2} 0 0"
+                    xyz="${x} ${direction * (distance_between_wheels/2 + wheel_width)} ${z}"/>
+            <parent link="chassis"/>
             <child link="${prefix}_bearing_link"/>
         </joint>
         <link name="${prefix}_wheel_link">
             <visual>
-
-                <origin rpy="${pi / 2} 0  0 " xyz ="0 0 0"/>
-              <geometry>
-
+                <origin rpy="${pi / 2} 0  0 " xyz="0 0 0"/>
+                <geometry>
                     <mesh filename="package://leobot_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
                     <xacro:blue_material/>
                 </geometry>
@@ -32,12 +30,11 @@
             <xacro:cylinder_inertia mass="${mass}" radius="${radius}" height="${width}"/>
         </link>
         <joint name="${prefix}_wheel_bearing_joint" type="continuous">
-            <origin rpy="${pi / 2} 0 0" xyz="0.0 0.0 0.0"/>
+            <origin rpy="0 0 0" xyz="0 0 ${direction * wheel_width/2}"/>
             <parent link="${prefix}_bearing_link"/>
             <child link="${prefix}_wheel_link"/>
-            <axis xyz="0 0 1" />
+            <axis xyz="0 0 1"/>
         </joint>
-
         <transmission name="${prefix}_wheel_transmission">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${prefix}_wheel_bearing_joint">
@@ -51,11 +48,12 @@
         </transmission>
     </xacro:macro>
 
-    <xacro:macro name="caster_wheel" params="radius mass position_x position_z">
+    <xacro:macro name="caster_wheel" params="radius mass x z">
         <link name="caster_wheel_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://leobot_description/meshes/wheel-2-with-ball.stl" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://leobot_description/meshes/wheel-2-with-ball.stl"
+                          scale="0.001 0.001 0.001"/>
                     <xacro:red_material/>
                 </geometry>
             </visual>
@@ -63,9 +61,9 @@
             <xacro:sphere_inertia mass="${mass}" radius="${radius}"/>
         </link>
         <joint name="caster_wheel_base_joint" type="fixed">
-            <parent link="base_link"/>
+            <parent link="chassis"/>
             <child link="caster_wheel_link"/>
-            <origin rpy="0 0 0" xyz="${position_x} 0.0 ${position_z}"/>
+            <origin rpy="0 0 0" xyz="${x} 0.0 ${z}"/>
         </joint>
     </xacro:macro>
 
