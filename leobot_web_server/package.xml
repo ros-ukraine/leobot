@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>leobot_web_server</name>
-  <version>0.0.1</version>
-  <description>This package starts the web server for LeoBot</description>
-  <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
-  <maintainer email="Andriy.Petlovanyy@todo.todo">Andriy Petlovanyy</maintainer>
-  <maintainer email="Max.Zhaloba@acme.com">Max Zhaloba</maintainer>
-  <license>MIT</license>
-  <url type="website">https://github.com/ros-ukraine/leobot</url>
+    <name>leobot_web_server</name>
+    <version>0.0.1</version>
+    <description>This package starts the web server for LeoBot</description>
+    <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
+    <maintainer email="Andriy.Petlovanyy@todo.todo">Andriy Petlovanyy</maintainer>
+    <maintainer email="Max.Zhaloba@acme.com">Max Zhaloba</maintainer>
+    <license>MIT</license>
+    <url type="website">https://github.com/ros-ukraine/leobot</url>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <depend>nodejs</depend>
-  <depend>nodejs-legacy</depend>
-  <depend>npm</depend>
-  <depend>web_video_server</depend>
-  <depend>rosbridge_server</depend>
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>nodejs</depend>
+    <depend>nodejs-legacy</depend>
+    <depend>npm</depend>
+    <depend>web_video_server</depend>
+    <depend>rosbridge_server</depend>
 </package>
