@@ -139,12 +139,12 @@
             <horizontal>
               <samples>1081</samples>
               <resolution>1</resolution>
-              <min_angle>-1.570796</min_angle>
-              <max_angle>1.570796</max_angle>
+              <min_angle>-2.09439510239</min_angle>
+              <max_angle>2.09439510239</max_angle>
             </horizontal>
           </scan>
           <range>
-            <min>0.60</min>
+            <min>0.10</min>
             <max>10.0</max>
             <resolution>0.01</resolution>
           </range>
