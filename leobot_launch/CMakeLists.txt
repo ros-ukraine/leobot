@@ -8,7 +8,11 @@ catkin_package(
 )
 
 install(FILES
-  launch/display.launch
+  launch/view_urdf.launch
   launch/simulation.launch
+  launch/navigation.launch
+  launch/rviz.launch
+  launch/teleop.launch
+  launch/web_server.launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
