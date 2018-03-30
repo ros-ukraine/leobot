@@ -13,8 +13,8 @@ TrajectoryPlannerROS:
         escape_vel: -0.15 # Speed used for driving during escapes in meters/sec
         holonomic_robot: false # if the robot is holonomic, define also y_vels - strafing velocities
         # Goal Tolerance Parameters
-        yaw_goal_tolerance: 0.20 # tolerance in radians when achieving the goal
-        xy_goal_tolerance: 0.250 # tolerance in meters when achieving the goal
+        yaw_goal_tolerance: 0.1 # tolerance in radians when achieving the goal
+        xy_goal_tolerance: 0.10 # tolerance in meters when achieving the goal
         latch_xy_goal_tolerance: true # set to falso to prevent robot from in-place rotation when
                                   #it reaches the goal xy location
         # Forward Simulation Parameters
@@ -26,12 +26,12 @@ TrajectoryPlannerROS:
 
         # Trajectory scoring parameters
         meter_scoring: true # Whether the gdist_scale and pdist_scale parameters should assume that goal_distance and path_distance are expressed in units of meters or cells. Cells are assumed by default (false).
-        occdist_scale:  0.8 #The weighting for how much the controller should attempt to avoid obstacles. default 0.01
+        occdist_scale:  1.8 #The weighting for how much the controller should attempt to avoid obstacles. default 0.01
         pdist_scale: 0.4  #     The weighting for how much the controller should stay close to the path it was given . default 0.6
         gdist_scale: 1.1 #     The weighting for how much the controller should attempt to reach its local goal, also controls speed  default 0.8
         heading_lookahead: 0.325  #How far to look ahead in meters when scoring different in-place-rotation trajectories
         heading_scoring: true  #Whether to score based on the robot's heading to the path or its distance from the path. default false
-        heading_scoring_timestep: 0.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
+        heading_scoring_timestep: 1.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
         dwa: false #whether to use the DWA or Trajectory Rollout
         publish_cost_grid_pc: false # whether or not to publish the cost grid that the planner will use when planning
         global_frame_id: odom # the frame to set for the cost_cloud
@@ -41,7 +41,7 @@ TrajectoryPlannerROS:
         #See base_local_planner::TrajectoryPlanner Class Reference
         esca1pe_reset_dist: 0.2 #The distance the robot must travel before it can leave escape mode
         escape_reset_theta: 0.03 # The angle that robot must turn before it can leave escape mode
-        simple_attractor: true # Enables simple attraction to a goal point
+        simple_attractor: false # Enables simple attraction to a goal point
         #dwa_local_planner parameters
         goal_distance_bias: 10 #In DWA the weighting for how much the controller should attempt to reach its local goal, also controls speed (double, default: 24.0)
         path_distance_bias: 22 #In DWA the weighting for how much the controller should stay close to the path it was given (double, default: 32.0)
