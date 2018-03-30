@@ -1,3 +1,7 @@
 node_modules/roslib/build/roslib.min.js
 node_modules/jquery/dist/jquery.min.js
 node_modules/jquery/dist/jquery.min.map
+node_modules/nav2djs/src/Nav2D.js
+node_modules/nav2djs/src/navigator/Navigator.js
+node_modules/nav2djs/src/navigator/ImageMapClientNav.js
+node_modules/nav2djs/src/navigator/OccupancyGridClientNav.js

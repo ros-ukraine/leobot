@@ -16,6 +16,13 @@
     "rosnodejs": "2.1.1",
     "node-static": "0.7.10",
     "roslib": "0.20.0",
-    "jquery": "3.3.1"
+    "jquery": "3.3.1",
+    "napa": "3.0.0"
+  },
+  "scripts": {
+    "install": "napa && cd node_modules/nav2djs/utils && npm i"
+  },
+  "napa": {
+    "nav2djs": "GT-RAIL/nav2djs"
   }
 }
