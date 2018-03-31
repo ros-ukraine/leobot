@@ -32,8 +32,17 @@ docker pull rosukraine/leobot:latest
 ```
  7. Use the following command to start Docker container
 ```bash
-docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 --device=/dev/input/js0 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
+docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
+If you'd like to use a _USB_ joystick, add the following parameter right after `docker run`
+```
+--device=/dev/input/js0
+```
+Notice: in this case you must have the joystick plugged in when you trigger `docker run` and every time you `docker start` the corresponding container. Otherwise those commands will fail with such error
+```
+docker: Error response from daemon: linux runtime spec devices: error gathering device information while adding custom device "/dev/input/js0": no such file or directory.
+```
+To avoid this, you can create one container that supports USB joystick and another default one (with different `--name` parameters).
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
  10. If you want to run real robot add user to dialout group and restart Docker container
