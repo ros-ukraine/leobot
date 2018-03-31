@@ -43,6 +43,7 @@ Notice: in this case you must have the joystick plugged in when you trigger `doc
 docker: Error response from daemon: linux runtime spec devices: error gathering device information while adding custom device "/dev/input/js0": no such file or directory.
 ```
 To avoid this, you can create one container that supports USB joystick and another default one (with different `--name` parameters).
+
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
  10. If you want to run real robot add user to dialout group and restart Docker container
