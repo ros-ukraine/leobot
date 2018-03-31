@@ -38,7 +38,7 @@ If you'd like to use a _USB_ joystick, add the following parameter right after `
 ```
 --device=/dev/input/js0
 ```
-Notice: in this case you must have the joystick plugged in when you trigger `docker run` and every time you `docker start` the corresponding container. Otherwise those commands will fail with such error
+Notice: in this case you must have the joystick plugged in when you trigger `docker run` and every time you `docker start` the corresponding container. Otherwise these commands will fail with such error
 ```
 docker: Error response from daemon: linux runtime spec devices: error gathering device information while adding custom device "/dev/input/js0": no such file or directory.
 ```
