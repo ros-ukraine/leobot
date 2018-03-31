@@ -3,13 +3,13 @@
   <arg name="joystick" default="true"/>
 
   <group ns="teleop_twist_keyboard">
-    <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml"/>
+    <rosparam command="load" file="$(find leobot_control)/config/common/keyboard.yml"/>
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
           name="teleop_twist_keyboard" output="screen"/>
   </group>
 
   <group ns="joy_teleop">
-    <rosparam command="load" file="$(find leobot_control)/config/common/teleop.yml"/>
+    <rosparam command="load" file="$(find leobot_control)/config/common/joystick.yml"/>
 
     <node pkg="joy" type="joy_node" name="joy_node">
       <param name="dev" value="$(arg joy_dev)"/>
