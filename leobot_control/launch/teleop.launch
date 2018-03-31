@@ -1,6 +1,6 @@
 <launch>
   <arg name="joy_dev" default="/dev/input/js0"/>
-  <arg name="joystick" default="true"/>
+  <arg name="joystick" default="false"/>
 
   <group ns="teleop_twist_keyboard">
     <rosparam command="load" file="$(find leobot_control)/config/common/keyboard.yml"/>
@@ -8,7 +8,7 @@
           name="teleop_twist_keyboard" output="screen"/>
   </group>
 
-  <group ns="joy_teleop">
+  <group ns="joy_teleop" if="$(arg joystick)">
     <rosparam command="load" file="$(find leobot_control)/config/common/joystick.yml"/>
 
     <node pkg="joy" type="joy_node" name="joy_node">
