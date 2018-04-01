@@ -66,6 +66,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        base_link_inertia:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         camera_left_link:
           Alpha: 1
           Show Axes: false
@@ -86,11 +91,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        laser_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         left_bearing_link:
           Alpha: 1
           Show Axes: false
@@ -107,6 +107,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tower_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -124,6 +129,8 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
+        base_link_inertia:
+          Value: true
         camera_left_link:
           Value: true
         camera_right_link:
@@ -131,8 +138,6 @@ Visualization Manager:
         caster_wheel_link:
           Value: true
         head_link:
-          Value: true
-        laser_link:
           Value: true
         left_bearing_link:
           Value: true
@@ -142,6 +147,8 @@ Visualization Manager:
           Value: true
         right_wheel_link:
           Value: true
+        tower_link:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -149,14 +156,14 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
+          base_link_inertia:
+            tower_link:
+              head_link:
+                camera_left_link:
+                  {}
+                camera_right_link:
+                  {}
           caster_wheel_link:
-            {}
-          head_link:
-            camera_left_link:
-              {}
-            camera_right_link:
-              {}
-          laser_link:
             {}
           left_bearing_link:
             left_wheel_link:
