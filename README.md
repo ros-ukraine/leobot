@@ -161,7 +161,7 @@ docker: Error response from daemon: linux runtime spec devices: error gathering 
 To avoid this, you can create one container that supports USB joystick
 and another default one (using different `--name` parameters).
 
-You can test that joistick is available from the container with such command
+You can test that joistick is available from the container with a command
 ```
 cat /dev/input/js0
 ```
@@ -182,8 +182,10 @@ joy_device:=/dev/input/js1
 
 To operate the robot you need to press the so-called
 [deadman button](https://discourse.ros.org/t/teleop-twist-joy-inconvenient-button-settings/1035/2)
-and the arrow buttons or manipulate the thumbstick _at the same time_.
-Otherwise the robot won't move.
+_simultaneously_ with the arrow buttons or manipulating the thumbstick.
+Most often that is one of the main buttons at the right side of joystick.
+Just experiment to find the right one.
+If you don't press the deadman button the robot won't move.
 
 The joystick will be working even if the console window is minimized,
 unlike the keyboard teleoperation.
