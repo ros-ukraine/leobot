@@ -34,16 +34,6 @@ docker pull rosukraine/leobot:latest
 ```bash
 docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
-If you'd like to use a _USB_ joystick, add the following parameter right after `docker run`
-```
---device=/dev/input/js0
-```
-Notice: in this case you must have the joystick plugged in when you trigger `docker run` and every time you `docker start` the corresponding container. Otherwise these commands will fail with such error
-```
-docker: Error response from daemon: linux runtime spec devices: error gathering device information while adding custom device "/dev/input/js0": no such file or directory.
-```
-To avoid this, you can create one container that supports USB joystick and another default one (with different `--name` parameters).
-
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
  10. If you want to run real robot add user to dialout group and restart Docker container
@@ -152,3 +142,48 @@ If everything goes well, you'll see the message
 Web server started at port 8080
 ```
 After that the web server will become available on your host Ubuntu OS at http://localhost:8080 as well as from LAN.
+
+
+## Using a _USB_ joystick
+To use a _USB_ joystick you need to rebuild the docker container.
+See item 7 in [Docker](#docker).
+
+Add the following parameter right after `docker run`
+```
+--device=/dev/input/js0
+```
+Notice: in this case you must have the joystick plugged in when you
+trigger `docker run` and every time you `docker start` the corresponding container.
+Otherwise these commands will fail with an error
+```
+docker: Error response from daemon: linux runtime spec devices: error gathering device information while adding custom device "/dev/input/js0": no such file or directory.
+```
+To avoid this, you can create one container that supports USB joystick
+and another default one (using different `--name` parameters).
+
+You can test that joistick is available from the container with such command
+```
+cat /dev/input/js0
+```
+It should print strange symbols in the console when you press joystick
+buttons. Press Ctrl+C to exit.
+
+When joystick is available in the container, trigger the `simulation.launch`
+and then start the tepeoperation with joystick support using command
+```
+roslaunch leobot_control teleop.launch joy_enabled:=true
+```
+
+If your USB joystick is connected to something different than `/dev/input/js0`
+you can configure it adding such parameter
+```
+joy_device:=/dev/input/js1
+```
+
+To operate the robot you need to press the so-called
+[deadman button](https://discourse.ros.org/t/teleop-twist-joy-inconvenient-button-settings/1035/2)
+and the arrow buttons or manipulate the thumbstick _at the same time_.
+Otherwise the robot won't move.
+
+The joystick will be working even if the console window is minimized,
+unlike the keyboard teleoperation.
