@@ -3,6 +3,7 @@
 
   <xacro:include filename="$(find leobot_description)/urdf/materials.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find leobot_description)/urdf/sensors/hokuyo.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
 
   <xacro:property name="base_width" value="0.7"/>
@@ -69,6 +70,8 @@
   <xacro:standard_wheel prefix="right" direction="-1.0" bearing_radius="${bearing_radius}" radius="${wheel_radius}"
                         width="${wheel_width}" mass="${wheel_mass}" distance_between_wheels="${distance_between_wheels}"
                         x="${wheel_position_x}" z="${wheel_position_z}"/>
+  <xacro:lidar_hokuyo parent_link_name="chassis"/>
+
 
   <link name="tower_link">
     <visual>
