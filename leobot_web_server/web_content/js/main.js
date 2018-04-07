@@ -81,16 +81,15 @@ function initMap() {
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
       divID : 'map-tracking',
-      width : 750,
-      height : 800
+      width : 400,
+      height : 400
     });
 
     // Setup the nav client.
     var nav = NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
-      viewer : viewer,
-      serverName : '/joint_state_controller'
+      viewer : viewer
     });
 }
 
@@ -120,8 +119,8 @@ headListenerTopic.subscribe(function(message) {
 });
 
 $(function(event) {
-    initVideoStreaming();
-    initWheelsOperation();
-    initHeadOperation();
+    //initVideoStreaming();
+    //initWheelsOperation();
+    //initHeadOperation();
     initMap();
 });
