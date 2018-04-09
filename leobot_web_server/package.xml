@@ -15,4 +15,5 @@
     <depend>npm</depend>
     <depend>web_video_server</depend>
     <depend>rosbridge_server</depend>
+    <depend>robot_pose_publisher</depend>
 </package>
