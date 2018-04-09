@@ -85,12 +85,12 @@ function initMap() {
       height : 400
     });
 
-    // Setup the nav client.
-    var nav = NAV2D.OccupancyGridClientNav({
+    // Setup the map client.
+    var gridClient = new ROS2D.OccupancyGridClient({
       ros : ros,
       rootObject : viewer.scene,
-      viewer : viewer,
-      robot_pose : '/tf'
+      // Use this property in case of continuous updates
+      continuous: true
     });
 }
 
