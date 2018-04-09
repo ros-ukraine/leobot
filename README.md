@@ -94,6 +94,12 @@ Start office simulation
 roslaunch leobot_launch simulation.launch
 ```
 
+If you want to reduce usage of machine's resources and increase simulation speed you could run it without GUI in headless mode.
+For these purposes you could use the following command
+```bash
+roslaunch leobot_launch simulation.launch headless:=true gui:=false
+```
+
 Start art gallery simulation
 ```bash
 roslaunch leobot_launch simulation.launch world_file:=artgallery
