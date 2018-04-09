@@ -89,7 +89,8 @@ function initMap() {
     var nav = NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
-      viewer : viewer
+      viewer : viewer,
+      robot_pose : '/tf'
     });
 }
 
