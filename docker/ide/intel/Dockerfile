@@ -9,7 +9,7 @@ RUN set -x && \
     echo "Installing video drivers for user" && \
     apt-get update && \
     apt-get -y install libgl1-mesa-glx libgl1-mesa-dri && \
-    usermod -a -G video user
+    usermod -a -G video user && \
 
     echo "Removing cache" && \
     apt-get clean && \
