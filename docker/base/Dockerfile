@@ -1,8 +1,8 @@
-FROM shadowrobot/build-tools:xenial-kinetic
+FROM shadowrobot/build-tools:xenial-kinetic-ide
 
 MAINTAINER "ROS Ukraine Community"
 
-LABEL Description="This ROS Kinetic image containes all dependencies for LeoBot" Vendor="ROS Ukraine" Version="1.0"
+LABEL Description="This ROS Kinetic image containes all dependencies for LeoBot with IDEs" Vendor="ROS Ukraine" Version="1.0"
 
 ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/ansible/deploy.sh"
 
