@@ -80,17 +80,17 @@ function initHeadOperation() {
 function initMap() {
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
-      divID : 'map-tracking',
-      width : 400,
-      height : 400
+        divID : 'map-tracking',
+        width : 400,
+        height : 400
     });
 
     // Setup the map client.
-    var gridClient = new ROS2D.OccupancyGridClient({
-      ros : ros,
-      rootObject : viewer.scene,
-      // Use this property in case of continuous updates
-      continuous: true
+    var gridClient = new NAV2D.OccupancyGridClientNav({
+        ros : ros,
+        rootObject : viewer.scene,
+        // Use this property in case of continuous updates
+        continuous: true
     });
 }
 
