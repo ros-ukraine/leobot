@@ -1,7 +1,5 @@
 <launch>
     <arg name="port" default="8080"/>
-    <node pkg="robot_pose_publisher" type="robot_pose_publisher"
-          name="robot_pose_publisher" output="screen"/>
     <node pkg="leobot_web_server" type="web_server.js"
           name="leobot_web_server" output="screen">
         <param name="port" value="$(arg port)"/>
