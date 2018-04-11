@@ -4,12 +4,12 @@ var frameWidthHalf = Math.round(frameWidth/2);
 var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
 
 document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
-document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+document.getElementById('left_iframe').src = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
 
 var alpha, beta, gamma;
-// setup event handler to capture the orientation event and store the most recent data in a variable
+// setup event handler to capture the orientation event and store the most recent data in
 if (window.DeviceOrientationEvent) {
-    // Listen for the deviceorientation event and handle the raw data
+    // Listen for the deviceorientation event and handle the raw
     window.addEventListener('deviceorientation', function(eventData) {
         gamma = eventData.gamma;
         alpha = eventData.alpha
@@ -32,6 +32,34 @@ var headControl = new ROSLIB.Topic({
     ros : ros,
     name : '/head_position_controller/command',
     messageType : 'std_msgs/Float64'
+});
+var wheelControl = new ROSLIB.Topic({
+    ros : ros,
+    name : '/wheel_diff_drive_controller/cmd_vel',
+    messageType : 'geometry_msgs/Twist'
+});
+document.body.addEventListener('keydown', function(e) {
+	        if(e.keyCode == "38"){
+	            var twistMessage1 = new ROSLIB.Message({
+                    linear: { x:  1, y: 0, z: 0 }
+                });
+                wheelControl.publish(twistMessage1);
+	        }else if(e.keyCode == "40"){
+	            var twistMessage2 = new ROSLIB.Message({
+                    linear: { x: -1, y: 0, z: 0 }
+                });
+                wheelControl.publish(twistMessage2);
+	        }else if(e.keyCode == "37"){
+	            var twistMessage3 = new ROSLIB.Message({
+                    angular: { x:  0, y: 0, z: 0.1 }
+                });
+                wheelControl.publish(twistMessage3);
+	        }else if(e.keyCode == "39"){
+	            var twistMessage4 = new ROSLIB.Message({
+                    angular: { x:  0, y: 0, z: -0.1 }
+                });
+                wheelControl.publish(twistMessage4);
+	        }
 });
 function imusetorientation() {
     if(((alpha > 0 && alpha < 90) && (gamma >= (-90) && gamma <= 0))
