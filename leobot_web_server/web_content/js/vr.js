@@ -9,7 +9,7 @@ document.getElementById('left_iframe').src = siteRoot + "stream?topic=/stereocam
 var alpha, beta, gamma;
 // setup event handler to capture the orientation event and store the most recent data in
 if (window.DeviceOrientationEvent) {
-    // Listen for the deviceorientation event and handle the raw
+    // Listen for the deviceorientation event and handle the
     window.addEventListener('deviceorientation', function(eventData) {
         gamma = eventData.gamma;
         alpha = eventData.alpha
@@ -39,26 +39,26 @@ var wheelControl = new ROSLIB.Topic({
     messageType : 'geometry_msgs/Twist'
 });
 document.body.addEventListener('keydown', function(e) {
-	        if(e.keyCode == "38"){
-	            var twistMessage1 = new ROSLIB.Message({
+	        if(e.keyCode == "177"){
+	            var twistMessageUp = new ROSLIB.Message({
                     linear: { x:  1, y: 0, z: 0 }
                 });
-                wheelControl.publish(twistMessage1);
-	        }else if(e.keyCode == "40"){
-	            var twistMessage2 = new ROSLIB.Message({
+                wheelControl.publish(twistMessageUp);
+	        }else if(e.keyCode == "176"){
+	            var twistMessageDown = new ROSLIB.Message({
                     linear: { x: -1, y: 0, z: 0 }
                 });
-                wheelControl.publish(twistMessage2);
-	        }else if(e.keyCode == "37"){
-	            var twistMessage3 = new ROSLIB.Message({
+                wheelControl.publish(twistMessageDown);
+	        }else if(e.keyCode == "227"){
+	            var twistMessageLeft = new ROSLIB.Message({
                     angular: { x:  0, y: 0, z: 0.1 }
                 });
-                wheelControl.publish(twistMessage3);
-	        }else if(e.keyCode == "39"){
-	            var twistMessage4 = new ROSLIB.Message({
+                wheelControl.publish(twistMessageLeft);
+	        }else if(e.keyCode == "228"){
+	            var twistMessageRight = new ROSLIB.Message({
                     angular: { x:  0, y: 0, z: -0.1 }
                 });
-                wheelControl.publish(twistMessage4);
+                wheelControl.publish(twistMessageRight);
 	        }
 });
 function imusetorientation() {
