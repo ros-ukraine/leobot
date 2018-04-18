@@ -81,7 +81,9 @@ function initMap() {
     var containerId = 'map-view';
     var container = $('.' + containerId);
     var width = container.width();
+//    width = 750;
     var height = container.height();
+//    height = 800;
 
     var viewer = new ROS2D.Viewer({
       divID : containerId,
@@ -92,7 +94,8 @@ function initMap() {
     var nav = NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
-      viewer : viewer
+      viewer : viewer,
+      continuous : true
     });
 }
 
