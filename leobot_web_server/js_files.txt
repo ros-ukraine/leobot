@@ -1,12 +1,9 @@
 node_modules/jquery/dist/jquery.min.js
 node_modules/jquery/dist/jquery.min.map
 node_modules/roslib/build/roslib.min.js
-node_modules/roslib/build/roslib.js
 node_modules/easeljs/lib/easeljs.min.js
-node_modules/easeljs/lib/easeljs.js
 node_modules/eventemitter2/lib/eventemitter2.js
 node_modules/ros2d/build/ros2d.min.js
-node_modules/ros2d/build/ros2d.js
 node_modules/nav2djs/src/Nav2D.js
 node_modules/nav2djs/src/navigator/Navigator.js
 node_modules/nav2djs/src/navigator/ImageMapClientNav.js
