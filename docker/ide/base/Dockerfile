@@ -5,7 +5,6 @@ MAINTAINER "ROS Ukraine Community"
 LABEL Description="This ROS Kinetic image for LeoBot development with IDEs" Vendor="ROS Ukraine" Version="1.0"
 
 ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/ansible/deploy.sh"
-ENV remote_ci_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/bin/sr-run-ci-build.sh"
 
 RUN set -x && \
 
@@ -19,11 +18,6 @@ RUN set -x && \
 
     echo "Sourcing workspace in .bashrc" && \
     echo 'source /home/$MY_USERNAME/workspace/leobot/base/devel/setup.bash' >> /home/$MY_USERNAME/.bashrc && \
-
-    echo "Installing IDEs" && \
-    wget -O /tmp/oneliner "$( echo "$remote_ci_script" | sed 's/#/%23/g' )" && \
-    chmod 755 /tmp/oneliner && \
-    gosu $MY_USERNAME /tmp/oneliner "$toolset_branch" $server_type 'setup_docker_ide' && \
 
     echo "Removing cache" && \
     apt-get clean && \
