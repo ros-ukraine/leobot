@@ -96,7 +96,8 @@ function initMap() {
       ros : ros,
       rootObject : viewer.scene,
       viewer : viewer,
-      continuous : true
+      continuous : true,
+      withOrientation : true
     });
 }
 
