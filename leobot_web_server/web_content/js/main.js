@@ -88,7 +88,8 @@ function initMap() {
     var viewer = new ROS2D.Viewer({
       divID : containerId,
       width : width,
-      height : height
+      height : height,
+      background : 'whitesmoke'
     });
 
     var nav = NAV2D.OccupancyGridClientNav({
