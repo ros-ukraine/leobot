@@ -78,44 +78,16 @@ function initHeadOperation() {
 }
 
 function initMap() {
-    // Create the main viewer.
-/*
-    var viewer = new ROS2D.Viewer({
-        divID : 'map-tracking',
-        width : 400,
-        height : 400
-    });
-
-    // Setup the map client.
-    var gridClient = new NAV2D.OccupancyGridClientNav({
-        ros : ros,
-        rootObject : viewer.scene
-        // Use this property in case of continuous updates
-//        continuous: true
-    });
-*/
-
-
-    // Connect to ROS.
-/*
-    var ros = new ROSLIB.Ros({
-      url : 'ws://localhost:9090'
-    });
-*/
-
-    // Create the main viewer.
     var viewer = new ROS2D.Viewer({
       divID : 'map-view',
       width : 750,
       height : 800
     });
 
-    // Setup the nav client.
     var nav = NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
-      viewer : viewer,
-      <!--serverName : '/pr2_move_base'-->
+      viewer : viewer
     });
 }
 
