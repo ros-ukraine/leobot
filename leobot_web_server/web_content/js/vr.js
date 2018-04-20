@@ -1,15 +1,60 @@
-var frameHeight = window.innerHeight;
-var frameWidth = window.innerWidth;
-var frameWidthHalf = Math.round(frameWidth/2);
-var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
+var noSleep = new NoSleep();
+var docelem = document.documentElement;
+function fs_status() {
+  if (document.fullscreenElement) {
+    return 1;
+  }
+  else if (document.webkitFullscreenElement) {
+    return 1;
+  }
+  else if (document.mozFullScreenElement) {
+    return 1;
+  }
+  else return -1;
+}
+function setFullScreen() {
+  if (docelem.requestFullscreen) {
+    docelem.requestFullscreen();
+  }
+  else if (docelem.mozRequestFullScreen) {
+    docelem.mozRequestFullScreen();
+  }
+  else if (docelem.webkitRequestFullScreen) {
+    docelem.webkitRequestFullScreen();
+  }
+  else if (docelem.msRequestFullscreen) {
+    docelem.msRequestFullscreen();
+  }
+}
+document.onclick = function () {
+  if(fs_status() == (-1)){
+    var conf = confirm("Fullscreen ON?");
+    if (conf == true) {
+      setFullScreen();
+      screen.orientation.lock('landscape');
+      noSleep.enable();
+      var frameHeight = window.screen.height;
+      var frameWidth = window.screen.width;
+      var frameWidthHalf = Math.round(frameWidth/2);
+      var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
+      document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+      document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
 
-document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
-document.getElementById('left_iframe').src = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+    }
+  }else{
+    var conf = confirm("Fullscreen OFF?");
+    if(conf == true){
+      setFullScreen();
+      window.screen.unlockOrientation();
+
+    }
+  }
+}
 
 var alpha, beta, gamma;
-// setup event handler to capture the orientation event and store the most recent data in
+// setup event handler to capture the orientation event and
 if (window.DeviceOrientationEvent) {
-    // Listen for the deviceorientation event and handle the
+    // Listen for the deviceorientation event and handle the raw data
     window.addEventListener('deviceorientation', function(eventData) {
         gamma = eventData.gamma;
         alpha = eventData.alpha
@@ -39,26 +84,31 @@ var wheelControl = new ROSLIB.Topic({
     messageType : 'geometry_msgs/Twist'
 });
 document.body.addEventListener('keydown', function(e) {
-	        if(e.keyCode == "177"){
-	            var twistMessageUp = new ROSLIB.Message({
-                    linear: { x:  1, y: 0, z: 0 }
-                });
-                wheelControl.publish(twistMessageUp);
-	        }else if(e.keyCode == "176"){
-	            var twistMessageDown = new ROSLIB.Message({
-                    linear: { x: -1, y: 0, z: 0 }
-                });
-                wheelControl.publish(twistMessageDown);
-	        }else if(e.keyCode == "227"){
-	            var twistMessageLeft = new ROSLIB.Message({
-                    angular: { x:  0, y: 0, z: 0.1 }
-                });
-                wheelControl.publish(twistMessageLeft);
-	        }else if(e.keyCode == "228"){
-	            var twistMessageRight = new ROSLIB.Message({
-                    angular: { x:  0, y: 0, z: -0.1 }
-                });
-                wheelControl.publish(twistMessageRight);
+
+
+	        if(e.keyCode == "38"){
+	               var twistMessageUp = new ROSLIB.Message({
+                            linear: { x:  1, y: 0, z: 0 }
+                        });
+                        wheelControl.publish(twistMessageUp);
+
+	        }else if(e.keyCode == "40"){
+	           var twistMessageDown = new ROSLIB.Message({
+                            linear: { x:  -1, y: 0, z: 0 }
+                        });
+                        wheelControl.publish(twistMessageDown);
+
+	        }else if(e.keyCode == "37"){
+
+                var twistMessageLeft = new ROSLIB.Message({
+                            angular: { x:  0, y: 0, z: 1 }
+                        });
+                        wheelControl.publish(twistMessageLeft);
+	        }else if(e.keyCode == "39"){
+	             var twistMessageRight = new ROSLIB.Message({
+                            angular: { x:  0, y: 0, z: -1 }
+                        });
+                        wheelControl.publish(twistMessageRight);
 	        }
 });
 function imusetorientation() {
