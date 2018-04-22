@@ -14,9 +14,6 @@ wheel_diff_drive_controller:
   publish_rate: 50.0 # defaults to 50 Hz
   pose_covariance_diagonal: [0.01, 0.01, 1000000.0, 1000000.0, 1000000.0, 1.0] #[0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
   twist_covariance_diagonal: [0.01, 1000000.0, 1000000.0, 1000000.0, 1000000.0, 1.0] #[0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-  Kp: 0.45
-  Ki: 0.04
-  Kd: 0.11
 
   wheel_separation: 0.55
   wheel_radius: 0.10
@@ -26,29 +23,23 @@ wheel_diff_drive_controller:
   wheel_radius_multiplier    : 0.96 # default: 1.0
 
   # Velocity commands timeout [s], default 0.5
-  cmd_vel_timeout: 0.10
+  cmd_vel_timeout: 0.08
 
   # Base frame_id
   base_frame_id: base_link #default: base_link
-
-  enable_pose_covariance_update: true
-  error_constant_left : 0.0
-  error_constant_right: 0.0
-
-  enable_odom_tf: true
 
   # Velocity and acceleration limits
   # Whenever a min_* is unspecified, default to -max_*
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.0  # m/s
+      max_velocity           : 0.7  # m/s
       min_velocity           : -0.5 # m/s
       has_acceleration_limits: true
-      max_acceleration       : 0.8  # m/s^2
+      max_acceleration       : 0.5  # m/s^2
       min_acceleration       : -0.4 # m/s^2
       has_jerk_limits        : true
-      max_jerk               : 2.0  # m/s^3
+      max_jerk               : 1.0  # m/s^3
   angular:
     z:
       has_velocity_limits    : true
@@ -56,4 +47,4 @@ wheel_diff_drive_controller:
       has_acceleration_limits: true
       max_acceleration       : 0.1  # rad/s^2
       has_jerk_limits        : true
-      max_jerk               : 0.1  # rad/s^3
+      max_jerk               : 0.2  # rad/s^3

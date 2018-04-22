@@ -51,8 +51,8 @@
   </gazebo>
 
   <gazebo reference="caster_wheel_link">
-    <mu1 value="0.0"/>
-    <mu2 value="0.0"/>
+    <mu1 value="0.02"/>
+    <mu2 value="0.02"/>
     <kp value="10000000.0"/>
     <kd value="1.0"/>
     <material>Gazebo/Red</material>
