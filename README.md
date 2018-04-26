@@ -26,7 +26,7 @@ sudo usermod -aG docker $USER
 ```
  4. Logout and login to your machine again :)
  5. In case if you have NVidia graphic card customized Docker could be installed which will utilize your GPU. Please follow [these extra steps](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-1.0)).
- 6. For development [the following](hub.docker.com/r/rosukraine/leobot/) docker image will be used for NVidia Docker [this one](https://hub.docker.com/r/rosukraine/leobot-dev-nvidia/).
+ 6. For development [the following](https://hub.docker.com/r/rosukraine/leobot/) docker image will be used for NVidia Docker [this one](https://hub.docker.com/r/rosukraine/leobot-dev-nvidia/).
  7. Use the following command to start ordinary Docker container
 ```bash
 docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
