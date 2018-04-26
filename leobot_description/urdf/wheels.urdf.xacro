@@ -42,8 +42,8 @@
             </joint>
             <actuator name="${prefix}_wheel_motor">
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-                <mechanicalReduction>1</mechanicalReduction>
-                <motorTorqueConstant>1</motorTorqueConstant>
+                <mechanicalReduction>500</mechanicalReduction>
+                <motorTorqueConstant>0.5</motorTorqueConstant>
             </actuator>
         </transmission>
     </xacro:macro>

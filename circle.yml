@@ -2,6 +2,7 @@ machine:
   services:
     - docker
   environment:
+    docker_image_name: rosukraine/leobot-base
     toolset_branch: master
     ros_release_name: kinetic
     ubuntu_version_name: xenial
