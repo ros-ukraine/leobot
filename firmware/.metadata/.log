@@ -1,0 +1,509 @@
+!SESSION 2018-04-29 14:28:39.375 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=uk_UA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 14:29:53.366
+!MESSAGE Loading product manager
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 14:29:53.400
+!MESSAGE OS info: Windows 7, 6.1, x86
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 14:29:57.317
+!MESSAGE Target: STM32, Version: 9.0.1, Build date: 20180420-1214, Installation dir: /C:/Program Files (x86)/Atollic/TrueSTUDIO for STM32 9.0.1/ide/
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 14:29:57.324
+!MESSAGE Workspace: E:\Projects\leobot\firmware
+
+!ENTRY org.eclipse.jface 2 0 2018-04-29 14:30:03.153
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-04-29 14:30:03.153
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1350ab4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1827d7b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.atollic.truestudio.integration.processorexpert 0 0 2018-04-29 14:30:16.131
+!MESSAGE Atollic TrueSTUDIO Processor Expert integration is up.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-04-29 14:30:17.156
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nemo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-29 14:30:17.186
+!MESSAGE Code Review is up.
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:31:30.019
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:31:33.497
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:31:53.420
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.224
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.240
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.257
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.267
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.424
+!MESSAGE STM32_Rosserial needs property 'com.atollic.truestudio.general.runtimelib.787848625' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.433
+!MESSAGE Failed to get device info (Debug) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.442
+!MESSAGE Failed to get device info (Debug) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.450
+!MESSAGE Failed to get device info (Debug) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.460
+!MESSAGE STM32_Rosserial needs property 'com.atollic.truestudio.general.runtimelib.1329097283' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.469
+!MESSAGE Failed to get device info (Release) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.477
+!MESSAGE Failed to get device info (Release) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:32:27.485
+!MESSAGE Failed to get device info (Release) for project STM32_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.556
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.566
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.580
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.589
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.776
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:27.786
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:56.652
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:56.852
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:58.857
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:32:59.018
+!MESSAGE Failed to find device info
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 14:33:06.045
+!MESSAGE Indexed 'STM32_Rosserial' (40 sources, 40 headers) in 5,83 sec: 7 700 declarations; 22 804 references; 12 unresolved inclusions; 70 syntax errors; 7 445 unresolved names (20%)
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:46:26.300
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:46:31.266
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 14:46:33.444
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:41.774
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:41.785
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:41.800
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:41.810
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.919
+!MESSAGE STM32F4_Rosserial needs property 'com.atollic.truestudio.general.runtimelib.927710578' fixed. Fixing to 'com.atollic.truestudio.ld.general.cclib.CCSmallCSmall'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.928
+!MESSAGE Failed to get device info (Debug) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.937
+!MESSAGE Failed to get device info (Debug) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.945
+!MESSAGE Failed to get device info (Debug) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.953
+!MESSAGE Failed to get device info (Debug) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.963
+!MESSAGE STM32F4_Rosserial needs property 'com.atollic.truestudio.general.runtimelib.249085131' fixed. Fixing to 'com.atollic.truestudio.ld.general.cclib.CCSmallCSmall'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.973
+!MESSAGE Failed to get device info (Release) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.981
+!MESSAGE Failed to get device info (Release) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.990
+!MESSAGE Failed to get device info (Release) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 14:46:41.998
+!MESSAGE Failed to get device info (Release) for project STM32F4_Rosserial
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.053
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.063
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.077
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.087
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.182
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:42.191
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:47.150
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:49.265
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:50.931
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 14:46:51.095
+!MESSAGE Failed to find device info
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 14:47:22.140
+!MESSAGE Indexed 'STM32F4_Rosserial' (38 sources, 144 headers) in 10 sec: 13 712 declarations; 31 063 references; 3 unresolved inclusions; 51 syntax errors; 6 716 unresolved names (13%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 16:06:51.389
+!MESSAGE Indexed 'STM32F4_Rosserial' (41 sources, 205 headers) in 6,95 sec: 16 014 declarations; 43 688 references; 1 unresolved inclusions; 34 syntax errors; 2 unresolved names (0,0033%)
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 16:10:07.674
+!MESSAGE Unloading product manager
+!SESSION 2018-04-29 16:10:18.756 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=uk_UA
+Framework arguments:  E:\Projects\leobot\firmware\STM32F4_Rosserial\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86 E:\Projects\leobot\firmware\STM32F4_Rosserial\.project
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 16:10:27.085
+!MESSAGE Loading product manager
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 16:10:27.115
+!MESSAGE OS info: Windows 7, 6.1, x86
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 16:10:31.005
+!MESSAGE Target: STM32, Version: 9.0.1, Build date: 20180420-1214, Installation dir: /C:/Program Files (x86)/Atollic/TrueSTUDIO for STM32 9.0.1/ide/
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 16:10:31.015
+!MESSAGE Workspace: E:\Projects\leobot\firmware
+
+!ENTRY org.eclipse.jface 2 0 2018-04-29 16:10:36.143
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-04-29 16:10:36.143
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@47e077,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1bd6a0f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.atollic.truestudio.integration.processorexpert 0 0 2018-04-29 16:10:46.816
+!MESSAGE Atollic TrueSTUDIO Processor Expert integration is up.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-04-29 16:10:46.937
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nemo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-29 16:10:46.967
+!MESSAGE Code Review is up.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 16:44:14.820
+!MESSAGE Indexed 'STM32F4_Rosserial' (41 sources, 207 headers) in 9,56 sec: 16 322 declarations; 44 100 references; 1 unresolved inclusions; 37 syntax errors; 2 unresolved names (0,0033%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 16:47:47.081
+!MESSAGE Indexed 'STM32F4_Rosserial' (41 sources, 207 headers) in 8,31 sec: 16 322 declarations; 44 100 references; 1 unresolved inclusions; 37 syntax errors; 2 unresolved names (0,0033%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 16:49:28.599
+!MESSAGE Indexed 'STM32F4_Rosserial' (41 sources, 204 headers) in 6,13 sec: 16 149 declarations; 43 823 references; 1 unresolved inclusions; 37 syntax errors; 82 unresolved names (0,14%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 16:54:35.565
+!MESSAGE Indexed 'STM32F4_Rosserial' (41 sources, 201 headers) in 9,42 sec: 15 919 declarations; 43 597 references; 1 unresolved inclusions; 34 syntax errors; 82 unresolved names (0,14%)
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:01:55.199
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:01:58.235
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:01:59.995
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.534
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.544
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.560
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.570
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.800
+!MESSAGE stm32_rosserial needs property 'com.atollic.truestudio.general.runtimelib.276502089' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.809
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.818
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.827
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.837
+!MESSAGE stm32_rosserial needs property 'com.atollic.truestudio.general.runtimelib.457131693' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.847
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.855
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:02:08.864
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.915
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.925
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.938
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:08.948
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:09.055
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:09.065
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:14.402
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:14.574
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:14.835
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:02:15.007
+!MESSAGE Failed to find device info
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 17:02:42.984
+!MESSAGE Indexed 'stm32_rosserial' (38 sources, 82 headers) in 3,9 sec: 9 718 declarations; 32 960 references; 1 unresolved inclusions; 34 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:04:50.285
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:04:55.198
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:04:58.369
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:05:00.161
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:05:03.331
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.common.wizards 4 0 2018-04-29 17:05:07.403
+!MESSAGE Failed to find the correct FPU ABI, falling back to Soft. Value: 
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.581
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.592
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.608
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.618
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.704
+!MESSAGE stm32_rosserial needs property 'com.atollic.truestudio.general.runtimelib.18984128' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.714
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.724
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.732
+!MESSAGE Failed to get device info (Debug) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.743
+!MESSAGE stm32_rosserial needs property 'com.atollic.truestudio.general.runtimelib.605878506' fixed. Fixing to 'com.atollic.truestudio.ld.general.clib.small'.
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.752
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.760
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 2 0 2018-04-29 17:05:24.769
+!MESSAGE Failed to get device info (Release) for project stm32_rosserial
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.838
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.848
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.863
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.872
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.957
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:24.967
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:28.331
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:28.504
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:40.973
+!MESSAGE Failed to find device info
+
+!ENTRY com.atollic.truestudio.mbs 4 0 2018-04-29 17:05:41.205
+!MESSAGE Failed to find device info
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 17:05:51.720
+!MESSAGE Indexed 'stm32_rosserial' (35 sources, 78 headers) in 3,42 sec: 9 344 declarations; 30 384 references; 1 unresolved inclusions; 34 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-29 17:13:02.221
+!MESSAGE Indexed 'stm32_rosserial' (38 sources, 167 headers) in 7,15 sec: 13 124 declarations; 35 757 references; 1 unresolved inclusions; 84 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 17:18:22.236
+!MESSAGE Unloading product manager
+!SESSION 2018-04-29 17:18:32.110 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=uk_UA
+Framework arguments:  E:\Projects\leobot\firmware\STM32F4_Rosserial\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86 E:\Projects\leobot\firmware\STM32F4_Rosserial\.project
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 17:19:02.999
+!MESSAGE Loading product manager
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-29 17:19:03.057
+!MESSAGE OS info: Windows 7, 6.1, x86
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 17:19:07.284
+!MESSAGE Target: STM32, Version: 9.0.1, Build date: 20180420-1214, Installation dir: /C:/Program Files (x86)/Atollic/TrueSTUDIO for STM32 9.0.1/ide/
+
+!ENTRY TrueSTUDIO 1 0 2018-04-29 17:19:07.293
+!MESSAGE Workspace: E:\Projects\leobot\firmware
+
+!ENTRY org.eclipse.jface 2 0 2018-04-29 17:19:12.824
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-04-29 17:19:12.824
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@e2fa13,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@e12c3b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.atollic.truestudio.integration.processorexpert 0 0 2018-04-29 17:19:23.554
+!MESSAGE Atollic TrueSTUDIO Processor Expert integration is up.
+
+!ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-29 17:19:23.615
+!MESSAGE Code Review is up.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-04-29 17:19:23.770
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nemo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

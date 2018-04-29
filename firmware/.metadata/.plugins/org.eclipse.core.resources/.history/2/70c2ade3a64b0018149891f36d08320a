@@ -1,0 +1,15 @@
+/*
+ * STM32Hardware.cpp
+ *
+ *  Created on: 29 квіт. 2018 р.
+ *      Author: Nemo
+ */
+
+
+#include "src/stm32f4hardware.h"
+
+
+STM32F4Hardware::STM32F4Hardware()
+{
+
+}

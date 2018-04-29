@@ -1,0 +1,29 @@
+/*
+ * STM32Hardware.h
+ *
+ *  Created on: 29 квіт. 2018 р.
+ *      Author: Nemo
+ */
+
+#ifndef STM32HARDWARE_H_
+#define STM32HARDWARE_H_
+
+#include "stm32f4xx.h"
+
+extern "C"
+{
+	#include "stm32f4xx.h"
+
+  //#include <avr/interrupt.h>
+  //#include <avr/wdt.h>
+  //#include "avr_time.h"
+  //#include "avr_uart.h"
+}
+
+
+extern "C" class STM32Hardware
+{
+
+};
+
+#endif /* STM32HARDWARE_H_ */
