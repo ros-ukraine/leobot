@@ -34,11 +34,13 @@ SOFTWARE.
 
 /* Includes */
 #include "stm32f4xx.h"
-#include "stm32f4_discovery.h"
 
-#include "ros_lib/ros.h"
+#include "ros.h"
+#include "std_msgs/UInt16.h"
+//
 
-#include "ros_lib/std_msgs/UInt16.h"
+//#include "UInt16.h"
+
 
 ros::NodeHandle  nh;
 
@@ -65,16 +67,14 @@ ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
 */
 int main(void)
 {
-  int i = 0;
 
   nh.initNode();
   nh.subscribe(sub);
 
-
   /* Infinite loop */
   while (1)
   {
-	i++;
+      nh.spinOnce();
   }
 }
 
