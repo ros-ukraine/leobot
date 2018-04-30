@@ -1,0 +1,64 @@
+/*
+ * STM32Hardware.cpp
+ *
+ *  Created on: 29 квіт. 2018 р.
+ *      Author: Nemo
+ */
+
+
+#include "stm32f4hardware.h"
+
+
+
+STM32F4Hardware::STM32F4Hardware()
+{
+
+}
+
+void STM32F4Hardware::init()
+{
+
+}
+
+void STM32F4Hardware::read()
+{
+
+}
+
+void STM32F4Hardware::write(uint8_t* data, int length)
+{
+
+}
+
+unsigned long STM32F4Hardware::time()
+{
+
+}
+
+
+//	void init()
+//	{
+//
+//	}
+//
+//	int read()
+//	{
+//
+//	}
+//
+//	// Send a byte of data to ROS connection
+//	void write(uint8_t* data, int length)
+//	{
+////	      for(int i = 0; i < length; i++)
+////	      {
+////	        avr_uart_send_byte(data[i]);
+////	      }
+//	}
+//
+//	// Returns milliseconds since start of program
+//	unsigned long time()
+//	{
+//		//return avr_time_now();
+//	}
+//};
+
