@@ -18,8 +18,9 @@ STM32F4Hardware::STM32F4Hardware()
 void STM32F4Hardware::init()
 {
 	//wdt_disable();
-	//avr_time_init();
-	//avr_uart_init();
+
+	stm32_time_init();
+	stm32_uart_init();
 	//sei();
 }
 

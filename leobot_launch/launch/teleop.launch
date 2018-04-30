@@ -1,3 +1,0 @@
-<launch>
-    <include file="$(find leobot_control)/launch/teleop.launch" />
-</launch>

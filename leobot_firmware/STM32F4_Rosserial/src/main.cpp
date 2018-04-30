@@ -32,6 +32,8 @@ SOFTWARE.
 
 //http://wiki.ros.org/rosserial_client/Tutorials/Using%20rosserial%20with%20AVR%20and%20UART
 
+//http://electronics-homemade.com/STM32F4-Turn-on-LED.html
+
 /* Includes */
 #include "stm32f4xx.h"
 
@@ -58,6 +60,30 @@ void servo_cb(const std_msgs::UInt16& cmd_msg)
 
 ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
 
+
+void LedInit(void)
+{
+
+	  // GPIOD Configuration
+	  GPIO_InitTypeDef GPIO_InitStruct;
+
+	  //Enable the GPIOD Clock
+	  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
+
+	  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
+	  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+	  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+	  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+
+	  GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+
+	  // GPIOD-PIN-15 ON
+	  GPIO_SetBits(GPIOD, GPIO_Pin_15);
+}
+
+
 /**
 **===========================================================================
 **
@@ -67,14 +93,20 @@ ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
 */
 int main(void)
 {
+	LedInit();
 
-  nh.initNode();
-  nh.subscribe(sub);
+  //nh.initNode();
+  //nh.subscribe(sub);
 
   /* Infinite loop */
   while (1)
   {
-      nh.spinOnce();
+      //nh.spinOnce();
+	  // GPIOD-PIN-15 ON
+	  	  GPIO_SetBits(GPIOD, GPIO_Pin_15);
+
+	  // GPIOD-PIN-15 OFF
+	  	GPIO_ResetBits(GPIOD, GPIO_Pin_15);
   }
 }
 

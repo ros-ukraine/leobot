@@ -865,3 +865,136 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 16:29:08.583
 !MESSAGE Unloading product manager
+!SESSION 2018-04-30 16:33:44.812 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=uk_UA
+Framework arguments:  E:\Projects\leobot\leobot_firmware\STM32F4_Rosserial\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86 E:\Projects\leobot\leobot_firmware\STM32F4_Rosserial\.project
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 16:34:08.153
+!MESSAGE Loading product manager
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 16:34:08.173
+!MESSAGE OS info: Windows 7, 6.1, x86
+
+!ENTRY TrueSTUDIO 1 0 2018-04-30 16:34:09.746
+!MESSAGE Target: STM32, Version: 9.0.1, Build date: 20180420-1214, Installation dir: /C:/Program Files (x86)/Atollic/TrueSTUDIO for STM32 9.0.1/ide/
+
+!ENTRY TrueSTUDIO 1 0 2018-04-30 16:34:09.756
+!MESSAGE Workspace: E:\Projects\leobot\leobot_firmware
+
+!ENTRY org.eclipse.jface 2 0 2018-04-30 16:34:11.706
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-04-30 16:34:11.706
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1c60c08,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b44a2f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.atollic.truestudio.integration.processorexpert 0 0 2018-04-30 16:34:18.630
+!MESSAGE Atollic TrueSTUDIO Processor Expert integration is up.
+
+!ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-30 16:34:18.730
+!MESSAGE Code Review is up.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-04-30 16:34:18.940
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nemo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.atollic.hardwaredebug.launch 2 0 2018-04-30 16:35:23.184
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2018-04-30 16:36:49.176
+!MESSAGE Failed to execute MI command:
+target extended-remote localhost:61234
+
+Error message from debugger back end:
+localhost:61234: Ñïðîáà ïðèºäíàòè äèñê äî êàòàëîãó íà ïðèºäíàíîìó äèñêó.
+
+!ENTRY TrueSTUDIO 4 0 2018-04-30 16:37:19.546
+!MESSAGE ST-Link GDB server failed to start (exit code = 6).
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2018-04-30 16:37:19.616
+!MESSAGE Error in initializing ST-Link device.
+Reason: (6) ST-Link firmware upgrade required.
+Please upgrade the ST-Link firmware using the upgrade tool. Reconnect ST-LINK and click OK
+
+!ENTRY org.eclipse.ui 4 4 2018-04-30 16:38:01.470
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
+
+!ENTRY org.eclipse.cdt.launch 4 104 2018-04-30 16:45:58.193
+!MESSAGE Program file does not exist
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 16:53:21.559
+!MESSAGE Unloading product manager
+!SESSION 2018-04-30 17:03:10.079 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=uk_UA
+Framework arguments:  E:\Projects\leobot\leobot_firmware\STM32F4_Rosserial\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86 E:\Projects\leobot\leobot_firmware\STM32F4_Rosserial\.project
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 17:05:47.559
+!MESSAGE Loading product manager
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 17:05:47.599
+!MESSAGE OS info: Windows 7, 6.1, x86
+
+!ENTRY TrueSTUDIO 1 0 2018-04-30 17:05:52.260
+!MESSAGE Target: STM32, Version: 9.0.1, Build date: 20180420-1214, Installation dir: /C:/Program Files (x86)/Atollic/TrueSTUDIO for STM32 9.0.1/ide/
+
+!ENTRY TrueSTUDIO 1 0 2018-04-30 17:05:52.300
+!MESSAGE Workspace: E:\Projects\leobot\leobot_firmware
+
+!ENTRY org.eclipse.jface 2 0 2018-04-30 17:05:57.561
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-04-30 17:05:57.561
+!MESSAGE A conflict occurred for ALT+CTRL+T:
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.EditPropertiesCommand,Show Properties,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1699283,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+T,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.connector.local.command.launch,Open Local Terminal on Selection,
+		,
+		Category(org.eclipse.tm.terminal.view.ui.commands.category,Terminal Commands,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@132c1c7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY com.atollic.truestudio.integration.processorexpert 0 0 2018-04-30 17:06:08.266
+!MESSAGE Atollic TrueSTUDIO Processor Expert integration is up.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-04-30 17:06:08.546
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nemo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-30 17:06:08.749
+!MESSAGE Code Review is up.
