@@ -998,3 +998,9 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY edu.hawaii.ics.csdl.jupiter 1 0 2018-04-30 17:06:08.749
 !MESSAGE Code Review is up.
+
+!ENTRY org.eclipse.cdt.launch 4 104 2018-04-30 18:16:19.672
+!MESSAGE Program file does not exist
+
+!ENTRY com.atollic.truestudio.productmanager 1 0 2018-04-30 18:24:28.653
+!MESSAGE Unloading product manager

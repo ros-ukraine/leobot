@@ -28,14 +28,16 @@ void STM32F4Hardware::init()
     // If no data, returns -1
 int STM32F4Hardware::read()
 {
-	//return avr_uart_receive_byte();
-	return -1;
+	return stm32_uart_receive_byte();
 }
 
 
-void STM32F4Hardware::write(uint8_t* data, int length)
+void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 {
-
+	for(uint32_t i = 0; i < length; i++)
+	{
+		stm32_uart_send_byte(data[i]);
+	}
 }
 
 unsigned long STM32F4Hardware::time()

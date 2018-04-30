@@ -13,17 +13,6 @@
 #include "stm32_uart.h"
 
 
-//extern "C"
-//{
-//	#include "stm32f4xx.h"
-//
-//  //#include <avr/interrupt.h>
-//  //#include <avr/wdt.h>
-//  //#include "avr_time.h"
-//  //#include "avr_uart.h"
-//}
-
-
 class STM32F4Hardware
 {
 public:
@@ -36,7 +25,7 @@ public:
 	int read();
 
 	// Send a byte of data to ROS connection
-	void write(uint8_t* data, int length);
+	void write(uint8_t* data, uint32_t length);
 
 	// Returns milliseconds since start of program
 	unsigned long time();

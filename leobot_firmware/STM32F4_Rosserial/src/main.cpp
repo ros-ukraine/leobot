@@ -84,6 +84,17 @@ void LedInit(void)
 }
 
 
+void LedBlink(void)
+{
+	volatile uint32_t i;
+
+	for(i = 10000; i > 0; i--);
+	GPIO_SetBits(GPIOD, GPIO_Pin_15); //ON
+
+	for(i = 10000; i > 0; i--);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_15); //OFF
+}
+
 /**
 **===========================================================================
 **
@@ -93,21 +104,20 @@ void LedInit(void)
 */
 int main(void)
 {
-	LedInit();
+	//debug
+	//LedInit();
 
   //nh.initNode();
   //nh.subscribe(sub);
 
   /* Infinite loop */
-  while (1)
-  {
-      //nh.spinOnce();
-	  // GPIOD-PIN-15 ON
-	  	  GPIO_SetBits(GPIOD, GPIO_Pin_15);
+	while (1)
+	{
+        //nh.spinOnce();
 
-	  // GPIOD-PIN-15 OFF
-	  	GPIO_ResetBits(GPIOD, GPIO_Pin_15);
-  }
+		//debug
+		//LedBlink();
+	}
 }
 
 
