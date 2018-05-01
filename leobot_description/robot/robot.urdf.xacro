@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <robot name="leobot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find leobot_description)/urdf/materials.urdf.xacro"/>
@@ -6,7 +5,7 @@
   <xacro:include filename="$(find leobot_description)/urdf/sensors/hokuyo.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
 
-   <xacro:property name="base_radius" value="0.25"/>
+  <xacro:property name="base_radius" value="0.25"/>
   <xacro:property name="base_width" value="0.7"/>
   <xacro:property name="base_length" value="1.132"/>
   <xacro:property name="base_height" value="0.4"/>
@@ -29,14 +28,14 @@
 
   <xacro:property name="bearing_radius" value="0.01"/>
 
- <link name="base_link">
+  <link name="base_link">
     <visual>
       <xacro:box_geometry width="1" height="1" depth="1"/>
       <xacro:navajo_white_material/>
     </visual>
     <xacro:box_collision width="1" height="1" depth="1"/>
     <xacro:box_inertia mass="10" width="1" height="1" depth="1"/>
-</link>
+  </link>
 
   <link name="wheel_FR">
     <visual>
@@ -55,7 +54,7 @@
     <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
   </link>
 
-    <link name="wheel_FL">
+  <link name="wheel_FL">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -72,7 +71,7 @@
     <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
   </link>
 
-    <link name="wheel_RL">
+  <link name="wheel_RL">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -89,7 +88,7 @@
     <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
   </link>
 
-    <link name="wheel_RR">
+  <link name="wheel_RR">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
