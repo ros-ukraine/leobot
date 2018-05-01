@@ -37,73 +37,37 @@
     <xacro:box_inertia mass="10" width="1" height="1" depth="1"/>
   </link>
 
-  <link name="wheel_FR">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_01.STL" scale="1 1 1"/>
-      </geometry>
-      <xacro:navajo_white_material/>
-    </visual>
-    <collision>
-      <origin xyz="${-base_length/2} 0 ${base_height + tower_height/2} " rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="${base_height}" radius="${base_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
-  </link>
 
-  <link name="wheel_FL">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_01.STL" scale="1 1 1"/>
-      </geometry>
-      <xacro:navajo_white_material/>
-    </visual>
-    <collision>
-      <origin xyz="${-base_length/2} 0 ${base_height + tower_height/2} " rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="${base_height}" radius="${base_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
-  </link>
+  <xacro:macro name="mecanum_wheel" params="link_name mesh_file">
+    <link name="${link_name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_file}" scale="1 1 1"/>
+        </geometry>
+        <xacro:navajo_white_material/>
+      </visual>
+      <collision>
+        <origin xyz="${-base_length/2} 0 ${base_height + tower_height/2} " rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="${base_height}" radius="${base_radius}"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
+    </link>
+  </xacro:macro>
 
-  <link name="wheel_RL">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_02.STL" scale="1 1 1"/>
-      </geometry>
-      <xacro:navajo_white_material/>
-    </visual>
-    <collision>
-      <origin xyz="${-base_length/2} 0 ${base_height + tower_height/2} " rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="${base_height}" radius="${base_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
-  </link>
 
-  <link name="wheel_RR">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_02.STL" scale="1 1 1"/>
-      </geometry>
-      <xacro:navajo_white_material/>
-    </visual>
-    <collision>
-      <origin xyz="${-base_length/2} 0 ${base_height + tower_height/2} " rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="${base_height}" radius="${base_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia mass="10" radius="${base_radius}" height="${base_height}"/>
-  </link>
+  <xacro:macro name="leobot_mecanum_wheel" params="name variant">
+    <xacro:mecanum_wheel link_name="wheel_${name}"
+                         mesh_file="package://leobot_description/meshes/Mecanum_Wheel_0${variant}.STL"/>
+  </xacro:macro>
+
+
+  <xacro:leobot_mecanum_wheel name="FR" variant="1"/>
+  <xacro:leobot_mecanum_wheel name="FL" variant="1"/>
+  <xacro:leobot_mecanum_wheel name="RL" variant="2"/>
+  <xacro:leobot_mecanum_wheel name="RR" variant="2"/>
 
 
   <joint name="base_link_wheel_FR_joint" type="continuous">
