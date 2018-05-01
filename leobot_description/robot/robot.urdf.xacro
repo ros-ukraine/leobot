@@ -2,8 +2,8 @@
 
   <xacro:include filename="$(find leobot_description)/urdf/materials.urdf.xacro"/>
   <xacro:include filename="$(find leobot_description)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find leobot_description)/urdf/sensors/hokuyo.urdf.xacro"/>
-  <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
+  <!--<xacro:include filename="$(find leobot_description)/urdf/sensors/hokuyo.urdf.xacro"/>-->
+  <!--<xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>-->
 
   <xacro:property name="base_radius" value="0.25"/>
   <xacro:property name="base_width" value="0.7"/>
