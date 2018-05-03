@@ -10,8 +10,9 @@
   <!--<xacro:property name="base_radius" value="0.25"/>-->
   <xacro:property name="base_width" value="0.5"/>
   <xacro:property name="base_length" value="0.5"/>
-  <!--<xacro:property name="base_height" value="0.4"/>-->
+  <xacro:property name="base_height" value="0.3"/>
   <!--<xacro:property name="safety_width" value="0.03"/>-->
+  <xacro:property name="base_mass" value="10"/>
 
   <!--<xacro:property name="distance_between_wheels" value="0.55"/>-->
   <!--<xacro:property name="tower_height" value="1.125"/>-->
@@ -32,11 +33,11 @@
 
   <link name="base_link">
     <visual>
-      <xacro:box_geometry width="1" height="1" depth="1"/>
+      <xacro:box_geometry width="${base_width}" height="${base_length}" depth="${base_height}"/>
       <xacro:navajo_white_material/>
     </visual>
-    <xacro:box_collision width="1" height="1" depth="1"/>
-    <xacro:box_inertia mass="10" width="1" height="1" depth="1"/>
+    <xacro:box_collision width="${base_width}" height="${base_length}" depth="${base_height}"/>
+    <xacro:box_inertia   width="${base_width}" height="${base_length}" depth="${base_height}" mass="${base_mass}"/>
   </link>
 
 
