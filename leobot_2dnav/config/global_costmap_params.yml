@@ -1,0 +1,6 @@
+global_costmap: #The global_frame and the robot_base_frame 	attributes	define	the	transformation	between	the map	and	the	robot.
+    global_frame: map #sets the global frame
+    robot_base_frame: base_link #frame of the robot
+    update_frequency: 2.0 #freqency of the map update in Hz
+    publish_frequency: 1.5 # rate, in Hz, at which the costmap will publish visualization information
+    static_map: true # whether or not the costmap should initialize itself based on a map served by the map_server

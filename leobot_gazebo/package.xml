@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>leobot_gazebo</name>
+  <version>0.0.1</version>
+  <description>The leobot_gazebo package</description>
+
+  <maintainer email="Andriy.Petlovanyy@todo.todo">Andriy Petlovanyy</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>gazebo_ros_control</run_depend>
+  <run_depend>leobot_description</run_depend>
+
+    <export>
+    <gazebo_ros
+        gazebo_plugin_path="${prefix}/lib"
+        gazebo_model_path="${prefix}/.." />
+    </export>
+</package>

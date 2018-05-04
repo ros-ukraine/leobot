@@ -1,0 +1,13 @@
+<launch>
+    <arg name="world_file" default="office"/>
+    <arg name="headless" default="false"/>
+    <arg name="gui" default="true"/>
+    <include file="$(find leobot_gazebo)/launch/gazebo.launch">
+        <arg name="world_file" value="$(arg world_file)"/>
+        <arg name="headless" value="$(arg headless)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+
+    <rosparam file="$(find leobot_control)/config/gazebo/leobot_control.yml" command="load" ns="/"/>
+    <include file="$(find leobot_control)/launch/control.launch" />
+</launch>

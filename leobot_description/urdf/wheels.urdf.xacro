@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="standard_wheel"
+                 params="prefix direction bearing_radius radius width mass distance_between_wheels x z">
+        <link name="${prefix}_bearing_link">>
+            <visual>
+                <xacro:cylinder_geometry radius="${bearing_radius}" height="${2 * wheel_width}"/>
+                <xacro:blue_material/>
+            </visual>
+            <xacro:cylinder_collision radius="${bearing_radius}" height="${2 * wheel_width}"/>
+            <xacro:cylinder_inertia mass="0.01" radius="${bearing_radius}" height="${2 * wheel_width}"/>
+        </link>
+        <joint name="${prefix}_bearing_base_joint" type="fixed">
+            <origin rpy="${-pi / 2} 0 0"
+                    xyz="${x} ${direction * (distance_between_wheels/2 + wheel_width)} ${z}"/>
+            <parent link="chassis"/>
+            <child link="${prefix}_bearing_link"/>
+        </joint>
+        <link name="${prefix}_wheel_link">
+            <visual>
+                <origin rpy="${pi / 2} 0  0 " xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://leobot_description/meshes/wheel.stl" scale="0.001 0.001 0.001"/>
+                    <xacro:blue_material/>
+                </geometry>
+                <xacro:red_material/>
+            </visual>
+            <xacro:cylinder_collision radius="${radius}" height="${width}"/>
+            <xacro:cylinder_inertia mass="${mass}" radius="${radius}" height="${width}"/>
+        </link>
+        <joint name="${prefix}_wheel_bearing_joint" type="continuous">
+            <origin rpy="0 0 0" xyz="0 0 ${direction * wheel_width/2}"/>
+            <parent link="${prefix}_bearing_link"/>
+            <child link="${prefix}_wheel_link"/>
+            <axis xyz="0 0 1"/>
+        </joint>
+        <transmission name="${prefix}_wheel_transmission">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_wheel_bearing_joint">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_wheel_motor">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>500</mechanicalReduction>
+                <motorTorqueConstant>0.5</motorTorqueConstant>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <xacro:macro name="caster_wheel" params="radius mass x z">
+        <link name="caster_wheel_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://leobot_description/meshes/wheel-2-with-ball.stl"
+                          scale="0.001 0.001 0.001"/>
+                    <xacro:red_material/>
+                </geometry>
+            </visual>
+            <xacro:sphere_collision radius="${radius}"/>
+            <xacro:sphere_inertia mass="${mass}" radius="${radius}"/>
+        </link>
+        <joint name="caster_wheel_base_joint" type="fixed">
+            <parent link="chassis"/>
+            <child link="caster_wheel_link"/>
+            <origin rpy="0 0 0" xyz="${x} 0.0 ${z}"/>
+        </joint>
+    </xacro:macro>
+
+</robot>

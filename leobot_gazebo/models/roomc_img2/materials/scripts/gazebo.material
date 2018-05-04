@@ -1,0 +1,13 @@
+material roomc/img2
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roomc_img2.jpg
+      }
+    }
+  }
+}

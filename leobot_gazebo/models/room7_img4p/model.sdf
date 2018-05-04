@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="room7_img4p">
+    
+      <pose>0 0 1.4 0 0 0</pose>
+
+      <static>true</static>
+
+      <link name="link">
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>2 0.05 1.4</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>2 0.05 1.4</size>
+          </box>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>model://leobot_gazebo/models/room7_img4p/materials/scripts</uri>
+            <uri>model://leobot_gazebo/models/room7_img4p/materials/textures</uri>
+            <name>room7/img4p</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

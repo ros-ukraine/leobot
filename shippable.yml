@@ -1,0 +1,23 @@
+language: python
+python:
+  - 2.7
+
+build:
+  pre_ci_boot:
+    image_name: rosukraine/leobot-base
+    image_tag: latest
+    pull: true
+  ci:
+    - export toolset_branch="master"
+    - export server_type="shippable"
+    - export ros_release_name="kinetic"
+    - export ubuntu_version_name="xenial"
+    - export used_modules="check_cache,check_build,code_coverage"
+    - export remote_shell_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/bin/sr-run-ci-build.sh"
+    - apt-get update
+    - apt-get install -y --no-install-recommends ca-certificates wget
+    - wget -O /tmp/oneliner "$( echo "$remote_shell_script" | sed 's/#/%23/g' )"
+    - chown -R $MY_USERNAME:$MY_USERNAME $SHIPPABLE_BUILD_DIR
+    - chmod 755 /tmp/oneliner
+    - cd /tmp
+    - gosu $MY_USERNAME /tmp/oneliner "$toolset_branch" $server_type $used_modules

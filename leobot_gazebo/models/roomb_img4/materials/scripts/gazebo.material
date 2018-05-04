@@ -1,0 +1,13 @@
+material roomb/img4
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roomb_img4.jpg
+      }
+    }
+  }
+}

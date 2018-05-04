@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="hokuyo_width" value="0.001"/>
+    <xacro:property name="hokuyo_height" value="0.05"/>
+    <xacro:property name="hokuyo_depth" value="0.06"/>
+    <xacro:macro name="lidar_hokuyo" params="parent_link_name">
+        <link name="laser_link">
+            <visual>
+                <xacro:box_geometry width="${hokuyo_width}" height="${hokuyo_height}" depth="${hokuyo_depth}"/>
+                <xacro:green_material/>
+            </visual>
+            <xacro:box_collision width="${hokuyo_width}" height="${hokuyo_height}" depth="${hokuyo_depth}"/>
+            <xacro:box_inertia mass="0.001" width="${hokuyo_width}" height="${hokuyo_height}" depth="${hokuyo_depth}"/>
+        </link>
+
+        <joint name="laser_base_joint" type="fixed">
+            <origin xyz="0 0 ${hokuyo_height}" rpy="0 0 0"/>
+            <parent link="${parent_link_name}" />
+            <child link="laser_link" />
+        </joint>
+    </xacro:macro>
+</robot>

@@ -1,0 +1,13 @@
+material rooma/img1p
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture rooma_img1p.jpg
+      }
+    }
+  }
+}

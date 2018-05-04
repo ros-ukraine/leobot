@@ -1,0 +1,13 @@
+material room6/img2
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture room6_img2.jpg
+      }
+    }
+  }
+}

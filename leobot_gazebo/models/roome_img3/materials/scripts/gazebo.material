@@ -1,0 +1,13 @@
+material roome/img3
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roome_img3.jpg
+      }
+    }
+  }
+}

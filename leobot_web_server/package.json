@@ -1,0 +1,21 @@
+{
+  "name": "leobot_web_server",
+  "version": "1.0.0",
+  "description": "LeoBot Telepresence Web Server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ros-ukraine/leobot.git"
+  },
+  "author": "Max Zhaloba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ros-ukraine/leobot/issues"
+  },
+  "homepage": "https://github.com/ros-ukraine/leobot#readme",
+  "dependencies": {
+    "rosnodejs": "2.1.1",
+    "node-static": "0.7.10",
+    "roslib": "0.20.0",
+    "jquery": "3.3.1"
+  }
+}
