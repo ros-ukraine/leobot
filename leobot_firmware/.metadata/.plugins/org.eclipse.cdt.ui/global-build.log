@@ -633,3 +633,370 @@ Output sent to: STM32F4_Rosserial.list
 Generate listing file done
 Generate build reports done
 Info: Parallel threads used: 1
+01:19:10 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10292	    132	   2424	  12848	   3230	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:19:20 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+01:21:47 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:115:6: error: 'ros::NodeHandle {aka class ros::NodeHandle_<STM32F4Hardware>}' has no member named 'write'
+   nh.write(debug_data, 3);
+      ^~~~~
+Info: Parallel threads used: 1
+01:23:37 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10284	    132	   2428	  12844	   322c	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:23:45 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+01:25:02 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:129:7: error: 'uint32_i' was not declared in this scope
+   for(uint32_i i = 0; i < 20000; i++);
+       ^~~~~~~~
+..\src\main.cpp:129:23: error: 'i' was not declared in this scope
+   for(uint32_i i = 0; i < 20000; i++);
+                       ^
+Info: Parallel threads used: 1
+01:25:26 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10304	    132	   2428	  12864	   3240	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:25:31 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+01:27:48 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:20:04 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:22:19 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:22:22 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:22:28 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:46:54 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10456	    132	   2428	  13016	   32d8	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:48:54 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+..\Libraries\ros_lib\stm32_uart.cpp: In function 'void stm32_uart_init()':
+..\Libraries\ros_lib\stm32_uart.cpp:40:2: error: 'USART_InitStructure' was not declared in this scope
+  USART_InitStructure.USART_BaudRate = 9600;
+  ^~~~~~~~~~~~~~~~~~~
+..\Libraries\ros_lib\stm32_uart.cpp:46:13: error: 'USARTx' was not declared in this scope
+  USART_Init(USARTx, &USART_InitStructure);
+             ^~~~~~
+..\Libraries\ros_lib\stm32_uart.cpp:14:20: warning: unused variable 'usart1_init_struct' [-Wunused-variable]
+  USART_InitTypeDef usart1_init_struct;
+                    ^~~~~~~~~~~~~~~~~~
+Info: Parallel threads used: 1
+02:49:10 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+..\Libraries\ros_lib\stm32_uart.cpp: In function 'void stm32_uart_init()':
+..\Libraries\ros_lib\stm32_uart.cpp:46:13: error: 'USARTx' was not declared in this scope
+  USART_Init(USARTx, &USART_InitStructure);
+             ^~~~~~
+Info: Parallel threads used: 1
+02:49:22 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10384	    132	   2428	  12944	   3290	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:50:04 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10456	    132	   2428	  13016	   32d8	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:50:30 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10456	    132	   2428	  13016	   32d8	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:52:25 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:52:29 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:54:16 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10376	    132	   2428	  12936	   3288	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:54:25 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10384	    132	   2428	  12944	   3290	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:54:32 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:55:54 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10356	    132	   2428	  12916	   3274	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:57:14 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10356	    132	   2428	  12916	   3274	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+02:57:19 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:59:44 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:112:21: error: 'SystemClock_Config' was not declared in this scope
+  SystemClock_Config();
+                     ^
+Info: Parallel threads used: 1
+03:01:23 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10356	    132	   2428	  12916	   3274	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+03:02:22 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+03:02:54 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10360	    132	   2428	  12920	   3278	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+03:03:02 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+03:03:07 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+01:50:51 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10360	    132	   2428	  12920	   3278	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:56:13 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -c ..\Libraries\ros_lib\stm32_uart.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o Libraries\ros_lib\stm32_uart.o 
+..\src\main.cpp: In function 'int main()':
+..\src\main.cpp:131:9: error: 'rx' was not declared in this scope
+         rx = debugHard.read();
+         ^~
+..\src\main.cpp:133:14: error: 'rx' was not declared in this scope
+        while(rx == -1);
+              ^~
+Info: Parallel threads used: 2
+01:56:34 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10492	    132	   2428	  13052	   32fc	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:57:12 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10492	    132	   2428	  13052	   32fc	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1
+01:57:22 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+01:58:35 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+Info: Parallel threads used: 0
+02:00:05 **** Incremental Build of configuration Debug for project STM32F4_Rosserial ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-g++ -c ..\src\main.cpp -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu++14 -DSTM32F4XX -DSTM32F40XX -DUSE_STDPERIPH_DRIVER -DUSE_STM32F4_DISCOVERY -DHSE_VALUE=8000000 -I../src -I../Libraries/ros_lib -I../Libraries/CMSIS/Include -I../Libraries/Device/STM32F4xx/Include -I../Libraries/STM32F4xx_StdPeriph_Driver/inc -O0 -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions -g -fstack-usage -Wall -fno-threadsafe-statics -specs=nano.specs -o src\main.o 
+arm-atollic-eabi-g++ -o STM32F4_Rosserial.elf Libraries\STM32F4xx_StdPeriph_Driver\src\misc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_can.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_crc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_aes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_des.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_cryp_tdes.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dbgmcu.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dcmi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_md5.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash_sha1.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rng.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.o Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_wwdg.o Libraries\ros_lib\duration.o Libraries\ros_lib\stm32_time.o Libraries\ros_lib\stm32_uart.o Libraries\ros_lib\stm32f4hardware.o Libraries\ros_lib\time.o src\main.o src\startup_stm32f40xx.o src\stm32f4xx_it.o src\system_stm32f4xx.o src\tiny_printf.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../stm32f4_flash.ld -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=STM32F4_Rosserial.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.0.1\Tools\arm-atollic-reports.jar sizeinfo list STM32F4_Rosserial.elf 
+Generate build reports...
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  10492	    132	   2428	  13052	   32fc	STM32F4_Rosserial.elf
+Print size information done
+Generate listing file
+Output sent to: STM32F4_Rosserial.list
+Generate listing file done
+Generate build reports done
+Info: Parallel threads used: 1

@@ -84,14 +84,25 @@ void LedInit(void)
 }
 
 
+void Delay(__IO uint32_t nCount)
+{
+	__IO uint32_t i;
+
+	while(nCount--)
+	{
+		i = 1000;
+		while(i--);
+	}
+}
+
 void LedBlink(void)
 {
 	volatile uint32_t i;
 
-	for(i = 10000; i > 0; i--);
+	Delay(1000);
 	GPIO_SetBits(GPIOD, GPIO_Pin_15); //ON
 
-	for(i = 10000; i > 0; i--);
+	Delay(500);
 	GPIO_ResetBits(GPIOD, GPIO_Pin_15); //OFF
 }
 
@@ -102,18 +113,42 @@ void LedBlink(void)
 **
 **===========================================================================
 */
+
+
+
+STM32F4Hardware debugHard; //debug
+
 int main(void)
 {
+
+	uint8_t debug_data[] = {'1','2','3','\r','\n'};
+	int16_t rx;
+
+	debugHard.init();
+
 	//debug
 	//LedInit();
 
   //nh.initNode();
   //nh.subscribe(sub);
 
+
+
   /* Infinite loop */
 	while (1)
 	{
-        //nh.spinOnce();
+		do
+		{
+			rx = debugHard.read();
+		}
+		while(rx == -1);
+
+		debug_data[0] = (uint8_t)rx;
+		debugHard.write(debug_data, 1);
+
+		//debugHard.write(debug_data, 1);
+		//for(volatile uint32_t i = 0; i < 20000; i++);
+		//nh.spinOnce();
 
 		//debug
 		//LedBlink();

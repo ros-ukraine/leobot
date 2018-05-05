@@ -11,70 +11,66 @@
 void stm32_uart_init(void)
 {
 	/* USART configuration structure for USART1 */
-	USART_InitTypeDef usart1_init_struct;
+	USART_InitTypeDef USART_InitStructure;
 
 	/* Bit configuration structure for GPIOA PIN9 and PIN10 */
-	GPIO_InitTypeDef gpioa_init_struct;
+	GPIO_InitTypeDef GPIOA_InitStructure;
 
-	/* Enalbe clock for USART1 */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-
-	/* Enalbe clock for GPIOA */
+	/* Enable clock for GPIOA */
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
-	/* GPIOA PIN9 alternative function Tx */
-	gpioa_init_struct.GPIO_Pin = GPIO_Pin_9;
-	gpioa_init_struct.GPIO_Speed = GPIO_Speed_50MHz;
-	gpioa_init_struct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_Init(GPIOA, &gpioa_init_struct);
+	/* Enable clock for USART2 */
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 
-	/* GPIOA PIN9 alternative function Rx */
-	gpioa_init_struct.GPIO_Pin = GPIO_Pin_10;
-    gpioa_init_struct.GPIO_Speed = GPIO_Speed_50MHz;
-	gpioa_init_struct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_Init(GPIOA, &gpioa_init_struct);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2 ,GPIO_AF_USART2); //TX
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3 ,GPIO_AF_USART2); //RX
 
-	/* Enable USART1 */
-	USART_Cmd(USART1, ENABLE);
+	/* PA2 - Tx, PA3 - Rx */
+	GPIOA_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIOA_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
+	GPIOA_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIOA_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIOA_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIOA_InitStructure);
 
-	/* Baud rate 57600, 8-bit data, One stop bit
-	 * No parity, Do both Rx and Tx, No HW flow control
-	 */
-	usart1_init_struct.USART_BaudRate = UART_BAUDRATE;
-	usart1_init_struct.USART_WordLength = USART_WordLength_8b;
-	usart1_init_struct.USART_StopBits = USART_StopBits_1;
-	usart1_init_struct.USART_Parity = USART_Parity_No ;
-	usart1_init_struct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-	usart1_init_struct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_BaudRate = UART_BAUDRATE;
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;
+	USART_InitStructure.USART_Parity = USART_Parity_No;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	USART_Init(USART2, &USART_InitStructure);
 
-	 /* Configure USART1 */
-	 USART_Init(USART1, &usart1_init_struct);
-
+	/* Enable USART2 */
+	USART_Cmd(USART2, ENABLE);
 }
 
 void stm32_uart_send_byte(uint8_t tx_byte)
 {
-	USART_SendData(USART1, tx_byte);
-
+	//USART_FLAG_TXE: to indicate the status of the transmit buffer register.
+	//USART_FLAG_TC: to indicate the status of the transmit operation.
 
 	//To-DO: very inefficient solution, change after debug
-	// Wait to be able to transmit
+
 	/* Loop until USART2 DR register is empty */
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+	while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+
+	USART_SendData(USART2, tx_byte);
+
+	// Wait to be able to transmit
+	while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
 }
 
 int16_t stm32_uart_receive_byte(void)
 {
-
-	if ((USART1->SR & USART_SR_RXNE) != 0)
+	if (USART_GetFlagStatus(USART2, USART_SR_RXNE) != 0)
 	{
-		return (USART_ReceiveData(USART1));
+		return (USART_ReceiveData(USART2));
 	}
 	else
 	{
 		return -1;
 	}
-
 }
 
 

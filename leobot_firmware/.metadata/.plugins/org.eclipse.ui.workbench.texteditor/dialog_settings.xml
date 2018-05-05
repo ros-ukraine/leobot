@@ -2,19 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="af" key="selection"/>
+		<item value="SystemInit" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="SystemInit"/>
+			<item value="SystemClock"/>
+			<item value="SystemClock_Config"/>
 			<item value="AF"/>
 			<item value="AFIO"/>
 			<item value="GPIO_Mode_AF_PP"/>
 			<item value="RCC_APB2PeriphClockCmd"/>
 			<item value="__cplusplus"/>
-			<item value="for(int i = 0; i &lt; length; i++)"/>
-			<item value="extern &quot;C&quot;"/>
 		</list>
 		<list key="replacehistory">
 		</list>
