@@ -17,11 +17,10 @@ STM32F4Hardware::STM32F4Hardware()
 
 void STM32F4Hardware::init()
 {
-	//wdt_disable();
-
 	stm32_time_init();
 	stm32_uart_init();
-	//sei();
+
+	__enable_irq();
 }
 
 // Read a byte of data from ROS connection.
@@ -42,7 +41,7 @@ void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 
 unsigned long STM32F4Hardware::time()
 {
-	return 1000;
+	return stm32_time_now();
 }
 
 

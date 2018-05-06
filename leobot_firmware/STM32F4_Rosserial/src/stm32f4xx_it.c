@@ -41,6 +41,10 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
+volatile uint32_t tick = 0;
+
+
+
 /******************************************************************************/
 /*            Cortex-M4 Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -140,6 +144,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+	tick++;
 /*  TimingDelay_Decrement(); */
 }
 

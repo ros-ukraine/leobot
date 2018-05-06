@@ -78,32 +78,31 @@ void LedInit(void)
 
 	  GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-
 	  // GPIOD-PIN-15 ON
 	  GPIO_SetBits(GPIOD, GPIO_Pin_15);
 }
 
-
-void Delay(__IO uint32_t nCount)
+void LedBlink(uint32_t current_ms, uint32_t interval_ms)
 {
-	__IO uint32_t i;
+	static uint32_t state = 0;
+	static uint32_t currentMillis = 0;
+	static uint32_t previousMillis = 0;
 
-	while(nCount--)
+	currentMillis = current_ms;
+
+	if (currentMillis - previousMillis >= interval_ms)
 	{
-		i = 1000;
-		while(i--);
+
+		state = !state;
+
+		if (state)
+			GPIO_SetBits(GPIOD, GPIO_Pin_15); //ON
+		else
+			GPIO_ResetBits(GPIOD, GPIO_Pin_15); //OFF
+
+		// save the last time you blinked the LED
+		previousMillis = currentMillis;  // Remember the time
 	}
-}
-
-void LedBlink(void)
-{
-	volatile uint32_t i;
-
-	Delay(1000);
-	GPIO_SetBits(GPIOD, GPIO_Pin_15); //ON
-
-	Delay(500);
-	GPIO_ResetBits(GPIOD, GPIO_Pin_15); //OFF
 }
 
 /**
@@ -118,40 +117,38 @@ void LedBlink(void)
 
 STM32F4Hardware debugHard; //debug
 
+
 int main(void)
 {
-
-	uint8_t debug_data[] = {'1','2','3','\r','\n'};
 	int16_t rx;
+	uint8_t debug_data[] = {'1','2','3','\r','\n'};
 
+
+	LedInit();
 	debugHard.init();
-
-	//debug
-	//LedInit();
 
   //nh.initNode();
   //nh.subscribe(sub);
 
-
-
   /* Infinite loop */
 	while (1)
 	{
-		do
+
+		uint32_t currentMillis = debugHard.time();
+
+		LedBlink(currentMillis, 500);
+
+
+		rx = debugHard.read();
+
+		if(rx != -1)
 		{
-			rx = debugHard.read();
+			debug_data[0] = (uint8_t)rx;
+			debugHard.write(debug_data, 1);
 		}
-		while(rx == -1);
 
-		debug_data[0] = (uint8_t)rx;
-		debugHard.write(debug_data, 1);
-
-		//debugHard.write(debug_data, 1);
-		//for(volatile uint32_t i = 0; i < 20000; i++);
 		//nh.spinOnce();
 
-		//debug
-		//LedBlink();
 	}
 }
 
