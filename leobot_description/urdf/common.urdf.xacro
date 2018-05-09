@@ -94,9 +94,8 @@
     </geometry>
   </xacro:macro>
 
-  <xacro:macro name="box_collision" params="width height depth *origin">
+  <xacro:macro name="box_collision" params="width height depth">
     <collision>
-      <xacro:insert_block name="origin"/>
       <xacro:box_geometry width="${width}" height="${height}" depth="${depth}"/>
     </collision>
   </xacro:macro>
