@@ -50,6 +50,7 @@
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
                 <mechanicalReduction>131</mechanicalReduction>
                 <motorTorqueConstant>4.4</motorTorqueConstant>
+
             </actuator>
         </transmission>
     </xacro:macro>
