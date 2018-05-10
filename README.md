@@ -29,11 +29,11 @@ sudo usermod -aG docker $USER
  6. For development [the following](https://hub.docker.com/r/rosukraine/leobot/) docker image will be used for NVidia Docker [this one](https://hub.docker.com/r/rosukraine/leobot-dev-nvidia/).
  7. Use the following command to start ordinary Docker container
 ```bash
-docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
+docker run --device=/dev/ttyUSB0 -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot:latest
 ```
 for NVidia Docker please use
 ```bash
-nvidia-docker run -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot-dev-nvidia:latest
+nvidia-docker run --device=/dev/ttyUSB0 -it --name leobot_dev -p 8080:8080 -p 8090:8090 -p 9090:9090 -e DISPLAY -e LOCAL_USER_ID=$(id -u) -v /tmp/.X11-unix:/tmp/.X11-unix:rw rosukraine/leobot-dev-nvidia:latest
 ```
  8. Black window of [Terminator](https://gnometerminator.blogspot.com/p/introduction.html) UI console will appear after some time.
  9. You can use it's features to [split terminal window](https://linux.die.net/man/1/terminator) into smaller terminals and run few commands in parallel (Ctrl+Shift+E).
