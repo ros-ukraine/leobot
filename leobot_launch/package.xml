@@ -9,4 +9,5 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>leobot_description</run_depend>
   <run_depend>leobot_gazebo</run_depend>
+  <run_depend>rosserial_python</run_depend>
 </package>
