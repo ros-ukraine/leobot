@@ -4,7 +4,7 @@
     <xacro:property name="motor_holder_height" value="0.1"/>
     <xacro:property name="motor_holder_mass" value="0.8"/>
     <xacro:property name="mecanum_radius" value="0.1"/>
-    <xacro:property name="mecanum_height" value="0.05"/>
+    <xacro:property name="mecanum_height" value="0.1"/>
     <xacro:property name="mecanum_mass" value="0.3"/>
     <xacro:macro name="mecanum_wheel"
                  params="prefix wheel_type side position parent_length parent_height parent_width">
@@ -19,16 +19,16 @@
 
         <joint name="${prefix}_motor_holder_base_joint" type="fixed">
             <origin rpy="${pi/2} 0 0"
-                    xyz="${position * (parent_width/2 - motor_holder_height/2)} ${position * parent_length} ${side * (parent_height/2 - motor_holder_radius/2)}"/>
+                    xyz="${position * (parent_length/2 - motor_holder_radius*2)} ${side * (parent_width/2 + motor_holder_height/2)} ${(-parent_height/2 + motor_holder_radius*2)}"/>
             <parent link="base_link"/>
             <child link="${prefix}_motor_holder"/>
         </joint>
 
         <link name="${prefix}_wheel_link">
             <visual>
-                <origin rpy="${pi / 2} 0 0 " xyz="0 0 0"/>
+                <origin rpy="0 0 0 " xyz="${-mecanum_radius*1.05} ${-mecanum_radius} ${-mecanum_height*0.75}"/>
                 <geometry>
-                    <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_${wheel_type}.STL" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_${wheel_type}.STL" scale="0.0015 0.0015 0.0015"/>
                 </geometry>
             </visual>
             <xacro:cylinder_collision radius="${mecanum_radius}" height="${mecanum_height}"/>
@@ -36,7 +36,7 @@
         </link>
 
         <joint name="${prefix}_wheel_motor_joint" type="continuous">
-            <origin rpy="0 0 0" xyz="0 0 ${side * mecanum_height/2}"/>
+            <origin rpy="0 0 0" xyz="0 0 ${ -1 * side * motor_holder_height/2}"/>
             <parent link="${prefix}_motor_holder"/>
             <child link="${prefix}_wheel_link"/>
             <axis xyz="0 0 1"/>
@@ -48,8 +48,8 @@
             </joint>
             <actuator name="${prefix}_wheel_motor">
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-                <mechanicalReduction>1</mechanicalReduction>
-                <motorTorqueConstant>1</motorTorqueConstant>
+                <mechanicalReduction>131</mechanicalReduction>
+                <motorTorqueConstant>4.4</motorTorqueConstant>
             </actuator>
         </transmission>
     </xacro:macro>

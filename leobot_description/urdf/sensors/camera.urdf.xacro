@@ -13,7 +13,7 @@
         </link>
 
         <joint name="head_${prefix}_camera_joint" type="fixed">
-            <origin xyz="${side*(camera_radius + parent_width/2) - side*0.005} ${-parent_height/2 + camera_radius} 0" rpy="0 0 0"/>
+            <origin xyz="${side*(camera_radius + parent_width/2) - side*0.005} ${-parent_height/2 + camera_radius} 0" rpy="0 ${pi/2 + side * pi/2 } 0"/>
             <parent link="${parent_link_name}" />
             <child link="${prefix}_camera_link" />
         </joint>
