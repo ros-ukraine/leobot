@@ -29,19 +29,23 @@ SOFTWARE.
 
 // example from
 //http://wiki.ros.org/rosserial_arduino/Tutorials/Servo%20Controller
-
 //http://wiki.ros.org/rosserial_client/Tutorials/Using%20rosserial%20with%20AVR%20and%20UART
-
 //http://electronics-homemade.com/STM32F4-Turn-on-LED.html
 
 /* Includes */
 #include "stm32f4xx.h"
 
+
+/* rosserial includes */
 #include "ros.h"
 #include "std_msgs/UInt16.h"
+#include <std_msgs/String.h>
 //
 
-//#include "UInt16.h"
+/* user library includes */
+
+
+#include "../Libraries/motor_unit/motor_unit.h"
 
 
 ros::NodeHandle  nh;
@@ -61,8 +65,44 @@ void servo_cb(const std_msgs::UInt16& cmd_msg)
 ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
 
 
+std_msgs::String str_msg;
+ros::Publisher chatter("chatter", &str_msg);
+char hello[13] = "hello world!";
+
+int main(void)
+{
+
+	//LedInit();
+
+	motorUnit_Init(M_UNIT_1);
+	motorUnit_Init(M_UNIT_2);
+	motorUnit_Init(M_UNIT_3);
+	motorUnit_Init(M_UNIT_4);
+
+	motorUnit_MotorMove(M_UNIT_1, FORWARD, 1000);
+	motorUnit_MotorMove(M_UNIT_2, FORWARD, 2000);
+	motorUnit_MotorMove(M_UNIT_3, FORWARD, 4000);
+	motorUnit_MotorMove(M_UNIT_4, FORWARD, 8000);
+
+	nh.initNode();
+	nh.subscribe(sub);
+	nh.advertise(chatter);
+
+    /* Infinite loop */
+	while (1)
+	{
+		 str_msg.data = hello;
+		 chatter.publish( &str_msg );
+
+		 nh.spinOnce();
+	}
+}
+
+
+// debug functions
 void LedInit(void)
 {
+
 
 	  // GPIOD Configuration
 	  GPIO_InitTypeDef GPIO_InitStruct;
@@ -104,53 +144,3 @@ void LedBlink(uint32_t current_ms, uint32_t interval_ms)
 		previousMillis = currentMillis;  // Remember the time
 	}
 }
-
-/**
-**===========================================================================
-**
-**  Abstract: main program
-**
-**===========================================================================
-*/
-
-
-
-STM32F4Hardware debugHard; //debug
-
-
-int main(void)
-{
-	int16_t rx;
-	uint8_t debug_data[] = {'1','2','3','\r','\n'};
-
-
-	LedInit();
-	debugHard.init();
-
-  //nh.initNode();
-  //nh.subscribe(sub);
-
-  /* Infinite loop */
-	while (1)
-	{
-
-		uint32_t currentMillis = debugHard.time();
-
-		LedBlink(currentMillis, 500);
-
-
-		rx = debugHard.read();
-
-		if(rx != -1)
-		{
-			debug_data[0] = (uint8_t)rx;
-			debugHard.write(debug_data, 1);
-		}
-
-		//nh.spinOnce();
-
-	}
-}
-
-
-
