@@ -32,6 +32,8 @@ SOFTWARE.
 //http://wiki.ros.org/rosserial_client/Tutorials/Using%20rosserial%20with%20AVR%20and%20UART
 //http://electronics-homemade.com/STM32F4-Turn-on-LED.html
 
+//http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning
+
 /* Includes */
 #include "stm32f4xx.h"
 
@@ -56,18 +58,20 @@ ros::NodeHandle  nh;
 /* Private functions */
 
 
-void servo_cb(const std_msgs::UInt16& cmd_msg)
+void motor_cb(const std_msgs::UInt16& cmd_msg)
 {
-    //servo.write(cmd_msg.data); //set servo angle, should be from 0-180
-    //digitalWrite(13, HIGH-digitalRead(13));  //toggle led
+	//cmd_msg.data should be in range 0 - 100
+
 }
 
-ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
+ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
 
 std_msgs::String str_msg;
 ros::Publisher chatter("chatter", &str_msg);
 char hello[13] = "hello world!";
+
+
 
 int main(void)
 {
@@ -88,6 +92,11 @@ int main(void)
 	nh.subscribe(sub);
 	nh.advertise(chatter);
 
+	//ros::Rate rate( 2 );
+	//ros::Rate r(1); // 1 hz
+
+	//ros::Duration d(0.5);
+
     /* Infinite loop */
 	while (1)
 	{
@@ -95,6 +104,10 @@ int main(void)
 		 chatter.publish( &str_msg );
 
 		 nh.spinOnce();
+
+		 //ros::Duration(0.5).sleep(); // sleep for half a second
+
+		 //rate.sleep();
 	}
 }
 
