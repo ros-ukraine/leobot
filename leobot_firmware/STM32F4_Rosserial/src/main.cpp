@@ -45,8 +45,6 @@ SOFTWARE.
 //
 
 /* user library includes */
-
-
 #include "../Libraries/motor_unit/motor_unit.h"
 
 
@@ -66,22 +64,17 @@ void motor_cb(const std_msgs::UInt16& cmd_msg)
 
 ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
-
 std_msgs::String str_msg;
 ros::Publisher chatter("chatter", &str_msg);
 char hello[13] = "hello world!";
 
-
-
 int main(void)
 {
 
-	//LedInit();
-
-	motorUnit_Init(M_UNIT_1);
-	motorUnit_Init(M_UNIT_2);
-	motorUnit_Init(M_UNIT_3);
-	motorUnit_Init(M_UNIT_4);
+	motorUnit_MotorInit(M_UNIT_1);
+	motorUnit_MotorInit(M_UNIT_2);
+	motorUnit_MotorInit(M_UNIT_3);
+	motorUnit_MotorInit(M_UNIT_4);
 
 	motorUnit_MotorMove(M_UNIT_1, FORWARD, 1000);
 	motorUnit_MotorMove(M_UNIT_2, FORWARD, 2000);
@@ -112,48 +105,4 @@ int main(void)
 }
 
 
-// debug functions
-void LedInit(void)
-{
 
-
-	  // GPIOD Configuration
-	  GPIO_InitTypeDef GPIO_InitStruct;
-
-	  //Enable the GPIOD Clock
-	  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
-
-	  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
-	  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-
-	  GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-	  // GPIOD-PIN-15 ON
-	  GPIO_SetBits(GPIOD, GPIO_Pin_15);
-}
-
-void LedBlink(uint32_t current_ms, uint32_t interval_ms)
-{
-	static uint32_t state = 0;
-	static uint32_t currentMillis = 0;
-	static uint32_t previousMillis = 0;
-
-	currentMillis = current_ms;
-
-	if (currentMillis - previousMillis >= interval_ms)
-	{
-
-		state = !state;
-
-		if (state)
-			GPIO_SetBits(GPIOD, GPIO_Pin_15); //ON
-		else
-			GPIO_ResetBits(GPIOD, GPIO_Pin_15); //OFF
-
-		// save the last time you blinked the LED
-		previousMillis = currentMillis;  // Remember the time
-	}
-}

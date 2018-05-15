@@ -26,11 +26,13 @@ typedef enum Direction
 }
 Direction;
 
-void motorUnit_Init(motorUnit_num motorUnitNumber);
+void motorUnit_MotorInit(motorUnit_num motorUnitNumber);
 void motorUnit_MotorEnable(motorUnit_num motorUnitNumber);
 void motorUnit_MotorDisable(motorUnit_num motorUnitNumber);
 void motorUnit_MotorStop(motorUnit_num motorUnitNumber);
 void motorUnit_MotorMove(motorUnit_num motorUnitNumber, Direction dir, uint16_t speed);
+
+void motorUnit_EncoderInit(motorUnit_num motorUnitNumber);
 uint16_t motorUnit_EncoderGetValue(motorUnit_num motorUnitNumber);
 
 #endif /* MOTOR_UNIT_MOTOR_UNIT_H_ */

@@ -8,7 +8,7 @@
 #include "motor_unit.h"
 
 
-void motorUnit_Init(motorUnit_num motorUnitNumber)
+void motorUnit_MotorInit(motorUnit_num motorUnitNumber)
 {
 	static uint32_t initiated = 0;
 
@@ -153,43 +153,29 @@ void motorUnit_MotorMove(motorUnit_num motorUnitNumber, Direction dir, uint16_t 
 
 }
 
+void motorUnit_EncoderInit(motorUnit_num motorUnitNumber)
+{
+	switch(motorUnitNumber)
+	{
+	case M_UNIT_1:
+		break;
+
+	case M_UNIT_2:
+		break;
+
+	case M_UNIT_3:
+		break;
+
+	case M_UNIT_4:
+		break;
+
+	default:
+		break;
+	}
+}
 
 
 
 
 
 
-
-//https://stm32f4-discovery.net/2014/05/stm32f4-stm32f429-discovery-pwm-tutorial/
-
-
-
-//
-//		    base_timer.TIM_Prescaler = 8400 - 1;
-//		    base_timer.TIM_Period = 10000;
-//		    base_timer.TIM_CounterMode = TIM_CounterMode_Up;
-//		    TIM_TimeBaseInit(TIM4, &base_timer);
-//
-//		    TIM_OCInitTypeDef oc_init;
-//		    TIM_OCStructInit(&oc_init);
-//		    oc_init.TIM_OCMode = TIM_OCMode_PWM1;
-//		    oc_init.TIM_OutputState = TIM_OutputState_Enable;
-//		    oc_init.TIM_Pulse = 500;   // frequency
-//		    oc_init.TIM_OCPolarity = TIM_OCPolarity_High;
-//
-//		    TIM_OC1Init(TIM4,&oc_init);   /// for  D12
-//		    TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
-//
-//		            //2
-//		    oc_init.TIM_Pulse = 5000; /// изменяем частоту шим
-//		    TIM_OC2Init(TIM4,&oc_init);  // for D13
-//		    TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
-//
-//		    TIM_Cmd(TIM4,ENABLE);
-//
-//}
-//
-//void Motor:: stop()
-//{
-//
-//}
