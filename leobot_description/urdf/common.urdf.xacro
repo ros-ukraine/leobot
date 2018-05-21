@@ -11,11 +11,9 @@
                iyy="${2*mass*radius*radius/5}" iyz="0.0"
                izz="${2*mass*radius*radius/5}"/>
     </inertial>
-
   </xacro:macro>
 
   <xacro:macro name="sphere_inertia_gazebo" params="mass radius">
-
     <inertial>
       <mass>${mass}</mass>
       <inertia>
@@ -27,7 +25,6 @@
         <izz>${2*mass*radius*radius/5}</izz>
       </inertia>
     </inertial>
-
   </xacro:macro>
 
   <xacro:macro name="sphere_geometry" params="radius">
@@ -52,16 +49,13 @@
 
 
   <xacro:macro name="cylinder_inertia" params="mass radius height">
-
     <inertial>
       <mass value="${mass}"/>
       <origin xyz="0 0 0"/>
-
       <inertia ixx="${(3*radius*radius + height*height)*mass/12}" ixy="0.0" ixz="0.0"
                iyy="${(3*radius*radius + height*height)*mass/12}" iyz="0.0"
                izz="${radius*radius*mass/2}"/>
     </inertial>
-
   </xacro:macro>
 
   <xacro:macro name="cylinder_geometry" params="radius height">
@@ -77,7 +71,6 @@
   </xacro:macro>
 
   <xacro:macro name="box_inertia" params="mass width height depth x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0">
-
     <inertial>
       <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
       <mass value="${mass}"/>
@@ -85,7 +78,6 @@
                iyy="${(depth*depth + width*width)*mass/12}" iyz="0.0"
                izz="${(width*width + height*height)*mass/12}"/>
     </inertial>
-
   </xacro:macro>
 
   <xacro:macro name="box_geometry" params="width height depth">
