@@ -10,6 +10,7 @@
 
 extern "C"
 {
+	#include "usart.h"
 	#include "FreeRTOS.h"
     #include "task.h"
 }

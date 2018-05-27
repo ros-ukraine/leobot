@@ -17,7 +17,7 @@ STM32F4Hardware::STM32F4Hardware()
 
 void STM32F4Hardware::init()
 {
-
+	MX_USART2_UART_Init();
 	//stm32_uart_init();
 
 	__enable_irq();
