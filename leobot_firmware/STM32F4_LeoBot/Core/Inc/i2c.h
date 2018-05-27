@@ -67,7 +67,7 @@ extern I2C_HandleTypeDef hi2c3;
 
 /* USER CODE END Private defines */
 
-extern void _Error_Handler(char *, int);
+extern void _Error_Handler(const char *, int);
 
 void MX_I2C3_Init(void);
 

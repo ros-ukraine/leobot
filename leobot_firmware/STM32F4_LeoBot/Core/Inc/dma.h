@@ -59,7 +59,7 @@
 #include "main.h"
 
 /* DMA memory to memory transfer handles -------------------------------------*/
-extern void _Error_Handler(char*, int);
+extern void _Error_Handler(const char*, int);
 
 /* USER CODE BEGIN Includes */
 

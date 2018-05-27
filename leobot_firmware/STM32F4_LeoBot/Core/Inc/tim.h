@@ -71,7 +71,7 @@ extern TIM_HandleTypeDef htim8;
 
 /* USER CODE END Private defines */
 
-extern void _Error_Handler(char *, int);
+extern void _Error_Handler(const char *, int);
 
 void MX_TIM1_Init(void);
 void MX_TIM2_Init(void);

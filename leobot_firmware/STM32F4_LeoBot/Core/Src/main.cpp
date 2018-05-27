@@ -47,14 +47,18 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include "stm32f4xx_hal.h"
-#include "cmsis_os.h"
-#include "dma.h"
-#include "i2c.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
+
+extern "C"
+{
+	#include "main.h"
+	#include "stm32f4xx_hal.h"
+	#include "cmsis_os.h"
+	#include "dma.h"
+	#include "i2c.h"
+	#include "tim.h"
+	#include "usart.h"
+	#include "gpio.h"
+}
 
 // https://stackoverflow.com/questions/35288808/first-project-for-stm32-with-hal-in-c/35334043
 
@@ -63,7 +67,9 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-
+#ifdef __cplusplus
+ extern "C" {
+#endif
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
@@ -75,7 +81,16 @@ void MX_FREERTOS_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+#ifdef __cplusplus
+}
+#endif
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -212,7 +227,7 @@ void SystemClock_Config(void)
   * @param  line: The line in file as a number.
   * @retval None
   */
-void _Error_Handler(char *file, int line)
+void _Error_Handler(const char *file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
