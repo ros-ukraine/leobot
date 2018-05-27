@@ -12,9 +12,6 @@ extern "C"
 {
 	#include "FreeRTOS.h"
     #include "task.h"
-//#include "stm32f4xx.h"
-	//#include "stm32_time.h"
-	//#include "stm32_uart.h"
 }
 
 class STM32F4Hardware

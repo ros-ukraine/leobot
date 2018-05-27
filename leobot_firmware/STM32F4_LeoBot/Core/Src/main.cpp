@@ -60,6 +60,11 @@ extern "C"
 	#include "gpio.h"
 }
 
+/* rosserial includes */
+#include "ros.h"
+#include "std_msgs/UInt16.h"
+#include "std_msgs/String.h"
+
 // https://stackoverflow.com/questions/35288808/first-project-for-stm32-with-hal-in-c/35334043
 
 /* USER CODE BEGIN Includes */
@@ -95,7 +100,19 @@ void MX_FREERTOS_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+ void motor_cb(const std_msgs::UInt16& cmd_msg)
+ {
+ 	//cmd_msg.data should be in range 0 - 100
+
+ }
+
+ ros::NodeHandle  nh;
+ ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+
+
+
 /* USER CODE END 0 */
+
 
 /**
   * @brief  The application entry point.
