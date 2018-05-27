@@ -68,18 +68,20 @@ std_msgs::String str_msg;
 ros::Publisher chatter("chatter", &str_msg);
 char hello[13] = "hello world!";
 
+volatile uint32_t deb = 200;
+
 int main(void)
 {
 
 	motorUnit_MotorInit(M_UNIT_1);
-	motorUnit_MotorInit(M_UNIT_2);
+	/*motorUnit_MotorInit(M_UNIT_2);
 	motorUnit_MotorInit(M_UNIT_3);
-	motorUnit_MotorInit(M_UNIT_4);
+	motorUnit_MotorInit(M_UNIT_4);*/
 
-	motorUnit_MotorMove(M_UNIT_1, FORWARD, 1000);
-	motorUnit_MotorMove(M_UNIT_2, FORWARD, 2000);
+	motorUnit_MotorMove(M_UNIT_1, FORWARD, 0); //1001 100%
+	/*motorUnit_MotorMove(M_UNIT_2, FORWARD, 2000);
 	motorUnit_MotorMove(M_UNIT_3, FORWARD, 4000);
-	motorUnit_MotorMove(M_UNIT_4, FORWARD, 8000);
+	motorUnit_MotorMove(M_UNIT_4, FORWARD, 8000);*/
 
 	nh.initNode();
 	nh.subscribe(sub);
@@ -97,6 +99,18 @@ int main(void)
 		 chatter.publish( &str_msg );
 
 		 nh.spinOnce();
+
+		 deb = deb + 20;
+
+		 if (deb > 1000) deb =200;
+
+		 motorUnit_MotorMove(M_UNIT_1, FORWARD, deb);
+
+		 //deb++;
+		 for(volatile uint32_t i=0; i < 200;i++)
+		 {
+			 for(volatile uint32_t j=0; j < 20000;j++);
+		 }
 
 		 //ros::Duration(0.5).sleep(); // sleep for half a second
 

@@ -12,9 +12,13 @@ void motorUnit_MotorInit(motorUnit_num motorUnitNumber)
 {
 	static uint32_t initiated = 0;
 
-	static const uint32_t presscaller = 8400;
+	//static const uint32_t presscaller = 8400; //10 hz
+	//static const uint32_t presscaller = 840; //100 hz
+	static const uint32_t presscaller = 168; //500 hz
+	//static const uint32_t presscaller = 84; //1000 hz
+	//static const uint32_t presscaller = 42; //2000 hz
 	static const uint32_t period = 1000;
-	static const uint32_t frequency = 500;
+	static const uint32_t frequency = 500;//500;
 
 	GPIO_InitTypeDef GPIO_InitStruct;
 	TIM_TimeBaseInitTypeDef TIM_TimeBase_InitStruct;
