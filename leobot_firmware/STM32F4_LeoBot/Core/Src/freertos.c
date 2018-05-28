@@ -124,15 +124,25 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 }
 
+
+#include "usart.h"
+
+
+extern UART_HandleTypeDef huart2;
+
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
+  uint8_t data = 'A';
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    //osDelay(1);
+	  HAL_UART_Transmit_IT(&huart2, &data, 1);
+	  vTaskDelay(200);
+
   }
   /* USER CODE END StartDefaultTask */
 }

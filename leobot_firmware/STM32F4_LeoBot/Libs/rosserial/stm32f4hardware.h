@@ -15,6 +15,8 @@ extern "C"
     #include "task.h"
 }
 
+//#include "ringbuffer.h"
+
 class STM32F4Hardware
 {
 public:
