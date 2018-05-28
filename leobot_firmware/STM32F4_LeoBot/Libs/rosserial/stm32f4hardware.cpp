@@ -20,7 +20,9 @@ void STM32F4Hardware::init()
 	MX_USART2_UART_Init();
 	//stm32_uart_init();
 
-	__enable_irq();
+	// init buffers for tx and rx
+
+	//__enable_irq();
 }
 
 // Read a byte of data from ROS connection.
@@ -28,7 +30,7 @@ void STM32F4Hardware::init()
 uint8_t STM32F4Hardware::read()
 {
 	//return stm32_uart_receive_byte();
-	return 1;
+	return 1; //only for debug
 }
 
 
