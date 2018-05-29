@@ -133,14 +133,14 @@ extern UART_HandleTypeDef huart2;
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
-  uint8_t data = 'A';
+  //uint8_t data = 'A';
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
   {
     //osDelay(1);
-	  HAL_UART_Transmit_IT(&huart2, &data, 1);
+	  //HAL_UART_Transmit_IT(&huart2, &data, 1);
 	  vTaskDelay(200);
 
   }

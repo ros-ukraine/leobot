@@ -64,6 +64,8 @@ extern "C"
 #include "std_msgs/UInt16.h"
 #include "std_msgs/String.h"
 
+#include "stm32f4hardware.h"
+
 // https://stackoverflow.com/questions/35288808/first-project-for-stm32-with-hal-in-c/35334043
 
 /* USER CODE BEGIN Includes */
@@ -111,7 +113,7 @@ void MX_FREERTOS_Init(void);
 
 
 /* USER CODE END 0 */
-
+ STM32F4Hardware debug;
 
 /**
   * @brief  The application entry point.
@@ -149,7 +151,12 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   MX_I2C2_Init();
+
+
   /* USER CODE BEGIN 2 */
+  uint8_t testBuff[] = {'1','2','3', '\r','\n'};
+  debug.write(testBuff, sizeof(testBuff)/sizeof(uint8_t));
+
 
   /* USER CODE END 2 */
 

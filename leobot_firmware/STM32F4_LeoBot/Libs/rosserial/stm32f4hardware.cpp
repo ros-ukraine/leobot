@@ -9,18 +9,20 @@
 #include "stm32f4hardware.h"
 
 #include "ringbuffer.h"
+#include "usart.h"
+
 
 class STM32F4Hardware;
 
 Ringbuffer uartTxRingBuff;
-Ringbuffer uartRxRingBuff;
+//Ringbuffer uartRxRingBuff;
 
 //https://github.com/robosavvy/rosserial_stm32f1_tutorials/blob/master/freertos/STM32Hardware_FreeRTOS.h
 
 
 STM32F4Hardware::STM32F4Hardware()
 {
-	//Ringbuffer uartTxRingBuff;
+
 }
 
 void STM32F4Hardware::init()
@@ -44,12 +46,18 @@ uint8_t STM32F4Hardware::read()
 
 void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 {
+	uint8_t dataToSend;
+
 	for(uint32_t i = 0; i < length; i++)
 	{
 		// if ring buffer is empty
-		if (uartTxRingBuff.size())
+		if (!uartTxRingBuff.size())
 		{
+			dataToSend = data[i];
+
 			// send byte to trigger uart send interrupt
+			//HAL_UART_Transmit_IT(&huart2, &data[i], sizeof(uint8_t));
+			HAL_UART_Transmit_IT(&huart2, &dataToSend, sizeof(uint8_t));
 
 			// write date to the fing buffer
 			uartTxRingBuff.write(data[i]);
@@ -58,10 +66,6 @@ void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 		{
 			uartTxRingBuff.write(data[i]);
 		}
-
-		//stm32_uart_send_byte(data[i]);
-		uartTxRingBuff.write(data[i]);
-
 	}
 }
 
@@ -90,7 +94,13 @@ uint32_t STM32F4Hardware::time()
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
+	uint8_t dataToSend;
 
+	if (uartTxRingBuff.size())
+	{
+		dataToSend = uartTxRingBuff.read();
+		HAL_UART_Transmit_IT(&huart2, &dataToSend, sizeof(uint8_t));
+	}
 }
 
 
