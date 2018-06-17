@@ -55,8 +55,8 @@ extern "C"
 	#include "cmsis_os.h"
 	#include "i2c.h"
 	#include "tim.h"
-	#include "usart.h"
 	#include "gpio.h"
+
 }
 
 /* rosserial includes */
@@ -64,7 +64,10 @@ extern "C"
 #include "std_msgs/UInt16.h"
 #include "std_msgs/String.h"
 
-#include "stm32f4hardware.h"
+
+//#include "stm32f4hardware.h"
+
+//STM32F4Hardware debug;
 
 // https://stackoverflow.com/questions/35288808/first-project-for-stm32-with-hal-in-c/35334043
 
@@ -94,12 +97,15 @@ void MX_FREERTOS_Init(void);
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
+
+
 #ifdef __cplusplus
 }
 #endif
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+ ros::NodeHandle  nh;
 
  void motor_cb(const std_msgs::UInt16& cmd_msg)
  {
@@ -107,19 +113,42 @@ void MX_FREERTOS_Init(void);
 
  }
 
- ros::NodeHandle  nh;
  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
+ std_msgs::String str_msg;
+ ros::Publisher chatter("chatter", &str_msg);
+ char hello[13] = "hello world!";
 
 
+void *TaskSpin(void *param)
+{
+	for(;;)
+	{
+		//nh.spinOnce();
+
+		vTaskDelay(500);
+	}
+}
 /* USER CODE END 0 */
- STM32F4Hardware debug;
 
 /**
   * @brief  The application entry point.
   *
   * @retval None
   */
+
+
+#include "stm32f4hardware.h"
+STM32F4Hardware debug;
+
+//https://github.com/alus96/STM32F407_Encoder/blob/master/Src/main.c
+
+//volatile uint32_t cnt;
+
+volatile uint32_t direction; //dir
+volatile uint32_t rotationSpeed; //RPM
+#define RESOLUTION (480)
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -149,36 +178,83 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM8_Init();
   MX_TIM4_Init();
-  MX_USART2_UART_Init();
+  MX_USART2_UART_Init(); /* initialized in rosserial */
   MX_I2C2_Init();
 
 
-  /* USER CODE BEGIN 2 */
-  uint8_t testBuff[] = {'1','2','3', '\r','\n'};
-  debug.write(testBuff, sizeof(testBuff)/sizeof(uint8_t));
+  LL_TIM_EnableCounter(TIM1);
+  LL_TIM_EnableCounter(TIM2);
+  LL_TIM_EnableCounter(TIM3);
+
+  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+
+  LL_TIM_EnableCounter(TIM4); // pwm
+  LL_TIM_EnableCounter(TIM8); //enable timer 8
+
+  LL_TIM_OC_SetCompareCH1(TIM4,512);
+  LL_TIM_OC_SetCompareCH2(TIM4,128);
+  LL_TIM_OC_SetCompareCH3(TIM4,64);
+  LL_TIM_OC_SetCompareCH4(TIM4,32);
+
+  //nh.initNode();
+  //nh.subscribe(sub);
+  //nh.advertise(chatter);
 
 
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
-  MX_FREERTOS_Init();
+  //MX_FREERTOS_Init();
+
 
   /* Start scheduler */
-  osKernelStart();
+  //osKernelStart();
   
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  //debug.init();
+
+  volatile uint32_t currentEncoderVal;
+  volatile uint32_t previousEncoderVal;
+
+
+  //volatile uint32_t direction; //dir
+  //x4
+
+
+
   while (1)
   {
+	  currentEncoderVal = LL_TIM_GetCounter(TIM8);
+	  // LL_TIM_COUNTERMODE_UP
+	  // LL_TIM_COUNTERMODE_DOWN
+	  direction = LL_TIM_GetCounterMode(TIM8); // 16 or 0
 
-  /* USER CODE END WHILE */
+	  //HAL_Delay(500);
 
-  /* USER CODE BEGIN 3 */
+	  rotationSpeed = ((currentEncoderVal - previousEncoderVal)/RESOLUTION) * 50;
+
+	  previousEncoderVal = currentEncoderVal;
+
+	  HAL_Delay(50); //50 ms
+
+	  //str_msg.data = hello;
+	  //chatter.publish( &str_msg );
+
+	  //nh.spinOnce();
+
+	  //HAL_Delay(100);
+
+	  //vTaskDelay(100);
+
 
   }
-  /* USER CODE END 3 */
 
 }
 
@@ -189,54 +265,51 @@ int main(void)
 void SystemClock_Config(void)
 {
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  LL_FLASH_SetLatency(LL_FLASH_LATENCY_5);
 
-    /**Configure the main internal regulator output voltage 
-    */
-  __HAL_RCC_PWR_CLK_ENABLE();
-
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 336;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_5)
   {
-    _Error_Handler(__FILE__, __LINE__);
+	  Error_Handler();
   }
+  LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
 
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  LL_RCC_HSE_Enable();
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+   /* Wait till HSE is ready */
+  while(LL_RCC_HSE_IsReady() != 1)
   {
-    _Error_Handler(__FILE__, __LINE__);
+
   }
+  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_8, 336, LL_RCC_PLLP_DIV_2);
 
-    /**Configure the Systick interrupt time 
-    */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  LL_RCC_PLL_Enable();
 
-    /**Configure the Systick 
-    */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+   /* Wait till PLL is ready */
+  while(LL_RCC_PLL_IsReady() != 1)
+  {
+
+  }
+  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+
+  LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_4);
+
+  LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_2);
+
+  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
+
+   /* Wait till System clock is ready */
+  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
+  {
+
+  }
+  LL_Init1msTick(168000000);
+
+  LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
+
+  LL_SetSystemCoreClock(168000000);
 
   /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
+  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),15, 0));
 }
 
 /* USER CODE BEGIN 4 */

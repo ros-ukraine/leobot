@@ -59,6 +59,9 @@
 osThreadId defaultTaskHandle;
 uint32_t defaultTaskBuffer[ 128 ];
 osStaticThreadDef_t defaultTaskControlBlock;
+osThreadId rosSpinTaskHandle;
+uint32_t rosSpinTaskBuffer[ 128 ];
+osStaticThreadDef_t rosSpinTaskControlBlock;
 
 /* USER CODE BEGIN Variables */
 
@@ -66,6 +69,7 @@ osStaticThreadDef_t defaultTaskControlBlock;
 
 /* Function prototypes -------------------------------------------------------*/
 void StartDefaultTask(void const * argument);
+void StartRosSpinTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -115,6 +119,10 @@ void MX_FREERTOS_Init(void) {
   osThreadStaticDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128, defaultTaskBuffer, &defaultTaskControlBlock);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* definition and creation of rosSpinTask */
+  osThreadStaticDef(rosSpinTask, StartRosSpinTask, osPriorityIdle, 0, 128, rosSpinTaskBuffer, &rosSpinTaskControlBlock);
+  rosSpinTaskHandle = osThreadCreate(osThread(rosSpinTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -124,16 +132,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 }
 
-
-#include "usart.h"
-
-
-extern UART_HandleTypeDef huart2;
-
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
-  //uint8_t data = 'A';
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
@@ -145,6 +146,18 @@ void StartDefaultTask(void const * argument)
 
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* StartRosSpinTask function */
+void StartRosSpinTask(void const * argument)
+{
+  /* USER CODE BEGIN StartRosSpinTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartRosSpinTask */
 }
 
 /* USER CODE BEGIN Application */
