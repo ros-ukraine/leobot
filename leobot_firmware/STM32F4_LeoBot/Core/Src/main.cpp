@@ -107,11 +107,9 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
  ros::NodeHandle  nh;
 
- void motor_cb(const std_msgs::UInt16& cmd_msg)
- {
- 	//cmd_msg.data should be in range 0 - 100
+ void motor_cb(const std_msgs::UInt16& cmd_msg);
 
- }
+
 
  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
@@ -119,6 +117,14 @@ void MX_FREERTOS_Init(void);
  ros::Publisher chatter("chatter", &str_msg);
  char hello[13] = "hello world!";
 
+ void motor_cb(const std_msgs::UInt16& cmd_msg)
+  {
+  	//cmd_msg.data should be in range 0 - 100
+
+ 	 str_msg.data = hello;
+ 	 chatter.publish( &str_msg );
+
+  }
 
 void *TaskSpin(void *param)
 {
@@ -199,9 +205,9 @@ int main(void)
   LL_TIM_OC_SetCompareCH3(TIM4,64);
   LL_TIM_OC_SetCompareCH4(TIM4,32);
 
-  //nh.initNode();
-  //nh.subscribe(sub);
-  //nh.advertise(chatter);
+  nh.initNode();
+  nh.subscribe(sub);
+  nh.advertise(chatter);
 
 
   /* USER CODE END 2 */
@@ -231,7 +237,7 @@ int main(void)
 
   while (1)
   {
-	  currentEncoderVal = LL_TIM_GetCounter(TIM8);
+	  /*currentEncoderVal = LL_TIM_GetCounter(TIM8);
 	  // LL_TIM_COUNTERMODE_UP
 	  // LL_TIM_COUNTERMODE_DOWN
 	  direction = LL_TIM_GetCounterMode(TIM8); // 16 or 0
@@ -242,14 +248,13 @@ int main(void)
 
 	  previousEncoderVal = currentEncoderVal;
 
-	  HAL_Delay(50); //50 ms
+	  HAL_Delay(50); //50 ms*/
 
 	  //str_msg.data = hello;
 	  //chatter.publish( &str_msg );
 
-	  //nh.spinOnce();
+	  nh.spinOnce();
 
-	  //HAL_Delay(100);
 
 	  //vTaskDelay(100);
 

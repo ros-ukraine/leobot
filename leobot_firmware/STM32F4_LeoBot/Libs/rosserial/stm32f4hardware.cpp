@@ -31,11 +31,24 @@ void STM32F4Hardware::init()
  * param:  none
  * retval: data, or -1 if there are no data
  */
-uint8_t STM32F4Hardware::read()
+int STM32F4Hardware::read()
 {
 	if (!LL_USART_IsActiveFlag_RXNE(USART2)) return -1;
+	//if (0 == LL_USART_IsActiveFlag_RXNE(USART2)) return -1;
 
 	return LL_USART_ReceiveData8(USART2);
+/*
+
+	if (1 == LL_USART_IsActiveFlag_RXNE(USART2))
+	{
+		return LL_USART_ReceiveData8(USART2);
+	}
+	else
+	{
+		return -1;
+	}
+*/
+
 }
 
 
@@ -49,10 +62,19 @@ void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 	}
 }
 
-uint32_t STM32F4Hardware::time()
+//uint32_t STM32F4Hardware::time()
+unsigned long STM32F4Hardware::time()
 {
+	uint32_t now;
+
 	//return (uint32_t) xTaskGetTickCount();
-	return HAL_GetTick();
+	//EnterCritical();
+	__disable_irq();
+	//return HAL_GetTick();
+	now = HAL_GetTick();
+	__enable_irq();
+		//ExitCritical();
+	return now;
 }
 
 

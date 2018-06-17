@@ -24,13 +24,13 @@ public:
 	void init();
 
 	//
-	uint8_t read();
+	int read();
 
 	// Send a byte of data to ROS connection
 	void write(uint8_t* data, uint32_t length);
 
 	// Returns milliseconds since start of program
-	uint32_t time();
+	unsigned long time();
 
 };
 
