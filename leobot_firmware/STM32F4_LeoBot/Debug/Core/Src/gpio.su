@@ -1,2 +1,0 @@
-stm32f4xx_ll_bus.h:427:22:LL_AHB1_GRP1_EnableClock	8	static
-gpio.c:70:6:MX_GPIO_Init	8	static
