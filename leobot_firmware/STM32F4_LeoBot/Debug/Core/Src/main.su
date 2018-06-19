@@ -1,6 +1,7 @@
 core_cm4.h:1615:26:uint32_t NVIC_GetPriorityGrouping()	4	static
 core_cm4.h:1698:22:void NVIC_SetPriority(IRQn_Type, uint32_t)	16	static
 core_cm4.h:1745:26:uint32_t NVIC_EncodePriority(uint32_t, uint32_t, uint32_t)	40	static
+core_cm4.h:1872:26:uint32_t ITM_SendChar(uint32_t)	16	static
 stm32f4xx_ll_rcc.h:2967:22:void LL_RCC_HSE_Enable()	4	static
 stm32f4xx_ll_rcc.h:2987:26:uint32_t LL_RCC_HSE_IsReady()	4	static
 stm32f4xx_ll_rcc.h:3206:22:void LL_RCC_SetSysClkSource(uint32_t)	16	static
@@ -51,13 +52,14 @@ String.h:43:18:virtual const char* std_msgs::String::getType()	16	static
 String.h:44:18:virtual const char* std_msgs::String::getMD5()	16	static
 msg.h:45:7:constexpr ros::Msg::Msg()	16	static
 String.h:12:9:std_msgs::String::String()	16	static
-main.cpp:120:7:void motor_cb(const std_msgs::UInt16&)	16	static
-main.cpp:129:7:void* TaskSpin(void*)	16	static
-main.cpp:158:5:int main()	16	static
-main.cpp:270:6:void SystemClock_Config()	8	static
-main.cpp:332:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
-main.cpp:351:6:void _Error_Handler(const char*, int)	16	static
-main.cpp:369:6:void assert_failed(uint8_t*, uint32_t)	16	static
+main.cpp:118:7:void motor_cb(const std_msgs::UInt16&)	16	static
+main.cpp:127:7:void* TaskSpin(void*)	16	static
+main.cpp:158:2:int __io_putchar(int)	16	static
+main.cpp:169:5:int main()	8	static
+main.cpp:289:6:void SystemClock_Config()	8	static
+main.cpp:351:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static
+main.cpp:370:6:void _Error_Handler(const char*, int)	16	static
+main.cpp:388:6:void assert_failed(uint8_t*, uint32_t)	16	static
 node_handle.h:50:7:constexpr ros::NodeHandleBase_::NodeHandleBase_()	16	static
 RequestParam.h:51:9:rosserial_msgs::RequestParamResponse::RequestParamResponse()	16	static
 node_handle.h:128:3:ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::NodeHandle_() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	32	static
@@ -67,21 +69,21 @@ subscriber.h:107:3:ros::Subscriber<MsgT, void>::Subscriber(const char*, ros::Sub
 node_handle.h:159:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::initNode() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
 node_handle.h:432:8:bool ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::subscribe(SubscriberT&) [with SubscriberT = ros::Subscriber<std_msgs::UInt16>; Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
 node_handle.h:415:8:bool ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::advertise(ros::Publisher&) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
+main.cpp:394:1:void __static_initialization_and_destruction_0(int, int)	16	static
+subscriber.h:114:16:void ros::Subscriber<MsgT, void>::callback(unsigned char*) [with MsgT = std_msgs::UInt16]	16	static
+subscriber.h:128:15:int ros::Subscriber<MsgT, void>::getEndpointType() [with MsgT = std_msgs::UInt16]	16	static
+subscriber.h:120:24:const char* ros::Subscriber<MsgT, void>::getMsgType() [with MsgT = std_msgs::UInt16]	16	static
+subscriber.h:124:24:const char* ros::Subscriber<MsgT, void>::getMsgMD5() [with MsgT = std_msgs::UInt16]	16	static
+node_handle.h:511:15:int ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::publish(int, const ros::Msg*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	40	static
 node_handle.h:212:15:int ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::spinOnce() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
+node_handle.h:363:16:bool ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::connected() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
+node_handle.h:573:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::logerror(const char*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
 Time.h:14:9:std_msgs::Time::Time()	16	static
 node_handle.h:372:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::requestSyncTime() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	32	static
 TopicInfo.h:12:9:rosserial_msgs::TopicInfo::TopicInfo()	16	static
 node_handle.h:480:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::negotiateTopics() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	56	static
 node_handle.h:379:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::syncTime(uint8_t*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	32	static
-node_handle.h:511:15:int ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::publish(int, const ros::Msg*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	40	static
-node_handle.h:402:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::setNow(ros::Time&) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
-node_handle.h:573:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::logerror(const char*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
 Log.h:13:9:rosserial_msgs::Log::Log()	16	static
 node_handle.h:552:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::log(char, const char*) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	40	static
-main.cpp:375:1:void __static_initialization_and_destruction_0(int, int)	16	static
-subscriber.h:114:16:void ros::Subscriber<MsgT, void>::callback(unsigned char*) [with MsgT = std_msgs::UInt16]	16	static
-subscriber.h:128:15:int ros::Subscriber<MsgT, void>::getEndpointType() [with MsgT = std_msgs::UInt16]	16	static
-subscriber.h:120:24:const char* ros::Subscriber<MsgT, void>::getMsgType() [with MsgT = std_msgs::UInt16]	16	static
-subscriber.h:124:24:const char* ros::Subscriber<MsgT, void>::getMsgMD5() [with MsgT = std_msgs::UInt16]	16	static
-node_handle.h:363:16:bool ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::connected() [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	16	static
-main.cpp:375:1:cpp)	8	static
+node_handle.h:402:8:void ros::NodeHandle_<Hardware, MAX_SUBSCRIBERS, MAX_PUBLISHERS, INPUT_SIZE, OUTPUT_SIZE>::setNow(ros::Time&) [with Hardware = STM32F4Hardware; int MAX_SUBSCRIBERS = 25; int MAX_PUBLISHERS = 25; int INPUT_SIZE = 512; int OUTPUT_SIZE = 512]	24	static
+main.cpp:394:1:cpp)	8	static
