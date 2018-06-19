@@ -95,22 +95,20 @@ int main(void)
     /* Infinite loop */
 	while (1)
 	{
-		 str_msg.data = hello;
-		 chatter.publish( &str_msg );
+		 //str_msg.data = hello;
+		 //chatter.publish( &str_msg );
 
 		 nh.spinOnce();
 
-		 deb = deb + 20;
+		 //stm32_time_now()
 
-		 if (deb > 1000) deb =200;
+		 ///*deb = deb + 20;
 
-		 motorUnit_MotorMove(M_UNIT_1, FORWARD, deb);
+//		 if (deb > 1000) deb =200;
+//
+//		 motorUnit_MotorMove(M_UNIT_1, FORWARD, deb);
 
 		 //deb++;
-		 for(volatile uint32_t i=0; i < 200;i++)
-		 {
-			 for(volatile uint32_t j=0; j < 20000;j++);
-		 }
 
 		 //ros::Duration(0.5).sleep(); // sleep for half a second
 

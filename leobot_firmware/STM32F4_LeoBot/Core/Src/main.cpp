@@ -64,6 +64,9 @@ extern "C"
 #include "std_msgs/UInt16.h"
 #include "std_msgs/String.h"
 
+//http://blablacode.ru/mikrokontrollery/450
+
+//https://stm32f4-discovery.net/2014/10/use-printf-output-stream-stm32f4/
 
 //#include "stm32f4hardware.h"
 
@@ -109,8 +112,6 @@ void MX_FREERTOS_Init(void);
 
  void motor_cb(const std_msgs::UInt16& cmd_msg);
 
-
-
  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
  std_msgs::String str_msg;
@@ -143,10 +144,6 @@ void *TaskSpin(void *param)
   * @retval None
   */
 
-
-#include "stm32f4hardware.h"
-STM32F4Hardware debug;
-
 //https://github.com/alus96/STM32F407_Encoder/blob/master/Src/main.c
 
 //volatile uint32_t cnt;
@@ -154,6 +151,23 @@ STM32F4Hardware debug;
 volatile uint32_t direction; //dir
 volatile uint32_t rotationSpeed; //RPM
 #define RESOLUTION (480)
+
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+//int __io_putchar(int ch)
+ PUTCHAR_PROTOTYPE
+ {
+  ITM_SendChar(ch);
+  return ch;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
 
 int main(void)
 {
@@ -226,8 +240,8 @@ int main(void)
 
   //debug.init();
 
-  volatile uint32_t currentEncoderVal;
-  volatile uint32_t previousEncoderVal;
+  //volatile uint32_t currentEncoderVal;
+  //volatile uint32_t previousEncoderVal;
 
 
   //volatile uint32_t direction; //dir
@@ -237,6 +251,14 @@ int main(void)
 
   while (1)
   {
+	  printf("hello!\r\n");
+
+	  //ITM_SendChar('A');
+	  //ITM_SendChar('\r');
+	  //ITM_SendChar('\n');
+
+	  HAL_Delay(500);
+
 	  /*currentEncoderVal = LL_TIM_GetCounter(TIM8);
 	  // LL_TIM_COUNTERMODE_UP
 	  // LL_TIM_COUNTERMODE_DOWN
@@ -253,7 +275,7 @@ int main(void)
 	  //str_msg.data = hello;
 	  //chatter.publish( &str_msg );
 
-	  nh.spinOnce();
+	  //nh.spinOnce();
 
 
 	  //vTaskDelay(100);
