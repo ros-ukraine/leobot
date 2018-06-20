@@ -91,23 +91,9 @@ extern "C"
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
-#ifdef __GNUC__
-/* With GCC, small printf (option LD Linker->Libraries->Small printf
-   set to 'Yes') calls __io_putchar() */
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
-
-
-#ifdef __cplusplus
-}
-#endif
-/* USER CODE END PFP */
-
 /* USER CODE BEGIN 0 */
+
+
  ros::NodeHandle  nh;
 
  void motor_cb(const std_msgs::UInt16& cmd_msg);
@@ -151,22 +137,6 @@ void *TaskSpin(void *param)
 volatile uint32_t direction; //dir
 volatile uint32_t rotationSpeed; //RPM
 #define RESOLUTION (480)
-
-
-#ifdef __cplusplus
- extern "C" {
-#endif
-
-//int __io_putchar(int ch)
- PUTCHAR_PROTOTYPE
- {
-  ITM_SendChar(ch);
-  return ch;
-}
-
-#ifdef __cplusplus
-}
-#endif
 
 
 int main(void)
@@ -252,6 +222,7 @@ int main(void)
   while (1)
   {
 	  printf("hello!\r\n");
+	  //ITM_SendChar('A');
 
 	  //ITM_SendChar('A');
 	  //ITM_SendChar('\r');
