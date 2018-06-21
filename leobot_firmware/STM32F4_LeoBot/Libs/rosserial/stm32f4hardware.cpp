@@ -34,21 +34,8 @@ void STM32F4Hardware::init()
 int STM32F4Hardware::read()
 {
 	if (!LL_USART_IsActiveFlag_RXNE(USART2)) return -1;
-	//if (0 == LL_USART_IsActiveFlag_RXNE(USART2)) return -1;
 
 	return LL_USART_ReceiveData8(USART2);
-/*
-
-	if (1 == LL_USART_IsActiveFlag_RXNE(USART2))
-	{
-		return LL_USART_ReceiveData8(USART2);
-	}
-	else
-	{
-		return -1;
-	}
-*/
-
 }
 
 
@@ -63,7 +50,7 @@ void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 }
 
 //uint32_t STM32F4Hardware::time()
-unsigned long STM32F4Hardware::time()
+uint32_t STM32F4Hardware::time()
 {
 	uint32_t now;
 

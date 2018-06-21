@@ -78,8 +78,7 @@ void MX_USART2_UART_Init(void)
   GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
   LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  //USART_InitStruct.BaudRate = 57600;
-  USART_InitStruct.BaudRate = 115200;
+  USART_InitStruct.BaudRate = UART_BAUDRATE;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;

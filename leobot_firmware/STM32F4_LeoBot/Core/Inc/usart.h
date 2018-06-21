@@ -63,7 +63,7 @@
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-
+#define UART_BAUDRATE 	(115200)
 /* USER CODE END Private defines */
 
 extern void _Error_Handler(const char *, int);

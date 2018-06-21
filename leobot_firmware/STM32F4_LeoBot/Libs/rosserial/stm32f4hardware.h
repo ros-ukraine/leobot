@@ -30,7 +30,7 @@ public:
 	void write(uint8_t* data, uint32_t length);
 
 	// Returns milliseconds since start of program
-	unsigned long time();
+	uint32_t time();
 
 };
 
