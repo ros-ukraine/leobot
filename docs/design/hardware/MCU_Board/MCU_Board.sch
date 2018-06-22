@@ -32,7 +32,6 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:MCU_Board
-LIBS:MCU_Board-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -79,10 +78,6 @@ F 8 "None" H 5850 3850 50  0001 L BNN "Field8"
 	2    5850 3850
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6200 1100 6950 1100
-Wire Wire Line
-	6200 1200 6950 1200
 Text Label 6250 1100 0    60   ~ 0
 MCU_USART2_TX
 Text Label 6250 1200 0    60   ~ 0
@@ -98,30 +93,10 @@ F 3 "" H 6850 1400 50  0001 C CNN
 	1    6850 1400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6950 1300 6850 1300
-Wire Wire Line
-	6850 1300 6850 1400
 Text Label 900  3250 0    60   ~ 0
 MCU_USART2_RX
 Text Label 3350 3250 0    60   ~ 0
 MCU_USART2_TX
-Wire Wire Line
-	1700 3250 850  3250
-Wire Wire Line
-	3300 3250 4100 3250
-Wire Wire Line
-	1700 3950 1100 3950
-Wire Wire Line
-	3300 3950 3900 3950
-Wire Wire Line
-	3300 3150 3900 3150
-Wire Wire Line
-	1100 3150 1700 3150
-Wire Wire Line
-	1050 3450 1700 3450
-Wire Wire Line
-	3300 3450 3900 3450
 $Comp
 L GNDS #PWR02
 U 1 1 5B004101
@@ -133,10 +108,6 @@ F 3 "" H 1650 5150 50  0001 C CNN
 	1    1650 5150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1700 5050 1650 5050
-Wire Wire Line
-	1650 5050 1650 5150
 $Comp
 L GNDS #PWR03
 U 1 1 5B0041E8
@@ -148,10 +119,6 @@ F 3 "" H 3400 5150 50  0001 C CNN
 	1    3400 5150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3300 5050 3400 5050
-Wire Wire Line
-	3400 5050 3400 5150
 $Comp
 L GNDS #PWR04
 U 1 1 5B004347
@@ -163,10 +130,6 @@ F 3 "" H 4950 5100 50  0001 C CNN
 	1    4950 5100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5050 5050 4950 5050
-Wire Wire Line
-	4950 5050 4950 5100
 $Comp
 L GNDS #PWR06
 U 1 1 5B00470C
@@ -178,22 +141,6 @@ F 3 "" H 6750 5100 50  0001 C CNN
 	1    6750 5100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6750 5100 6750 5050
-Wire Wire Line
-	6750 5050 6650 5050
-Wire Wire Line
-	7300 4950 6650 4950
-Wire Wire Line
-	5050 4950 4400 4950
-Wire Wire Line
-	4350 3750 5050 3750
-Wire Wire Line
-	6650 3750 7300 3750
-Wire Wire Line
-	4350 3550 5050 3550
-Wire Wire Line
-	6650 3550 7300 3550
 Text Label 3350 4250 0    60   ~ 0
 IMU_I2C2_SCL
 $Comp
@@ -213,10 +160,6 @@ Text Label 3750 1150 0    60   ~ 0
 IMU_I2C2_SDA
 Text Label 3750 1250 0    60   ~ 0
 IMU_INT
-Wire Wire Line
-	4450 1150 3700 1150
-Wire Wire Line
-	3700 1250 4450 1250
 $Comp
 L +5V #PWR?
 U 1 1 5B03B7B5
@@ -250,8 +193,6 @@ F 3 "" H 4700 2500 50  0001 C CNN
 	1    4700 2500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4950 2650 5050 2650
 $Comp
 L Conn_01x04 J?
 U 1 1 5B03C5E9
@@ -274,10 +215,6 @@ F 3 "" H 6850 900 50  0001 C CNN
 	1    6850 900 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6950 1000 6850 1000
-Wire Wire Line
-	6850 1000 6850 900 
 $Comp
 L R R?
 U 1 1 5B03CA55
@@ -300,10 +237,6 @@ F 3 "" H 2450 1450 50  0001 C CNN
 	1    2450 1450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2300 1550 2450 1550
-Wire Wire Line
-	2000 1550 1850 1550
 $Comp
 L +5VD #PWR?
 U 1 1 5B03CF12
@@ -315,8 +248,6 @@ F 3 "" H 1850 1450 50  0001 C CNN
 	1    1850 1450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1850 1550 1850 1450
 $Comp
 L Conn_01x04 J?
 U 1 1 5B28D662
@@ -350,10 +281,6 @@ F 3 "" H 10400 950 50  0001 C CNN
 	1    10400 950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9700 1150 10400 1150
-Wire Wire Line
-	9700 1250 10400 1250
 Text Label 9750 1150 0    60   ~ 0
 MU2_ENC_A
 Text Label 9750 1250 0    60   ~ 0
@@ -380,26 +307,12 @@ F 3 "" H 10400 1950 50  0001 C CNN
 	1    10400 1950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10400 1350 10400 1450
-Wire Wire Line
-	10400 1050 10400 950 
-Wire Wire Line
-	10400 2050 10400 1950
-Wire Wire Line
-	10400 2450 10400 2550
 Text Label 9750 2150 0    60   ~ 0
 MU2_DRV_PMW
 Text Label 9750 2250 0    60   ~ 0
-MU2_DRV_DIR
+MU2_DRV_INA
 Text Label 9750 2350 0    60   ~ 0
-MU2_DRV_ENB
-Wire Wire Line
-	10400 2150 9700 2150
-Wire Wire Line
-	9700 2250 10400 2250
-Wire Wire Line
-	9700 2350 10400 2350
+MU2_DRV_INB
 $Comp
 L Conn_01x05 J?
 U 1 1 5B28ED97
@@ -411,14 +324,6 @@ F 3 "" H 10600 2250 50  0001 C CNN
 	1    10600 2250
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	10800 700  10800 2850
-Wire Notes Line
-	10800 2850 9550 2850
-Wire Notes Line
-	9550 2850 9550 700 
-Wire Notes Line
-	9550 700  10800 700 
 Text Notes 9600 800  0    60   ~ 0
 Motor Unit 2
 Text Notes 9650 2000 0    60   ~ 0
@@ -458,10 +363,6 @@ F 3 "" H 10400 3400 50  0001 C CNN
 	1    10400 3400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9700 3600 10400 3600
-Wire Wire Line
-	9700 3700 10400 3700
 Text Label 9750 3600 0    60   ~ 0
 MU4_ENC_A
 Text Label 9750 3700 0    60   ~ 0
@@ -488,26 +389,12 @@ F 3 "" H 10400 4400 50  0001 C CNN
 	1    10400 4400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10400 3800 10400 3900
-Wire Wire Line
-	10400 3500 10400 3400
-Wire Wire Line
-	10400 4500 10400 4400
-Wire Wire Line
-	10400 4900 10400 5000
 Text Label 9750 4600 0    60   ~ 0
 MU4_DRV_PMW
 Text Label 9750 4700 0    60   ~ 0
-MU4_DRV_DIR
+MU4_DRV_INA
 Text Label 9750 4800 0    60   ~ 0
-MU4_DRV_ENB
-Wire Wire Line
-	10400 4600 9700 4600
-Wire Wire Line
-	9700 4700 10400 4700
-Wire Wire Line
-	9700 4800 10400 4800
+MU4_DRV_INB
 $Comp
 L Conn_01x05 J?
 U 1 1 5B292161
@@ -519,14 +406,6 @@ F 3 "" H 10600 4700 50  0001 C CNN
 	1    10600 4700
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	10800 3150 10800 5300
-Wire Notes Line
-	10800 5300 9550 5300
-Wire Notes Line
-	9550 5300 9550 3150
-Wire Notes Line
-	9550 3150 10800 3150
 Text Notes 9600 3250 0    60   ~ 0
 Motor Unit 4
 Text Notes 9650 4450 0    60   ~ 0
@@ -566,10 +445,6 @@ F 3 "" H 8950 950 50  0001 C CNN
 	1    8950 950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8250 1150 8950 1150
-Wire Wire Line
-	8250 1250 8950 1250
 Text Label 8300 1150 0    60   ~ 0
 MU1_ENC_A
 Text Label 8300 1250 0    60   ~ 0
@@ -596,26 +471,12 @@ F 3 "" H 8950 1950 50  0001 C CNN
 	1    8950 1950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8950 1350 8950 1450
-Wire Wire Line
-	8950 1050 8950 950 
-Wire Wire Line
-	8950 2050 8950 1950
-Wire Wire Line
-	8950 2450 8950 2550
 Text Label 8300 2150 0    60   ~ 0
 MU1_DRV_PMW
 Text Label 8300 2250 0    60   ~ 0
-MU1_DRV_DIR
+MU1_DRV_INA
 Text Label 8300 2350 0    60   ~ 0
-MU1_DRV_ENB
-Wire Wire Line
-	8950 2150 8250 2150
-Wire Wire Line
-	8250 2250 8950 2250
-Wire Wire Line
-	8250 2350 8950 2350
+MU1_DRV_INB
 $Comp
 L Conn_01x05 J?
 U 1 1 5B292388
@@ -627,14 +488,6 @@ F 3 "" H 9150 2250 50  0001 C CNN
 	1    9150 2250
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	9350 700  9350 2850
-Wire Notes Line
-	9350 2850 8100 2850
-Wire Notes Line
-	8100 2850 8100 700 
-Wire Notes Line
-	8100 700  9350 700 
 Text Notes 8150 800  0    60   ~ 0
 Motor Unit 1
 Text Notes 8200 2000 0    60   ~ 0
@@ -674,10 +527,6 @@ F 3 "" H 8950 3400 50  0001 C CNN
 	1    8950 3400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8250 3600 8950 3600
-Wire Wire Line
-	8250 3700 8950 3700
 Text Label 8300 3600 0    60   ~ 0
 MU3_ENC_A
 Text Label 8300 3700 0    60   ~ 0
@@ -704,26 +553,12 @@ F 3 "" H 8950 4400 50  0001 C CNN
 	1    8950 4400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8950 3800 8950 3900
-Wire Wire Line
-	8950 3500 8950 3400
-Wire Wire Line
-	8950 4500 8950 4400
-Wire Wire Line
-	8950 4900 8950 5000
 Text Label 8300 4600 0    60   ~ 0
 MU3_DRV_PMW
 Text Label 8300 4700 0    60   ~ 0
-MU3_DRV_DIR
+MU3_DRV_INA
 Text Label 8300 4800 0    60   ~ 0
-MU3_DRV_ENB
-Wire Wire Line
-	8950 4600 8250 4600
-Wire Wire Line
-	8250 4700 8950 4700
-Wire Wire Line
-	8250 4800 8950 4800
+MU3_DRV_INB
 $Comp
 L Conn_01x05 J?
 U 1 1 5B2923C1
@@ -735,14 +570,6 @@ F 3 "" H 9150 4700 50  0001 C CNN
 	1    9150 4700
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	9350 3150 9350 5300
-Wire Notes Line
-	9350 5300 8100 5300
-Wire Notes Line
-	8100 5300 8100 3150
-Wire Notes Line
-	8100 3150 9350 3150
 Text Notes 8150 3250 0    60   ~ 0
 Motor Unit 3
 Text Notes 8200 4450 0    60   ~ 0
@@ -771,10 +598,6 @@ F 3 "" H 4500 2500 50  0001 C CNN
 	1    4500 2500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6650 2850 7150 2850
-Wire Wire Line
-	7150 2850 7150 2500
 $Comp
 L +3V3 #PWR?
 U 1 1 5B293AA9
@@ -786,10 +609,6 @@ F 3 "" H 7150 2500 50  0001 C CNN
 	1    7150 2500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5050 2850 4500 2850
-Wire Wire Line
-	4500 2850 4500 2500
 $Comp
 L +3V3 #PWR?
 U 1 1 5B293C3C
@@ -803,12 +622,6 @@ F 3 "" H 1850 1000 50  0001 C CNN
 $EndComp
 Text Label 1050 4350 0    60   ~ 0
 IMU_I2C2_SCL
-Wire Wire Line
-	3300 4250 4000 4250
-Wire Wire Line
-	1700 4350 1000 4350
-Wire Wire Line
-	2450 1550 2450 1450
 $Comp
 L R R?
 U 1 1 5B295699
@@ -820,14 +633,6 @@ F 3 "" H 2150 1100 50  0001 C CNN
 	1    2150 1100
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2300 1100 2450 1100
-Wire Wire Line
-	2450 1100 2450 1000
-Wire Wire Line
-	1850 1000 1850 1100
-Wire Wire Line
-	1850 1100 2000 1100
 $Comp
 L +5V #PWR?
 U 1 1 5B29586F
@@ -850,8 +655,6 @@ F 3 "" H 3500 2650 50  0001 C CNN
 	1    3500 2650
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	3500 2650 3300 2650
 $Comp
 L GNDS #PWR?
 U 1 1 5B295B47
@@ -863,8 +666,6 @@ F 3 "" H 1500 2650 50  0001 C CNN
 	1    1500 2650
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	1700 2650 1500 2650
 $Comp
 L GNDS #PWR?
 U 1 1 5B295D0B
@@ -887,22 +688,6 @@ F 3 "" H 4950 2650 50  0001 C CNN
 	1    4950 2650
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	6700 2650 6650 2650
-Wire Wire Line
-	6650 2750 6950 2750
-Wire Wire Line
-	6950 2750 6950 2500
-Wire Wire Line
-	5050 2750 4700 2750
-Wire Wire Line
-	4700 2750 4700 2500
-Wire Wire Line
-	4450 850  4450 950 
-Wire Wire Line
-	4450 1350 4450 1400
-Wire Wire Line
-	4450 1050 3700 1050
 Text Label 1150 3950 0    60   ~ 0
 MU1_ENC_A
 Text Label 3350 3950 0    60   ~ 0
@@ -935,4 +720,250 @@ Text Notes 6200 1700 0    60   ~ 0
 To USB-TTL convertor
 Text Notes 4100 1700 0    60   ~ 0
 To IMU board
+Text Label 4350 3850 0    60   ~ 0
+MU1_DRV_INA
+Text Label 6700 3850 0    60   ~ 0
+MU1_DRV_INB
+Text Label 4350 3950 0    60   ~ 0
+MU2_DRV_INA
+Text Label 6700 3950 0    60   ~ 0
+MU2_DRV_INB
+Text Label 4350 4050 0    60   ~ 0
+MU3_DRV_INA
+Text Label 6700 4050 0    60   ~ 0
+MU3_DRV_INB
+Wire Wire Line
+	6200 1100 6950 1100
+Wire Wire Line
+	6200 1200 6950 1200
+Wire Wire Line
+	6950 1300 6850 1300
+Wire Wire Line
+	6850 1300 6850 1400
+Wire Wire Line
+	1700 3250 850  3250
+Wire Wire Line
+	3300 3250 4100 3250
+Wire Wire Line
+	1700 3950 1100 3950
+Wire Wire Line
+	3300 3950 3900 3950
+Wire Wire Line
+	3300 3150 3900 3150
+Wire Wire Line
+	1100 3150 1700 3150
+Wire Wire Line
+	1050 3450 1700 3450
+Wire Wire Line
+	3300 3450 3900 3450
+Wire Wire Line
+	1700 5050 1650 5050
+Wire Wire Line
+	1650 5050 1650 5150
+Wire Wire Line
+	3300 5050 3400 5050
+Wire Wire Line
+	3400 5050 3400 5150
+Wire Wire Line
+	5050 5050 4950 5050
+Wire Wire Line
+	4950 5050 4950 5100
+Wire Wire Line
+	6750 5100 6750 5050
+Wire Wire Line
+	6750 5050 6650 5050
+Wire Wire Line
+	7300 4950 6650 4950
+Wire Wire Line
+	5050 4950 4400 4950
+Wire Wire Line
+	4350 3750 5050 3750
+Wire Wire Line
+	6650 3750 7300 3750
+Wire Wire Line
+	4350 3550 5050 3550
+Wire Wire Line
+	6650 3550 7300 3550
+Wire Wire Line
+	4450 1150 3700 1150
+Wire Wire Line
+	3700 1250 4450 1250
+Wire Wire Line
+	4950 2650 5050 2650
+Wire Wire Line
+	6950 1000 6850 1000
+Wire Wire Line
+	6850 1000 6850 900 
+Wire Wire Line
+	2300 1550 2450 1550
+Wire Wire Line
+	2000 1550 1850 1550
+Wire Wire Line
+	1850 1550 1850 1450
+Wire Wire Line
+	9700 1150 10400 1150
+Wire Wire Line
+	9700 1250 10400 1250
+Wire Wire Line
+	10400 1350 10400 1450
+Wire Wire Line
+	10400 1050 10400 950 
+Wire Wire Line
+	10400 2050 10400 1950
+Wire Wire Line
+	10400 2450 10400 2550
+Wire Wire Line
+	10400 2150 9700 2150
+Wire Wire Line
+	9700 2250 10400 2250
+Wire Wire Line
+	9700 2350 10400 2350
+Wire Notes Line
+	10800 700  10800 2850
+Wire Notes Line
+	10800 2850 9550 2850
+Wire Notes Line
+	9550 2850 9550 700 
+Wire Notes Line
+	9550 700  10800 700 
+Wire Wire Line
+	9700 3600 10400 3600
+Wire Wire Line
+	9700 3700 10400 3700
+Wire Wire Line
+	10400 3800 10400 3900
+Wire Wire Line
+	10400 3500 10400 3400
+Wire Wire Line
+	10400 4500 10400 4400
+Wire Wire Line
+	10400 4900 10400 5000
+Wire Wire Line
+	10400 4600 9700 4600
+Wire Wire Line
+	9700 4700 10400 4700
+Wire Wire Line
+	9700 4800 10400 4800
+Wire Notes Line
+	10800 3150 10800 5300
+Wire Notes Line
+	10800 5300 9550 5300
+Wire Notes Line
+	9550 5300 9550 3150
+Wire Notes Line
+	9550 3150 10800 3150
+Wire Wire Line
+	8250 1150 8950 1150
+Wire Wire Line
+	8250 1250 8950 1250
+Wire Wire Line
+	8950 1350 8950 1450
+Wire Wire Line
+	8950 1050 8950 950 
+Wire Wire Line
+	8950 2050 8950 1950
+Wire Wire Line
+	8950 2450 8950 2550
+Wire Wire Line
+	8950 2150 8250 2150
+Wire Wire Line
+	8250 2250 8950 2250
+Wire Wire Line
+	8250 2350 8950 2350
+Wire Notes Line
+	9350 700  9350 2850
+Wire Notes Line
+	9350 2850 8100 2850
+Wire Notes Line
+	8100 2850 8100 700 
+Wire Notes Line
+	8100 700  9350 700 
+Wire Wire Line
+	8250 3600 8950 3600
+Wire Wire Line
+	8250 3700 8950 3700
+Wire Wire Line
+	8950 3800 8950 3900
+Wire Wire Line
+	8950 3500 8950 3400
+Wire Wire Line
+	8950 4500 8950 4400
+Wire Wire Line
+	8950 4900 8950 5000
+Wire Wire Line
+	8950 4600 8250 4600
+Wire Wire Line
+	8250 4700 8950 4700
+Wire Wire Line
+	8250 4800 8950 4800
+Wire Notes Line
+	9350 3150 9350 5300
+Wire Notes Line
+	9350 5300 8100 5300
+Wire Notes Line
+	8100 5300 8100 3150
+Wire Notes Line
+	8100 3150 9350 3150
+Wire Wire Line
+	6650 2850 7150 2850
+Wire Wire Line
+	7150 2850 7150 2500
+Wire Wire Line
+	5050 2850 4500 2850
+Wire Wire Line
+	4500 2850 4500 2500
+Wire Wire Line
+	3300 4250 4000 4250
+Wire Wire Line
+	1700 4350 1000 4350
+Wire Wire Line
+	2450 1550 2450 1450
+Wire Wire Line
+	2300 1100 2450 1100
+Wire Wire Line
+	2450 1100 2450 1000
+Wire Wire Line
+	1850 1000 1850 1100
+Wire Wire Line
+	1850 1100 2000 1100
+Wire Wire Line
+	3500 2650 3300 2650
+Wire Wire Line
+	1700 2650 1500 2650
+Wire Wire Line
+	6700 2650 6650 2650
+Wire Wire Line
+	6650 2750 6950 2750
+Wire Wire Line
+	6950 2750 6950 2500
+Wire Wire Line
+	5050 2750 4700 2750
+Wire Wire Line
+	4700 2750 4700 2500
+Wire Wire Line
+	4450 850  4450 950 
+Wire Wire Line
+	4450 1350 4450 1400
+Wire Wire Line
+	4450 1050 3700 1050
+Wire Wire Line
+	6650 3850 7300 3850
+Wire Wire Line
+	5050 3850 4350 3850
+Wire Wire Line
+	6650 3950 7300 3950
+Wire Wire Line
+	4350 3950 5050 3950
+Wire Wire Line
+	5050 4050 4350 4050
+Wire Wire Line
+	6650 4050 7300 4050
+Text Label 4350 4150 0    60   ~ 0
+MU4_DRV_INA
+Text Label 6700 4150 0    60   ~ 0
+MU4_DRV_INB
+Wire Wire Line
+	4350 4150 5050 4150
+Wire Wire Line
+	6650 4150 7300 4150
 $EndSCHEMATC
