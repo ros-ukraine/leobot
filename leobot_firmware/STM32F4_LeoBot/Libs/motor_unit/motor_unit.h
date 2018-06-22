@@ -11,6 +11,8 @@
 #include "stm32f4xx.h"
 //#include "stm32f4xx_tim.h"
 
+//
+
 typedef enum motorUnit_num
 {
 	M_UNIT_1,
@@ -25,6 +27,15 @@ typedef enum Direction
 	BACK
 }
 Direction;
+
+class MotorUnit
+{
+	MotorUnit();
+	virtual void move(uint32 direction, uint32 speed) = 0;
+	virtual uint32 getEncoderValue() = 0;
+};
+
+
 
 void motorUnit_MotorInit(motorUnit_num motorUnitNumber);
 void motorUnit_MotorEnable(motorUnit_num motorUnitNumber);
