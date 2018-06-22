@@ -7,176 +7,127 @@
 
 #include "motor_unit.h"
 
-
-void motorUnit_MotorInit(motorUnit_num motorUnitNumber)
+extern "C"
 {
-	static uint32_t initiated = 0;
+	#include "stm32f4xx_hal.h"
+	#include "tim.h"
+	#include "gpio.h"
+}
 
-	//static const uint32_t presscaller = 8400; //10 hz
-	//static const uint32_t presscaller = 840; //100 hz
-	static const uint32_t presscaller = 168; //500 hz
-	//static const uint32_t presscaller = 84; //1000 hz
-	//static const uint32_t presscaller = 42; //2000 hz
-	static const uint32_t period = 1000;
-	static const uint32_t frequency = 500;//500;
+  //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+  //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2); m2
+  //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3); m3
+  //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4); m4
 
-	/*GPIO_InitTypeDef GPIO_InitStruct;
-	//TIM_TimeBaseInitTypeDef TIM_TimeBase_InitStruct;
-	//TIM_OCInitTypeDef TIM_OCStruct;
+/*
+  LL_TIM_OC_SetCompareCH1(TIM4,512);
+  LL_TIM_OC_SetCompareCH2(TIM4,128);
+  LL_TIM_OC_SetCompareCH3(TIM4,64);
+  LL_TIM_OC_SetCompareCH4(TIM4,32);
+*/
+
+/* TO-Do: separate GPIO pins for each peripheral */
+
+MotorUnit_1::MotorUnit_1()
+{
+	/* Init Timer for PWM mode */
+	MX_TIM4_Init();
+
+	/* Init Timer for Encoder mode */
+	 MX_TIM1_Init();
+	 LL_TIM_EnableCounter(TIM1);
+
+	/* Init  GPIO */
+	 MX_GPIO_Init();
+}
+
+void MotorUnit_1::motorEnable()
+{
+	LL_TIM_EnableCounter(TIM4);
+
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+}
 
 
-	TIM_OCStruct.TIM_OCMode = TIM_OCMode_PWM2;
-	TIM_OCStruct.TIM_OutputState = TIM_OutputState_Enable;
-	TIM_OCStruct.TIM_OCPolarity = TIM_OCPolarity_Low;
+void MotorUnit_1::motorDisable()
+{
+	LL_TIM_DisableCounter(TIM4);
 
-	if (initiated == 0)
-	{
-		 Enable Clock for GPIO
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
+	LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+}
 
-		 Enable Clock for Timer
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+MotorUnit_2::MotorUnit_2()
+{
+	/* Init Timer for PWM mode */
+	MX_TIM4_Init();
 
-		TIM_TimeBaseStructInit(&TIM_TimeBase_InitStruct);
+	/* Init Timer for Encoder mode */
+	MX_TIM2_Init();
+	LL_TIM_EnableCounter(TIM2);
 
-		TIM_TimeBase_InitStruct.TIM_Prescaler = presscaller - 1;
-		TIM_TimeBase_InitStruct.TIM_ClockDivision = TIM_CKD_DIV1;
-		TIM_TimeBase_InitStruct.TIM_Period = period;
-		TIM_TimeBase_InitStruct.TIM_RepetitionCounter = 0;
-		TIM_TimeBase_InitStruct.TIM_CounterMode = TIM_CounterMode_Up;
-		TIM_TimeBaseInit(TIM4, &TIM_TimeBase_InitStruct);
+	/* Init  GPIO */
+    MX_GPIO_Init();
+}
+
+MotorUnit_3::MotorUnit_3()
+{
+	/* Init Timer for PWM mode */
+	MX_TIM4_Init();
+
+	/* Init Timer for Encoder mode */
+	MX_TIM3_Init();
+	LL_TIM_EnableCounter(TIM3);
+
+	/* Init  GPIO */
+    MX_GPIO_Init();
+}
+
+MotorUnit_4::MotorUnit_4()
+{
+	/* Init Timer for PWM mode */
+	MX_TIM4_Init();
+
+	/* Init Timer for Encoder mode */
+	MX_TIM8_Init();
+	LL_TIM_EnableCounter(TIM8);
+
+	/* Init  GPIO */
+    MX_GPIO_Init();
+}
 
 
-		TIM_OCStructInit(&TIM_OCStruct);
-		TIM_Cmd(TIM4, ENABLE);
 
-		initiated = 1;
-	}*/
-
-/*	switch(motorUnitNumber)
-	{
-	case M_UNIT_1:
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
-		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
-		GPIO_PinAFConfig(GPIOD,GPIO_PinSource12, GPIO_AF_TIM4);
-
-		TIM_OCStruct.TIM_OCMode = TIM_OCMode_PWM1;
-		TIM_OCStruct.TIM_OutputState = TIM_OutputState_Enable;
-		TIM_OCStruct.TIM_Pulse = frequency;
-		TIM_OCStruct.TIM_OCPolarity = TIM_OCPolarity_High;
-
-		break;
-
-	case M_UNIT_2:
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;
-		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
-		GPIO_PinAFConfig(GPIOD,GPIO_PinSource13, GPIO_AF_TIM4);
-		break;
-
-	case M_UNIT_3:
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_14;
-		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
-		GPIO_PinAFConfig(GPIOD,GPIO_PinSource14, GPIO_AF_TIM4);
-		break;
-
-	case M_UNIT_4:
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
-		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-		GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
-		GPIO_PinAFConfig(GPIOD,GPIO_PinSource15, GPIO_AF_TIM4);
-		break;
-
-	default:
-		break;
-	}*/
-
+void MotorUnit_1::encoderInit()
+{
 
 }
 
-void motorUnit_MotorMove(motorUnit_num motorUnitNumber, Direction dir, uint16_t speed)
+uint32_t MotorUnit_1::encoderRead()
 {
-/*	TIM_OCInitTypeDef TIM_OCStruct;
+	 //volatile uint32_t currentEncoderVal;
+	  //volatile uint32_t previousEncoderVal;
+	  //volatile uint32_t direction; //dir
+	  //x4
 
-	TIM_OCStruct.TIM_OCMode = TIM_OCMode_PWM2;
-	TIM_OCStruct.TIM_OutputState = TIM_OutputState_Enable;
-	TIM_OCStruct.TIM_OCPolarity = TIM_OCPolarity_Low;*/
 
+	/*currentEncoderVal = LL_TIM_GetCounter(TIM8);
+		  // LL_TIM_COUNTERMODE_UP
+		  // LL_TIM_COUNTERMODE_DOWN
+		  direction = LL_TIM_GetCounterMode(TIM8); // 16 or 0
 
-	/* duty cycle controls motor speed*/
-//	2099; /* 25% duty cycle */
-//	4199; /* 50% duty cycle */
-//	6299; /* 75% duty cycle */
-//	8399; /* 100% duty cycle */
+		  //HAL_Delay(500);
 
-	/* add function to calculate duty cycle from percent value */
+		  rotationSpeed = ((currentEncoderVal - previousEncoderVal)/RESOLUTION) * 50;
 
-/*	switch(motorUnitNumber)
-	{
-	case M_UNIT_1:
-		TIM_OCStruct.TIM_Pulse = speed;
-		TIM_OC1Init(TIM4, &TIM_OCStruct);
-		TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
-		break;
+		  previousEncoderVal = currentEncoderVal;
 
-	case M_UNIT_2:
-		TIM_OCStruct.TIM_Pulse = speed;
-		TIM_OC2Init(TIM4, &TIM_OCStruct);
-		TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
-		break;
+		  HAL_Delay(50); //50 ms*/
 
-	case M_UNIT_3:
-		TIM_OCStruct.TIM_Pulse = speed;
-		TIM_OC3Init(TIM4, &TIM_OCStruct);
-		TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
-		break;
-
-	case M_UNIT_4:
-		TIM_OCStruct.TIM_Pulse = speed;
-		TIM_OC4Init(TIM4, &TIM_OCStruct);
-		TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
-		break;
-
-	default:
-		break;
-	}*/
-
+	return 1000; //debug
 }
 
-void motorUnit_EncoderInit(motorUnit_num motorUnitNumber)
-{
-	switch(motorUnitNumber)
-	{
-	case M_UNIT_1:
-		break;
 
-	case M_UNIT_2:
-		break;
 
-	case M_UNIT_3:
-		break;
-
-	case M_UNIT_4:
-		break;
-
-	default:
-		break;
-	}
-}
 
 
 

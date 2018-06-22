@@ -54,14 +54,14 @@ uint32_t STM32F4Hardware::time()
 {
 	uint32_t now;
 
-	//return (uint32_t) xTaskGetTickCount();
-	//EnterCritical();
+	return (uint32_t) xTaskGetTickCount();
+/*	//EnterCritical();
 	__disable_irq();
 	//return HAL_GetTick();
 	now = HAL_GetTick();
 	__enable_irq();
 		//ExitCritical();
-	return now;
+	return now;*/
 }
 
 

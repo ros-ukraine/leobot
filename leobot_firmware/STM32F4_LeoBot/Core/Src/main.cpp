@@ -53,16 +53,21 @@ extern "C"
 	#include "main.h"
 	#include "stm32f4xx_hal.h"
 	#include "cmsis_os.h"
-	#include "i2c.h"
-	#include "tim.h"
 	#include "gpio.h"
-
+	#include "i2c.h"
 }
 
 /* rosserial includes */
 #include "ros.h"
 #include "std_msgs/UInt16.h"
-#include "std_msgs/String.h"
+//#include "std_msgs/String.h"
+
+
+#include "../../App/Inc/spin_task.h"
+#include "../../App/Inc/publish_task.h"
+
+
+
 
 //http://blablacode.ru/mikrokontrollery/450
 
@@ -91,16 +96,6 @@ extern "C"
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
-#ifdef __GNUC__
-/* With GCC, small printf (option LD Linker->Libraries->Small printf
-   set to 'Yes') calls __io_putchar() */
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
-
 
 #ifdef __cplusplus
 }
@@ -114,28 +109,20 @@ void MX_FREERTOS_Init(void);
 
  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
- std_msgs::String str_msg;
- ros::Publisher chatter("chatter", &str_msg);
- char hello[13] = "hello world!";
+ //std_msgs::String str_msg;
+ //ros::Publisher chatter("chatter", &str_msg);
+ //char hello[13] = "hello world!";
 
  void motor_cb(const std_msgs::UInt16& cmd_msg)
   {
   	//cmd_msg.data should be in range 0 - 100
 
- 	 str_msg.data = hello;
- 	 chatter.publish( &str_msg );
+ 	 //str_msg.data = hello;
+ 	 //chatter.publish( &str_msg );
 
   }
 
-void *TaskSpin(void *param)
-{
-	for(;;)
-	{
-		//nh.spinOnce();
 
-		vTaskDelay(500);
-	}
-}
 /* USER CODE END 0 */
 
 /**
@@ -153,26 +140,12 @@ volatile uint32_t rotationSpeed; //RPM
 #define RESOLUTION (480)
 
 
-#ifdef __cplusplus
- extern "C" {
-#endif
-
-//int __io_putchar(int ch)
- PUTCHAR_PROTOTYPE
- {
-  ITM_SendChar(ch);
-  return ch;
-}
-
-#ifdef __cplusplus
-}
-#endif
-
-
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+#ifdef DEBUG
+	  printf("hello!\r\n");
+#endif
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -192,96 +165,53 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+
+
   MX_GPIO_Init();
-  MX_TIM1_Init();
-  MX_TIM2_Init();
-  MX_TIM3_Init();
-  MX_TIM8_Init();
-  MX_TIM4_Init();
-  //MX_USART2_UART_Init(); /* initialized in rosserial */
   MX_I2C2_Init();
 
 
-  LL_TIM_EnableCounter(TIM1);
-  LL_TIM_EnableCounter(TIM2);
-  LL_TIM_EnableCounter(TIM3);
-
-  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-  LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
-
-  LL_TIM_EnableCounter(TIM4); // pwm
-  LL_TIM_EnableCounter(TIM8); //enable timer 8
-
-  LL_TIM_OC_SetCompareCH1(TIM4,512);
-  LL_TIM_OC_SetCompareCH2(TIM4,128);
-  LL_TIM_OC_SetCompareCH3(TIM4,64);
-  LL_TIM_OC_SetCompareCH4(TIM4,32);
-
   nh.initNode();
-  nh.subscribe(sub);
-  nh.advertise(chatter);
+  //nh.subscribe(sub);
+  //nh.advertise(chatter);
 
+  //str_msg.data = hello;
+  //chatter.publish( &str_msg );
 
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
   //MX_FREERTOS_Init();
 
+  if(spinTaskCreate(&nh))
+  {
+	  while(1);
+	  // error;
+  }
+
+  if(publishTaskCreate(&nh))
+   {
+ 	  while(1);
+ 	  // error;
+   }
+
 
   /* Start scheduler */
-  //osKernelStart();
+  osKernelStart();
   
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  //debug.init();
-
-  //volatile uint32_t currentEncoderVal;
-  //volatile uint32_t previousEncoderVal;
-
-
-  //volatile uint32_t direction; //dir
-  //x4
-
-
-
   while (1)
   {
-#ifdef DEBUG
-	  printf("hello!\r\n");
-#endif
-	  //ITM_SendChar('A');
-	  //ITM_SendChar('\r');
-	  //ITM_SendChar('\n');
-
-	  HAL_Delay(500);
-
-	  /*currentEncoderVal = LL_TIM_GetCounter(TIM8);
-	  // LL_TIM_COUNTERMODE_UP
-	  // LL_TIM_COUNTERMODE_DOWN
-	  direction = LL_TIM_GetCounterMode(TIM8); // 16 or 0
-
-	  //HAL_Delay(500);
-
-	  rotationSpeed = ((currentEncoderVal - previousEncoderVal)/RESOLUTION) * 50;
-
-	  previousEncoderVal = currentEncoderVal;
-
-	  HAL_Delay(50); //50 ms*/
-
 	  //str_msg.data = hello;
 	  //chatter.publish( &str_msg );
-
 	  //nh.spinOnce();
 
-
+	  //HAL_Delay(100);
 	  //vTaskDelay(100);
-
-
   }
 
 }

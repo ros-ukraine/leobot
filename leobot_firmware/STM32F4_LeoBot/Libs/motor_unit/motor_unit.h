@@ -8,8 +8,8 @@
 #ifndef MOTOR_UNIT_MOTOR_UNIT_H_
 #define MOTOR_UNIT_MOTOR_UNIT_H_
 
-#include "stm32f4xx.h"
-//#include "stm32f4xx_tim.h"
+
+#include <stdint.h>
 
 //
 
@@ -30,21 +30,64 @@ Direction;
 
 class MotorUnit
 {
+public:
 	MotorUnit();
-	virtual void move(uint32 direction, uint32 speed) = 0;
-	virtual uint32 getEncoderValue() = 0;
+	virtual void motorInit() = 0;
+	virtual void motorEnable() = 0;
+	virtual void motorDisable() = 0;
+	virtual void move(uint32_t direction, uint32_t speed) = 0;
+
+	virtual void encoderInit() = 0;
+	virtual void encoderEnable() = 0;
+	virtual void encoderDisable() = 0;
+	virtual uint32_t encoderRead() = 0;
+};
+
+class MotorUnit_1: MotorUnit
+{
+
+	/*{
+		 Init PWM
+		 Init Encoder
+	}*/
+public:
+	MotorUnit_1();
+	void motorInit();
+	void motorEnable();
+	void motorDisable();
+	void move(uint32_t direction, uint32_t speed);
+
+	void encoderInit();
+	void encoderEnable();
+	void encoderDisable();
+	uint32_t encoderRead();
+
+
 };
 
 
+class MotorUnit_2: MotorUnit
+{
+	MotorUnit_2();
 
-void motorUnit_MotorInit(motorUnit_num motorUnitNumber);
-void motorUnit_MotorEnable(motorUnit_num motorUnitNumber);
-void motorUnit_MotorDisable(motorUnit_num motorUnitNumber);
-void motorUnit_MotorStop(motorUnit_num motorUnitNumber);
-void motorUnit_MotorMove(motorUnit_num motorUnitNumber, Direction dir, uint16_t speed);
 
-void motorUnit_EncoderInit(motorUnit_num motorUnitNumber);
-uint16_t motorUnit_EncoderGetValue(motorUnit_num motorUnitNumber);
+};
+
+class MotorUnit_3: MotorUnit
+{
+	MotorUnit_3();
+
+
+};
+
+class MotorUnit_4: MotorUnit
+{
+	MotorUnit_4();
+
+
+};
+
+
 
 #endif /* MOTOR_UNIT_MOTOR_UNIT_H_ */
 
