@@ -12,7 +12,14 @@ extern "C"
 	#include "stm32f4xx_hal.h"
 	#include "tim.h"
 	#include "gpio.h"
+
+	#include "motor_unit_hal.h"
 }
+
+
+
+
+//
 
   //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
   //LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2); m2
@@ -34,11 +41,13 @@ MotorUnit_1::MotorUnit_1()
 	MX_TIM4_Init();
 
 	/* Init Timer for Encoder mode */
-	 MX_TIM1_Init();
-	 LL_TIM_EnableCounter(TIM1);
+	 //MX_TIM1_Init();
+	//Encoder_Timer_1_Init();
+
+	//LL_TIM_EnableCounter(TIM1);
 
 	/* Init  GPIO */
-	 MX_GPIO_Init();
+	ControlPins_GPIO_1_Init();
 }
 
 void MotorUnit_1::motorEnable()
@@ -56,6 +65,22 @@ void MotorUnit_1::motorDisable()
 	LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH1);
 }
 
+
+void MotorUnit_1::move(uint32_t direction, uint32_t speed)
+{
+	if (direction)
+	{
+		MU1_DRV_INA_SetHigh();
+		MU1_DRV_INB_SetLow();
+	}
+	else
+	{
+		MU1_DRV_INA_SetLow();
+		MU1_DRV_INB_SetHigh();
+	}
+}
+
+
 MotorUnit_2::MotorUnit_2()
 {
 	/* Init Timer for PWM mode */
@@ -66,7 +91,7 @@ MotorUnit_2::MotorUnit_2()
 	LL_TIM_EnableCounter(TIM2);
 
 	/* Init  GPIO */
-    MX_GPIO_Init();
+	ControlPins_GPIO_2_Init();
 }
 
 MotorUnit_3::MotorUnit_3()
@@ -79,7 +104,7 @@ MotorUnit_3::MotorUnit_3()
 	LL_TIM_EnableCounter(TIM3);
 
 	/* Init  GPIO */
-    MX_GPIO_Init();
+	ControlPins_GPIO_3_Init();
 }
 
 MotorUnit_4::MotorUnit_4()
@@ -92,7 +117,7 @@ MotorUnit_4::MotorUnit_4()
 	LL_TIM_EnableCounter(TIM8);
 
 	/* Init  GPIO */
-    MX_GPIO_Init();
+	ControlPins_GPIO_4_Init();
 }
 
 
