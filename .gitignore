@@ -85,3 +85,5 @@ qtcreator-*
 # FreeCAD backup files
 *.fcstd1
 /leobot_firmware/.metadata
+/leobot_firmware/STM32F4_LeoBot/Debug/Core
+/leobot_firmware/STM32F4_LeoBot/Debug
