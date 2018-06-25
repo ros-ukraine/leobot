@@ -113,6 +113,8 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Libs/rosserial"/>
+									<listOptionValue builtIn="false" value="../Libs/Motor_Unit"/>
+									<listOptionValue builtIn="false" value="../Libs/Motor_Unit/hardware"/>
 									<listOptionValue builtIn="false" value="../App/Inc"/>
 									<listOptionValue builtIn="false" value="../App/Src"/>
 								</option>
@@ -224,12 +226,58 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Libs/rosserial"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit"/>
 								</option>
 								<inputType id="com.atollic.truestudio.gpp.input.427767845" superClass="com.atollic.truestudio.gpp.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.ldcc.1695887914" name="C++ Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ldcc.428260"/>
 							<tool id="com.atollic.truestudio.ar.base.1251280130" name="Archiver" superClass="com.atollic.truestudio.ar.base.581790904"/>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.secoutput.1440879985" name="Other" superClass="com.atollic.truestudio.exe.debug.toolchain.secoutput.839033486"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.atollic.truestudio.exe.debug.1518366166.1555263783" name="/" resourcePath="Libs/motor_unit">
+						<toolChain id="com.atollic.truestudio.exe.debug.toolchain.424724098" name="Atollic ARM Tools" superClass="com.atollic.truestudio.exe.debug.toolchain" unusedChildren="">
+							<option id="com.atollic.truestudio.general.runtimelib.1590311951.436536839.1418095286" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib.1590311951.436536839"/>
+							<option id="com.atollic.truestudio.toolchain_options.mcu.3632876.144930810.1676470403" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu.3632876.144930810"/>
+							<option id="com.atollic.truestudio.toolchain_options.vendor.1594609669.581550765.694958812" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor.1594609669.581550765"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.as.299840967" name="Assembler" superClass="com.atollic.truestudio.exe.debug.toolchain.as.865594382">
+								<inputType id="com.atollic.truestudio.as.input.1461417003" name="Input" superClass="com.atollic.truestudio.as.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.gcc.2043566275" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.981534317">
+								<option id="com.atollic.truestudio.gcc.directories.select.471707207" superClass="com.atollic.truestudio.gcc.directories.select" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="../Core/Inc"/>
+									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc"/>
+									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
+									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
+									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit/hardware"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gcc.input.814904947" superClass="com.atollic.truestudio.gcc.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.ld.1833666780" name="C Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ld.2082483659"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.gpp.1567448880" name="C++ Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp.950437196">
+								<option id="com.atollic.truestudio.gpp.directories.select.1113103465" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="../Core/Inc"/>
+									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
+									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc"/>
+									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
+									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
+									<listOptionValue builtIn="false" value="../Libs/rosserial"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit/hardware"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gpp.input.1806294677" superClass="com.atollic.truestudio.gpp.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.ldcc.633880617" name="C++ Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ldcc.1695887914"/>
+							<tool id="com.atollic.truestudio.ar.base.261916840" name="Archiver" superClass="com.atollic.truestudio.ar.base.1251280130"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.secoutput.1632434129" name="Other" superClass="com.atollic.truestudio.exe.debug.toolchain.secoutput.1440879985"/>
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="com.atollic.truestudio.exe.debug.311825581.983937533" name="" rcbsApplicability="disable" resourcePath="nofile" toolsToInvoke="com.atollic.truestudio.exe.debug.toolchain.gcc.1836874447.1976695455">

@@ -55,6 +55,8 @@ extern "C"
 	#include "cmsis_os.h"
 	#include "gpio.h"
 	#include "i2c.h"
+
+    #include "tim.h"
 }
 
 /* rosserial includes */
@@ -66,22 +68,6 @@ extern "C"
 #include "../../App/Inc/spin_task.h"
 #include "../../App/Inc/publish_task.h"
 
-
-
-
-//http://blablacode.ru/mikrokontrollery/450
-
-//https://stm32f4-discovery.net/2014/10/use-printf-output-stream-stm32f4/
-
-//#include "stm32f4hardware.h"
-
-//STM32F4Hardware debug;
-
-// https://stackoverflow.com/questions/35288808/first-project-for-stm32-with-hal-in-c/35334043
-
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 #ifdef __cplusplus
@@ -139,6 +125,7 @@ volatile uint32_t direction; //dir
 volatile uint32_t rotationSpeed; //RPM
 #define RESOLUTION (480)
 
+#include "../../Libs/motor_unit/motor_unit.h"
 
 int main(void)
 {
@@ -167,11 +154,49 @@ int main(void)
   /* Initialize all configured peripherals */
 
 
-  MX_GPIO_Init();
+  //MX_GPIO_Init();
   MX_I2C2_Init();
 
+/* this code only for debug */
+
+  MotorUnit_1 mu1;
+  MotorUnit_2 mu2;
+  MotorUnit_3 mu3;
+  MotorUnit_4 mu4;
+
+  mu1.motorInit();
+  mu2.motorInit();
+  mu3.motorInit();
+  mu4.motorInit();
+
+  while(1)
+  {
+
+	  mu1.move(FORWARD, 512);
+	  mu2.move(FORWARD, 256);
+	  mu3.move(FORWARD, 128);
+	  mu4.move(FORWARD, 64);
+
+	  HAL_Delay(50);
+
+	  mu1.move(BACK, 0);
+	  mu2.move(BACK, 0);
+	  mu3.move(BACK, 0);
+	  mu4.move(BACK, 0);
+
+	  HAL_Delay(50);
+  }
+/* end of debug code */
 
   nh.initNode();
+
+
+
+  //m1.move(1,2);
+
+  //m1.move(1, 10);
+
+
   //nh.subscribe(sub);
   //nh.advertise(chatter);
 
