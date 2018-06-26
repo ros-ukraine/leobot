@@ -21,14 +21,10 @@ class MotorUnit
 {
 public:
 	virtual void motorInit() = 0;
-//	virtual void motorEnable() = 0;
-//	virtual void motorDisable() = 0;
 	virtual void move(Direction direction, uint32_t speed) = 0;
-//
-//	virtual void encoderInit() = 0;
-//	virtual void encoderEnable() = 0;
-//	virtual void encoderDisable() = 0;
-//	virtual uint32_t encoderRead() = 0;
+
+    virtual void encoderInit() = 0;
+	//virtual uint32_t encoderRead() = 0;
 };
 
 class MotorUnit_1:  public MotorUnit
@@ -36,14 +32,9 @@ class MotorUnit_1:  public MotorUnit
 
 public:
 	void motorInit();
-//	void motorEnable();
-//	void motorDisable();
-	//void move(uint32_t direction, uint32_t speed);
 	void move(Direction direction, uint32_t speed);
 
-	//void encoderInit();
-	//void encoderEnable();
-	//void encoderDisable();
+	void encoderInit();
 	//uint32_t encoderRead();
 };
 
@@ -53,6 +44,8 @@ class MotorUnit_2: public MotorUnit
 public:
 	void motorInit();
 	void move(Direction direction, uint32_t speed);
+
+	void encoderInit();
 };
 
 class MotorUnit_3: public MotorUnit
@@ -60,6 +53,8 @@ class MotorUnit_3: public MotorUnit
 public:
 	void motorInit();
 	void move(Direction direction, uint32_t speed);
+
+	void encoderInit();
 };
 
 class MotorUnit_4: public MotorUnit
@@ -67,6 +62,8 @@ class MotorUnit_4: public MotorUnit
 public:
 	void motorInit();
 	void move(Direction direction, uint32_t speed);
+
+	void encoderInit();
 };
 
 

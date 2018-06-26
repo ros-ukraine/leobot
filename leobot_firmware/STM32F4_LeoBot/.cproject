@@ -56,6 +56,7 @@
 									<listOptionValue builtIn="false" value="STM32F407xx"/>
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
 									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
+									<listOptionValue builtIn="false" value="NDEBUG"/>
 								</option>
 								<option id="com.atollic.truestudio.common_options.target.endianess.1854274048" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.endianess.little" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.mcpu.191909026" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" useByScannerDiscovery="false" value="STM32F407VG" valueType="enumerated"/>
@@ -90,6 +91,7 @@
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.gpp.981298185" name="C++ Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp">
 								<option id="com.atollic.truestudio.gpp.symbols.defined.1619552487" name="Defined symbols" superClass="com.atollic.truestudio.gpp.symbols.defined" useByScannerDiscovery="false" valueType="stringList">
 									<listOptionValue builtIn="false" value="STM32F407xx"/>
+									<listOptionValue builtIn="false" value="NDEBUG"/>
 									<listOptionValue builtIn="false" value="__packed=__attribute__((__packed__))"/>
 									<listOptionValue builtIn="false" value="__weak=__attribute__((weak))"/>
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>
@@ -240,11 +242,12 @@
 							<option id="com.atollic.truestudio.general.runtimelib.1590311951.436536839.1418095286" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib.1590311951.436536839"/>
 							<option id="com.atollic.truestudio.toolchain_options.mcu.3632876.144930810.1676470403" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu.3632876.144930810"/>
 							<option id="com.atollic.truestudio.toolchain_options.vendor.1594609669.581550765.694958812" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor.1594609669.581550765"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.exe.debug.toolchain.platform" isAbstract="false" name="Debug platform" osList="all" superClass="com.atollic.truestudio.exe.debug.toolchain.platform"/>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.as.299840967" name="Assembler" superClass="com.atollic.truestudio.exe.debug.toolchain.as.865594382">
 								<inputType id="com.atollic.truestudio.as.input.1461417003" name="Input" superClass="com.atollic.truestudio.as.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.gcc.2043566275" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.981534317">
-								<option id="com.atollic.truestudio.gcc.directories.select.471707207" superClass="com.atollic.truestudio.gcc.directories.select" useByScannerDiscovery="false" valueType="includePath">
+								<option id="com.atollic.truestudio.gcc.directories.select.471707207" name="Include path" superClass="com.atollic.truestudio.gcc.directories.select" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
@@ -260,7 +263,7 @@
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.ld.1833666780" name="C Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ld.2082483659"/>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.gpp.1567448880" name="C++ Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp.950437196">
-								<option id="com.atollic.truestudio.gpp.directories.select.1113103465" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
+								<option id="com.atollic.truestudio.gpp.directories.select.1113103465" name="Include path" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>

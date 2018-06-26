@@ -15,15 +15,16 @@ extern "C"
 
 void MotorUnit_1::motorInit()
 {
-	/* Init Timer for PWM mode */
-	MX_TIM4_Init();
-
-	LL_TIM_EnableCounter(TIM4);
-
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+	PMW_Timer_Init();
+//	/* Init Timer for PWM mode */
+//	MX_TIM4_Init();
+//
+//	LL_TIM_EnableCounter(TIM4);
+//
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
 
 	/* Init  GPIO */
 	ControlPins_GPIO_1_Init();
@@ -31,24 +32,20 @@ void MotorUnit_1::motorInit()
 	/* Motor is disabled at start */
 	MU1_DRV_INA_SetLow();
 	MU1_DRV_INB_SetLow();
-
-	/* Init Timer for Encoder mode */
-    //MX_TIM1_Init();
-	//Encoder_Timer_1_Init();
-	//LL_TIM_EnableCounter(TIM1);
 }
 
 void MotorUnit_2::motorInit()
 {
-	/* Init Timer for PWM mode */
-	MX_TIM4_Init();
-
-	LL_TIM_EnableCounter(TIM4);
-
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-    LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+	PMW_Timer_Init();
+//	/* Init Timer for PWM mode */
+//	MX_TIM4_Init();
+//
+//	LL_TIM_EnableCounter(TIM4);
+//
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+//    LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
 
 	/* Init  GPIO */
 	ControlPins_GPIO_2_Init();
@@ -60,13 +57,14 @@ void MotorUnit_2::motorInit()
 
 void MotorUnit_3::motorInit()
 {
-	/* Init Timer for PWM mode */
-	MX_TIM4_Init();
-	LL_TIM_EnableCounter(TIM4);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+	PMW_Timer_Init();
+//	/* Init Timer for PWM mode */
+//	MX_TIM4_Init();
+//	LL_TIM_EnableCounter(TIM4);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
 
 	/* Init  GPIO */
 	ControlPins_GPIO_3_Init();
@@ -78,15 +76,17 @@ void MotorUnit_3::motorInit()
 
 void MotorUnit_4::motorInit()
 {
-	/* Init Timer for PWM mode */
-	MX_TIM4_Init();
-	LL_TIM_EnableCounter(TIM4);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+	PMW_Timer_Init();
 
-	/* Init  GPIO */
+//	/* Init Timer for PWM mode */
+//	MX_TIM4_Init();
+//	LL_TIM_EnableCounter(TIM4);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+//
+//	/* Init  GPIO */
 	ControlPins_GPIO_4_Init();
 
 	/* Motor is disabled at start */
@@ -95,22 +95,28 @@ void MotorUnit_4::motorInit()
 }
 
 
-//void MotorUnit_1::motorEnable()
-//{
-//	LL_TIM_EnableCounter(TIM4);
-//
-//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-//}
-//
-//
-//void MotorUnit_1::motorDisable()
-//{
-//	LL_TIM_DisableCounter(TIM4);
-//
-//	LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-//}
-//
-//
+void MotorUnit_1::encoderInit()
+{
+	Encoder_Timer_1_Init();
+}
+
+void MotorUnit_2::encoderInit()
+{
+	Encoder_Timer_2_Init();
+}
+
+void MotorUnit_3::encoderInit()
+{
+	Encoder_Timer_3_Init();
+}
+
+void MotorUnit_4::encoderInit()
+{
+	Encoder_Timer_8_Init();
+}
+
+
+
 void MotorUnit_1::move(Direction direction, uint32_t speed)
 {
 	if (FORWARD == direction)
@@ -176,51 +182,8 @@ void MotorUnit_4::move(Direction direction, uint32_t speed)
 }
 
 
-//MotorUnit_2::MotorUnit_2()
-//{
-//	/* Init Timer for PWM mode */
-//	MX_TIM4_Init();
-//
-//	/* Init Timer for Encoder mode */
-//	MX_TIM2_Init();
-//	LL_TIM_EnableCounter(TIM2);
-//
-//	/* Init  GPIO */
-//	ControlPins_GPIO_2_Init();
-//}
-//
-//MotorUnit_3::MotorUnit_3()
-//{
-//	/* Init Timer for PWM mode */
-//	MX_TIM4_Init();
-//
-//	/* Init Timer for Encoder mode */
-//	MX_TIM3_Init();
-//	LL_TIM_EnableCounter(TIM3);
-//
-//	/* Init  GPIO */
-//	ControlPins_GPIO_3_Init();
-//}
-//
-//MotorUnit_4::MotorUnit_4()
-//{
-//	/* Init Timer for PWM mode */
-//	MX_TIM4_Init();
-//
-//	/* Init Timer for Encoder mode */
-//	MX_TIM8_Init();
-//	LL_TIM_EnableCounter(TIM8);
-//
-//	/* Init  GPIO */
-//	ControlPins_GPIO_4_Init();
-//}
-//
-//
-//
-//void MotorUnit_1::encoderInit()
-//{
-//
-//}
+
+
 //
 //uint32_t MotorUnit_1::encoderRead()
 //{

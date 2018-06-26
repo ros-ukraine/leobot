@@ -51,6 +51,13 @@ void ControlPins_GPIO_2_Init(void);
 void ControlPins_GPIO_3_Init(void);
 void ControlPins_GPIO_4_Init(void);
 
+void PMW_Timer_Init(void);
+
+void Encoder_Timer_1_Init(void);
+void Encoder_Timer_2_Init(void);
+void Encoder_Timer_3_Init(void);
+void Encoder_Timer_8_Init(void);
+
 
 //void PMW_Init(void);
 

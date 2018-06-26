@@ -111,11 +111,7 @@ void MX_FREERTOS_Init(void);
 
 /* USER CODE END 0 */
 
-/**
-  * @brief  The application entry point.
-  *
-  * @retval None
-  */
+
 
 //https://github.com/alus96/STM32F407_Encoder/blob/master/Src/main.c
 
@@ -127,19 +123,19 @@ volatile uint32_t rotationSpeed; //RPM
 
 #include "../../Libs/motor_unit/motor_unit.h"
 
+
+/**
+  * @brief  The application entry point.
+  *
+  * @retval None
+  */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
-#ifdef DEBUG
-	  printf("hello!\r\n");
-#endif
-  /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -148,11 +144,12 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+#ifdef NDEBUG
+	  printf("Init started!\r\n");
+#endif
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-
 
   //MX_GPIO_Init();
   MX_I2C2_Init();
@@ -210,33 +207,29 @@ int main(void)
 
   if(spinTaskCreate(&nh))
   {
+#ifdef NDEBUG
+	  printf("Can't create spinTaskCreate!\r\n");
+#endif
 	  while(1);
 	  // error;
   }
 
   if(publishTaskCreate(&nh))
    {
- 	  while(1);
+#ifdef NDEBUG
+	  printf("Can't create publishTaskCreate!\r\n");
+#endif
+	  while(1);
  	  // error;
    }
-
 
   /* Start scheduler */
   osKernelStart();
   
   /* We should never get here as control is now taken by the scheduler */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-
   while (1)
   {
-	  //str_msg.data = hello;
-	  //chatter.publish( &str_msg );
-	  //nh.spinOnce();
-
-	  //HAL_Delay(100);
-	  //vTaskDelay(100);
+	  /* should never be here, otherwise error */
   }
 
 }

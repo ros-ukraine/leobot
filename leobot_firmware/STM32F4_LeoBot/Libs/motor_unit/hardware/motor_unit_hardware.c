@@ -87,11 +87,42 @@ void ControlPins_GPIO_4_Init(void)
 
 void PMW_Timer_Init(void)
 {
-	//MX_TIM4_Init();
+	/* Init Timer for PWM mode */
+	MX_TIM4_Init();
+
+	LL_TIM_EnableCounter(TIM4);
+
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
 }
 
 void Encoder_Timer_1_Init(void)
 {
-	//MX_TIM1_Init();
-	//LL_TIM_EnableCounter(TIM1);
+	/* Init Timer for Encoder mode */
+	MX_TIM1_Init();
+	LL_TIM_EnableCounter(TIM1);
 }
+
+void Encoder_Timer_2_Init(void)
+{
+	/* Init Timer for Encoder mode */
+	MX_TIM2_Init();
+	LL_TIM_EnableCounter(TIM2);
+}
+
+void Encoder_Timer_3_Init(void)
+{
+	/* Init Timer for Encoder mode */
+	MX_TIM3_Init();
+	LL_TIM_EnableCounter(TIM3);
+}
+
+void Encoder_Timer_8_Init(void)
+{
+	/* Init Timer for Encoder mode */
+	MX_TIM8_Init();
+	LL_TIM_EnableCounter(TIM8);
+}
+
