@@ -88,3 +88,4 @@ qtcreator-*
 /leobot_firmware/STM32F4_LeoBot/Debug/Core
 /leobot_firmware/STM32F4_LeoBot/Debug
 /leobot_firmware/STM32F4_Rosserial
+/leobot_firmware/STM32F4_LeoBot/STM32CubeMx_LeoBot_Config.ioc
