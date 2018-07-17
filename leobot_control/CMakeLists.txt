@@ -4,7 +4,7 @@ project(leobot_control)
 find_package(catkin REQUIRED COMPONENTS)
 
 catkin_package(
-  CATKIN_DEPENDS effort_controllers joint_state_controller diff_drive_controller controller_manager teleop_twist_keyboard
+  CATKIN_DEPENDS joint_state_controller robot_localization ridgeback_control controller_manager teleop_twist_keyboard
 )
 
 install(FILES
