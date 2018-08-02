@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>leobot_vision</name>
+  <version>0.0.1</version>
+  <description>The leobot_vision package. Merges image streams from two 180-degree cameras
+      and converts to rectangular area starting at specified angle</description>
+
+  <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
+
+  <license>MIT</license>
+
+  <url type="website">https://github.com/ros-ukraine/leobot</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <exec_depend>rospy</exec_depend>
+
+</package>

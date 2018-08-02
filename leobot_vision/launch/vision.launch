@@ -1,0 +1,3 @@
+<launch>
+    <node name="leobot_vision" pkg="leobot_vision" type="vision.py" output="screen"/>
+</launch>
