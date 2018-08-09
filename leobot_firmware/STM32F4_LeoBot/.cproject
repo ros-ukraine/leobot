@@ -115,8 +115,8 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Libs/rosserial"/>
-									<listOptionValue builtIn="false" value="../Libs/Motor_Unit"/>
-									<listOptionValue builtIn="false" value="../Libs/Motor_Unit/hardware"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit"/>
+									<listOptionValue builtIn="false" value="../Libs/motor_unit/hardware"/>
 									<listOptionValue builtIn="false" value="../App/Inc"/>
 									<listOptionValue builtIn="false" value="../App/Src"/>
 								</option>
@@ -137,7 +137,7 @@
 								<option id="com.atollic.truestudio.common_options.target.fpucore.1297069055" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.fpv4-sp-d16" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.interwork.1999777208" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork" useByScannerDiscovery="false"/>
 								<option id="com.atollic.truestudio.ldcc.general.syscall_lib.1037922585" name="System calls" superClass="com.atollic.truestudio.ldcc.general.syscall_lib" useByScannerDiscovery="false" value="com.atollic.truestudio.ld.general.syscalls_lib.nosys" valueType="enumerated"/>
-								<option id="com.atollic.truestudio.ldcc.misc.linkerflags.842965377" name="Other options" superClass="com.atollic.truestudio.ldcc.misc.linkerflags" useByScannerDiscovery="false" value="-Wl,-cref,-u,Reset_Handler, --specs=nano.specs -u _printf_float" valueType="string"/>
+								<option id="com.atollic.truestudio.ldcc.misc.linkerflags.842965377" name="Other options" superClass="com.atollic.truestudio.ldcc.misc.linkerflags" useByScannerDiscovery="false" value="-Wl,-cref,-u,Reset_Handler --specs=nano.specs -u _printf_float" valueType="string"/>
 								<inputType id="com.atollic.truestudio.ldcc.input.1744573606" name="Input" superClass="com.atollic.truestudio.ldcc.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
