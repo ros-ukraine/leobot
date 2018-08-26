@@ -17,19 +17,21 @@ class image_converter:
 
     def callback(self, data):
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
+            original_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
 
-        (rows, cols, channels) = cv_image.shape
+        (rows, cols, channels) = original_image.shape
         if cols > 60 and rows > 60:
-            cv2.circle(cv_image, (cols/2, rows/2), min(cols, rows)/2-1, (255, 255, 255))
+            cv2.circle(original_image, (cols/2, rows/2), min(cols, rows)/2-1, (255, 255, 255))
 
-        cv2.imshow("Image window", cv_image)
+        resulting_image = original_image
+
+        cv2.imshow("Image window", resulting_image)
         cv2.waitKey(3)
 
         try:
-            self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
+            self.image_pub.publish(self.bridge.cv2_to_imgmsg(resulting_image, "bgr8"))
         except CvBridgeError as e:
             print(e)
 
