@@ -48,12 +48,16 @@ class image_converter:
         # fx, fy, cx, cy, k1, k2, p1, p2, output = argv[2:]
         # 1367.451167 1367.451167 0 0 -0.246065 0.193617 -0.002004 -0.002056
 
-        fx = 1367.451167
-        fy = 1367.451167
+        # fx = 1367.451167
+        fx = original_image_size[0] / 2
+        # fy = 1367.451167
+        fy = original_image_size[1] / 2
         cx = original_image_size[0] / 2
         cy = original_image_size[1] / 2
-        k1 = -0.246065
-        k2 = 0.193617
+        # k1 = -0.246065
+        k1 = 0
+        # k2 = 0.193617
+        k2 = 0
         p1 = 0
         p2 = 0
 
