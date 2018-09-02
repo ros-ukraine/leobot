@@ -72,28 +72,20 @@ class image_converter:
         dist_coeffs[0, 2] = float(p1)
         dist_coeffs[0, 3] = float(p2)
 
-        original_image_size = original_image.shape[:2]
-        original_image_depth = 8
-        original_image_channels = 3
+        original_image_size = list(original_image.shape[:2])
+        original_image_size.reverse()
+        original_image_size = tuple(original_image_size)
 
-        # resulting_image = cv.CreateImage(original_image_size, original_image_depth, original_image_channels)
-        resulting_image = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
-        # mapx = cv.CreateImage(original_image_size, cv.IPL_DEPTH_32F, 1)
-        # mapy = cv.CreateImage(original_image_size, cv.IPL_DEPTH_32F, 1)
+        mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=intrinsics, size=original_image_size, m1type=cv.CV_32FC1)
 
-        mapx = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
-        mapy = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
+        # print "original_image_size ", original_image_size
+        # print "intrinsics ", intrinsics
+        # print "dist_coeffs ", dist_coeffs
 
-        # cv.initUndistortMap(intrinsics, dist_coeffs, mapx, mapy)
-        cv.initUndistortRectifyMap(intrinsics, dist_coeffs, None, None, original_image_size, cv.CV_32FC1, mapx, mapy)
-        # cv.remap(original_image, resulting_image, mapx, mapy, cv.INTER_LINEAR + cv.WARP_FILL_OUTLIERS, cv.ScalarAll(0))
+        # print "mapx ", mapx
+        # print "mapy ", mapy
 
-
-        # print "mapx " + str(mapx)
-
-        # cv.Undistort2(original_image, resulting_image, intrinsics, dist_coeffs)
-        # cv.remap(src=original_image, dst=resulting_image, map1=mapx, map2=mapy, interpolation=cv.INTER_LINEAR)
-        cv.remap(src=original_image, dst=resulting_image, map1=mapx, map2=mapy, interpolation=cv.INTER_LINEAR)
+        resulting_image = cv.remap(src=original_image, map1=mapx, map2=mapy, interpolation=cv.INTER_LINEAR, borderMode=cv.BORDER_CONSTANT)
 
         # cv.SaveImage(output, resulting_image)
 
