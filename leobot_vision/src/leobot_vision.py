@@ -74,10 +74,9 @@ class image_converter:
 
         original_image_size = original_image.shape[:2][::-1]
 
-        print "original_image_size ", original_image_size
+        # print "original_image_size ", original_image_size
 
         mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=intrinsics, size=original_image_size, m1type=cv.CV_32FC1)
-
 
         # print "intrinsics ", intrinsics
         # print "dist_coeffs ", dist_coeffs
