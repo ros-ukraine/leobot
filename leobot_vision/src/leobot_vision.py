@@ -86,8 +86,14 @@ class image_converter:
 
         # cv.initUndistortMap(intrinsics, dist_coeffs, mapx, mapy)
         cv.initUndistortRectifyMap(intrinsics, dist_coeffs, None, None, original_image_size, cv.CV_32FC1, mapx, mapy)
-        # cv.Remap(original_image, resulting_image, mapx, mapy, cv.CV_INTER_LINEAR + cv.CV_WARP_FILL_OUTLIERS, cv.ScalarAll(0))
+        # cv.remap(original_image, resulting_image, mapx, mapy, cv.INTER_LINEAR + cv.WARP_FILL_OUTLIERS, cv.ScalarAll(0))
+
+
+        # print "mapx " + str(mapx)
+
         # cv.Undistort2(original_image, resulting_image, intrinsics, dist_coeffs)
+        # cv.remap(src=original_image, dst=resulting_image, map1=mapx, map2=mapy, interpolation=cv.INTER_LINEAR)
+        cv.remap(src=original_image, dst=resulting_image, map1=mapx, map2=mapy, interpolation=cv.INTER_LINEAR)
 
         # cv.SaveImage(output, resulting_image)
 
