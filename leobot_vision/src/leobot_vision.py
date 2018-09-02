@@ -84,14 +84,15 @@ class image_converter:
         mapx = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
         mapy = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
 
-        # cv.InitUndistortMap(intrinsics, dist_coeffs, mapx, mapy)
-        cv.InitUndistortRectifyMap(intrinsics, dist_coeffs, None, None, original_image_size, cv.CV_32FC1, mapx, mapy)
-        cv.Remap(original_image, resulting_image, mapx, mapy, cv.CV_INTER_LINEAR + cv.CV_WARP_FILL_OUTLIERS, cv.ScalarAll(0))
+        # cv.initUndistortMap(intrinsics, dist_coeffs, mapx, mapy)
+        cv.initUndistortRectifyMap(intrinsics, dist_coeffs, None, None, original_image_size, cv.CV_32FC1, mapx, mapy)
+        # cv.Remap(original_image, resulting_image, mapx, mapy, cv.CV_INTER_LINEAR + cv.CV_WARP_FILL_OUTLIERS, cv.ScalarAll(0))
         # cv.Undistort2(original_image, resulting_image, intrinsics, dist_coeffs)
 
         # cv.SaveImage(output, resulting_image)
 
-        cv.imshow("Image window", resulting_image)
+        cv.imshow("Source", original_image)
+        cv.imshow("Converted", resulting_image)
         cv.waitKey(3)
 
         try:
