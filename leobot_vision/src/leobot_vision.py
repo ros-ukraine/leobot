@@ -72,13 +72,13 @@ class image_converter:
         dist_coeffs[0, 2] = float(p1)
         dist_coeffs[0, 3] = float(p2)
 
-        original_image_size = list(original_image.shape[:2])
-        original_image_size.reverse()
-        original_image_size = tuple(original_image_size)
+        original_image_size = original_image.shape[:2][::-1]
+
+        print "original_image_size ", original_image_size
 
         mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=intrinsics, size=original_image_size, m1type=cv.CV_32FC1)
 
-        # print "original_image_size ", original_image_size
+
         # print "intrinsics ", intrinsics
         # print "dist_coeffs ", dist_coeffs
 
