@@ -21,8 +21,6 @@ class image_converter:
         # Create black blank image
         image_matrix_dimensions = size + (channels,)
 
-        print image_matrix_dimensions
-
         # image = np.zeros((width, height, channels), data_type)
         image = np.zeros(image_matrix_dimensions, data_type)
 
@@ -103,6 +101,7 @@ class image_converter:
 
 
 def main(args):
+    print "Version: " + cv.__version__
     rospy.init_node('image_converter')
     ic = image_converter()
     try:
