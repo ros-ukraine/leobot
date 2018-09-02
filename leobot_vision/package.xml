@@ -16,8 +16,8 @@
   <build_export_depend>rospy</build_export_depend>
   <exec_depend>rospy</exec_depend>
   <build_depend>sensor_msgs</build_depend>
-  <!--<build_depend>opencv3</build_depend>-->
   <build_depend>cv_bridge</build_depend>
+  <build_depend>image_geometry</build_depend>
   <build_depend>std_msgs</build_depend>
 
 </package>

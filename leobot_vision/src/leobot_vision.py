@@ -4,7 +4,8 @@ import roslib
 roslib.load_manifest('leobot_vision')
 import sys
 import rospy
-import cv2
+import numpy as np
+import cv2 as cv
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
@@ -15,6 +16,23 @@ class image_converter:
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/right_fisheye_camera/image_raw", Image, self.callback)
 
+    def create_blank_image(self, size, channels, data_type):
+        """Create new image(numpy array) filled with certain color in RGB"""
+        # Create black blank image
+        image_matrix_dimensions = size + (channels,)
+
+        print image_matrix_dimensions
+
+        # image = np.zeros((width, height, channels), data_type)
+        image = np.zeros(image_matrix_dimensions, data_type)
+
+        # Since OpenCV uses BGR, convert the color first
+        # color = tuple(reversed(rgb_color))
+        # Fill image with color
+        image[:] = np.zeros(channels)
+
+        return image
+
     def callback(self, data):
         try:
             original_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -23,15 +41,63 @@ class image_converter:
 
         (rows, cols, channels) = original_image.shape
         if cols > 60 and rows > 60:
-            cv2.circle(original_image, (cols/2, rows/2), min(cols, rows)/2-1, (255, 255, 255))
+            cv.circle(original_image, (cols/2, rows/2), min(cols, rows)/2-1, (255, 255, 255))
 
-        resulting_image = original_image
+        # resulting_image = original_image
 
-        cv2.imshow("Image window", resulting_image)
-        cv2.waitKey(3)
+        # fx, fy, cx, cy, k1, k2, p1, p2, output = argv[2:]
+        # 1367.451167 1367.451167 0 0 -0.246065 0.193617 -0.002004 -0.002056
+
+        fx = 1367.451167
+        fy = 1367.451167
+        cx = 0
+        cy = 0
+        k1 = -0.246065
+        k2 = 0.193617
+        p1 = -0.002004
+        p2 = -0.002056
+
+        # intrinsics = cv.CreateMat(3, 3, cv.CV_64FC1)
+        intrinsics = np.zeros((3, 3), np.float64)
+        # cv.Zero(intrinsics)
+        intrinsics[0, 0] = float(fx)
+        intrinsics[1, 1] = float(fy)
+        intrinsics[2, 2] = 1.0
+        intrinsics[0, 2] = float(cx)
+        intrinsics[1, 2] = float(cy)
+
+        # dist_coeffs = cv.CreateMat(1, 4, cv.CV_64FC1)
+        dist_coeffs = np.zeros((1, 4), np.float64)
+        # cv.Zero(dist_coeffs)
+        dist_coeffs[0, 0] = float(k1)
+        dist_coeffs[0, 1] = float(k2)
+        dist_coeffs[0, 2] = float(p1)
+        dist_coeffs[0, 3] = float(p2)
+
+        original_image_size = original_image.shape[:2]
+        original_image_depth = 8
+        original_image_channels = 3
+
+        # resulting_image = cv.CreateImage(original_image_size, original_image_depth, original_image_channels)
+        resulting_image = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
+        # mapx = cv.CreateImage(original_image_size, cv.IPL_DEPTH_32F, 1)
+        # mapy = cv.CreateImage(original_image_size, cv.IPL_DEPTH_32F, 1)
+
+        mapx = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
+        mapy = self.create_blank_image(original_image_size, original_image_channels, np.uint8)
+
+        # cv.InitUndistortMap(intrinsics, dist_coeffs, mapx, mapy)
+        cv.InitUndistortRectifyMap(intrinsics, dist_coeffs, None, None, original_image_size, cv.CV_32FC1, mapx, mapy)
+        cv.Remap(original_image, resulting_image, mapx, mapy, cv.CV_INTER_LINEAR + cv.CV_WARP_FILL_OUTLIERS, cv.ScalarAll(0))
+        # cv.Undistort2(original_image, resulting_image, intrinsics, dist_coeffs)
+
+        # cv.SaveImage(output, resulting_image)
+
+        cv.imshow("Image window", resulting_image)
+        cv.waitKey(3)
 
         try:
-            self.image_pub.publish(self.bridge.cv2_to_imgmsg(resulting_image, "bgr8"))
+            self.image_pub.publish(self.bridge.cv_to_imgmsg(resulting_image, "bgr8"))
         except CvBridgeError as e:
             print(e)
 
@@ -43,7 +109,7 @@ def main(args):
         rospy.spin()
     except KeyboardInterrupt:
         print("Shutting down")
-    cv2.destroyAllWindows()
+    cv.destroyAllWindows()
 
 
 if __name__ == '__main__':
