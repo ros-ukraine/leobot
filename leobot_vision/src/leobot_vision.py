@@ -50,8 +50,8 @@ class image_converter:
 
         fx = 1367.451167
         fy = 1367.451167
-        cx = original_image_size[0]
-        cy = original_image_size[1]
+        cx = original_image_size[0] / 2
+        cy = original_image_size[1] / 2
         k1 = -0.246065
         k2 = 0.193617
         p1 = -0.002004
