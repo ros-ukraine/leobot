@@ -96,7 +96,7 @@ class image_converter:
         cv.waitKey(3)
 
         try:
-            self.image_pub.publish(self.bridge.cv_to_imgmsg(resulting_image, "bgr8"))
+            self.image_pub.publish(self.bridge.cv2_to_imgmsg(resulting_image, "bgr8"))
         except CvBridgeError as e:
             print(e)
 
