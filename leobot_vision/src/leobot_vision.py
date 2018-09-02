@@ -43,13 +43,15 @@ class image_converter:
 
         # resulting_image = original_image
 
+        original_image_size = original_image.shape[:2][::-1]
+
         # fx, fy, cx, cy, k1, k2, p1, p2, output = argv[2:]
         # 1367.451167 1367.451167 0 0 -0.246065 0.193617 -0.002004 -0.002056
 
         fx = 1367.451167
         fy = 1367.451167
-        cx = 0
-        cy = 0
+        cx = original_image_size[0]
+        cy = original_image_size[1]
         k1 = -0.246065
         k2 = 0.193617
         p1 = -0.002004
@@ -71,8 +73,6 @@ class image_converter:
         dist_coeffs[0, 1] = float(k2)
         dist_coeffs[0, 2] = float(p1)
         dist_coeffs[0, 3] = float(p2)
-
-        original_image_size = original_image.shape[:2][::-1]
 
         # print "original_image_size ", original_image_size
 
