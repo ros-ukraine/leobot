@@ -54,8 +54,8 @@ class image_converter:
         cy = original_image_size[1] / 2
         k1 = -0.246065
         k2 = 0.193617
-        p1 = -0.002004
-        p2 = -0.002056
+        p1 = 0
+        p2 = 0
 
         # intrinsics = cv.CreateMat(3, 3, cv.CV_64FC1)
         intrinsics = np.zeros((3, 3), np.float64)
