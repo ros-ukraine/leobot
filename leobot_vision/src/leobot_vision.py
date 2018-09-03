@@ -55,9 +55,9 @@ class image_converter:
         cx = original_image_size[0] / 2
         cy = original_image_size[1] / 2
         # k1 = -0.246065
-        k1 = 1.47
+        k1 = 0
         # k2 = 0.193617
-        k2 = 0.713
+        k2 = 0
         k3 = 0
         p1 = 0
         p2 = 0
@@ -82,7 +82,11 @@ class image_converter:
 
         # print "original_image_size ", original_image_size
 
-        mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=intrinsics, size=original_image_size, m1type=cv.CV_32FC1)
+        newCameraMatrix, roi = cv.getOptimalNewCameraMatrix(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, imageSize=original_image_size, newImgSize=original_image_size, alpha=1, centerPrincipalPoint=1)
+
+        # print "new matrix", newCameraMatrix
+
+        mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=newCameraMatrix, size=original_image_size, m1type=cv.CV_32FC1)
 
         # print "intrinsics ", intrinsics
         # print "dist_coeffs ", dist_coeffs
