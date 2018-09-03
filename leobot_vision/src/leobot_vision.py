@@ -82,8 +82,9 @@ class image_converter:
 
         # print "original_image_size ", original_image_size
 
-        newCameraMatrix, roi = cv.getOptimalNewCameraMatrix(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, imageSize=original_image_size, newImgSize=original_image_size, alpha=1, centerPrincipalPoint=1)
+        newCameraMatrix, regionOfInterest = cv.getOptimalNewCameraMatrix(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, imageSize=original_image_size, newImgSize=original_image_size, alpha=1, centerPrincipalPoint=1)
 
+        print "Region of interest: ", regionOfInterest
         # print "new matrix", newCameraMatrix
 
         mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix=intrinsics, distCoeffs=dist_coeffs, R=np.eye(3), newCameraMatrix=newCameraMatrix, size=original_image_size, m1type=cv.CV_32FC1)
