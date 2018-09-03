@@ -55,9 +55,10 @@ class image_converter:
         cx = original_image_size[0] / 2
         cy = original_image_size[1] / 2
         # k1 = -0.246065
-        k1 = 0
+        k1 = 1.47
         # k2 = 0.193617
-        k2 = 0
+        k2 = 0.713
+        k3 = 0
         p1 = 0
         p2 = 0
 
@@ -71,12 +72,13 @@ class image_converter:
         intrinsics[1, 2] = float(cy)
 
         # dist_coeffs = cv.CreateMat(1, 4, cv.CV_64FC1)
-        dist_coeffs = np.zeros((1, 4), np.float64)
+        dist_coeffs = np.zeros((1, 5), np.float64)
         # cv.Zero(dist_coeffs)
         dist_coeffs[0, 0] = float(k1)
         dist_coeffs[0, 1] = float(k2)
         dist_coeffs[0, 2] = float(p1)
         dist_coeffs[0, 3] = float(p2)
+        dist_coeffs[0, 4] = float(k3)
 
         # print "original_image_size ", original_image_size
 
