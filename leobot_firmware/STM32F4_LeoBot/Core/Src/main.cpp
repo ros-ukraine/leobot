@@ -48,6 +48,7 @@ volatile uint32_t rotationSpeed; //RPM
 
 #include "motor_unit.h"
 
+
 /**
   * @brief  The application entry point.
   *
@@ -67,9 +68,12 @@ int main(void)
   //MX_GPIO_Init();
   MX_I2C2_Init();
 
+
+
+
 /* this code only for debug */
 
-  MotorUnit_1 mu1;
+  /*MotorUnit_1 mu1;
   MotorUnit_2 mu2;
   MotorUnit_3 mu3;
   MotorUnit_4 mu4;
@@ -95,10 +99,8 @@ int main(void)
 	  mu4.move(BACK, 0);
 
 	  HAL_Delay(50);
-  }
+  }*/
 /* end of debug code */
-
-
 
   nh.initNode();
 

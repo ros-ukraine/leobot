@@ -41,7 +41,7 @@ uint32_t RosSpinTaskCreate(ros::NodeHandle *nh)
 	nh_ = nh;
 
 	/* definition and creation of RosSpin */
-	osThreadDef(RosSpin, RosSpinTask, osPriorityIdle, 0, 128);
+	osThreadDef(RosSpin, RosSpinTask,  osPriorityIdle /*osPriorityNormal*/, 0, 128);
 	RosSpinHandle = osThreadCreate(osThread(RosSpin), NULL);
 
 	if (NULL == RosSpinHandle)

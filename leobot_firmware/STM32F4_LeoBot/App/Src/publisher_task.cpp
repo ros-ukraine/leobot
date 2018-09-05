@@ -25,15 +25,15 @@ char hello[13] = "hello world!";
 
 static ros::NodeHandle *nh_;
 
-
 void RosPublisherTask(const void *argument)
 {
 	str_msg.data = hello;
 
 	for(;;)
 	{
+		//str_msg.data = hello;
 		chatter.publish(&str_msg);
-		osDelay(1000);
+		osDelay(500);
 	}
 }
 

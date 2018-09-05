@@ -17,9 +17,7 @@ extern "C"
 #include "subscriber_task.h"
 
 
-//static ros::NodeHandle *nh_;
-
-
+static ros::NodeHandle *nh_;
 
  void motor_cb(const std_msgs::UInt16& cmd_msg)
  {
@@ -27,12 +25,9 @@ extern "C"
 
  	 //str_msg.data = hello;
  	 //chatter.publish( &str_msg );
-
  }
 
  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
-
- //nh.subscribe(sub);
 
  /* RosSubscriberTask function */
  void RosSubscriberTask(void const * argument)
@@ -41,7 +36,7 @@ extern "C"
    /* Infinite loop */
    for(;;)
    {
-     osDelay(10);
+     osDelay(1000);
    }
    /* USER CODE END RosSubscriberTask */
  }
@@ -53,6 +48,10 @@ extern "C"
  uint32_t RosSubscriberTaskCreate(ros::NodeHandle *nh)
  {
 	 osThreadId RosSubscriberHandle;
+
+	 nh_ = nh;
+
+	 nh_-> subscribe(sub);
 
 	 /* definition and creation of RosSubscriber */
 	 osThreadDef(RosSubscriber, RosSubscriberTask, osPriorityNormal, 0, 128);
