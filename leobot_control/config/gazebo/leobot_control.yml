@@ -2,49 +2,66 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
 
-head_position_controller:
-  type: effort_controllers/JointPositionController
-  joint: head_link_joint
-  pid: {p: 100.0, i: 0.01, d: 10.0}
+mecanum_velocity_controller:
+  type: "mecanum_drive_controller/MecanumDriveController"
+  front_left_wheel_joint: "FL_wheel_motor_joint"
+  back_left_wheel_joint: "RL_wheel_motor_joint"
+  front_right_wheel_joint: "FR_wheel_motor_joint"
+  back_right_wheel_joint: "RR_wheel_motor_joint"
+  publish_rate: 50
+  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
+  twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
+  cmd_vel_timeout: 0.25
 
-wheel_diff_drive_controller:
-  type: 'diff_drive_controller/DiffDriveController'
-  left_wheel: 'left_wheel_bearing_joint'
-  right_wheel: 'right_wheel_bearing_joint'
-  publish_rate: 50.0 # defaults to 50 Hz
-  pose_covariance_diagonal: [0.01, 0.01, 1000000.0, 1000000.0, 1000000.0, 1.0] #[0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-  twist_covariance_diagonal: [0.01, 1000000.0, 1000000.0, 1000000.0, 1000000.0, 1.0] #[0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  # Override URDF look-up for wheel separation since the parent link is not the base_link.
+  wheel_separation_x: 0.638
+  wheel_separation_y: 0.551
 
-  wheel_separation: 0.55
-  wheel_radius: 0.10
+  # Odometry fused with IMU is published by robot_localization, so
+  # no need to publish a TF based on encoders alone.
+  enable_odom_tf: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 0.950 #DO NOT CHANGE, PLEASE # default: 1.0
-  wheel_radius_multiplier    : 0.96 # default: 1.0
-
-  # Velocity commands timeout [s], default 0.5
-  cmd_vel_timeout: 0.08
-
-  # Base frame_id
-  base_frame_id: base_link #default: base_link
+  wheel_separation_multiplier: 1.0 # default: 1.0
+  wheel_radius_multiplier    : 1.0 # default: 1.0
 
   # Velocity and acceleration limits
   # Whenever a min_* is unspecified, default to -max_*
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 0.7  # m/s
-      min_velocity           : -0.5 # m/s
+      max_velocity           : 1.1   # m/s
       has_acceleration_limits: true
-      max_acceleration       : 0.5  # m/s^2
-      min_acceleration       : -0.4 # m/s^2
-      has_jerk_limits        : true
-      max_jerk               : 1.0  # m/s^3
+      max_acceleration       : 2.5   # m/s^2
+    y:
+      has_velocity_limits    : true
+      max_velocity           : 1.1   # m/s
+      has_acceleration_limits: true
+      max_acceleration       : 2.5   # m/s^2
   angular:
     z:
       has_velocity_limits    : true
-      max_velocity           : 0.15  # rad/s
+      max_velocity           : 2.0   # rad/s
       has_acceleration_limits: true
-      max_acceleration       : 0.1  # rad/s^2
-      has_jerk_limits        : true
-      max_jerk               : 0.2  # rad/s^3
+      max_acceleration       : 1.0   # rad/s^2
+
+ekf_localization:
+  frequency: 50
+  two_d_mode: true
+  odom0: /mecanum_velocity_controller/odom
+  odom0_config: [false, false, false,
+                 false, false, false,
+                 true, true, false,
+                 false, false, true,
+                 false, false, false]
+  odom0_differential: false
+  imu0: /imu/data
+  imu0_config: [false, false, false,
+                false, false, false,
+                false, false, false,
+                false, false, true,
+                true, true, false]
+  imu0_differential: false
+  odom_frame: odom
+  base_link_frame: base_link
+  world_frame: odom
