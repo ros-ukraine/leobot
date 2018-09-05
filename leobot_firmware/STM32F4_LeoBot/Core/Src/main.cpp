@@ -1,53 +1,4 @@
 
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
-  *
-  * Copyright (c) 2018 STMicroelectronics International N.V. 
-  * All rights reserved.
-  *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
-/* Includes ------------------------------------------------------------------*/
-
 extern "C"
 {
 	#include "main.h"
@@ -61,27 +12,22 @@ extern "C"
 
 /* rosserial includes */
 #include "ros.h"
-#include "std_msgs/UInt16.h"
+//#include "std_msgs/UInt16.h"
 //#include "std_msgs/String.h"
 
-
-#include "../../App/Inc/spin_task.h"
-#include "../../App/Inc/publish_task.h"
+#include "spin_task.h"
+#include "publisher_task.h"
+#include "subscriber_task.h"
 
 
 /* Private variables ---------------------------------------------------------*/
 #ifdef __cplusplus
  extern "C" {
 #endif
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void MX_FREERTOS_Init(void);
-
+//void MX_FREERTOS_Init(void);
 
 #ifdef __cplusplus
 }
@@ -91,38 +37,16 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
  ros::NodeHandle  nh;
 
- void motor_cb(const std_msgs::UInt16& cmd_msg);
-
- ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
-
- //std_msgs::String str_msg;
- //ros::Publisher chatter("chatter", &str_msg);
- //char hello[13] = "hello world!";
-
- void motor_cb(const std_msgs::UInt16& cmd_msg)
-  {
-  	//cmd_msg.data should be in range 0 - 100
-
- 	 //str_msg.data = hello;
- 	 //chatter.publish( &str_msg );
-
-  }
-
-
 /* USER CODE END 0 */
-
-
 
 //https://github.com/alus96/STM32F407_Encoder/blob/master/Src/main.c
 
 //volatile uint32_t cnt;
-
 volatile uint32_t direction; //dir
 volatile uint32_t rotationSpeed; //RPM
 #define RESOLUTION (480)
 
-#include "../../Libs/motor_unit/motor_unit.h"
-
+#include "motor_unit.h"
 
 /**
   * @brief  The application entry point.
@@ -136,20 +60,9 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-#ifdef NDEBUG
-	  printf("Init started!\r\n");
-#endif
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
 
   //MX_GPIO_Init();
   MX_I2C2_Init();
@@ -185,43 +98,14 @@ int main(void)
   }
 /* end of debug code */
 
+
+
   nh.initNode();
 
+  if(RosPublisherTaskCreate(&nh)) while(1);
+  if(RosSubscriberTaskCreate(&nh)) while(1);
+  if(RosSpinTaskCreate(&nh)) while(1);
 
-
-  //m1.move(1,2);
-
-  //m1.move(1, 10);
-
-
-  //nh.subscribe(sub);
-  //nh.advertise(chatter);
-
-  //str_msg.data = hello;
-  //chatter.publish( &str_msg );
-
-  /* USER CODE END 2 */
-
-  /* Call init function for freertos objects (in freertos.c) */
-  //MX_FREERTOS_Init();
-
-  if(spinTaskCreate(&nh))
-  {
-#ifdef NDEBUG
-	  printf("Can't create spinTaskCreate!\r\n");
-#endif
-	  while(1);
-	  // error;
-  }
-
-  if(publishTaskCreate(&nh))
-   {
-#ifdef NDEBUG
-	  printf("Can't create publishTaskCreate!\r\n");
-#endif
-	  while(1);
- 	  // error;
-   }
 
   /* Start scheduler */
   osKernelStart();

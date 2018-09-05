@@ -56,20 +56,18 @@
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
-osThreadId defaultTaskHandle;
-uint32_t defaultTaskBuffer[ 128 ];
-osStaticThreadDef_t defaultTaskControlBlock;
-osThreadId rosSpinTaskHandle;
-uint32_t rosSpinTaskBuffer[ 128 ];
-osStaticThreadDef_t rosSpinTaskControlBlock;
+//osThreadId RosPublisherHandle;
+//osThreadId RosSpinHandle;
+//osThreadId RosSubscriberHandle;
 
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
-void StartDefaultTask(void const * argument);
-void StartRosSpinTask(void const * argument);
+//void RosPublisherTask(void const * argument);
+//void RosSpinTask(void const * argument);
+void RosSubscriberTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -77,23 +75,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE END FunctionPrototypes */
 
-/* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize );
-
 /* Hook prototypes */
-
-/* USER CODE BEGIN GET_IDLE_TASK_MEMORY */
-static StaticTask_t xIdleTaskTCBBuffer;
-static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
-  
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize )
-{
-  *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-  *ppxIdleTaskStackBuffer = &xIdleStack[0];
-  *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
-  /* place for user code */
-}                   
-/* USER CODE END GET_IDLE_TASK_MEMORY */
 
 /* Init FreeRTOS */
 
@@ -115,13 +97,17 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadStaticDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128, defaultTaskBuffer, &defaultTaskControlBlock);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  /* definition and creation of RosPublisher */
+  /*osThreadDef(RosPublisher, RosPublisherTask, osPriorityNormal, 0, 128);
+  RosPublisherHandle = osThreadCreate(osThread(RosPublisher), NULL);
+*/
+  /* definition and creation of RosSpin
+  osThreadDef(RosSpin, RosSpinTask, osPriorityIdle, 0, 128);
+  RosSpinHandle = osThreadCreate(osThread(RosSpin), NULL);*/
 
-  /* definition and creation of rosSpinTask */
-  osThreadStaticDef(rosSpinTask, StartRosSpinTask, osPriorityIdle, 0, 128, rosSpinTaskBuffer, &rosSpinTaskControlBlock);
-  rosSpinTaskHandle = osThreadCreate(osThread(rosSpinTask), NULL);
+  /* definition and creation of RosSubscriber
+  osThreadDef(RosSubscriber, RosSubscriberTask, osPriorityNormal, 0, 128);
+  RosSubscriberHandle = osThreadCreate(osThread(RosSubscriber), NULL);*/
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -132,33 +118,42 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 }
 
-/* StartDefaultTask function */
-void StartDefaultTask(void const * argument)
+/* RosPublisherTask function
+void RosPublisherTask(void const * argument)
 {
 
-  /* USER CODE BEGIN StartDefaultTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    //osDelay(1);
-	  //HAL_UART_Transmit_IT(&huart2, &data, 1);
-	  vTaskDelay(200);
-
-  }
-  /* USER CODE END StartDefaultTask */
-}
-
-/* StartRosSpinTask function */
-void StartRosSpinTask(void const * argument)
-{
-  /* USER CODE BEGIN StartRosSpinTask */
-  /* Infinite loop */
+   USER CODE BEGIN RosPublisherTask
+   Infinite loop
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartRosSpinTask */
-}
+   USER CODE END RosPublisherTask
+}*/
+
+/* RosSpinTask function
+void RosSpinTask(void const * argument)
+{
+   USER CODE BEGIN RosSpinTask
+   Infinite loop
+  for(;;)
+  {
+    osDelay(1);
+  }
+   USER CODE END RosSpinTask
+}*/
+
+/* RosSubscriberTask function
+void RosSubscriberTask(void const * argument)
+{
+   USER CODE BEGIN RosSubscriberTask
+   Infinite loop
+  for(;;)
+  {
+    osDelay(1);
+  }
+   USER CODE END RosSubscriberTask
+}*/
 
 /* USER CODE BEGIN Application */
      
