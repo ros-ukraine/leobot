@@ -17,8 +17,7 @@ RUN set -x && \
     apt-get install -y gazebo7 && \
 
     echo "Loading gazebo models" && \
-    /home/$MY_USERNAME/sr-build-tools/docker/utils/load_gazebo_models.sh && \
-    mv /root/.gazebo /home/$MY_USERNAME && \
+    /home/$MY_USERNAME/sr-build-tools/docker/utils/load_gazebo_models.sh -u $MY_USERNAME && \
     chown -R $MY_USERNAME:$MY_USERNAME /home/$MY_USERNAME/.gazebo && \
 
     echo "Backing up .bashrc" && \
