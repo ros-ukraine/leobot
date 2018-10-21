@@ -56,6 +56,8 @@ extern "C"
 	#include "gpio.h"
 }
 
+#include <string.h>
+
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -65,6 +67,8 @@ osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart1;
+char *buffer="Teste!\n\r";
 
 /* USER CODE END PV */
 
@@ -113,6 +117,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  SET_BIT(huart1.Instance->CR1, USART_CR1_TCIE);
 
   /* USER CODE END 2 */
 
@@ -183,8 +189,9 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-
-    osDelay(1);
+	uint16_t length = strlen(buffer);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, length, 200);
+    osDelay(200);
   }
   /* USER CODE END StartDefaultTask */
 }
