@@ -52,6 +52,17 @@
 #define __MAIN_H__
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx_ll_rcc.h"
+#include "stm32f4xx_ll_bus.h"
+#include "stm32f4xx_ll_system.h"
+#include "stm32f4xx_ll_exti.h"
+#include "stm32f4xx_ll_cortex.h"
+#include "stm32f4xx_ll_utils.h"
+#include "stm32f4xx_ll_pwr.h"
+#include "stm32f4xx_ll_dma.h"
+#include "stm32f4xx_ll_usart.h"
+#include "stm32f4xx.h"
+#include "stm32f4xx_ll_gpio.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -64,7 +75,7 @@
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
   *        HAL drivers code
   */
-/* #define USE_FULL_ASSERT    1U */
+ #define USE_FULL_ASSERT    1U 
 
 /* USER CODE BEGIN Private defines */
 
