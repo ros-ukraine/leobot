@@ -58,6 +58,16 @@ extern "C"
 
 #include <string.h>
 
+/* rosserial includes */
+#include "ros.h"
+//#include "std_msgs/UInt16.h"
+//#include "std_msgs/String.h"
+
+#include "spin_task.h"
+#include "publisher_task.h"
+#include "subscriber_task.h"
+
+
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -67,14 +77,20 @@ osThreadId defaultTaskHandle;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+ros::NodeHandle  nh;
+volatile uint32_t direction; //dir
+volatile uint32_t rotationSpeed; //RPM
+#define RESOLUTION (480)
+
 char *buffer="It Works !!!\n\r";
+
+#include "motor_unit.h"
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void StartDefaultTask(void const * argument);
-void MX_FREERTOS_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -116,11 +132,13 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  nh.initNode();
+
+  if(RosPublisherTaskCreate(&nh)) while(1);
+  if(RosSubscriberTaskCreate(&nh)) while(1);
+  if(RosSpinTaskCreate(&nh)) while(1);
 
   /* USER CODE END 2 */
-
-  /* Call init function for freertos objects (in freertos.c) */
-  MX_FREERTOS_Init();
 
   /* Start scheduler */
   osKernelStart();
@@ -141,62 +159,14 @@ int main(void)
 
 }
 
-void MX_FREERTOS_Init(void) {
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
-}
-
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
-{
-
-  /* USER CODE BEGIN StartDefaultTask */
-  /* Infinite loop */
-  for(;;)
-  {
-	uint16_t length = strlen(buffer);
-	for(uint32_t i = 0; i < length; i++)
-	{
-		while (!LL_USART_IsActiveFlag_TXE(USART1));
-		LL_USART_TransmitData8(USART1, buffer[i]);
-		while(!LL_USART_IsActiveFlag_TC(USART1));
-	}
-    osDelay(200);
-  }
-  /* USER CODE END StartDefaultTask */
-}
+//	uint16_t length = strlen(buffer);
+//	for(uint32_t i = 0; i < length; i++)
+//	{
+//		while (!LL_USART_IsActiveFlag_TXE(USART1));
+//		LL_USART_TransmitData8(USART1, buffer[i]);
+//		while(!LL_USART_IsActiveFlag_TC(USART1));
+//	}
+//    osDelay(200);
 
 /**
   * @brief System Clock Configuration
