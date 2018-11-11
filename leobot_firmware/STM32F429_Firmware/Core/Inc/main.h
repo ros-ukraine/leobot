@@ -70,6 +70,11 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define LD3_Pin LL_GPIO_PIN_13
+#define LD3_GPIO_Port GPIOG
+#define LD4_Pin LL_GPIO_PIN_14
+#define LD4_GPIO_Port GPIOG
+
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
