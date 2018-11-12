@@ -54,7 +54,7 @@ void STM32F4Hardware::write(uint8_t* data, uint32_t length)
 //uint32_t STM32F4Hardware::time()
 uint32_t STM32F4Hardware::time()
 {
-	uint32_t now;
+//	uint32_t now;
 
 	return (uint32_t) xTaskGetTickCount();
 /*	//EnterCritical();

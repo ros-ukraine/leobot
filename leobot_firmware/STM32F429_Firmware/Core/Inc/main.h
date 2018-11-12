@@ -52,6 +52,8 @@
 #define __MAIN_H__
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f4xx.h"
+#include "stm32f4xx_ll_i2c.h"
 #include "stm32f4xx_ll_rcc.h"
 #include "stm32f4xx_ll_bus.h"
 #include "stm32f4xx_ll_system.h"
@@ -60,8 +62,8 @@
 #include "stm32f4xx_ll_utils.h"
 #include "stm32f4xx_ll_pwr.h"
 #include "stm32f4xx_ll_dma.h"
+#include "stm32f4xx_ll_tim.h"
 #include "stm32f4xx_ll_usart.h"
-#include "stm32f4xx.h"
 #include "stm32f4xx_ll_gpio.h"
 
 /* USER CODE BEGIN Includes */
@@ -70,10 +72,26 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define MU4_DRV_INA_Pin LL_GPIO_PIN_3
+#define MU4_DRV_INA_GPIO_Port GPIOD
+#define MU4_DRV_INB_Pin LL_GPIO_PIN_4
+#define MU4_DRV_INB_GPIO_Port GPIOD
+#define MU3_DRV_INA_Pin LL_GPIO_PIN_5
+#define MU3_DRV_INA_GPIO_Port GPIOD
+#define MU3_DRV_INB_Pin LL_GPIO_PIN_6
+#define MU3_DRV_INB_GPIO_Port GPIOD
+#define MU2_DRV_INA_Pin LL_GPIO_PIN_7
+#define MU2_DRV_INA_GPIO_Port GPIOD
 #define LD3_Pin LL_GPIO_PIN_13
 #define LD3_GPIO_Port GPIOG
 #define LD4_Pin LL_GPIO_PIN_14
 #define LD4_GPIO_Port GPIOG
+#define MU2_DRV_INB_Pin LL_GPIO_PIN_3
+#define MU2_DRV_INB_GPIO_Port GPIOB
+#define MU1_DRV_INA_Pin LL_GPIO_PIN_4
+#define MU1_DRV_INA_GPIO_Port GPIOB
+#define MU1_DRV_INB_Pin LL_GPIO_PIN_5
+#define MU1_DRV_INB_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**

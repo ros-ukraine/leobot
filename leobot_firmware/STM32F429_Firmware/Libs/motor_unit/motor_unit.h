@@ -1,7 +1,7 @@
 /*
  * motor.h
  *
- *  Created on: 6 трав. 2018 р.
+ *  Created on: 6 пїЅпїЅпїЅпїЅ. 2018 пїЅ.
  *      Author: Nemo
  */
 

@@ -130,7 +130,7 @@ void MotorUnit_1::move(Direction direction, uint32_t speed)
 		MU1_DRV_INB_SetHigh();
 	}
 
-//	if (speed >= 0) LL_TIM_OC_SetCompareCH1(TIM4, speed);
+	if (speed >= 0) LL_TIM_OC_SetCompareCH1(TIM4, speed);
 }
 
 void MotorUnit_2::move(Direction direction, uint32_t speed)
@@ -146,7 +146,7 @@ void MotorUnit_2::move(Direction direction, uint32_t speed)
 		MU2_DRV_INB_SetHigh();
 	}
 
-//	if (speed >= 0) LL_TIM_OC_SetCompareCH2(TIM4, speed);
+	if (speed >= 0) LL_TIM_OC_SetCompareCH2(TIM4, speed);
 }
 
 void MotorUnit_3::move(Direction direction, uint32_t speed)
@@ -162,7 +162,7 @@ void MotorUnit_3::move(Direction direction, uint32_t speed)
 		MU3_DRV_INB_SetHigh();
 	}
 
-//	if (speed >= 0) LL_TIM_OC_SetCompareCH3(TIM4, speed);
+	if (speed >= 0) LL_TIM_OC_SetCompareCH3(TIM4, speed);
 }
 
 void MotorUnit_4::move(Direction direction, uint32_t speed)
@@ -178,7 +178,7 @@ void MotorUnit_4::move(Direction direction, uint32_t speed)
 		MU4_DRV_INB_SetHigh();
 	}
 
-//	if (speed >= 0) LL_TIM_OC_SetCompareCH4(TIM4, speed);
+	if (speed >= 0) LL_TIM_OC_SetCompareCH4(TIM4, speed);
 }
 
 

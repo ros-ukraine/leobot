@@ -8,9 +8,10 @@ void ControlPins_GPIO_1_Init(void)
 	/* GPIO Ports Clock Enable */
 	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
 
-    LL_GPIO_ResetOutputPin(GPIOB, MU1_DRV_INA|MU1_DRV_INB);
+	MU1_DRV_INA_SetLow();
+	MU1_DRV_INB_SetLow();
 
-    GPIO_InitStruct.Pin = MU1_DRV_INA|MU1_DRV_INB;
+    GPIO_InitStruct.Pin = MU1_DRV_INA_Pin|MU1_DRV_INB_Pin;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -28,11 +29,11 @@ void ControlPins_GPIO_2_Init(void)
 	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
 	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
-    LL_GPIO_ResetOutputPin(GPIOB, MU2_DRV_INB);
-    LL_GPIO_ResetOutputPin(GPIOD, MU2_DRV_INA);
+    MU2_DRV_INB_SetLow();
+    MU2_DRV_INA_SetLow();
 
     /* PD7 */
-    GPIO_InitStruct.Pin = MU2_DRV_INA;
+    GPIO_InitStruct.Pin = MU2_DRV_INA_Pin;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -41,7 +42,7 @@ void ControlPins_GPIO_2_Init(void)
 
 
     /* PB3*/
-    GPIO_InitStruct.Pin = MU2_DRV_INB;
+    GPIO_InitStruct.Pin = MU2_DRV_INB_Pin;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -57,9 +58,10 @@ void ControlPins_GPIO_3_Init(void)
 	/* GPIO Ports Clock Enable */
 	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
-    LL_GPIO_ResetOutputPin(GPIOD, MU3_DRV_INA|MU3_DRV_INB);
+	MU3_DRV_INA_SetLow();
+	MU3_DRV_INB_SetLow();
 
-    GPIO_InitStruct.Pin = MU3_DRV_INA|MU3_DRV_INB;
+    GPIO_InitStruct.Pin = MU3_DRV_INA_Pin|MU3_DRV_INB_Pin;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -74,9 +76,10 @@ void ControlPins_GPIO_4_Init(void)
 	/* GPIO Ports Clock Enable */
 	LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
-	LL_GPIO_ResetOutputPin(GPIOD, MU4_DRV_INA|MU4_DRV_INB);
+	MU4_DRV_INA_SetLow();
+	MU4_DRV_INB_SetLow();
 
-	GPIO_InitStruct.Pin = MU4_DRV_INA|MU4_DRV_INB;
+	GPIO_InitStruct.Pin = MU4_DRV_INA_Pin|MU4_DRV_INB_Pin;
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
 	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -88,41 +91,41 @@ void ControlPins_GPIO_4_Init(void)
 void PMW_Timer_Init(void)
 {
 	/* Init Timer for PWM mode */
-//	MX_TIM4_Init();
+	MX_TIM4_Init();
 
-//	LL_TIM_EnableCounter(TIM4);
+	LL_TIM_EnableCounter(TIM4);
 
-//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
-//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
-//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-//	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH1);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
 }
 
 void Encoder_Timer_1_Init(void)
 {
 	/* Init Timer for Encoder mode */
-//	MX_TIM1_Init();
-//	LL_TIM_EnableCounter(TIM1);
+	MX_TIM1_Init();
+	LL_TIM_EnableCounter(TIM1);
 }
 
 void Encoder_Timer_2_Init(void)
 {
 	/* Init Timer for Encoder mode */
-//	MX_TIM2_Init();
-//	LL_TIM_EnableCounter(TIM2);
+	MX_TIM2_Init();
+	LL_TIM_EnableCounter(TIM2);
 }
 
 void Encoder_Timer_3_Init(void)
 {
 	/* Init Timer for Encoder mode */
-//	MX_TIM3_Init();
-//	LL_TIM_EnableCounter(TIM3);
+	MX_TIM3_Init();
+	LL_TIM_EnableCounter(TIM3);
 }
 
 void Encoder_Timer_8_Init(void)
 {
 	/* Init Timer for Encoder mode */
-//	MX_TIM8_Init();
-//	LL_TIM_EnableCounter(TIM8);
+	MX_TIM8_Init();
+	LL_TIM_EnableCounter(TIM8);
 }
 
