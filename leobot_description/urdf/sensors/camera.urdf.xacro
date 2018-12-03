@@ -14,7 +14,7 @@
         </link>
 
         <joint name="${prefix}_camera_joint" type="fixed">
-            <origin xyz="${-camera_radius - parent_width/2} ${side*(-camera_radius/2 + parent_height/2)} 0"
+            <origin xyz="${-camera_radius - parent_width/2} ${side*(parent_height/2 - camera_radius/2)} 0"
                     rpy="${pi/2 + side * pi/2} ${pi/2 + side * pi/2} 0"/>
             <parent link="${parent_link_name}"/>
             <child link="${prefix}_camera_link"/>
