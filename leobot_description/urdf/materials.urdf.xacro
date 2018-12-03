@@ -36,10 +36,4 @@
         </material>
     </xacro:macro>
 
-    <xacro:macro name="yellow_material">
-        <material name="yellow">
-            <color rgba="1.0 1.0 0.0 1.0"/>
-        </material>
-    </xacro:macro>
-
 </robot>
