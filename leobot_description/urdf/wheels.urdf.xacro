@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="motor_holder_radius" value="0.02"/>
     <xacro:property name="motor_holder_height" value="0.1"/>
@@ -5,7 +6,6 @@
     <xacro:property name="mecanum_radius" value="0.1"/>
     <xacro:property name="mecanum_height" value="0.1"/>
     <xacro:property name="mecanum_mass" value="0.3"/>
-
     <xacro:macro name="mecanum_wheel"
                  params="prefix wheel_type side position parent_length parent_height parent_width">
         <link name="${prefix}_motor_holder">>

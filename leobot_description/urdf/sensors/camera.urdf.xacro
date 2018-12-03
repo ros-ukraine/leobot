@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="camera_radius" value="0.025"/>
     <xacro:property name="camera_mass" value="0.1"/>

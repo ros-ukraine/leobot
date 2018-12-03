@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="hokuyo_radius" value="0.05"/>
     <xacro:property name="hokuyo_height" value="0.05"/>
