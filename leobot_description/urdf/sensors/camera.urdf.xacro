@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="camera_radius" value="0.025"/>
-    <xacro:property name="camera_mass" value="0.1"/>
+    <xacro:property name="camera_mass"   value="0.1"/>
+
     <xacro:macro name="fish_camera" params="prefix parent_link_name parent_height side parent_width">
         <link name="${prefix}_camera_link">
             <visual>
@@ -12,10 +13,11 @@
             <xacro:sphere_inertia mass="${camera_mass}" radius="${camera_radius}"/>
         </link>
 
-        <joint name="head_${prefix}_camera_joint" type="fixed">
-            <origin xyz="${side*(camera_radius + parent_width/2) - side*0.005} ${-parent_height/2 + camera_radius} 0" rpy="${pi/2 + side * pi/2 } ${pi/2 + side * pi/2 } 0"/>
-            <parent link="${parent_link_name}" />
-            <child link="${prefix}_camera_link" />
+        <joint name="${prefix}_camera_joint" type="fixed">
+            <origin xyz="${-camera_radius - parent_width/2} ${side*(parent_height/2 - camera_radius/2)} 0"
+                    rpy="${pi/2 + side * pi/2} ${pi/2 + side * pi/2} 0"/>
+            <parent link="${parent_link_name}"/>
+            <child link="${prefix}_camera_link"/>
         </joint>
     </xacro:macro>
 
