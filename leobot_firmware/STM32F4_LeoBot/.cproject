@@ -69,6 +69,7 @@
 								<option id="com.atollic.truestudio.common_options.target.fpucore.1297069055" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.fpv4-sp-d16" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.common_options.target.interwork.1173495076" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork" useByScannerDiscovery="false"/>
 								<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.debug.info.976268228" name="Debug Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.debug.info" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.debug.info.3" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.gcc.warnings.fatal.44086868" superClass="com.atollic.truestudio.gcc.warnings.fatal" useByScannerDiscovery="false" value="false" valueType="boolean"/>
 								<inputType id="com.atollic.truestudio.gcc.input.850396938" superClass="com.atollic.truestudio.gcc.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.ld.1444973427" name="C Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ld">
@@ -124,8 +125,8 @@
 								<option id="com.atollic.truestudio.gpp.cppstandard.1603056052" name="C++ standard" superClass="com.atollic.truestudio.gpp.cppstandard" useByScannerDiscovery="false" value="com.atollic.truestudio.gpp.cppstandard.gnupp0x" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.exe.debug.toolchain.gpp.debug.info.1992487188" name="Debug Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp.debug.info" useByScannerDiscovery="false" value="com.atollic.truestudio.gpp.debug.info.3" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.gpp.symbols.undefined.616664784" name="Undefined symbols" superClass="com.atollic.truestudio.gpp.symbols.undefined" useByScannerDiscovery="false"/>
-								<option id="com.atollic.truestudio.gpp.warnings.fatal.727808617" name="Abort compilation on first error" superClass="com.atollic.truestudio.gpp.warnings.fatal" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.atollic.truestudio.gpp.optimization.prep_data.1521303281" superClass="com.atollic.truestudio.gpp.optimization.prep_data" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+								<option id="com.atollic.truestudio.gpp.warnings.fatal.727808617" name="Abort compilation on first error" superClass="com.atollic.truestudio.gpp.warnings.fatal" useByScannerDiscovery="false" value="false" valueType="boolean"/>
+								<option id="com.atollic.truestudio.gpp.optimization.prep_data.1521303281" name="Prepare dead data removal" superClass="com.atollic.truestudio.gpp.optimization.prep_data" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<inputType id="com.atollic.truestudio.gpp.input.1767144508" superClass="com.atollic.truestudio.gpp.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.ldcc.428260" name="C++ Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ldcc">

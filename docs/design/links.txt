@@ -1,0 +1,3 @@
+http://www.espruino.com/ReferenceSTM32F4DISCOVERY
+https://www.dfrobot.com/wiki/index.php/12V_DC_Motor_251rpm_w/Encoder_(SKU:_FIT0186)
+https://www.dfrobot.com/product-633.html
