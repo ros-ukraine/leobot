@@ -90,6 +90,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ENC1_A_Pin GPIO_PIN_0
+#define ENC1_A_GPIO_Port GPIOA
+#define ENC1_B_Pin GPIO_PIN_1
+#define ENC1_B_GPIO_Port GPIOA
+#define ENC2_A_Pin GPIO_PIN_6
+#define ENC2_A_GPIO_Port GPIOA
+#define ENC2_B_Pin GPIO_PIN_7
+#define ENC2_B_GPIO_Port GPIOA
+#define M1_PWM_Pin GPIO_PIN_9
+#define M1_PWM_GPIO_Port GPIOE
+#define M2_PWM_Pin GPIO_PIN_11
+#define M2_PWM_GPIO_Port GPIOE
+#define M3_PWM_Pin GPIO_PIN_13
+#define M3_PWM_GPIO_Port GPIOE
+#define M4_PWM_Pin GPIO_PIN_14
+#define M4_PWM_GPIO_Port GPIOE
+#define ENC3_A_Pin GPIO_PIN_12
+#define ENC3_A_GPIO_Port GPIOD
+#define ENC4_B_Pin GPIO_PIN_13
+#define ENC4_B_GPIO_Port GPIOD
+#define ENC4_A_Pin GPIO_PIN_6
+#define ENC4_A_GPIO_Port GPIOC
+#define ENC4_BC7_Pin GPIO_PIN_7
+#define ENC4_BC7_GPIO_Port GPIOC
 #define UART_TX_Pin GPIO_PIN_9
 #define UART_TX_GPIO_Port GPIOA
 #define UART_RX_Pin GPIO_PIN_10
