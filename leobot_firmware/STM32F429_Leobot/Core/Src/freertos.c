@@ -52,6 +52,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
+#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
@@ -77,11 +78,142 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
+osThreadId defaultTaskHandle;
+osThreadId LedBlinkTaskHandle;
+osThreadId EncoderTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
    
 /* USER CODE END FunctionPrototypes */
+
+void StartDefaultTask(void const * argument);
+void LedBlinkTaskHandler(void const * argument);
+void EncoderTaskHandler(void const * argument);
+
+void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
+/**
+  * @brief  FreeRTOS initialization
+  * @param  None
+  * @retval None
+  */
+void MX_FREERTOS_Init(void) {
+  /* USER CODE BEGIN Init */
+       
+  /* USER CODE END Init */
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* Create the thread(s) */
+  /* definition and creation of defaultTask */
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+  /* definition and creation of LedBlinkTask */
+  osThreadDef(LedBlinkTask, LedBlinkTaskHandler, osPriorityIdle, 0, 128);
+  LedBlinkTaskHandle = osThreadCreate(osThread(LedBlinkTask), NULL);
+
+  /* definition and creation of EncoderTask */
+  osThreadDef(EncoderTask, EncoderTaskHandler, osPriorityLow, 0, 128);
+  EncoderTaskHandle = osThreadCreate(osThread(EncoderTask), NULL);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  /* USER CODE END RTOS_THREADS */
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+}
+
+/* USER CODE BEGIN Header_StartDefaultTask */
+/**
+  * @brief  Function implementing the defaultTask thread.
+  * @param  argument: Not used 
+  * @retval None
+  */
+/* USER CODE END Header_StartDefaultTask */
+void StartDefaultTask(void const * argument)
+{
+
+  /* USER CODE BEGIN StartDefaultTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_LedBlinkTaskHandler */
+/**
+* @brief Function implementing the LedBlinkTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_LedBlinkTaskHandler */
+void LedBlinkTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN LedBlinkTaskHandler */
+  /* Infinite loop */
+  for(;;)
+  {
+	  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
+	  ITM_SendChar(28);
+	  osDelay(500);
+  }
+  /* USER CODE END LedBlinkTaskHandler */
+}
+
+/* USER CODE BEGIN Header_EncoderTaskHandler */
+/**
+* @brief Function implementing the EncoderTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_EncoderTaskHandler */
+void EncoderTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN EncoderTaskHandler */
+	static uint32_t testcnt;
+
+	//MX_TIM2_Init();
+	//MX_TIM3_Init();
+	//MX_TIM4_Init();
+	//MX_TIM8_Init();
+  /* Infinite loop */
+  for(;;)
+  {
+	  /* make for cycle with array of pointers to timer functions */
+/*
+	  encoder[0].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);
+	  encoder[1].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim3);
+	  encoder[2].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim4);
+	  encoder[3].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim8);
+*/
+	  /* only for debug, for real work should be added formula for speed calculation */
+/*
+	  encoder[0].speed = __HAL_TIM_GET_COUNTER(&htim2);
+	  encoder[1].speed = __HAL_TIM_GET_COUNTER(&htim3);
+	  encoder[2].speed = __HAL_TIM_GET_COUNTER(&htim4);
+	  encoder[3].speed = __HAL_TIM_GET_COUNTER(&htim8);
+*/
+	  testcnt++;
+	  osDelay(100);
+  }
+  /* USER CODE END EncoderTaskHandler */
+}
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
