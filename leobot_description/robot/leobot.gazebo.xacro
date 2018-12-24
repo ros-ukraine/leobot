@@ -238,4 +238,14 @@
       </sensor>
     </gazebo>
 
+    <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>/teleop_twist_keyboard/cmd_vel</commandTopic>
+      <odometryTopic>/mecanum_velocity_controller/odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>10.0</odometryRate>
+      <robotBaseFrame>FL_wheel_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
 </robot>
