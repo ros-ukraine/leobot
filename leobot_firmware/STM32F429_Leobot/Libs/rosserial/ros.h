@@ -38,22 +38,25 @@
 #include "ros/node_handle.h"
 #include "stm32f4hardware.h"
 
+/*
 #define MAX_SUBSCRIBERS 	(5)
 #define MAX_PUBLISHERS  	(5)
 #define INPUT_BUFFER_SIZE 	(128)
 #define OUTPUT_BUFFER_SIZE  (128)
+*/
 
 namespace ros
 {
 	/* <hardware type, max subs, max pubs, input buffer chars, output buffer chars> */
 	/* default 25, 25, 512, 512 */
+	/*
 	typedef ros::NodeHandle_<STM32F4Hardware
 							MAX_SUBSCRIBERS,
 							MAX_PUBLISHERS,
 							INPUT_BUFFER_SIZE,
 							OUTPUT_BUFFER_SIZE> NodeHandle;
-
-	/* typedef ros::NodeHandle_<STM32F4Hardware> NodeHandle; */
+	*/
+	typedef ros::NodeHandle_<STM32F4Hardware> NodeHandle;
 }
 
 #endif /* _ROS_H_ */
