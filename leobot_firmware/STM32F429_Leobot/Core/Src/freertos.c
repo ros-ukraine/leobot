@@ -81,6 +81,7 @@
 osThreadId defaultTaskHandle;
 osThreadId LedBlinkTaskHandle;
 osThreadId EncoderTaskHandle;
+osThreadId RosTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -90,6 +91,7 @@ osThreadId EncoderTaskHandle;
 void StartDefaultTask(void const * argument);
 void LedBlinkTaskHandler(void const * argument);
 void EncoderTaskHandler(void const * argument);
+void RosTaskHandler(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -125,8 +127,12 @@ void MX_FREERTOS_Init(void) {
   LedBlinkTaskHandle = osThreadCreate(osThread(LedBlinkTask), NULL);
 
   /* definition and creation of EncoderTask */
-  osThreadDef(EncoderTask, EncoderTaskHandler, osPriorityLow, 0, 128);
+  osThreadDef(EncoderTask, EncoderTaskHandler, osPriorityNormal, 0, 128);
   EncoderTaskHandle = osThreadCreate(osThread(EncoderTask), NULL);
+
+  /* definition and creation of RosTask */
+  osThreadDef(RosTask, RosTaskHandler, osPriorityNormal, 0, 128);
+  RosTaskHandle = osThreadCreate(osThread(RosTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -213,6 +219,24 @@ void EncoderTaskHandler(void const * argument)
 	  osDelay(100);
   }
   /* USER CODE END EncoderTaskHandler */
+}
+
+/* USER CODE BEGIN Header_RosTaskHandler */
+/**
+* @brief Function implementing the RosTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RosTaskHandler */
+void RosTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN RosTaskHandler */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END RosTaskHandler */
 }
 
 /* Private application code --------------------------------------------------*/
