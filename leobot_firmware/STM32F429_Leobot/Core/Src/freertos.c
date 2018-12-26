@@ -76,8 +76,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+//static ros::NodeHandle nh;
 /* USER CODE END Variables */
+
 osThreadId defaultTaskHandle;
 osThreadId LedBlinkTaskHandle;
 osThreadId EncoderTaskHandle;
@@ -85,7 +86,7 @@ osThreadId RosTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-   
+//void motor_cb(const std_msgs::UInt16& cmd_msg);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -231,17 +232,28 @@ void EncoderTaskHandler(void const * argument)
 void RosTaskHandler(void const * argument)
 {
   /* USER CODE BEGIN RosTaskHandler */
+  //ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  //nh_->spinOnce();
+	  osDelay(1);
   }
   /* USER CODE END RosTaskHandler */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-     
+/*
+static void motor_cb(const std_msgs::UInt16& cmd_msg)
+ {
+  	//cmd_msg.data should be in range 0 - 100
+
+ 	 //str_msg.data = hello;
+ 	 //chatter.publish( &str_msg );
+ }
+*/
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
