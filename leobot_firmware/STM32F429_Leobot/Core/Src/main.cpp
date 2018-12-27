@@ -56,12 +56,10 @@
 #include "usart.h"
 #include "gpio.h"
 
-#include "freertos.c"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include "ros.h"
-#include "std_msgs/String.h"
+//#include "std_msgs/String.h"
+
+#include "freertos.c"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -71,11 +69,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- ros::NodeHandle  nh;
+ //ros::NodeHandle  nh;
 
- std_msgs::String str_msg;
- ros::Publisher chatter("chatter", &str_msg);
- char hello[13] = "hello world!";
+ //std_msgs::String str_msg;
+ //ros::Publisher chatter("chatter", &str_msg);
+ //char hello[13] = "hello world!";
 
 /* USER CODE END PD */
 
@@ -139,16 +137,7 @@ int main(void)
   //MX_USART1_UART_Init();
 
   /* USER CODE BEGIN 2 */
-  // only for debug:
-  nh.initNode();
-  nh.advertise(chatter);
-  str_msg.data = hello;
-  while(1)
-  {
-	  //str_msg.data = hello;
-	  chatter.publish(&str_msg);
-	  HAL_Delay(300);
-  }
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

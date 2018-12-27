@@ -78,11 +78,11 @@
 /* USER CODE BEGIN Variables */
 //static ros::NodeHandle nh;
 /* USER CODE END Variables */
-
 osThreadId defaultTaskHandle;
 osThreadId LedBlinkTaskHandle;
 osThreadId EncoderTaskHandle;
 osThreadId RosTaskHandle;
+osMutexId rosPublishMutexHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -105,6 +105,11 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
        
   /* USER CODE END Init */
+
+  /* Create the mutex(es) */
+  /* definition and creation of rosPublishMutex */
+  osMutexDef(rosPublishMutex);
+  rosPublishMutexHandle = osMutexCreate(osMutex(rosPublishMutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
