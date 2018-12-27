@@ -68,6 +68,7 @@ extern "C" {
 
 #include "ros.h"
 #include "std_msgs/UInt16.h"
+#include "std_msgs/String.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
@@ -176,10 +177,19 @@ void StartDefaultTask(void const * argument)
 {
 
   /* USER CODE BEGIN StartDefaultTask */
+  char hello[15] = "hello world!\r\n";
+
+  std_msgs::String str_msg;
+  str_msg.data = hello;
+
+  ros::Publisher chatter("chatter", &str_msg);
+
+
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  chatter.publish(&str_msg);
+	  osDelay(100);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -254,6 +264,8 @@ void RosTaskHandler(void const * argument)
 {
   /* USER CODE BEGIN RosTaskHandler */
   ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+
+  nh.initNode();
 
   /* Infinite loop */
   for(;;)
