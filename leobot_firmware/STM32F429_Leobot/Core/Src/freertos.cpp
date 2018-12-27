@@ -1,3 +1,4 @@
+
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -49,10 +50,24 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+/*
+extern "C" {
+#include "app.h"
+#include "task.h"
+#include "main.h"
+#include "cmsis_os.h"
+}
+*/
+
+#include "rtos.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+
+#include "ros.h"
+#include "std_msgs/UInt16.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
@@ -76,8 +91,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-//static ros::NodeHandle nh;
+static ros::NodeHandle nh;
 /* USER CODE END Variables */
+
 osThreadId defaultTaskHandle;
 osThreadId LedBlinkTaskHandle;
 osThreadId EncoderTaskHandle;
@@ -86,7 +102,7 @@ osMutexId rosPublishMutexHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-//void motor_cb(const std_msgs::UInt16& cmd_msg);
+void motor_cb(const std_msgs::UInt16& cmd_msg);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -237,28 +253,28 @@ void EncoderTaskHandler(void const * argument)
 void RosTaskHandler(void const * argument)
 {
   /* USER CODE BEGIN RosTaskHandler */
-  //ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
 
   /* Infinite loop */
   for(;;)
   {
-	  //nh_->spinOnce();
-	  osDelay(1);
+	  nh.spinOnce();
+	  //osDelay(1);
   }
   /* USER CODE END RosTaskHandler */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-/*
-static void motor_cb(const std_msgs::UInt16& cmd_msg)
+
+void motor_cb(const std_msgs::UInt16& cmd_msg)
  {
   	//cmd_msg.data should be in range 0 - 100
 
  	 //str_msg.data = hello;
  	 //chatter.publish( &str_msg );
  }
-*/
+
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
