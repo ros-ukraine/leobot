@@ -211,7 +211,7 @@ void LedBlinkTaskHandler(void const * argument)
   for(;;)
   {
 	  HAL_GPIO_TogglePin(LED3_GPIO_Port, LED3_Pin);
-	  ITM_SendChar(28);
+	  printf("LedBlink\r\n");
 	  osDelay(500);
   }
   /* USER CODE END LedBlinkTaskHandler */
