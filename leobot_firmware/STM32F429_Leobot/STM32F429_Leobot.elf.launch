@@ -16,11 +16,11 @@
 <intAttribute key="com.atollic.hardwaredebug.launch.portNumber" value="61234"/>
 <stringAttribute key="com.atollic.hardwaredebug.launch.remoteCommand" value="target extended-remote"/>
 <stringAttribute key="com.atollic.hardwaredebug.launch.runCommands" value="# Set flash parallelism mode to 32, 16, or 8 bit when using STM32 F2/F4 microcontrollers&#13;&#10;# 2=32 bit, 1=16 bit and 0=8 bit parallelism mode&#13;&#10;monitor flash set_parallelism_mode 2&#13;&#10;&#13;&#10;# Load the program executable&#13;&#10;load&#9;&#9;&#13;&#10;&#13;&#10;# Enable Debug connection in low power modes (DBGMCU-&gt;CR)&#13;&#10;set *0xE0042004 = (*0xE0042004) | 0x7&#13;&#10;# Set a breakpoint at main().&#13;&#10;tbreak main&#13;&#10;&#13;&#10;# Run to the breakpoint.&#13;&#10;continue"/>
-<stringAttribute key="com.atollic.hardwaredebug.launch.serverParam" value="-p 61234 -l 1 -d -z 61235 -a 180000000 -b 90 -s -cp &quot;C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.2.0\Servers\STM32CubeProgrammer\bin&quot;"/>
+<stringAttribute key="com.atollic.hardwaredebug.launch.serverParam" value="-p 61234 -l 1 -d -z 61235 -a 180000000 -b 180 -s -cp &quot;C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.2.0\Servers\STM32CubeProgrammer\bin&quot;"/>
 <booleanAttribute key="com.atollic.hardwaredebug.launch.startServer" value="true"/>
 <booleanAttribute key="com.atollic.hardwaredebug.launch.swd_mode" value="true"/>
 <stringAttribute key="com.atollic.hardwaredebug.launch.swv_port" value="61235"/>
-<stringAttribute key="com.atollic.hardwaredebug.launch.swv_trace_div" value="90"/>
+<stringAttribute key="com.atollic.hardwaredebug.launch.swv_trace_div" value="180"/>
 <stringAttribute key="com.atollic.hardwaredebug.launch.swv_trace_hclk" value="180000000"/>
 <booleanAttribute key="com.atollic.hardwaredebug.launch.swv_wait_for_sync" value="true"/>
 <intAttribute key="com.atollic.hardwaredebug.launch.trace_system" value="1"/>
@@ -34,7 +34,7 @@
 <booleanAttribute key="com.atollic.hardwaredebug.stlink.stlink_check_serial_number" value="false"/>
 <stringAttribute key="com.atollic.hardwaredebug.stlink.stlink_txt_serial_number" value=""/>
 <booleanAttribute key="com.atollic.hardwaredebug.stlink.verify_flash" value="false"/>
-<stringAttribute key="com.atollic.truestudio.swv.core.datatrace_0" value="Enabled=true:Address=testcnt:Access=Read/Write:Size=Word:Function=Data Value"/>
+<stringAttribute key="com.atollic.truestudio.swv.core.datatrace_0" value="Enabled=false:Address=testcnt:Access=Read/Write:Size=Word:Function=Data Value"/>
 <stringAttribute key="com.atollic.truestudio.swv.core.datatrace_1" value="Enabled=false:Address=0x0:Access=Read/Write:Size=Word:Function=Data Value"/>
 <stringAttribute key="com.atollic.truestudio.swv.core.datatrace_2" value="Enabled=false:Address=0x0:Access=Read/Write:Size=Word:Function=Data Value"/>
 <stringAttribute key="com.atollic.truestudio.swv.core.datatrace_3" value="Enabled=false:Address=0x0:Access=Read/Write:Size=Word:Function=Data Value"/>
