@@ -59,10 +59,6 @@
 #include "gpio.h"
 
 
-//#include "std_msgs/String.h"
-
-
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -72,11 +68,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- //ros::NodeHandle  nh;
-
- //std_msgs::String str_msg;
- //ros::Publisher chatter("chatter", &str_msg);
- //char hello[13] = "hello world!";
 
 /* USER CODE END PD */
 
@@ -126,8 +117,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  //printf("hello\r\n");
-  //ITM_SendChar(28);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */

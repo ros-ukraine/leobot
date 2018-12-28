@@ -59,20 +59,18 @@ extern "C" {
 }
 */
 
-#include "rtos.h"
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
 
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "rtos.h"
 #include "ros.h"
 #include "std_msgs/UInt16.h"
 #include "std_msgs/String.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */     
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -183,12 +181,17 @@ void StartDefaultTask(void const * argument)
   str_msg.data = hello;
 
   ros::Publisher chatter("chatter", &str_msg);
+  nh.advertise(chatter);
 
 
   /* Infinite loop */
   for(;;)
   {
+	  osMutexWait(rosPublishMutexHandle, 0);
 	  chatter.publish(&str_msg);
+	  osMutexRelease(rosPublishMutexHandle);
+
+
 	  osDelay(100);
   }
   /* USER CODE END StartDefaultTask */
@@ -271,7 +274,7 @@ void RosTaskHandler(void const * argument)
   for(;;)
   {
 	  nh.spinOnce();
-	  //osDelay(1);
+	  osDelay(1);
   }
   /* USER CODE END RosTaskHandler */
 }
