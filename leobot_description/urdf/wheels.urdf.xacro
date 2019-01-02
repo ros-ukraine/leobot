@@ -1,11 +1,13 @@
-<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+
     <xacro:property name="motor_holder_radius" value="0.02"/>
     <xacro:property name="motor_holder_height" value="0.1"/>
-    <xacro:property name="motor_holder_mass" value="0.8"/>
+    <xacro:property name="motor_holder_mass"   value="0.8"/>
+
     <xacro:property name="mecanum_radius" value="0.1"/>
     <xacro:property name="mecanum_height" value="0.1"/>
-    <xacro:property name="mecanum_mass" value="0.3"/>
+    <xacro:property name="mecanum_mass"   value="0.3"/>
+
     <xacro:macro name="mecanum_wheel"
                  params="prefix wheel_type side position parent_length parent_height parent_width">
         <link name="${prefix}_motor_holder">>
@@ -14,7 +16,7 @@
                 <xacro:blue_material/>
             </visual>
             <xacro:cylinder_collision radius="${motor_holder_radius}" height="${motor_holder_height}"/>
-            <xacro:cylinder_inertia mass="${motor_holder_mass}" radius="${motor_holder_radius}" height="${motor_holder_height}"/>
+            <xacro:cylinder_inertia   radius="${motor_holder_radius}" height="${motor_holder_height}" mass="${motor_holder_mass}"/>
         </link>
 
         <joint name="${prefix}_motor_holder_base_joint" type="fixed">
@@ -26,21 +28,22 @@
 
         <link name="${prefix}_wheel_link">
             <visual>
-                <origin rpy="0 0 0 " xyz="${-mecanum_radius*1.05} ${-mecanum_radius} ${-mecanum_height*0.75}"/>
+                <origin rpy="0 0 0" xyz="${-mecanum_radius*1.05} ${-mecanum_radius} ${-mecanum_height*0.75}"/>
                 <geometry>
                     <mesh filename="package://leobot_description/meshes/Mecanum_Wheel_${wheel_type}.STL" scale="0.0015 0.0015 0.0015"/>
                 </geometry>
             </visual>
             <xacro:cylinder_collision radius="${mecanum_radius}" height="${mecanum_height}"/>
-            <xacro:cylinder_inertia mass="${mecanum_mass}" radius="${mecanum_radius}" height="${mecanum_height}"/>
+            <xacro:cylinder_inertia   radius="${mecanum_radius}" height="${mecanum_height}" mass="${mecanum_mass}"/>
         </link>
 
         <joint name="${prefix}_wheel_motor_joint" type="continuous">
-            <origin rpy="0 0 0" xyz="0 0 ${ -1 * side * motor_holder_height/2}"/>
+            <origin rpy="0 0 0" xyz="0 0 ${-1 * side * motor_holder_height/2}"/>
             <parent link="${prefix}_motor_holder"/>
             <child link="${prefix}_wheel_link"/>
             <axis xyz="0 0 1"/>
         </joint>
+
         <transmission name="${prefix}_wheel_transmission">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${prefix}_wheel_motor_joint">
@@ -50,7 +53,6 @@
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
                 <mechanicalReduction>131</mechanicalReduction>
                 <motorTorqueConstant>4.4</motorTorqueConstant>
-
             </actuator>
         </transmission>
     </xacro:macro>

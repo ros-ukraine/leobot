@@ -1,8 +1,9 @@
-<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+
     <xacro:property name="hokuyo_radius" value="0.05"/>
     <xacro:property name="hokuyo_height" value="0.05"/>
-    <xacro:property name="hokuyo_mass" value="0.2"/>
+    <xacro:property name="hokuyo_mass"   value="0.2"/>
+
     <xacro:macro name="lidar_hokuyo" params="parent_link_name parent_height">
         <link name="laser_link">
             <visual>
@@ -19,4 +20,5 @@
             <child link="laser_link" />
         </joint>
     </xacro:macro>
+
 </robot>
