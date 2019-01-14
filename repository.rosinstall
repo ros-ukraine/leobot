@@ -16,9 +16,26 @@
 - git:
     uri: https://github.com/ros-perception/openslam_gmapping.git
     version: master
-    local-name: openslam_gmapping   
+    local-name: openslam_gmapping
 
 - git:
     uri: https://github.com/ros-perception/slam_gmapping.git
     version: hydro-devel
-    local-name: slam_gmapping   
+    local-name: slam_gmapping
+
+- git:
+    uri: https://github.com/clearpathrobotics/LMS1xx.git
+    version: master
+    local-name: LMS1xx
+    
+- git:
+    uri: https://github.com/ros-visualization/interactive_marker_twist_server.git
+    version: kinetic-devel
+    local-name: interactive_marker_twist_server
+
+
+- git:
+    uri: https://github.com/ridgeback/ridgeback.git
+    version: kinetic-devel
+    local-name: ridgeback
+  
