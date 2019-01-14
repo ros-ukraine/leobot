@@ -14,6 +14,11 @@
     local-name: web_video_server
 
 - git:
+    uri: https://github.com/ros-perception/openslam_gmapping.git
+    version: master
+    local-name: openslam_gmapping   
+
+- git:
     uri: https://github.com/ros-perception/slam_gmapping.git
     version: hydro-devel
     local-name: slam_gmapping   
