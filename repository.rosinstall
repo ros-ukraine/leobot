@@ -2,3 +2,18 @@
     uri: https://github.com/ros-teleop/teleop_twist_keyboard.git
     version: master
     local-name: teleop_twist_keyboard
+
+- git:
+    uri: https://github.com/ros-teleop/teleop_twist_joy.git
+    version: indigo-devel
+    local-name: teleop_twist_joy
+
+- git:
+    uri: https://github.com/RobotWebTools/web_video_server.git
+    version: master
+    local-name: web_video_server
+
+- git:
+    uri: https://github.com/ros-perception/slam_gmapping.git
+    version: hydro-devel
+    local-name: slam_gmapping   
