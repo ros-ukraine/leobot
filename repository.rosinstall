@@ -25,7 +25,7 @@
 
 - git:
     uri: https://github.com/clearpathrobotics/LMS1xx.git
-    version: master
+    version: melodic_devel
     local-name: LMS1xx
     
 - git:
