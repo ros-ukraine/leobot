@@ -8,6 +8,12 @@ ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-buil
 
 RUN set -x && \
 
+    echo "Installing NodeJS manually due to dependency issues" && \
+    wget -O /tmp/nodejsinstaller https://deb.nodesource.com/setup_11.x && \
+    chmod 755 /tmp/nodejsinstaller && \
+    /tmp/nodejsinstaller && \
+    apt-get install -y nodejs && \
+
     echo "Loading gazebo models" && \
     /home/$MY_USERNAME/sr-build-tools/docker/utils/load_gazebo_models.sh -u $MY_USERNAME && \
     chown -R $MY_USERNAME:$MY_USERNAME /home/$MY_USERNAME/.gazebo && \
