@@ -81,12 +81,12 @@
         <child link="camera_stick_link"/>
     </joint>
 
-    <transmission name="head_transmission">
+    <transmission name="camera_transmission">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="head_camera_stick_joint">
             <hardwareInterface>EffortJointInterface</hardwareInterface>
         </joint>
-        <actuator name="head_motor"/>
+        <actuator name="camera_motor"/>
     </transmission>
 
     <xacro:fish_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}" parent_width="${camera_stick_width}" side="1"/>
