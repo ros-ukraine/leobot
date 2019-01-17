@@ -1,8 +1,8 @@
-FROM rosukraine/leobot:latest
+FROM rosukraine/leobot:bionic-melodic-latest
 
 MAINTAINER "ROS Ukraine Community"
 
-LABEL Description="This ROS Kinetic image for LeoBot development with IDEs for NVidia Graphic Card" Vendor="ROS Ukraine" Version="1.0"
+LABEL Description="This ROS Melodic image for LeoBot development with IDEs for NVidia Graphic Card" Vendor="ROS Ukraine" Version="1.0"
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
