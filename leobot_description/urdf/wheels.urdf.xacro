@@ -10,7 +10,7 @@
 
     <xacro:macro name="mecanum_wheel"
                  params="prefix wheel_type side position parent_length parent_height parent_width">
-        <link name="${prefix}_motor_holder">>
+        <link name="${prefix}_motor_holder">
             <visual>
                 <xacro:cylinder_geometry radius="${motor_holder_radius}" height="${motor_holder_height}"/>
                 <xacro:blue_material/>
