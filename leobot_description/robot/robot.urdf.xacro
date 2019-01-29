@@ -67,28 +67,49 @@
 
     <link name="camera_stick_link">
         <visual>
-            <xacro:box_geometry width="${camera_stick_width}" height="${camera_stick_height}" depth="${camera_stick_length}"/>
+            <xacro:box_geometry width="${camera_stick_width}" height="${camera_stick_height}"
+                                depth="${camera_stick_length}"/>
             <xacro:yellow_material/>
         </visual>
-        <xacro:box_collision width="${camera_stick_width}" height="${camera_stick_height}" depth="${camera_stick_length}"/>
-        <xacro:box_inertia   width="${camera_stick_width}" height="${camera_stick_height}" depth="${camera_stick_length}" mass="${camera_stick_mass}"/>
+        <xacro:box_collision width="${camera_stick_width}" height="${camera_stick_height}"
+                             depth="${camera_stick_length}"/>
+        <xacro:box_inertia   width="${camera_stick_width}" height="${camera_stick_height}"
+                             depth="${camera_stick_length}" mass="${camera_stick_mass}"/>
     </link>
 
-    <joint name="head_camera_stick_joint" type="continuous">
+    <joint name="head_camera_stick_joint" type="revolute">
         <origin rpy="${pi/2} ${pi/2} ${pi}"
                 xyz="0 ${camera_stick_length/2 - head_height/2} ${head_width/2 + camera_stick_width/2}"/>
         <parent link="head_link"/>
         <child link="camera_stick_link"/>
+        <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
     </joint>
 
-    <xacro:fish_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}" parent_width="${camera_stick_width}" side="1"/>
-    <xacro:fish_camera prefix="right" parent_link_name="camera_stick_link" parent_height="${camera_stick_height}" parent_width="${camera_stick_width}" side="-1"/>
+    <transmission name="head_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_camera_stick_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="head_camera_stick_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <xacro:simple_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
+                  parent_width="${camera_stick_width}" side="1"/>
+    <xacro:simple_camera prefix="right" parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
+                  parent_width="${camera_stick_width}" side="-1"/>
 
     <xacro:lidar_hokuyo parent_link_name="base_link" parent_height="${base_length}"/>
 
-    <xacro:mecanum_wheel prefix="FL" wheel_type="2" side="1"  position="1"  parent_length="${base_width}" parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="FR" wheel_type="1" side="-1" position="1"  parent_length="${base_width}" parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="RL" wheel_type="1" side="1"  position="-1" parent_length="${base_width}" parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="RR" wheel_type="2" side="-1" position="-1" parent_length="${base_width}" parent_height="${base_length}" parent_width="${base_height}"/>
+    <xacro:mecanum_wheel prefix="FL" wheel_type="2" side="1"  position="1"  parent_length="${base_width}"
+                         parent_height="${base_length}" parent_width="${base_height}"/>
+    <xacro:mecanum_wheel prefix="FR" wheel_type="1" side="-1" position="1"  parent_length="${base_width}"
+                         parent_height="${base_length}" parent_width="${base_height}"/>
+    <xacro:mecanum_wheel prefix="RL" wheel_type="1" side="1"  position="-1" parent_length="${base_width}"
+                         parent_height="${base_length}" parent_width="${base_height}"/>
+    <xacro:mecanum_wheel prefix="RR" wheel_type="2" side="-1" position="-1" parent_length="${base_width}"
+                         parent_height="${base_length}" parent_width="${base_height}"/>
 
 </robot>
