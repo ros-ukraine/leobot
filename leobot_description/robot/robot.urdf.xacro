@@ -7,8 +7,8 @@
     <xacro:include filename="$(find leobot_description)/urdf/wheels.urdf.xacro"/>
 
     <xacro:property name="base_width"  value="0.54"/>
-    <xacro:property name="base_length" value="0.3"/>
-    <xacro:property name="base_height" value="0.5"/>
+    <xacro:property name="base_length" value="0.5"/>
+    <xacro:property name="base_height" value="0.3"/>
     <xacro:property name="base_mass"   value="10"/>
 
     <xacro:property name="neck_width"  value="0.04"/>
@@ -16,70 +16,71 @@
     <xacro:property name="neck_height" value="1.45"/>
     <xacro:property name="neck_mass"   value="1.0"/>
 
-    <xacro:property name="head_width"  value="0.04"/>
+    <xacro:property name="head_width"  value="0.29"/>
     <xacro:property name="head_length" value="0.04"/>
-    <xacro:property name="head_height" value="0.29"/>
+    <xacro:property name="head_height" value="0.04"/>
     <xacro:property name="head_mass"   value="0.5"/>
 
-    <xacro:property name="camera_stick_width"  value="0.02"/>
-    <xacro:property name="camera_stick_length" value="0.04"/>
-    <xacro:property name="camera_stick_height" value="0.1"/>
+    <xacro:property name="camera_stick_width"  value="0.04"/>
+    <xacro:property name="camera_stick_length" value="0.1"/>
+    <xacro:property name="camera_stick_height" value="0.02"/>
     <xacro:property name="camera_stick_mass"   value="0.2"/>
 
     <link name="base_link">
         <visual>
-            <xacro:box_geometry width="${base_width}" height="${base_height}" depth="${base_length}"/>
+            <xacro:box_geometry width="${base_width}" length="${base_length}" height="${base_height}"/>
             <xacro:green_material/>
         </visual>
-        <xacro:box_collision width="${base_width}" height="${base_height}" depth="${base_length}"/>
-        <xacro:box_inertia   width="${base_width}" height="${base_height}" depth="${base_length}" mass="${base_mass}"/>
+        <xacro:box_collision width="${base_width}" length="${base_length}" height="${base_height}"/>
+        <xacro:box_inertia   width="${base_width}" length="${base_length}" height="${base_height}" mass="${base_mass}"/>
     </link>
 
     <link name="neck_link">
         <visual>
-            <xacro:box_geometry width="${neck_width}" height="${neck_height}" depth="${neck_length}"/>
+            <xacro:box_geometry width="${neck_width}" length="${neck_length}" height="${neck_height}"/>
             <xacro:red_material/>
         </visual>
-        <xacro:box_collision width="${neck_width}" height="${neck_height}" depth="${neck_length}"/>
-        <xacro:box_inertia   width="${neck_width}" height="${neck_height}" depth="${neck_length}" mass="${head_mass}"/>
+        <xacro:box_collision width="${neck_width}" length="${neck_length}" height="${neck_height}"/>
+        <xacro:box_inertia   width="${neck_width}" length="${neck_length}" height="${neck_height}" mass="${head_mass}"/>
     </link>
 
     <joint name="base_neck_joint" type="fixed">
-        <origin rpy="${pi/2} 0 0" xyz="${-base_height/2 - neck_width} 0 ${-base_length/2 + neck_height / 2 }"/>
+        <origin rpy="0 0 0" xyz="${-(base_width + neck_width) / 2} 0 ${(neck_height - base_height) / 2 }"/>
         <parent link="base_link"/>
         <child link="neck_link"/>
     </joint>
 
     <link name="head_link">
         <visual>
-            <xacro:box_geometry width="${head_width}" height="${head_height}" depth="${head_length}"/>
+            <xacro:box_geometry width="${head_width}" length="${head_length}" height="${head_height}"/>
             <xacro:blue_material/>
         </visual>
-        <xacro:box_collision width="${head_width}" height="${head_height}" depth="${head_length}"/>
-        <xacro:box_inertia   width="${head_width}" height="${head_height}" depth="${head_length}" mass="${head_mass}"/>
+        <xacro:box_collision width="${head_width}" length="${head_length}" height="${head_height}"/>
+        <xacro:box_inertia   width="${head_width}" length="${head_length}" height="${head_height}" mass="${head_mass}"/>
     </link>
 
     <joint name="neck_head_joint" type="fixed">
-        <origin rpy="${pi/2} ${pi/2} ${pi}" xyz="${-neck_length/2 + head_height/2} ${neck_height/2 + head_width/2} 0"/>
+        <origin rpy="0 0 0" xyz="${(head_width - neck_width) / 2} 0 ${(neck_height + head_height) / 2}"/>
         <parent link="neck_link"/>
         <child link="head_link"/>
     </joint>
 
     <link name="camera_stick_link">
         <visual>
-            <xacro:box_geometry width="${camera_stick_width}" height="${camera_stick_height}"
-                                depth="${camera_stick_length}"/>
+            <xacro:box_geometry width="${camera_stick_width}" length="${camera_stick_length}"
+                                height="${camera_stick_height}"/>
             <xacro:yellow_material/>
         </visual>
-        <xacro:box_collision width="${camera_stick_width}" height="${camera_stick_height}"
-                             depth="${camera_stick_length}"/>
-        <xacro:box_inertia   width="${camera_stick_width}" height="${camera_stick_height}"
-                             depth="${camera_stick_length}" mass="${camera_stick_mass}"/>
+        <xacro:box_collision width="${camera_stick_width}" length="${camera_stick_length}"
+                             height="${camera_stick_height}"/>
+        <xacro:box_inertia width="${camera_stick_width}" length="${camera_stick_length}"
+                           height="${camera_stick_height}" mass="${camera_stick_mass}"/>
     </link>
 
     <joint name="head_camera_stick_joint" type="revolute">
-        <origin rpy="${pi/2} ${pi/2} ${pi}"
-                xyz="0 ${camera_stick_length/2 - head_height/2} ${head_width/2 + camera_stick_width/2}"/>
+        <origin rpy="0 0 0"
+                xyz="${(head_width - camera_stick_width) / 2} 0 ${(head_height + camera_stick_height) / 2}"/>
+        <axis xyz="0 0 1"/>
         <parent link="head_link"/>
         <child link="camera_stick_link"/>
         <limit effort="10" velocity="10" lower="${-pi/2}" upper="${pi/2}" />
@@ -97,19 +98,19 @@
     </transmission>
 
     <xacro:simple_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
-                  parent_width="${camera_stick_width}" side="1"/>
+                  parent_length="${camera_stick_length}" side="1"/>
     <xacro:simple_camera prefix="right" parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
-                  parent_width="${camera_stick_width}" side="-1"/>
+                  parent_length="${camera_stick_length}" side="-1"/>
 
-    <xacro:lidar_hokuyo parent_link_name="base_link" parent_height="${base_length}"/>
+    <xacro:lidar_hokuyo parent_link_name="base_link" parent_height="${base_height}"/>
 
-    <xacro:mecanum_wheel prefix="FL" wheel_type="2" side="1"  position="1"  parent_length="${base_width}"
-                         parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="FR" wheel_type="1" side="-1" position="1"  parent_length="${base_width}"
-                         parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="RL" wheel_type="1" side="1"  position="-1" parent_length="${base_width}"
-                         parent_height="${base_length}" parent_width="${base_height}"/>
-    <xacro:mecanum_wheel prefix="RR" wheel_type="2" side="-1" position="-1" parent_length="${base_width}"
-                         parent_height="${base_length}" parent_width="${base_height}"/>
+    <xacro:mecanum_wheel prefix="FL" wheel_type="2" side="1" position="1" parent_length="${base_length}"
+                         parent_height="${base_height}" parent_width="${base_width}"/>
+    <xacro:mecanum_wheel prefix="FR" wheel_type="1" side="-1" position="1" parent_length="${base_length}"
+                         parent_height="${base_height}" parent_width="${base_width}"/>
+    <xacro:mecanum_wheel prefix="RL" wheel_type="1" side="1" position="-1" parent_length="${base_length}"
+                         parent_height="${base_height}" parent_width="${base_width}"/>
+    <xacro:mecanum_wheel prefix="RR" wheel_type="2" side="-1" position="-1" parent_length="${base_length}"
+                         parent_height="${base_height}" parent_width="${base_width}"/>
 
 </robot>

@@ -9,7 +9,7 @@
     <xacro:property name="mecanum_mass"   value="0.3"/>
 
     <xacro:macro name="mecanum_wheel"
-                 params="prefix wheel_type side position parent_length parent_height parent_width">
+                 params="prefix wheel_type side position parent_width parent_length parent_height">
         <link name="${prefix}_motor_holder">
             <visual>
                 <xacro:cylinder_geometry radius="${motor_holder_radius}" height="${motor_holder_height}"/>
@@ -21,7 +21,7 @@
 
         <joint name="${prefix}_motor_holder_base_joint" type="fixed">
             <origin rpy="${pi/2} 0 0"
-                    xyz="${position * (parent_length/2 - motor_holder_radius*2)} ${side * (parent_width/2 + motor_holder_height/2)} ${(-parent_height/2 + motor_holder_radius*2)}"/>
+                    xyz="${position * (parent_width/2 - motor_holder_radius*2)} ${side * (parent_length/2 + motor_holder_height/2)} ${(-parent_height/2 + motor_holder_radius*2)}"/>
             <parent link="base_link"/>
             <child link="${prefix}_motor_holder"/>
         </joint>
