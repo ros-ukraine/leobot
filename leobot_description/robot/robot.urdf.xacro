@@ -26,6 +26,14 @@
     <xacro:property name="camera_stick_height" value="0.02"/>
     <xacro:property name="camera_stick_mass"   value="0.2"/>
 
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 ${base_height / 2 + mecanum_radius - motor_holder_radius - 0.01 }"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
+
     <link name="base_link">
         <visual>
             <xacro:box_geometry width="${base_width}" length="${base_length}" height="${base_height}"/>
@@ -98,9 +106,9 @@
     </transmission>
 
     <xacro:simple_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
-                  parent_length="${camera_stick_length}" side="1"/>
+                         parent_length="${camera_stick_length}" side="1"/>
     <xacro:simple_camera prefix="right" parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
-                  parent_length="${camera_stick_length}" side="-1"/>
+                         parent_length="${camera_stick_length}" side="-1"/>
 
     <xacro:lidar_hokuyo parent_link_name="base_link" parent_height="${base_height}"/>
 

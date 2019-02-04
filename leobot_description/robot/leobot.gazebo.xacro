@@ -34,34 +34,26 @@
     </gazebo>
 
     <gazebo reference="FL_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="FR_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="RL_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="RR_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
@@ -190,6 +182,16 @@
                 <frameName>laser_link</frameName>
             </plugin>
         </sensor>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+            <commandTopic>/wheel_diff_drive_controller/cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryRate>10.0</odometryRate>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+        </plugin>
     </gazebo>
 
 </robot>
