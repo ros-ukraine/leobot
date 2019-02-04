@@ -11,6 +11,10 @@
     <xacro:property name="base_height" value="0.5"/>
     <xacro:property name="base_mass"   value="10"/>
 
+    <xacro:property name="base_footprint_length" value="0.001"/>
+    <xacro:property name="base_footprint_height" value="0.001"/>
+    <xacro:property name="base_footprint_width" value="0.001"/>
+
     <xacro:property name="neck_width"  value="0.04"/>
     <xacro:property name="neck_length" value="0.04"/>
     <xacro:property name="neck_height" value="1.45"/>
@@ -34,6 +38,20 @@
         <xacro:box_collision width="${base_width}" height="${base_height}" depth="${base_length}"/>
         <xacro:box_inertia   width="${base_width}" height="${base_height}" depth="${base_length}" mass="${base_mass}"/>
     </link>
+
+    <link name="base_footprint">
+        <visual>
+            <xacro:box_geometry width="${base_footprint_width}" height="${base_footprint_height}" depth="${base_footprint_length}"/>
+            <xacro:green_material/>
+        </visual>
+        <xacro:box_collision width="${base_footprint_width}" height="${base_footprint_height}" depth="${base_footprint_length}"/>
+    </link>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 ${mecanum_radius - motor_holder_radius*3 }"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
 
     <link name="neck_link">
         <visual>
