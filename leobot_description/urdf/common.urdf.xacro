@@ -68,25 +68,32 @@
         </collision>
     </xacro:macro>
 
-    <xacro:macro name="box_inertia" params="mass width height depth x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0">
+    <xacro:macro name="box_inertia" params="mass width length height x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0">
         <inertial>
             <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
             <mass value="${mass}"/>
-            <inertia ixx="${(depth*depth + height*height)*mass/12}" ixy="0.0" ixz="0.0"
-                     iyy="${(depth*depth + width*width  )*mass/12}" iyz="0.0"
-                     izz="${(width*width + height*height)*mass/12}"/>
+            <inertia ixx="${(height*height + length*length)*mass/12}" ixy="0.0" ixz="0.0"
+                     iyy="${(height*height + width*width  )*mass/12}" iyz="0.0"
+                     izz="${(width*width + length*length)*mass/12}"/>
         </inertial>
     </xacro:macro>
 
-    <xacro:macro name="box_geometry" params="width height depth">
+    <!-- Box dimensions approach:
+         X axis is facing towards observer
+         Y axis is in the horizontal plane with X axis
+         Z axis is vertical
+         Length is dimension along Y axis
+         Width is along X axis
+         Height is along Z axis -->
+    <xacro:macro name="box_geometry" params="width length height">
         <geometry>
-            <box size="${width} ${height} ${depth}"/>
+            <box size="${width} ${length} ${height}"/>
         </geometry>
     </xacro:macro>
 
-    <xacro:macro name="box_collision" params="width height depth">
+    <xacro:macro name="box_collision" params="width length height">
         <collision>
-            <xacro:box_geometry width="${width}" height="${height}" depth="${depth}"/>
+            <xacro:box_geometry width="${width}" length="${length}" height="${height}"/>
         </collision>
     </xacro:macro>
 

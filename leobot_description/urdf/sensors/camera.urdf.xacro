@@ -1,9 +1,10 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:property name="camera_radius" value="0.025"/>
+    <xacro:property name="camera_size" value="0.03"/>
     <xacro:property name="camera_mass"   value="0.1"/>
 
-    <xacro:macro name="fish_camera" params="prefix parent_link_name parent_height side parent_width">
+    <xacro:macro name="fish_camera" params="prefix parent_link_name parent_length parent_height side">
         <link name="${prefix}_camera_link">
             <visual>
                 <xacro:sphere_geometry radius="${camera_radius}"/>
@@ -14,8 +15,27 @@
         </link>
 
         <joint name="${prefix}_camera_joint" type="fixed">
-            <origin xyz="${-camera_radius - parent_width/2} ${side*(parent_height/2 - camera_radius/2)} 0"
-                    rpy="${pi/2 + side * pi/2} ${pi/2 + side * pi/2} 0"/>
+            <origin xyz="0 ${side * parent_length / 2} ${(parent_height + camera_radius) / 2}"
+                    rpy="0 0 0"/>
+            <parent link="${parent_link_name}"/>
+            <child link="${prefix}_camera_link"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="simple_camera" params="prefix parent_link_name parent_length parent_height side">
+        <link name="${prefix}_camera_link">
+            <visual>
+              <xacro:box_geometry width="${camera_size}" length="${camera_size}" height="${camera_size}"/>
+              <xacro:green_material/>
+            </visual>
+            <xacro:box_collision width="${camera_size}" length="${camera_size}" height="${camera_size}"/>
+            <xacro:box_inertia mass="${camera_mass}" width="${camera_size}" length="${camera_size}"
+                               height="${camera_size}"/>
+        </link>
+
+        <joint name="${prefix}_camera_joint" type="fixed">
+            <origin xyz="0 ${side * parent_length / 2} ${(parent_height + camera_size) / 2}"
+                    rpy="0 0 0"/>
             <parent link="${parent_link_name}"/>
             <child link="${prefix}_camera_link"/>
         </joint>

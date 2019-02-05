@@ -34,34 +34,26 @@
     </gazebo>
 
     <gazebo reference="FL_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="FR_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="RL_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="RR_wheel_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
         <material>Gazebo/Blue</material>
     </gazebo>
 
@@ -99,45 +91,51 @@
 
     <gazebo reference="left_camera_link">
         <material>Gazebo/Green</material>
-        <sensor name="left_camera" type="wideanglecamera">
-            <camera>
-                <horizontal_fov>6.283</horizontal_fov>
+        <sensor type="multicamera" name="stereo_camera">
+            <update_rate>30.0</update_rate>
+            <camera name="left">
+                <horizontal_fov>1.3962634</horizontal_fov>
                 <image>
-                    <width>320</width>
-                    <height>240</height>
+                    <width>800</width>
+                    <height>800</height>
+                    <format>R8G8B8</format>
                 </image>
                 <clip>
-                    <near>0.1</near>
-                    <far>100</far>
+                    <near>0.02</near>
+                    <far>300</far>
                 </clip>
-                <!-- A new section named `lens`. -->
-                <lens>
-                    <!-- type element is mandatory -->
-                    <type>custom</type>
-                    <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
-                    <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
-                    <custom_function>
-                        <c1>1.05</c1>   <!-- linear scaling -->
-                        <c2>4</c2>      <!-- angle scaling -->
-                        <f>1.0</f>      <!-- one more scaling parameter -->
-                        <fun>tan</fun>  <!-- one of sin,tan,id -->
-                    </custom_function>
-                    <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
-                    <!-- othervise it depends on lens type and custom function, if there is one -->
-                    <scale_to_hfov>true</scale_to_hfov>
-                    <!-- clip everything that is outside of this angle -->
-                    <cutoff_angle>3.1415</cutoff_angle>
-                    <!-- resolution of the cubemap texture, the higher it is - the sharper is your image -->
-                    <env_texture_size>512</env_texture_size>
-                </lens>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
             </camera>
-            <plugin name="left_fisheye_camera_controller" filename="libgazebo_ros_camera.so">
+            <camera name="right">
+                <pose>0 -0.07 0 0 0 0</pose>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>800</width>
+                    <height>800</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
                 <alwaysOn>true</alwaysOn>
                 <updateRate>0.0</updateRate>
-                <cameraName>left_fisheye_camera</cameraName>
+                <cameraName>stereocamera</cameraName>
                 <imageTopicName>image_raw</imageTopicName>
                 <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_left_link</frameName>
+                <frameName>left_camera_link</frameName>
+                <rightFrameName>right_camera_link</rightFrameName>
                 <hackBaseline>0.07</hackBaseline>
                 <distortionK1>0.0</distortionK1>
                 <distortionK2>0.0</distortionK2>
@@ -145,62 +143,11 @@
                 <distortionT1>0.0</distortionT1>
                 <distortionT2>0.0</distortionT2>
             </plugin>
-            <always_on>1</always_on>
-            <update_rate>30</update_rate>
         </sensor>
     </gazebo>
 
     <gazebo reference="right_camera_link">
         <material>Gazebo/Green</material>
-        <sensor name="right_camera" type="wideanglecamera">
-            <camera>
-                <horizontal_fov>6.283</horizontal_fov>
-                <image>
-                    <width>320</width>
-                    <height>240</height>
-                </image>
-                <clip>
-                    <near>0.1</near>
-                    <far>100</far>
-                </clip>
-                <!-- A new section named `lens`. -->
-                <lens>
-                    <!-- type element is mandatory -->
-                    <type>custom</type>
-                    <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
-                    <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
-                    <custom_function>
-                        <c1>1.05</c1>   <!-- linear scaling -->
-                        <c2>4</c2>      <!-- angle scaling -->
-                        <f>1.0</f>      <!-- one more scaling parameter -->
-                        <fun>tan</fun>  <!-- one of sin,tan,id -->
-                    </custom_function>
-                    <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
-                    <!-- othervise it depends on lens type and custom function, if there is one -->
-                    <scale_to_hfov>true</scale_to_hfov>
-                    <!-- clip everything that is outside of this angle -->
-                    <cutoff_angle>3.1415</cutoff_angle>
-                    <!-- resolution of the cubemap texture, the higher it is - the sharper is your image -->
-                    <env_texture_size>512</env_texture_size>
-                </lens>
-            </camera>
-            <plugin name="right_fisheye_camera_controller" filename="libgazebo_ros_camera.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>0.0</updateRate>
-                <cameraName>right_fisheye_camera</cameraName>
-                <imageTopicName>image_raw</imageTopicName>
-                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <frameName>camera_left_link</frameName>
-                <hackBaseline>0.07</hackBaseline>
-                <distortionK1>0.0</distortionK1>
-                <distortionK2>0.0</distortionK2>
-                <distortionK3>0.0</distortionK3>
-                <distortionT1>0.0</distortionT1>
-                <distortionT2>0.0</distortionT2>
-            </plugin>
-            <always_on>1</always_on>
-            <update_rate>30</update_rate>
-        </sensor>
     </gazebo>
 
     <!-- Hokuyo LIDAR for simulation -->
@@ -235,6 +182,16 @@
                 <frameName>laser_link</frameName>
             </plugin>
         </sensor>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+            <commandTopic>/wheel_diff_drive_controller/cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryRate>10.0</odometryRate>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+        </plugin>
     </gazebo>
 
 </robot>

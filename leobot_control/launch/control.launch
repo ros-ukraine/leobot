@@ -2,7 +2,7 @@
     <node name="controller_spawner"
           pkg="controller_manager" type="spawner" respawn="false"
           output="screen" ns="/"
-          args="joint_state_controller mecanum_velocity_controller" />
+          args="joint_state_controller head_position_controller" />
 
     <!--<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />-->
 
