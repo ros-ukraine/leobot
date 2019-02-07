@@ -91,7 +91,7 @@ ros.on('close', function() {
     console.log('Connection to websocket server closed.');
 });
 
-var wheelsTopic       = createTopic('/wheel_diff_drive_controller/cmd_vel', 'geometry_msgs/Twist');
+var wheelsTopic       = createTopic('/cmd_vel', 'geometry_msgs/Twist');
 var headControlTopic  = createTopic('/head_position_controller/command', 'std_msgs/Float64');
 var headListenerTopic = createTopic('/head_position_controller/state', 'control_msgs/JointControllerState');
 
