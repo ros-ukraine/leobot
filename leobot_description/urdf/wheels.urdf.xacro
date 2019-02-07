@@ -21,7 +21,7 @@
 
         <joint name="${prefix}_motor_holder_base_joint" type="fixed">
             <origin rpy="${pi/2} 0 0"
-                    xyz="${position * (parent_width/2 - motor_holder_radius*2)} ${side * (parent_length/2 + motor_holder_height/2)} ${(-parent_height/2 + motor_holder_radius*2)}"/>
+                    xyz="${position * (parent_width/2 - motor_holder_radius*2)} ${side * (parent_length/2 + motor_holder_height/2)} ${-parent_height/2 + motor_holder_radius}"/>
             <parent link="base_link"/>
             <child link="${prefix}_motor_holder"/>
         </joint>
@@ -50,9 +50,7 @@
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             </joint>
             <actuator name="${prefix}_wheel_motor">
-                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-                <mechanicalReduction>131</mechanicalReduction>
-                <motorTorqueConstant>4.4</motorTorqueConstant>
+                <mechanicalReduction>1</mechanicalReduction>
             </actuator>
         </transmission>
     </xacro:macro>

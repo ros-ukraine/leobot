@@ -97,4 +97,18 @@
         </collision>
     </xacro:macro>
 
+    <xacro:macro name="cube_geometry" params="size">
+        <xacro:box_geometry width="${size}" length="${size}" height="${size}"/>
+    </xacro:macro>
+
+    <xacro:macro name="cube_collision" params="size">
+        <xacro:box_collision width="${size}" length="${size}" height="${size}"/>
+    </xacro:macro>
+
+    <xacro:macro name="cube_inertia" params="mass size x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0">
+        <xacro:box_inertia mass="${mass}" width="${size}" length="${size}" height="${size}" x="${x}" y="${y}" z="${z}"
+                           roll="${roll}" pitch="${pitch}" yaw="${yaw}"/>
+    </xacro:macro>
+
+
 </robot>

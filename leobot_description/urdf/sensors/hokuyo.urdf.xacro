@@ -8,7 +8,7 @@
         <link name="laser_link">
             <visual>
                 <xacro:cylinder_geometry height="${hokuyo_height}" radius="${hokuyo_radius}"/>
-                <xacro:navajo_white_material/>
+                <xacro:green_material/>
             </visual>
             <xacro:cylinder_collision height="${hokuyo_height}" radius="${hokuyo_radius}"/>
             <xacro:cylinder_inertia mass="${hokuyo_mass}" height="${hokuyo_height}" radius="${hokuyo_radius}"/>
