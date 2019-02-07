@@ -11,6 +11,9 @@
     <xacro:property name="base_height" value="0.3"/>
     <xacro:property name="base_mass"   value="10"/>
 
+    <xacro:property name="imu_link_size" value="0.01"/>
+    <xacro:property name="imu_link_mass" value="0.01"/>
+
     <xacro:property name="neck_width"  value="0.04"/>
     <xacro:property name="neck_length" value="0.04"/>
     <xacro:property name="neck_height" value="1.45"/>
@@ -29,7 +32,7 @@
     <link name="base_footprint"/>
 
     <joint name="base_footprint_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 ${base_height / 2 + mecanum_radius - motor_holder_radius - 0.01 }"/>
+        <origin rpy="0 0 0" xyz="0 0 ${base_height / 2 + mecanum_radius - motor_holder_radius - 0.05 }"/>
         <parent link="base_footprint"/>
         <child link="base_link"/>
     </joint>
@@ -37,7 +40,7 @@
     <link name="base_link">
         <visual>
             <xacro:box_geometry width="${base_width}" length="${base_length}" height="${base_height}"/>
-            <xacro:green_material/>
+            <xacro:navajo_white_material/>
         </visual>
         <xacro:box_collision width="${base_width}" length="${base_length}" height="${base_height}"/>
         <xacro:box_inertia   width="${base_width}" length="${base_length}" height="${base_height}" mass="${base_mass}"/>
@@ -100,10 +103,24 @@
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="head_camera_stick_joint">
-            <hardwareInterface>EffortJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
+
+    <link name="imu_link">
+        <visual>
+            <xacro:cube_geometry size="${imu_link_size}"/>
+            <xacro:green_material/>
+        </visual>
+        <xacro:cube_collision size="${imu_link_size}"/>
+        <xacro:cube_inertia size="${imu_link_size}" mass="${imu_link_mass}"/>
+    </link>
+
+    <joint name="base_imu_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="${(base_width - imu_link_size) / 2} 0 ${(base_height + imu_link_size) / 2}"/>
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+    </joint>
 
     <xacro:simple_camera prefix="left"  parent_link_name="camera_stick_link" parent_height="${camera_stick_height}"
                          parent_length="${camera_stick_length}" side="1"/>

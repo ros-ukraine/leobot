@@ -9,28 +9,34 @@
         </plugin>
     </gazebo>
 
+    <gazebo reference="base_footprint">
+        <gravity>true</gravity>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1.0</maxVel>
+    </gazebo>
+
     <gazebo reference="base_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
         <material>Gazebo/White</material>
     </gazebo>
 
     <gazebo reference="head_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
         <material>Gazebo/White</material>
     </gazebo>
 
     <gazebo reference="neck_link">
-        <mu1 value="1.0"/>
-        <mu2 value="1.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
         <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="camera_stick_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="imu_link">
+        <material>Gazebo/Green</material>
     </gazebo>
 
     <gazebo reference="FL_wheel_link">
@@ -185,13 +191,57 @@
     </gazebo>
 
     <gazebo>
-        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
-            <commandTopic>/wheel_diff_drive_controller/cmd_vel</commandTopic>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <odometryRate>10.0</odometryRate>
-            <robotBaseFrame>base_footprint</robotBaseFrame>
+        <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+            <robotNamespace>/</robotNamespace>
+            <updateRate>50.0</updateRate>
+            <bodyName>base_footprint</bodyName>
+            <frameId>imu_link</frameId>
+            <topicName>imu/data</topicName>
+            <accelDrift>0.005 0.005 0.005</accelDrift>
+            <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+            <rateDrift>0.00005 0.00005 0.00005</rateDrift>
+            <rateGaussianNoise>0.00005 0.00005 0.00005</rateGaussianNoise>
+            <headingDrift>0.005</headingDrift>
+            <headingGaussianNoise>0.005</headingGaussianNoise>
         </plugin>
     </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_ros_force_based_move" filename="libgazebo_ros_force_based_move.so">
+            <robotNamespace>/</robotNamespace>
+            <commandTopic>/mecanum_velocity_controller/cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryRate>25.0</odometryRate>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <cmdVelTimeOut>0.25</cmdVelTimeOut>
+            <!-- Don't publish a transform: the controller does it. -->
+            <publishOdometryTf>0</publishOdometryTf>
+            <yaw_velocity_p_gain>1.0</yaw_velocity_p_gain>
+            <x_velocity_p_gain>1.0</x_velocity_p_gain>
+            <y_velocity_p_gain>1.0</y_velocity_p_gain>
+        </plugin>
+    </gazebo>
+
+    <!--<gazebo>-->
+         <!--<plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">-->
+            <!--<robotNamespace>/</robotNamespace>-->
+            <!--<commandTopic>/mecanum_velocity_controller/cmd_vel</commandTopic>-->
+            <!--<odometryTopic>odom</odometryTopic>-->
+            <!--<odometryFrame>odom</odometryFrame>-->
+            <!--<odometryRate>25.0</odometryRate>-->
+            <!--<robotBaseFrame>base_link</robotBaseFrame>-->
+            <!--&lt;!&ndash;<robotBaseFrame>base_footprint</robotBaseFrame>&ndash;&gt;-->
+            <!--<cmdVelTimeOut>0.25</cmdVelTimeOut>-->
+            <!--&lt;!&ndash; Don't publish a transform: the controller does it. &ndash;&gt;-->
+            <!--<publishOdometryTf>0</publishOdometryTf>-->
+            <!--&lt;!&ndash;<yaw_velocity_p_gain>1.0</yaw_velocity_p_gain>&ndash;&gt;-->
+            <!--&lt;!&ndash;<x_velocity_p_gain>1.0</x_velocity_p_gain>&ndash;&gt;-->
+            <!--&lt;!&ndash;<y_velocity_p_gain>1.0</y_velocity_p_gain>&ndash;&gt;-->
+            <!--<yaw_velocity_p_gain>500.0</yaw_velocity_p_gain>-->
+            <!--<x_velocity_p_gain>10000.0</x_velocity_p_gain>-->
+            <!--<y_velocity_p_gain>10000.0</y_velocity_p_gain>-->
+        <!--</plugin>-->
+    <!--</gazebo>-->
 
 </robot>
