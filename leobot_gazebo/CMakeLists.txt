@@ -4,7 +4,7 @@ project(leobot_gazebo)
 find_package(catkin REQUIRED)
 
 catkin_package(
-  CATKIN_DEPENDS gazebo_ros gazebo_ros_control hector_gazebo_plugins leobot_description
+  CATKIN_DEPENDS gazebo_ros gazebo_ros_control hector_gazebo_plugins ridgeback_gazebo_plugins leobot_description
 )
 
 install(FILES
