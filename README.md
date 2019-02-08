@@ -7,7 +7,7 @@
 | Code Coverage | [![Coverage Badge](https://api.shippable.com/projects/5a1348e66301ee07008ca23f/coverageBadge?branch=kinetic-devel)](https://app.shippable.com/github/ros-ukraine/leobot) |
 
 # leobot
-![LeoBot](https://raw.githubusercontent.com/ros-ukraine/leobot/kinetic-devel/docs/design/LeoBotLogo.jpg "LeoBot telepresence robot")
+![LeoBot](https://raw.githubusercontent.com/ros-ukraine/leobot/kinetic-devel/docs/design/ui/LeoBotLogo.jpg "LeoBot telepresence robot")
 
 LeoBot telepresence robot 
 
