@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>leobot_2dnav</name>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
   <description>The leobot_2dnav package</description>
 
-  <maintainer email="ROS.Ukraine@todo.todo">ROS.Ukraine</maintainer>
+  <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
 
   <license>MIT</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <run_depend>move_base</run_depend>
-  <run_depend>gmapping</run_depend>
-  <run_depend>amcl</run_depend>
-  <run_depend>map_server</run_depend>
-  <run_depend>rviz</run_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>gmapping</exec_depend>
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>rviz</exec_depend>
 </package>

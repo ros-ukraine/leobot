@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>leobot_msgs</name>
+  <name>leobot_hardware</name>
   <version>0.0.1</version>
-  <description>The leobot_msgs package</description>
+  <description>The leobot_hardware package</description>
 
   <maintainer email="ROS.Ukraine@todo.todo">ROS Ukraine Community</maintainer>
   <author>Andriy Petlovanyy</author>
@@ -10,7 +10,5 @@
   <license>MIT</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <depend>std_msgs</depend>
-  <build_depend>message_generation</build_depend>
-  <exec_depend>message_runtime</exec_depend>
+  <depend>leobot_msgs</depend>
 </package>
