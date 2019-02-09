@@ -82,5 +82,8 @@ qtcreator-*
 # PyCharm IDE
 .idea
 
+# VSCode IDE
+.vscode
+
 # FreeCAD backup files
 *.fcstd1
