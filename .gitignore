@@ -84,3 +84,15 @@ qtcreator-*
 
 # FreeCAD backup files
 *.fcstd1
+/leobot_firmware/STM32F767_Firmware/Debug
+/leobot_firmware/STM32F767_Firmware/.metadata
+/leobot_firmware/STM32F767_CubeMX/.settings
+/leobot_firmware/STM32F767_CubeMX/Core
+/leobot_firmware/STM32F767_CubeMX/Drivers
+/leobot_firmware/STM32F767_CubeMX/Middlewares
+/leobot_firmware/STM32F767_CubeMX/startup
+/leobot_firmware/STM32F767_CubeMX/.gitignore
+/leobot_firmware/STM32F767_CubeMX/.mxproject
+/leobot_firmware/STM32F767_CubeMX/syscalls.c
+/leobot_firmware/STM32F767_CubeMX/STM32F767_CubeMX_Config.elf.launch
+/leobot_firmware/STM32F767_CubeMX/STM32F767ZI_FLASH.ld
