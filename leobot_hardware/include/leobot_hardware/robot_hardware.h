@@ -21,14 +21,14 @@ public:
   void read(const ros::Time& time, const ros::Duration& period);
   void write(const ros::Time& time, const ros::Duration& period);
 
-// private:
-//   void jointStateCallback(const leobot_msgs::MotorsJointState::ConstPtr& message);
+private:
+  void firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr& message);
 
 //   hardware_interface::JointStateInterface joint_state_interface;
 //   hardware_interface::VelocityJointInterface joint_velocity_interface;
 
-//   ros::Subscriber motors_joint_state;
-//   ros::Publisher publish_motor_velocities;
+  ros::Subscriber state_subscriber_;
+  ros::Publisher command_publisher_;
 
 //   std::mutex joint_states_update_mutex;
 

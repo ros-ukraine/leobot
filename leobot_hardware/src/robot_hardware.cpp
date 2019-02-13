@@ -15,23 +15,22 @@ namespace leobot_hardware
   {
   }
 
-//    void LeobotRobotHW::jointStateCallback(const leobot_msgs::MotorsJointState::ConstPtr& message)
-//    {
-//      std::lock_guard<std::mutex> lock(this->joint_states_update_mutex);
+  void LeobotRobotHW::firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr& message)
+  {
+    // hardware_motor_position[0] = message->left_joint_position;
+    // hardware_motor_velocity[0] = message->left_joint_velocity;
+    // hardware_motor_effort[0] = message->left_joint_effort;
 
-//      hardware_motor_position[0] = message->left_joint_position;
-//      hardware_motor_velocity[0] = message->left_joint_velocity;
-//      hardware_motor_effort[0] = message->left_joint_effort;
+    // hardware_motor_position[1] = message->right_joint_position;
+    // hardware_motor_velocity[1] = message->right_joint_velocity;
+    // hardware_motor_effort[1] = message->right_joint_effort;
 
-//      hardware_motor_position[1] = message->right_joint_position;
-//      hardware_motor_velocity[1] = message->right_joint_velocity;
-//      hardware_motor_effort[1] = message->right_joint_effort;
-//    }
+  }
 
   bool LeobotRobotHW::init(ros::NodeHandle& root_nh)
   {
-    // publish_motor_velocities = root_nh.advertise<leobot_msgs::SetMotorsVelocity>("set_motors_velocity", 1000);
-    // motors_joint_state = root_nh.subscribe("motors_joint_state", 1000, &LeobotRobotHW::jointStateCallback, this);
+    this->command_publisher_ = root_nh.advertise<leobot_msgs::FirmwareCommandWrite>("firmware_command_write", 10);
+    this->state_subscriber_ = root_nh.subscribe("firmware_state_read", 1, &LeobotRobotHW::firmwareStateCallback, this);
 
     // hardware_interface::JointStateHandle left_wheel_joint_state_handle("back_left_wheel_joint", &position[0],
     //     &velocity[0], &effort[0]);
