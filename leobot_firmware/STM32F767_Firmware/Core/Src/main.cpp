@@ -42,15 +42,16 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "gpio.h"
+#include "tim.h"
+#include "rtos.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
 
 //#include "rtos.h"
-#include "ros.h"
-#include "std_msgs/UInt16.h"
-#include "std_msgs/String.h"
+//#include "ros.h"
+//#include "std_msgs/UInt16.h"
+//#include "std_msgs/String.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,29 +70,23 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-/*static */ros::NodeHandle nh;
+///*static */ros::NodeHandle nh;
 
-osThreadId defaultTaskHandle;
-osThreadId UsartTaskHandle;
-osThreadId LedTaskHandle;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void StartDefaultTask(void const * argument);
-void StartUsartTask(void const * argument);
-void StartTaskLedTask(void const * argument);
-
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-char *msg = "hello\r\n";
-volatile uint8_t rx[8] = {0};
+//char *msg = "hello\r\n";
+//volatile uint8_t rx[8] = {0};
 /* USER CODE END 0 */
 
 /**
@@ -112,6 +107,7 @@ int main(void)
 	//Configure Instruction cache through ART accelerator
   //SET_BIT(RCC->APB1ENR, RCC_APB1ENR_PWREN);
   //SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN);
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -123,43 +119,37 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  //MX_USART3_UART_Init();
-  /* USER CODE BEGIN 2 */
-  nh.initNode();
-  /* USER CODE END 2 */
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
 
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
+/* motor debug part, set 0 to comment out this part of code */
+#define PMW_DEBUG 1
 
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
+#if PMW_DEBUG
+  MX_TIM2_Init();
 
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityIdle, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH1);
+  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH2);
+  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH3);
+  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH4);
+  LL_TIM_EnableCounter(TIM2);
 
-  /* definition and creation of UsartTask */
-  osThreadDef(UsartTask, StartUsartTask, osPriorityNormal, 0, 128);
-  UsartTaskHandle = osThreadCreate(osThread(UsartTask), NULL);
+  /* a value 1000 - 100% */
+  /* connections: */
+  /* driver: MCU board*/
+  /* PWM : PA0 */
+  /* INB : 3V3 */
+  /* INA : GND */
 
-  /* definition and creation of LedTask */
-  osThreadDef(LedTask, StartTaskLedTask, osPriorityLow, 0, 128);
-  LedTaskHandle = osThreadCreate(osThread(LedTask), NULL);
+  LL_TIM_OC_SetCompareCH1(TIM2, 100); //PA0
+  LL_TIM_OC_SetCompareCH2(TIM2, 300); //PA1 , no signal on pin , need to solder out SB11
+  LL_TIM_OC_SetCompareCH3(TIM2, 500); //PB10
+  LL_TIM_OC_SetCompareCH4(TIM2, 800); //PB11
 
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
+  while(1);
+#endif
 
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
+  /* Init FreeRTOS tasks */
+  MX_FREERTOS_Init();
  
 
   /* Start scheduler */
@@ -231,83 +221,7 @@ void SystemClock_Config(void)
 
 /* USER CODE END 4 */
 
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used 
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
-{
 
-  //nh.initNode();
-
-
-  /* Infinite loop */
-  for(;;)
-  {
-	  //chatter.publish(&str_msg);
-	  nh.spinOnce();
-	  //osDelay(500);
-  }
-  /* USER CODE END 5 */ 
-}
-
-/* USER CODE BEGIN Header_StartUsartTask */
-/**
-* @brief Function implementing the UsartTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartUsartTask */
-void StartUsartTask(void const * argument)
-{
-  /* USER CODE BEGIN StartUsartTask */
-	/* USER CODE BEGIN 5 */
-	char hello[13] = "hello world!";
-
-	std_msgs::String str_msg;
-	str_msg.data = hello;
-
-	ros::Publisher chatter("chatter", &str_msg);
-	nh.advertise(chatter);
-
-  /* Infinite loop */
-  for(;;)
-  {
-	  chatter.publish(&str_msg);
-
-	  osDelay(500);
-
-
-  }
-  /* USER CODE END StartUsartTask */
-}
-
-/* USER CODE BEGIN Header_StartTaskLedTask */
-/**
-* @brief Function implementing the LedTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_StartTaskLedTask */
-void StartTaskLedTask(void const * argument)
-{
-  /* USER CODE BEGIN StartTaskLedTask */
-  /* Infinite loop */
-  for(;;)
-  {
-	  LL_GPIO_SetOutputPin(LD3_GPIO_Port, LD3_Pin);
-	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
-	  osDelay(200);
-
-	  LL_GPIO_ResetOutputPin(LD3_GPIO_Port, LD3_Pin);
-	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
-	  osDelay(200);
-  }
-  /* USER CODE END StartTaskLedTask */
-}
 
 
 

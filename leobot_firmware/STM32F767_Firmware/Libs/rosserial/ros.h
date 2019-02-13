@@ -42,7 +42,8 @@ namespace ros
 {
 	/* <hardware type, max subs, max pubs, input buffer chars, output buffer chars> */
     /* default 25, 25, 512, 512 */
-	typedef ros::NodeHandle_<STM32F7Hardware, 5, 5, 256, 256> NodeHandle;
+	//typedef ros::NodeHandle_<STM32F7Hardware, 5, 5, 256, 256> NodeHandle;
+	typedef ros::NodeHandle_<STM32F7Hardware, 5, 5, 512, 512> NodeHandle;
 }
 
 #endif /* _ROS_H_ */

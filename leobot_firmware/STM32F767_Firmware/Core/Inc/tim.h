@@ -1,8 +1,8 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * File Name          : freertos.c
-  * Description        : Code for freertos applications
+  * File Name          : TIM.h
+  * Description        : This file provides code for the configuration
+  *                      of the TIM instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -46,46 +46,41 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __tim_H
+#define __tim_H
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "task.h"
 #include "main.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */     
+/* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
+/* USER CODE BEGIN Private defines */
 
-/* USER CODE END PTD */
+/* USER CODE END Private defines */
 
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
+void MX_TIM2_Init(void);
 
-/* USER CODE END PD */
+/* USER CODE BEGIN Prototypes */
 
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
+/* USER CODE END Prototypes */
 
-/* USER CODE END PM */
+#ifdef __cplusplus
+}
+#endif
+#endif /*__ tim_H */
 
-/* Private variables ---------------------------------------------------------*/
-/* USER CODE BEGIN Variables */
+/**
+  * @}
+  */
 
-/* USER CODE END Variables */
-
-/* Private function prototypes -----------------------------------------------*/
-/* USER CODE BEGIN FunctionPrototypes */
-   
-/* USER CODE END FunctionPrototypes */
-
-/* Private application code --------------------------------------------------*/
-/* USER CODE BEGIN Application */
-     
-/* USER CODE END Application */
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

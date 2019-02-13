@@ -70,6 +70,7 @@ extern "C" {
 #include "stm32f7xx_ll_usart.h"
 #include "stm32f7xx.h"
 #include "stm32f7xx_ll_gpio.h"
+#include "stm32f7xx_ll_tim.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
