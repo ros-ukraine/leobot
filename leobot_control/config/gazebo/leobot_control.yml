@@ -4,50 +4,5 @@ joint_state_controller:
 
 head_position_controller:
   type: effort_controllers/JointPositionController
-  joint: head_link_joint
-  pid: {p: 100.0, i: 0.01, d: 10.0}
-
-wheel_diff_drive_controller:
-  type: 'diff_drive_controller/DiffDriveController'
-  left_wheel: 'left_wheel_bearing_joint'
-  right_wheel: 'right_wheel_bearing_joint'
-  publish_rate: 50.0 # defaults to 50 Hz
-  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
-  Kp: 200
-  Ki: 20
-  Kd: 150
-
-  wheel_separation: 0.55
-  wheel_radius: 0.10
-
-  # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 0.950 #DO NOT CHANGE, PLEASE # default: 1.0
-  wheel_radius_multiplier    : 0.96 # default: 1.0
-
-  # Velocity commands timeout [s], default 0.5
-  cmd_vel_timeout: 0.50
-
-  # Base frame_id
-  base_frame_id: base_link #default: base_link
-
-  # Velocity and acceleration limits
-  # Whenever a min_* is unspecified, default to -max_*
-  linear:
-    x:
-      has_velocity_limits    : true
-      max_velocity           : 1.0  # m/s
-      min_velocity           : -0.5 # m/s
-      has_acceleration_limits: true
-      max_acceleration       : 0.8  # m/s^2
-      min_acceleration       : -0.4 # m/s^2
-      has_jerk_limits        : true
-      max_jerk               : 2.0  # m/s^3
-  angular:
-    z:
-      has_velocity_limits    : true
-      max_velocity           : 1.7  # rad/s
-      has_acceleration_limits: true
-      max_acceleration       : 1.5  # rad/s^2
-      has_jerk_limits        : true
-      max_jerk               : 1.5  # rad/s^3
+  joint: head_camera_stick_joint
+  pid: {p: 0.01, i: 0.0, d: 0.01}

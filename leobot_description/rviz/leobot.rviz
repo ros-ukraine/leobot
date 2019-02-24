@@ -8,6 +8,7 @@ Panels:
         - /Status1
         - /RobotModel1
         - /TF1
+        - /TF1/Status1
         - /TF1/Tree1
       Splitter Ratio: 0.5
     Tree Height: 768
@@ -60,28 +61,53 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
+        FL_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FL_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         Link Tree Style: Links in Alphabetic Order
+        RL_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RL_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        base_link_inertia:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_left_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_right_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        caster_wheel_link:
+        camera_stick_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -91,27 +117,22 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_bearing_link:
+        laser_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel_link:
+        left_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_bearing_link:
+        neck_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tower_link:
+        right_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -123,56 +144,19 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_link:
-          Value: true
-        base_link_inertia:
-          Value: true
-        camera_left_link:
-          Value: true
-        camera_right_link:
-          Value: true
-        caster_wheel_link:
-          Value: true
-        head_link:
-          Value: true
-        left_bearing_link:
-          Value: true
-        left_wheel_link:
-          Value: true
-        right_bearing_link:
-          Value: true
-        right_wheel_link:
-          Value: true
-        tower_link:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        base_link:
-          base_link_inertia:
-            tower_link:
-              head_link:
-                camera_left_link:
-                  {}
-                camera_right_link:
-                  {}
-          caster_wheel_link:
-            {}
-          left_bearing_link:
-            left_wheel_link:
-              {}
-          right_bearing_link:
-            right_wheel_link:
-              {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -228,25 +212,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.4532671
+      Distance: 4.84231424
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.226016745
-        Y: -0.430843711
-        Z: 0.0553330034
+        X: 0.258317053
+        Y: -0.039512869
+        Z: 0.225101858
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.610397398
+      Pitch: 0.280397564
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.89358473
+      Yaw: 5.95358372
     Saved: ~
 Window Geometry:
   Displays:

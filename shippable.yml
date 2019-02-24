@@ -4,8 +4,8 @@ python:
 
 build:
   pre_ci_boot:
-    image_name: shadowrobot/build-tools
-    image_tag: xenial-kinetic
+    image_name: rosukraine/leobot-base
+    image_tag: latest
     pull: true
   ci:
     - export toolset_branch="master"

@@ -1,5 +1,14 @@
 var noSleep = new NoSleep();
 var docelem = document.documentElement;
+
+var frameHeight = window.innerHeight;
+var frameWidth = window.innerWidth;
+var frameWidthHalf = Math.round(frameWidth/2);
+var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
+
+document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
+
 function fs_status() {
   if (document.fullscreenElement) {
     return 1;
@@ -51,8 +60,9 @@ document.onclick = function () {
   }
 }
 
+
 var alpha, beta, gamma;
-// setup event handler to capture the orientation event and
+// setup event handler to capture the orientation event and store the most recent data in a variable
 if (window.DeviceOrientationEvent) {
     // Listen for the deviceorientation event and handle the raw data
     window.addEventListener('deviceorientation', function(eventData) {
