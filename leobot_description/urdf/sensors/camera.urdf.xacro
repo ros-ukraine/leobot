@@ -25,12 +25,11 @@
     <xacro:macro name="simple_camera" params="prefix parent_link_name parent_length parent_height side">
         <link name="${prefix}_camera_link">
             <visual>
-              <xacro:box_geometry width="${camera_size}" length="${camera_size}" height="${camera_size}"/>
+              <xacro:cube_geometry size="${camera_size}"/>
               <xacro:green_material/>
             </visual>
-            <xacro:box_collision width="${camera_size}" length="${camera_size}" height="${camera_size}"/>
-            <xacro:box_inertia mass="${camera_mass}" width="${camera_size}" length="${camera_size}"
-                               height="${camera_size}"/>
+            <xacro:cube_collision size="${camera_size}"/>
+            <xacro:cube_inertia mass="${camera_mass}" size="${camera_size}"/>
         </link>
 
         <joint name="${prefix}_camera_joint" type="fixed">
