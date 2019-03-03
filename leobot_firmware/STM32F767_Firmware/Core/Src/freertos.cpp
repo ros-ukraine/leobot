@@ -17,7 +17,7 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
+// ToDo: rename this file to app
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
 #include "task.h"
@@ -54,6 +54,13 @@
 static ros::NodeHandle nh;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
+osThreadId LedBlinkTaskHandle;
+osThreadId EncoderTaskHandle;
+osThreadId RosSpinTaskHandle;
+osThreadId RosSubscriberTaHandle;
+osThreadId RosPublisherTasHandle;
+osMessageQId RosSubsriberQueueHandle;
+osMutexId rosPublishMutexHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -61,6 +68,11 @@ void motor_cb(const std_msgs::UInt16& cmd_msg);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
+void LedBlinkTaskHandler(void const * argument);
+void EncoderTaskHandler(void const * argument);
+void RosSpinTaskHandler(void const * argument);
+void RosSubscriberTaskHandler(void const * argument);
+void RosPublisherTaskHandler(void const * argument);
 
 //void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -74,6 +86,11 @@ void MX_FREERTOS_Init(void) {
 	nh.initNode();
   /* USER CODE END Init */
 
+  /* Create the mutex(es) */
+  /* definition and creation of rosPublishMutex */
+  osMutexDef(rosPublishMutex);
+  rosPublishMutexHandle = osMutexCreate(osMutex(rosPublishMutex));
+
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
@@ -86,14 +103,39 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* definition and creation of RosSubsriberQueue */
+  osMessageQDef(RosSubsriberQueue, 16, uint16_t);
+  RosSubsriberQueueHandle = osMessageCreate(osMessageQ(RosSubsriberQueue), NULL);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityIdle, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+  /* definition and creation of LedBlinkTask */
+  osThreadDef(LedBlinkTask, LedBlinkTaskHandler, osPriorityLow, 0, 128);
+  LedBlinkTaskHandle = osThreadCreate(osThread(LedBlinkTask), NULL);
+
+  /* definition and creation of EncoderTask */
+  osThreadDef(EncoderTask, EncoderTaskHandler, osPriorityNormal, 0, 128);
+  EncoderTaskHandle = osThreadCreate(osThread(EncoderTask), NULL);
+
+  /* definition and creation of RosSpinTask */
+  osThreadDef(RosSpinTask, RosSpinTaskHandler, osPriorityIdle, 0, 128);
+  RosSpinTaskHandle = osThreadCreate(osThread(RosSpinTask), NULL);
+
+  /* definition and creation of RosSubscriberTa */
+  osThreadDef(RosSubscriberTa, RosSubscriberTaskHandler, osPriorityNormal, 0, 128);
+  RosSubscriberTaHandle = osThreadCreate(osThread(RosSubscriberTa), NULL);
+
+  /* definition and creation of RosPublisherTas */
+  osThreadDef(RosPublisherTas, RosPublisherTaskHandler, osPriorityNormal, 0, 128);
+  RosPublisherTasHandle = osThreadCreate(osThread(RosPublisherTas), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -112,7 +154,6 @@ void StartDefaultTask(void const * argument)
 {
 
   /* USER CODE BEGIN StartDefaultTask */
-  MX_GPIO_Init();
 
   ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
   nh.subscribe(sub);
@@ -125,18 +166,113 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
 	  nh.spinOnce();
-	  /*
-	  LL_GPIO_SetOutputPin(LD3_GPIO_Port, LD3_Pin);
-	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
-	  osDelay(200);
 
-	  LL_GPIO_ResetOutputPin(LD3_GPIO_Port, LD3_Pin);
-	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
-	  osDelay(200);
-	  */
 
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_LedBlinkTaskHandler */
+/**
+* @brief Function implementing the LedBlinkTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_LedBlinkTaskHandler */
+void LedBlinkTaskHandler(void const * argument)
+{
+	/* USER CODE BEGIN LedBlinkTaskHandler */
+	MX_GPIO_Init();
+
+  /* Infinite loop */
+  for(;;)
+  {
+	  LL_GPIO_SetOutputPin(LD3_GPIO_Port, LD3_Pin);
+	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
+	  osDelay(300);
+
+	  LL_GPIO_ResetOutputPin(LD3_GPIO_Port, LD3_Pin);
+	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
+	  osDelay(100);
+  }
+  /* USER CODE END LedBlinkTaskHandler */
+}
+
+/* USER CODE BEGIN Header_EncoderTaskHandler */
+/**
+* @brief Function implementing the EncoderTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_EncoderTaskHandler */
+void EncoderTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN EncoderTaskHandler */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1000);
+  }
+  /* USER CODE END EncoderTaskHandler */
+}
+
+/* USER CODE BEGIN Header_RosSpinTaskHandler */
+/**
+* @brief Function implementing the RosSpinTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RosSpinTaskHandler */
+void RosSpinTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN RosSpinTaskHandler */
+  /* Infinite loop */
+  for(;;)
+  {
+	  nh.spinOnce();
+  }
+  /* USER CODE END RosSpinTaskHandler */
+}
+
+/* USER CODE BEGIN Header_RosSubscriberTaskHandler */
+/**
+* @brief Function implementing the RosSubscriberTa thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RosSubscriberTaskHandler */
+void RosSubscriberTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN RosSubscriberTaskHandler */
+  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+  nh.subscribe(sub);
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(200);
+
+	  //osStatus evt  = osMessageGet (RosSubsriberQueue, 0);
+
+  }
+  /* USER CODE END RosSubscriberTaskHandler */
+}
+
+/* USER CODE BEGIN Header_RosPublisherTaskHandler */
+/**
+* @brief Function implementing the RosPublisherTas thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_RosPublisherTaskHandler */
+void RosPublisherTaskHandler(void const * argument)
+{
+  /* USER CODE BEGIN RosPublisherTaskHandler */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END RosPublisherTaskHandler */
 }
 
 /* Private application code --------------------------------------------------*/
@@ -146,6 +282,9 @@ void motor_cb(const std_msgs::UInt16& cmd_msg)
 	//cmd_msg.data should be in range 0 - 100
 	//nh.logdebug("motor_cb\r\n");
 
+	//osMessagePut(RosSubsriberQueue, cmd_msg, 0);
+
+    /* debug code: */
 	switch(cmd_msg.data)
 	{
 		case 0: LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin); break;
