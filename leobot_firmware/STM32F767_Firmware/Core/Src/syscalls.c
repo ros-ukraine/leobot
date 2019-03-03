@@ -11,7 +11,7 @@
 **
 **  Environment : System Workbench for MCU
 **
-**  Distribution: The file is distributed as is without any warranty
+**  Distribution: The file is distributed “as is,” without any warranty
 **                of any kind.
 **
 *****************************************************************************
@@ -88,7 +88,7 @@ void _exit (int status)
 	while (1) {}		/* Make sure we hang here */
 }
 
-int _read (int file, char *ptr, int len)
+__attribute__((weak)) int _read(int file, char *ptr, int len)
 {
 	int DataIdx;
 
@@ -100,7 +100,7 @@ int _read (int file, char *ptr, int len)
 return len;
 }
 
-int _write(int file, char *ptr, int len)
+__attribute__((weak)) int _write(int file, char *ptr, int len)
 {
 	int DataIdx;
 

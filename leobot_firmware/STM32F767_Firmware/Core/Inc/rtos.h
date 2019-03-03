@@ -1,25 +1,14 @@
 /*
  * rtos.h
  *
- *  Created on: Dec 27, 2018
- *      Author: enko
+ *  Created on: 3 бер. 2019 р.
+ *      Author: Nemo
  */
 
-#ifndef RTOS_H_
-#define RTOS_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "gpio.h"
-#include "tim.h"
+#ifndef INC_RTOS_H_
+#define INC_RTOS_H_
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* INC_APP_H_ */
+#endif /* INC_RTOS_H_ */

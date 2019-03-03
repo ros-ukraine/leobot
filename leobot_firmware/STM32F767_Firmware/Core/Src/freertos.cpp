@@ -1,76 +1,37 @@
-
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * File Name          : freertos.c
   * Description        : Code for freertos applications
   ******************************************************************************
-  * This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
+  * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics International N.V. 
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-/*
-extern "C" {
-#include "app.h"
-#include "task.h"
-#include "main.h"
-#include "cmsis_os.h"
-}
-*/
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
 
-
 /* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+/* USER CODE BEGIN Includes */     
+#include "gpio.h"
 #include "rtos.h"
+
 #include "ros.h"
 #include "std_msgs/UInt16.h"
-#include "std_msgs/String.h"
+//#include "std_msgs/String.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,12 +53,7 @@ extern "C" {
 /* USER CODE BEGIN Variables */
 static ros::NodeHandle nh;
 /* USER CODE END Variables */
-
 osThreadId defaultTaskHandle;
-osThreadId LedBlinkTaskHandle;
-osThreadId EncoderTaskHandle;
-osThreadId RosTaskHandle;
-osMutexId rosPublishMutexHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -105,11 +61,8 @@ void motor_cb(const std_msgs::UInt16& cmd_msg);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void LedBlinkTaskHandler(void const * argument);
-void EncoderTaskHandler(void const * argument);
-void RosTaskHandler(void const * argument);
 
-void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+//void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
   * @brief  FreeRTOS initialization
@@ -120,11 +73,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 	nh.initNode();
   /* USER CODE END Init */
-
-  /* Create the mutex(es) */
-  /* definition and creation of rosPublishMutex */
-  osMutexDef(rosPublishMutex);
-  rosPublishMutexHandle = osMutexCreate(osMutex(rosPublishMutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -138,30 +86,19 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityIdle, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-
-  /* definition and creation of LedBlinkTask */
-  osThreadDef(LedBlinkTask, LedBlinkTaskHandler, osPriorityIdle, 0, 128);
-  LedBlinkTaskHandle = osThreadCreate(osThread(LedBlinkTask), NULL);
-
-  /* definition and creation of EncoderTask */
-  osThreadDef(EncoderTask, EncoderTaskHandler, osPriorityIdle/*osPriorityNormal*/, 0, 128);
-  EncoderTaskHandle = osThreadCreate(osThread(EncoderTask), NULL);
-
-  /* definition and creation of RosTask */
-  osThreadDef(RosTask, RosTaskHandler, osPriorityIdle/*osPriorityNormal*/, 0, 128);
-  RosTaskHandle = osThreadCreate(osThread(RosTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
 }
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -170,56 +107,25 @@ void MX_FREERTOS_Init(void) {
   * @param  argument: Not used 
   * @retval None
   */
-
-std_msgs::String str_msg;
-ros::Publisher chatter("chatter", &str_msg);
-/* USER CODE BEGIN StartDefaultTask */
- char hello[15] = "hello world!\r\n";
-
- //std_msgs::String str_msg;
- //str_msg.data = hello;
-
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
 
   /* USER CODE BEGIN StartDefaultTask */
+  MX_GPIO_Init();
+
+  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+  nh.subscribe(sub);
+
   //char hello[15] = "hello world!\r\n";
-
-  //std_msgs::String str_msg;
-  str_msg.data = hello;
-
-  //ros::Publisher chatter("chatter", &str_msg);
-  nh.advertise(chatter);
-
+  //str_msg.data = hello;
+  //nh.advertise(chatter);
 
   /* Infinite loop */
   for(;;)
   {
-	  //osMutexWait(rosPublishMutexHandle, 0);
-	  //str_msg.data = hello;
-	  //chatter.publish(&str_msg);
-	  //osMutexRelease(rosPublishMutexHandle);
-
-
-	  osDelay(100);
-  }
-  /* USER CODE END StartDefaultTask */
-}
-
-/* USER CODE BEGIN Header_LedBlinkTaskHandler */
-/**
-* @brief Function implementing the LedBlinkTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_LedBlinkTaskHandler */
-void LedBlinkTaskHandler(void const * argument)
-{
-  /* USER CODE BEGIN LedBlinkTaskHandler */
-  /* Infinite loop */
-  for(;;)
-  {
+	  nh.spinOnce();
+	  /*
 	  LL_GPIO_SetOutputPin(LD3_GPIO_Port, LD3_Pin);
 	  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
 	  osDelay(200);
@@ -227,111 +133,30 @@ void LedBlinkTaskHandler(void const * argument)
 	  LL_GPIO_ResetOutputPin(LD3_GPIO_Port, LD3_Pin);
 	  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
 	  osDelay(200);
+	  */
 
   }
-  /* USER CODE END LedBlinkTaskHandler */
-}
-
-/* USER CODE BEGIN Header_EncoderTaskHandler */
-/**
-* @brief Function implementing the EncoderTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_EncoderTaskHandler */
-void EncoderTaskHandler(void const * argument)
-{
-  /* USER CODE BEGIN EncoderTaskHandler */
-	static uint32_t testcnt;
-
-	//MX_TIM2_Init();
-	//MX_TIM3_Init();
-	//MX_TIM4_Init();
-	//MX_TIM8_Init();
-  /* Infinite loop */
-  for(;;)
-  {
-	  /* make for cycle with array of pointers to timer functions */
-/*
-	  encoder[0].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);
-	  encoder[1].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim3);
-	  encoder[2].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim4);
-	  encoder[3].direction = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim8);
-*/
-	  /* only for debug, for real work should be added formula for speed calculation */
-/*
-	  encoder[0].speed = __HAL_TIM_GET_COUNTER(&htim2);
-	  encoder[1].speed = __HAL_TIM_GET_COUNTER(&htim3);
-	  encoder[2].speed = __HAL_TIM_GET_COUNTER(&htim4);
-	  encoder[3].speed = __HAL_TIM_GET_COUNTER(&htim8);
-*/
-	  testcnt++;
-	  osDelay(100);
-  }
-  /* USER CODE END EncoderTaskHandler */
-}
-
-/* USER CODE BEGIN Header_RosTaskHandler */
-/**
-* @brief Function implementing the RosTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_RosTaskHandler */
-void RosTaskHandler(void const * argument)
-{
-  /* USER CODE BEGIN RosTaskHandler */
-  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
-
-  nh.subscribe(sub);
-
-  // init motor (debug section)
-  MX_TIM2_Init();
-
-  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH1);
-  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH2);
-  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH3);
-  LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH4);
-  LL_TIM_EnableCounter(TIM2);
-
-  //LL_TIM_OC_SetCompareCH1(TIM2, 100); //PA0
-
-  LL_TIM_OC_SetCompareCH1(TIM2, 0); //PA0
-
-  //LL_TIM_OC_SetCompareCH2(TIM2, 300); //PA1
-  //LL_TIM_OC_SetCompareCH3(TIM2, 500); //PB10
-  //LL_TIM_OC_SetCompareCH4(TIM2, 800); //PB11
-
-  //
-
-  //nh.initNode();
-
-  /* Infinite loop */
-  for(;;)
-  {
-	  nh.spinOnce();
-	  //osDelay(1);
-  }
-  /* USER CODE END RosTaskHandler */
+  /* USER CODE END StartDefaultTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
 void motor_cb(const std_msgs::UInt16& cmd_msg)
- {
-
-
+{
 	//cmd_msg.data should be in range 0 - 100
-	nh.logdebug("motor_cb\r\n");
+	//nh.logdebug("motor_cb\r\n");
 
- 	 //str_msg.data = hello;
- 	 chatter.publish( &str_msg );
+	switch(cmd_msg.data)
+	{
+		case 0: LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin); break;
+		case 1: LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin); break;
+	}
 
-	LL_TIM_OC_SetCompareCH1(TIM2, cmd_msg.data);
 
- }
+	//ITM_SendChar('B');
+}
 
+     
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
