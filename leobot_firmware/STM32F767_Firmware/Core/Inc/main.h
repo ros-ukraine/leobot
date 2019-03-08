@@ -38,11 +38,12 @@ extern "C" {
 #include "stm32f7xx_ll_dma.h"
 #include "stm32f7xx_ll_tim.h"
 #include "stm32f7xx_ll_usart.h"
+#include "stm32f7xx.h"
 #include "stm32f7xx_ll_gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stm32f7xx.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

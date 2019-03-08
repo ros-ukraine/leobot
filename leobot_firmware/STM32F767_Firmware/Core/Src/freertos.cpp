@@ -27,7 +27,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
 #include "gpio.h"
+#include "tim.h"
 #include "rtos.h"
+
+#include "arm_math.h"
 
 #include "ros.h"
 #include "std_msgs/UInt16.h"
@@ -41,7 +44,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+/* Choose PID parameters */
+#define PID_PARAM_KP        100            /* Proporcional */
+#define PID_PARAM_KI        0.025        /* Integral */
+#define PID_PARAM_KD        20            /* Derivative */
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -65,6 +71,7 @@ osMutexId rosPublishMutexHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void motor_cb(const std_msgs::UInt16& cmd_msg);
+void pid_cb(const std_msgs::UInt16& cmd_msg);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -155,8 +162,8 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN StartDefaultTask */
 
-  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
-  nh.subscribe(sub);
+  //ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
+  //nh.subscribe(sub);
 
   //char hello[15] = "hello world!\r\n";
   //str_msg.data = hello;
@@ -165,7 +172,7 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  nh.spinOnce();
+	  osDelay(100);
 
 
   }
@@ -208,10 +215,54 @@ void LedBlinkTaskHandler(void const * argument)
 void EncoderTaskHandler(void const * argument)
 {
   /* USER CODE BEGIN EncoderTaskHandler */
+  // https://www.vexforum.com/t/calculating-rpms/31506/4
+
+  uint32_t EncoderCurr = 0;
+  uint32_t EncoderLast = 0;
+  uint32_t RPM;
+
+  uint32_t pmw;
+
+  MX_TIM3_Init();
+
+  LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH1);
+  LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH2);
+  LL_TIM_EnableCounter(TIM3);
+
+  /* ARM PID Instance, float_32 format */
+  arm_pid_instance_f32 PID;
+  float32_t pid_error;
+
+
+  /* Set PID parameters */
+  /* Set this for your needs */
+  PID.Kp = PID_PARAM_KP;        /* Proporcional */
+  PID.Ki = PID_PARAM_KI;        /* Integral */
+  PID.Kd = PID_PARAM_KD;        /* Derivative */
+
+  /* Initialize PID system, float32_t format */
+  arm_pid_init_f32(&PID, 1);
+
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1000);
+	  EncoderCurr = LL_TIM_GetCounter(TIM3);
+	  //LL_TIM_GetDirection(TIM3);
+	  RPM = (EncoderCurr - EncoderLast) / 360 * 480 * 30;
+	  EncoderLast = EncoderCurr;
+
+	  ITM_SendChar('0' + RPM);
+
+	  /* Calculate error */
+	  //pid_error = TEMP_CURRENT - TEMP_WANT;
+	  pid_error = 1.0;
+
+
+	  /* Calculate PID here, argument is error */
+	  /* Output data will be returned, we will use it as duty cycle parameter */
+	  pmw = (uint32_t)arm_pid_f32(&PID, pid_error);
+
+	  osDelay(50);
   }
   /* USER CODE END EncoderTaskHandler */
 }
@@ -244,8 +295,10 @@ void RosSpinTaskHandler(void const * argument)
 void RosSubscriberTaskHandler(void const * argument)
 {
   /* USER CODE BEGIN RosSubscriberTaskHandler */
-  ros::Subscriber<std_msgs::UInt16> sub("motor", motor_cb);
-  nh.subscribe(sub);
+  ros::Subscriber<std_msgs::UInt16> sub_motor("motor", motor_cb);
+  ros::Subscriber<std_msgs::UInt16> sub_pid("pid", pid_cb);
+  nh.subscribe(sub_motor);
+  nh.subscribe(sub_pid);
   /* Infinite loop */
   for(;;)
   {
@@ -295,7 +348,11 @@ void motor_cb(const std_msgs::UInt16& cmd_msg)
 	//ITM_SendChar('B');
 }
 
-     
+void pid_cb(const std_msgs::UInt16& cmd_msg)
+{
+
+}
+
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
