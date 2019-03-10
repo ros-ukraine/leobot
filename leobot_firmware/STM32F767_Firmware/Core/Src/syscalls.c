@@ -53,6 +53,8 @@
 #include <sys/time.h>
 #include <sys/times.h>
 
+#include "stm32f7xx.h"
+
 
 /* Variables */
 //#undef errno
@@ -64,6 +66,12 @@ register char * stack_ptr asm("sp");
 
 char *__env[1] = { 0 };
 char **environ = __env;
+
+
+int __io_putchar(int ch)
+{
+	return ITM_SendChar(ch);
+}
 
 
 /* Functions */

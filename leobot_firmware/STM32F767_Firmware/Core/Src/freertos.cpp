@@ -32,9 +32,13 @@
 
 #include "arm_math.h"
 
+
 #include "ros.h"
 #include "std_msgs/UInt16.h"
 //#include "std_msgs/String.h"
+
+#include <stdio.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -223,11 +227,11 @@ void EncoderTaskHandler(void const * argument)
 
   uint32_t pmw;
 
-  MX_TIM3_Init();
+  MX_TIM1_Init();
 
-  LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH1);
-  LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH2);
-  LL_TIM_EnableCounter(TIM3);
+  LL_TIM_CC_EnableChannel(TIM1, LL_TIM_CHANNEL_CH1);
+  LL_TIM_CC_EnableChannel(TIM1, LL_TIM_CHANNEL_CH2);
+  LL_TIM_EnableCounter(TIM1);
 
   /* ARM PID Instance, float_32 format */
   arm_pid_instance_f32 PID;
@@ -246,12 +250,15 @@ void EncoderTaskHandler(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  EncoderCurr = LL_TIM_GetCounter(TIM3);
-	  //LL_TIM_GetDirection(TIM3);
+	  EncoderCurr = LL_TIM_GetCounter(TIM1);
+	  uint32_t dir = LL_TIM_GetDirection(TIM1);
 	  RPM = (EncoderCurr - EncoderLast) / 360 * 480 * 30;
 	  EncoderLast = EncoderCurr;
 
-	  ITM_SendChar('0' + RPM);
+      //ITM_SendChar('0' + RPM);
+	  //ITM_SendChar('0' + EncoderCurr);
+	  //printf("EncoderCurr: %d \r\n", (int)EncoderCurr);
+	  printf("dir: %d \r\n", (int)dir);
 
 	  /* Calculate error */
 	  //pid_error = TEMP_CURRENT - TEMP_WANT;
@@ -260,9 +267,9 @@ void EncoderTaskHandler(void const * argument)
 
 	  /* Calculate PID here, argument is error */
 	  /* Output data will be returned, we will use it as duty cycle parameter */
-	  pmw = (uint32_t)arm_pid_f32(&PID, pid_error);
+	  //pmw = (uint32_t)arm_pid_f32(&PID, pid_error);
 
-	  osDelay(50);
+	  osDelay(500);
   }
   /* USER CODE END EncoderTaskHandler */
 }
