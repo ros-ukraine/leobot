@@ -129,13 +129,13 @@
 
     <xacro:lidar_hokuyo parent_link_name="base_link" parent_height="${base_height}"/>
 
-    <xacro:mecanum_wheel prefix="FL" wheel_type="2" side="1" position="1" parent_length="${base_length}"
+    <xacro:mecanum_wheel prefix="front_left" wheel_type="2" side="1" position="1" parent_length="${base_length}"
                          parent_height="${base_height}" parent_width="${base_width}"/>
-    <xacro:mecanum_wheel prefix="FR" wheel_type="1" side="-1" position="1" parent_length="${base_length}"
+    <xacro:mecanum_wheel prefix="front_right" wheel_type="1" side="-1" position="1" parent_length="${base_length}"
                          parent_height="${base_height}" parent_width="${base_width}"/>
-    <xacro:mecanum_wheel prefix="RL" wheel_type="1" side="1" position="-1" parent_length="${base_length}"
+    <xacro:mecanum_wheel prefix="rear_left" wheel_type="1" side="1" position="-1" parent_length="${base_length}"
                          parent_height="${base_height}" parent_width="${base_width}"/>
-    <xacro:mecanum_wheel prefix="RR" wheel_type="2" side="-1" position="-1" parent_length="${base_length}"
+    <xacro:mecanum_wheel prefix="rear_right" wheel_type="2" side="-1" position="-1" parent_length="${base_length}"
                          parent_height="${base_height}" parent_width="${base_width}"/>
 
 </robot>

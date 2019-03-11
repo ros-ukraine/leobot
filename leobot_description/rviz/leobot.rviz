@@ -8,7 +8,7 @@ Panels:
         - /Status1
         - /RobotModel1
         - /TF1
-        - /TF1/Status1
+        - /TF1/Frames1
         - /TF1/Tree1
       Splitter Ratio: 0.5
     Tree Height: 768
@@ -61,47 +61,11 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
-        FL_motor_holder:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        FL_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        FR_motor_holder:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        FR_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         Link Tree Style: Links in Alphabetic Order
-        RL_motor_holder:
+        base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        RL_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        RR_motor_holder:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        RR_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
@@ -112,7 +76,32 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        front_left_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         head_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -132,6 +121,26 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        rear_left_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_motor_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         right_camera_link:
           Alpha: 1
           Show Axes: false
@@ -144,19 +153,77 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        base_footprint:
+          Value: false
+        base_link:
+          Value: false
+        camera_stick_link:
+          Value: false
+        front_left_motor_holder:
+          Value: false
+        front_left_wheel_link:
+          Value: false
+        front_right_motor_holder:
+          Value: false
+        front_right_wheel_link:
+          Value: false
+        head_link:
+          Value: false
+        imu_link:
+          Value: false
+        laser_link:
+          Value: false
+        left_camera_link:
+          Value: false
+        neck_link:
+          Value: false
+        rear_left_motor_holder:
+          Value: false
+        rear_left_wheel_link:
+          Value: false
+        rear_right_motor_holder:
+          Value: false
+        rear_right_wheel_link:
+          Value: false
+        right_camera_link:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_footprint:
+          base_link:
+            front_left_motor_holder:
+              front_left_wheel_link:
+                {}
+            front_right_motor_holder:
+              front_right_wheel_link:
+                {}
+            imu_link:
+              {}
+            laser_link:
+              {}
+            neck_link:
+              head_link:
+                camera_stick_link:
+                  left_camera_link:
+                    {}
+                  right_camera_link:
+                    {}
+            rear_left_motor_holder:
+              rear_left_wheel_link:
+                {}
+            rear_right_motor_holder:
+              rear_right_wheel_link:
+                {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
