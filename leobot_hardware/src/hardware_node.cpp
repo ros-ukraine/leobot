@@ -10,11 +10,17 @@ int main(int argc, char **argv)
   std::string node_name = "leobot_hardware_node";
 
   ros::init(argc, argv, node_name);
-  ros::NodeHandle node_handle;
+  ros::NodeHandle node_handle("");
+  ROS_INFO_STREAM("Node Hand Public " << node_handle.getNamespace() << "\n");
+
   ros::NodeHandle private_node("~");
+  ROS_INFO_STREAM("Node Hand Private " << private_node.getNamespace() << "\n");
 
   ros::CallbackQueue generic_queue;
   node_handle.setCallbackQueue(&generic_queue);
+
+  ros::AsyncSpinner spinner(2, &generic_queue);
+  spinner.start();
 
   ros::CallbackQueue read_state_queue;
   private_node.setCallbackQueue(&read_state_queue);
@@ -23,9 +29,6 @@ int main(int argc, char **argv)
   robot_hardware.init(private_node);
   controller_manager::ControllerManager controller_manager(&robot_hardware, node_handle);
 
-  ros::AsyncSpinner spinner(2, &generic_queue);
-  spinner.start();
-
   struct timespec last_time;
   struct timespec current_time;
   clock_gettime(CLOCK_MONOTONIC, &last_time);
@@ -33,7 +36,7 @@ int main(int argc, char **argv)
   int loop_rate;
   node_handle.param<int>("loop_rate", loop_rate, 10);
 
-  ros::Duration desired_update_period = ros::Duration(1 / loop_rate);
+  ros::Duration desired_update_period = ros::Duration(1.0 / loop_rate);
 
   ros::Rate rate(loop_rate);
   while (ros::ok())

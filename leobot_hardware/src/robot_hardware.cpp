@@ -34,11 +34,32 @@ namespace leobot_hardware
     hardware_motor_effort[3] = message->motor_4_effort;
   }
 
-  bool LeobotRobotHW::init(ros::NodeHandle& root_nh)
+  void LeobotRobotHW::fillFirmwareCommandMessageFromConfig(leobot_hardware::LeobotRobotHardwareConfig &config)
   {
-    this->command_publisher_ = root_nh.advertise<leobot_msgs::FirmwareCommandWrite>("firmware_command_write", 10);
-    this->state_subscriber_ = root_nh.subscribe("firmware_state_read", 1, &LeobotRobotHW::firmwareStateCallback, this);
+    firmware_command_message_.motor_1_p = config.motor_1_p;
+    firmware_command_message_.motor_1_i = config.motor_1_i;
+    firmware_command_message_.motor_1_d = config.motor_1_d;
 
+    firmware_command_message_.motor_2_p = config.motor_2_p;
+    firmware_command_message_.motor_2_i = config.motor_2_i;
+    firmware_command_message_.motor_2_d = config.motor_2_d;
+    
+    firmware_command_message_.motor_3_p = config.motor_3_p;
+    firmware_command_message_.motor_3_i = config.motor_3_i;
+    firmware_command_message_.motor_3_d = config.motor_3_d;
+
+    firmware_command_message_.motor_4_p = config.motor_4_p;
+    firmware_command_message_.motor_4_i = config.motor_4_i;
+    firmware_command_message_.motor_4_d = config.motor_4_d;
+  }
+
+  void LeobotRobotHW::dynamicReconfigureCallback(leobot_hardware::LeobotRobotHardwareConfig &config, uint32_t level)
+  {
+    fillFirmwareCommandMessageFromConfig(config);
+  }
+
+  void  LeobotRobotHW::setupHardwareInterfaces()
+  {
     hardware_interface::JointStateHandle front_right_wheel_joint_state_handle("front_right_wheel_motor_joint", 
       &position[0], &velocity[0], &effort[0]);
     joint_state_interface.registerHandle(front_right_wheel_joint_state_handle);
@@ -66,7 +87,7 @@ namespace leobot_hardware
     joint_velocity_interface.registerHandle(front_left_wheel_joint_velocity_handler);
 
     hardware_interface::JointHandle rear_right_wheel_joint_velocity_handler(
-        joint_state_interface.getHandle("frear_right_wheel_motor_joint"), &command[2]);
+        joint_state_interface.getHandle("rear_right_wheel_motor_joint"), &command[2]);
     joint_velocity_interface.registerHandle(rear_right_wheel_joint_velocity_handler);
 
     hardware_interface::JointHandle rear_left_wheel_joint_velocity_handler(
@@ -76,27 +97,42 @@ namespace leobot_hardware
     registerInterface(&joint_velocity_interface);
   }
 
+  void  LeobotRobotHW::setupDynamicReconfigure()
+  {
+    ros::NodeHandle dynamic_node;
+    dynamic_reconfigure_server_.reset(new dynamic_reconfigure::Server<leobot_hardware::LeobotRobotHardwareConfig>(
+      dynamic_reconfigure_mutex_, dynamic_node));
+    reconfigure_callback_ = boost::bind(&LeobotRobotHW::dynamicReconfigureCallback, this, _1, _2);
+
+    default_dynamic_server_config_.__fromServer__(dynamic_node);
+    dynamic_reconfigure_server_->setCallback(reconfigure_callback_);
+
+    fillFirmwareCommandMessageFromConfig(default_dynamic_server_config_);
+  }
+
+  bool LeobotRobotHW::init(ros::NodeHandle& root_nh)
+  {
+    command_publisher_ = root_nh.advertise<leobot_msgs::FirmwareCommandWrite>("firmware_command_write", 10);
+    state_subscriber_ = root_nh.subscribe("firmware_state_read", 1, &LeobotRobotHW::firmwareStateCallback, this);
+
+    setupHardwareInterfaces();
+    setupDynamicReconfigure();
+  }
+
   void LeobotRobotHW::read(const ros::Time& time, const ros::Duration& period)
   {
   }
 
   void LeobotRobotHW::write(const ros::Time& time, const ros::Duration& period)
   {
-    leobot_msgs::FirmwareCommandWrite command_message;
+    boost::recursive_mutex::scoped_lock lock(dynamic_reconfigure_mutex_);
 
-    command_message.motor_1_velocity_command = command[0];
-    // command_message.motor_1_p = params.d;
+    firmware_command_message_.motor_1_velocity_command = command[0];
+    firmware_command_message_.motor_2_velocity_command = command[1];
+    firmware_command_message_.motor_3_velocity_command = command[2];
+    firmware_command_message_.motor_4_velocity_command = command[3];
 
-    command_message.motor_2_velocity_command = command[1];
-    // command_message.motor_2_p = params.d;
-
-    command_message.motor_3_velocity_command = command[2];
-    // command_message.motor_3_p = params.d;
-
-    command_message.motor_4_velocity_command = command[3];
-    // command_message.motor_4_p = params.d;
-    
-    this->command_publisher_.publish(command_message);
+    command_publisher_.publish(firmware_command_message_);
   }
 
 }  // leobot_hardware

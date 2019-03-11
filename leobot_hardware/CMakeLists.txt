@@ -7,12 +7,19 @@ find_package(catkin REQUIRED COMPONENTS
     hardware_interface 
     controller_manager 
     roscpp
+    dynamic_reconfigure    
     leobot_msgs
+)
+
+find_package(Boost REQUIRED COMPONENTS system)
+
+generate_dynamic_reconfigure_options(
+  cfg/LeobotRobotHardware.cfg
 )
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS hardware_interface controller_manager roscpp leobot_msgs
+  CATKIN_DEPENDS hardware_interface controller_manager roscpp dynamic_reconfigure leobot_msgs
 )
 
 include_directories(

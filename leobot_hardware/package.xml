@@ -13,6 +13,7 @@
   <depend>roscpp</depend>
   <depend>hardware_interface</depend>
   <depend>controller_manager</depend>
+  <depend>dynamic_reconfigure</depend>
   <depend>leobot_msgs</depend>
   <exec_depend>rosserial_python</exec_depend>
 </package>

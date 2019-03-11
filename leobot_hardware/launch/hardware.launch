@@ -4,11 +4,11 @@
   <arg name="loop_rate" default="100"/>
 
   <node pkg="rosserial_python" type="serial_node.py" name="rosserial" output="screen">
-    <param name="port" value="${arg port}"/>
-    <param name="baud" value="${arg baud}"/>
+    <param name="port" value="$(arg port)"/>
+    <param name="baud" value="$(arg baud)"/>
   </node>
 
   <node name="robot_hardware" pkg="leobot_hardware" type="leobot_hardware_node" output="screen">
-    <param name="loop_rate" value="${arg loop_rate}"/>
+    <param name="loop_rate" value="$(arg loop_rate)"/>
   </node>
 </launch>
