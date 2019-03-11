@@ -24,24 +24,22 @@ public:
 private:
   void firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr& message);
 
-//   hardware_interface::JointStateInterface joint_state_interface;
-//   hardware_interface::VelocityJointInterface joint_velocity_interface;
+  hardware_interface::JointStateInterface joint_state_interface;
+  hardware_interface::VelocityJointInterface joint_velocity_interface;
 
   ros::Subscriber state_subscriber_;
   ros::Publisher command_publisher_;
 
-//   std::mutex joint_states_update_mutex;
+  static const int JOINTS_COUNT = 4;
 
-//   static const int JOINTS_COUNT = 2;
+  double command[JOINTS_COUNT];
+  double position[JOINTS_COUNT];
+  double velocity[JOINTS_COUNT];
+  double effort[JOINTS_COUNT];
 
-//   double command[JOINTS_COUNT];
-//   double position[JOINTS_COUNT];
-//   double velocity[JOINTS_COUNT];
-//   double effort[JOINTS_COUNT];
-
-//   double hardware_motor_position[JOINTS_COUNT];
-//   double hardware_motor_velocity[JOINTS_COUNT];
-//   double hardware_motor_effort[JOINTS_COUNT];
+  double hardware_motor_position[JOINTS_COUNT];
+  double hardware_motor_velocity[JOINTS_COUNT];
+  double hardware_motor_effort[JOINTS_COUNT];
 };
 
 }  // leobot_hardware

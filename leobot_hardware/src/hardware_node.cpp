@@ -31,18 +31,13 @@ int main(int argc, char **argv)
   clock_gettime(CLOCK_MONOTONIC, &last_time);
 
   int loop_rate;
-  node_handle.param<int>("loop_rate", loop_rate, 100);
+  node_handle.param<int>("loop_rate", loop_rate, 10);
 
-  double min_acceptable_rate;
-  node_handle.param<double>("min_acceptable_loop_rate", min_acceptable_rate, 0.75 * loop_rate);
-
-  ros::Duration desired_update_period = ros::Duration(1 / min_acceptable_rate);
+  ros::Duration desired_update_period = ros::Duration(1 / loop_rate);
 
   ros::Rate rate(loop_rate);
   while (ros::ok())
   {
-    ros::Time timestamp = ros::Time::now();
-
     clock_gettime(CLOCK_MONOTONIC, &current_time);
     ros::Duration elapsed_time = ros::Duration(current_time.tv_sec - last_time.tv_sec +
                                                (current_time.tv_nsec - last_time.tv_nsec) / 1e+9);
@@ -50,14 +45,18 @@ int main(int argc, char **argv)
 
     if (elapsed_time > desired_update_period)
     {
-      ROS_WARN_STREAM_NAMED(node_name, "Cycle time exceeded error threshold by: " << (elapsed_time - desired_update_period) << ", cycle time: " << elapsed_time << ", desired_update_period: " << desired_update_period);
+      ROS_WARN_STREAM_THROTTLE(2.0, "Cycle time exceeded error threshold by: " <<
+        (elapsed_time - desired_update_period) << ", cycle time: " << elapsed_time <<
+        ", desired_update_period: " << desired_update_period);
     }
+
+    ros::Time timestamp = ros::Time::now();
     read_state_queue.clear();
     read_state_queue.callOne(ros::WallDuration(desired_update_period.toSec()));
     robot_hardware.read(timestamp, elapsed_time);
     controller_manager.update(ros::Time::now(), elapsed_time);
-    // send message to firmware
     robot_hardware.write(timestamp, elapsed_time);
+
     rate.sleep();
   }
 
