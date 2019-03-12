@@ -20,15 +20,16 @@ class LeobotRobotHW : public hardware_interface::RobotHW
 public:
   LeobotRobotHW();
   virtual ~LeobotRobotHW();
-  virtual bool init(ros::NodeHandle& root_nh);
-  void read(const ros::Time& time, const ros::Duration& period);
-  void write(const ros::Time& time, const ros::Duration& period);
+  virtual bool init(ros::NodeHandle &root_nh, ros::NodeHandle &robot_hw_nh);
+
+  virtual void read(const ros::Time &time, const ros::Duration &period);
+  virtual void write(const ros::Time &time, const ros::Duration &period);
 
 private:
-  void firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr& message);
+  void firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr &message);
   void dynamicReconfigureCallback(leobot_hardware::LeobotRobotHardwareConfig &config, uint32_t level);
 
-  void setupDynamicReconfigure();
+  void setupDynamicReconfigure(ros::NodeHandle& node_handle);
   void setupHardwareInterfaces();
 
   void fillFirmwareCommandMessageFromConfig(leobot_hardware::LeobotRobotHardwareConfig &config);

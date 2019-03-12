@@ -15,7 +15,7 @@ namespace leobot_hardware
   {
   }
 
-  void LeobotRobotHW::firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr& message)
+  void LeobotRobotHW::firmwareStateCallback(const leobot_msgs::FirmwareStateRead::ConstPtr &message)
   {
     hardware_motor_position[0] = message->motor_1_position;
     hardware_motor_velocity[0] = message->motor_1_velocity;
@@ -97,33 +97,32 @@ namespace leobot_hardware
     registerInterface(&joint_velocity_interface);
   }
 
-  void  LeobotRobotHW::setupDynamicReconfigure()
+  void  LeobotRobotHW::setupDynamicReconfigure(ros::NodeHandle  &node_handle)
   {
-    ros::NodeHandle dynamic_node;
     dynamic_reconfigure_server_.reset(new dynamic_reconfigure::Server<leobot_hardware::LeobotRobotHardwareConfig>(
-      dynamic_reconfigure_mutex_, dynamic_node));
+      dynamic_reconfigure_mutex_, node_handle));
     reconfigure_callback_ = boost::bind(&LeobotRobotHW::dynamicReconfigureCallback, this, _1, _2);
 
-    default_dynamic_server_config_.__fromServer__(dynamic_node);
+    default_dynamic_server_config_.__fromServer__(node_handle);
     dynamic_reconfigure_server_->setCallback(reconfigure_callback_);
 
     fillFirmwareCommandMessageFromConfig(default_dynamic_server_config_);
   }
 
-  bool LeobotRobotHW::init(ros::NodeHandle& root_nh)
+  bool LeobotRobotHW::init(ros::NodeHandle &root_nh, ros::NodeHandle &robot_hw_nh)
   {
-    command_publisher_ = root_nh.advertise<leobot_msgs::FirmwareCommandWrite>("firmware_command_write", 10);
-    state_subscriber_ = root_nh.subscribe("firmware_state_read", 1, &LeobotRobotHW::firmwareStateCallback, this);
+    command_publisher_ = robot_hw_nh.advertise<leobot_msgs::FirmwareCommandWrite>("firmware_command_write", 10);
+    state_subscriber_ = robot_hw_nh.subscribe("firmware_state_read", 1, &LeobotRobotHW::firmwareStateCallback, this);
 
     setupHardwareInterfaces();
-    setupDynamicReconfigure();
+    setupDynamicReconfigure(root_nh);
   }
 
-  void LeobotRobotHW::read(const ros::Time& time, const ros::Duration& period)
+  void LeobotRobotHW::read(const ros::Time &time, const ros::Duration &period)
   {
   }
 
-  void LeobotRobotHW::write(const ros::Time& time, const ros::Duration& period)
+  void LeobotRobotHW::write(const ros::Time &time, const ros::Duration &period)
   {
     boost::recursive_mutex::scoped_lock lock(dynamic_reconfigure_mutex_);
 
