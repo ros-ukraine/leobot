@@ -1,0 +1,16 @@
+robot_hardware:
+  motor_1_p: 1.0
+  motor_1_i: 0.0
+  motor_1_d: 0.0
+
+  motor_2_p: 1.0
+  motor_2_i: 0.0
+  motor_2_d: 0.0
+
+  motor_3_p: 1.0
+  motor_3_i: 0.0
+  motor_3_d: 0.0
+
+  motor_4_p: 1.0
+  motor_4_i: 0.0
+  motor_4_d: 0.0

@@ -8,6 +8,8 @@
     <param name="baud" value="$(arg baud)"/>
   </node>
 
+  <rosparam command="load" file="$(find leobot_hardware)/config/hardware.yml"/>
+
   <node name="robot_hardware" pkg="leobot_hardware" type="leobot_hardware_node" output="screen">
     <param name="loop_rate" value="$(arg loop_rate)"/>
   </node>
