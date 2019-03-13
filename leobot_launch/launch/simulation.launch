@@ -8,6 +8,8 @@
         <arg name="gui" value="$(arg gui)"/>
     </include>
 
-    <rosparam file="$(find leobot_control)/config/gazebo/leobot_control.yml" command="load" ns="/"/>
-    <include file="$(find leobot_control)/launch/control.launch" />
+    <include file="$(find leobot_control)/launch/control.launch">
+        <arg name="sim" value="true"/>
+        <arg name="velocity_control" value="false"/>
+    </include>
 </launch>

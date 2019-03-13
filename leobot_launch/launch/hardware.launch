@@ -1,0 +1,17 @@
+<launch>
+    <arg name="port" default="/dev/ttyACM0"/>
+    <arg name="baud" default="115200"/>
+    <arg name="loop_rate" default="10.0"/>
+    <arg name="velocity_control" default="false"/>
+
+    <include file="$(find leobot_hardware)/launch/hardware.launch">
+        <arg name="port" value="$(arg port)"/>
+        <arg name="baud" value="$(arg baud)"/>
+        <arg name="loop_rate" value="$(arg loop_rate)"/>
+    </include>
+
+    <include file="$(find leobot_control)/launch/control.launch">
+        <arg name="sim" value="false"/>
+        <arg name="velocity_control" value="$(arg velocity_control)"/>
+    </include>
+</launch>

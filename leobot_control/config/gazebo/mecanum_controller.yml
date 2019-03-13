@@ -1,12 +1,3 @@
-joint_state_controller:
-  type: joint_state_controller/JointStateController
-  publish_rate: 50
-
-head_position_controller:
-  type: effort_controllers/JointPositionController
-  joint: head_camera_stick_joint
-  pid: {p: 0.01, i: 0.0, d: 0.01}
-
 mecanum_velocity_controller:
   type: "mecanum_drive_controller/MecanumDriveController"
   front_left_wheel_joint: "front_left_wheel_motor_joint"

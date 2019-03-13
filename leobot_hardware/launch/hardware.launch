@@ -1,16 +1,16 @@
 <launch>
   <arg name="port" default="/dev/ttyACM0"/>
   <arg name="baud" default="115200"/>
-  <arg name="loop_rate" default="100"/>
+  <arg name="loop_rate" default="10.0"/>
 
   <node pkg="rosserial_python" type="serial_node.py" name="rosserial" output="screen">
-    <param name="port" value="$(arg port)"/>
-    <param name="baud" value="$(arg baud)"/>
+    <param name="port" type="str" value="$(arg port)"/>
+    <param name="baud" type="int" value="$(arg baud)"/>
   </node>
 
   <rosparam command="load" file="$(find leobot_hardware)/config/hardware.yml"/>
 
   <node name="robot_hardware" pkg="leobot_hardware" type="leobot_hardware_node" output="screen">
-    <param name="loop_rate" value="$(arg loop_rate)"/>
+    <param name="loop_rate" type="double" value="$(arg loop_rate)"/>
   </node>
 </launch>

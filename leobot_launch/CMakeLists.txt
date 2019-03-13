@@ -4,15 +4,17 @@ project(leobot_launch)
 find_package(catkin REQUIRED)
 
 catkin_package(
-  CATKIN_DEPENDS leobot_gazebo leobot_description
+  CATKIN_DEPENDS leobot_gazebo leobot_hardware leobot_description
 )
 
 install(FILES
-  launch/view_urdf.launch
-  launch/simulation.launch
+  launch/gmapping.launch
+  launch/hardware.launch
   launch/navigation.launch
   launch/rviz.launch
+  launch/simulation.launch
   launch/teleop.launch
+  launch/view_urdf.launch
   launch/web_server.launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

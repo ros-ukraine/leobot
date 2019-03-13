@@ -1,12 +1,41 @@
 <launch>
-    <node name="controller_spawner"
-          pkg="controller_manager" type="spawner" respawn="false"
-          output="screen" ns="/"
-          args="joint_state_controller head_position_controller mecanum_velocity_controller" />
+    <arg name="velocity_control" default="false"/>
+    <arg name="sim" default="true"/>
 
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+    <rosparam file="$(find leobot_control)/config/common/state_controller.yml" command="load" ns="/"/>
 
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <group if="$(arg sim)">
+        <rosparam file="$(find leobot_control)/config/gazebo/head_controller.yml" command="load" ns="/"/>
+        <group if="$(arg velocity_control)">
+            <rosparam file="$(find leobot_control)/config/common/velocity_controllers.yml" command="load" ns="/"/>
+            <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+                  args="joint_state_controller head_position_controller front_right_wheel_velocity_controller front_left_wheel_velocity_controller rear_right_wheel_velocity_controller rear_left_wheel_velocity_controller"/>
+        </group>
+        <group unless="$(arg velocity_control)">
+            <rosparam file="$(find leobot_control)/config/gazebo/mecanum_controller.yml" command="load" ns="/"/>
+            <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+                  args="joint_state_controller head_position_controller mecanum_velocity_controller"/>
+        </group>
+    </group>
+
+    <group unless="$(arg sim)">
+        <rosparam file="$(find leobot_control)/config/hardware/head_controller.yml" command="load" ns="/"/>
+        <group if="$(arg velocity_control)">
+            <rosparam file="$(find leobot_control)/config/common/velocity_controllers.yml" command="load" ns="/"/>
+            <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+                  args="joint_state_controller front_right_wheel_velocity_controller front_left_wheel_velocity_controller rear_right_wheel_velocity_controller rear_left_wheel_velocity_controller"/>
+        </group>
+        <group unless="$(arg velocity_control)">
+            <rosparam file="$(find leobot_control)/config/hardware/mecanum_controller.yml" command="load" ns="/"/>
+            <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+                  args="joint_state_controller mecanum_velocity_controller"/>
+        </group>
+    </group>
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"
+          unless="$(arg velocity_control)"/>
+
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux" unless="$(arg velocity_control)">
         <rosparam command="load" file="$(find leobot_control)/config/common/twist_mux.yml"/>
         <remap from="cmd_vel_out" to="/mecanum_velocity_controller/cmd_vel"/>
     </node>
