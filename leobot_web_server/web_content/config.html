@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                                                                                                                                                                                                                                                                                                                    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,23 +10,33 @@
     <script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
+    <link rel="stylesheet" href="css/config.css"/>
 </head>
 <body>
 <div id="wizard">
-    <form-wizard title="Joystick Configuration" subtitle="" @on-complete="onComplete">
-        <tab-content title="Select a Joystick" icon="ti-user">
-            <h5>Please select a joystick to configure</h5>
-            <div class="list-group">
-                <a v-for="(gamepad, index) in gamepads" href="#"
-                   class="list-group-item list-group-item-action" :class="{'active': index===0&&gamepad.index!==null}">
+    <form-wizard ref="tabs" title="Joystick Configuration" subtitle="" @on-change="onChange" @on-complete="onComplete">
+        <tab-content title="Select a Joystick" icon="ti-user" :before-change="showButtonsConfig">
+            <h5>Select a joystick to configure</h5>
+            <div class="list-group gamepad-list">
+                <a v-for="(gamepad, index) in gamepads" v-on:click="gamepadClickHandler" href="#"
+                   class="list-group-item list-group-item-action gamepad-name" :class="{'active': index===0&&gamepad.index!==null}">
                     {{gamepad.name}}
                 </a>
             </div>
+            <p class="alert alert-warning" role="alert">
+              <i class="fa fa-exclamation-triangle"></i>
+              Please release all thumbsticks/analog controls before pressing Next.</p>
         </tab-content>
 
-        <tab-content title="Configure" icon="ti-settings">
-            My second tab content
+        <tab-content title="Configure" icon="ti-settings" :before-change="askNextButton">
+            <h5>Press the {{buttonRole}} button and hit Next</h5>
+            <div id="actuometer">
+              <div class="actuometer momentary"></div>
+              <div class="actuometer maximum"></div>
+            </div>
+            <p>Configured value: {{configuredString}}</p>
         </tab-content>
 
         <tab-content title="Finish" icon="ti-check">

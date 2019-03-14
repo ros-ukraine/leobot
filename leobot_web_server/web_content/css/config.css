@@ -1,0 +1,17 @@
+.gamepad-list {
+  margin-bottom: 5%;
+}
+
+.actuometer {
+  height: 10vw;
+  margin: 1% auto;
+}
+
+.actuometer.momentary {
+  background: linear-gradient(to right, blue, red);
+}
+
+.actuometer.maximum {
+  margin-left: 0;
+  background: blue;
+}
