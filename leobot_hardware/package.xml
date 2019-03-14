@@ -16,4 +16,5 @@
   <depend>dynamic_reconfigure</depend>
   <depend>leobot_msgs</depend>
   <exec_depend>rosserial_python</exec_depend>
+  <exec_depend>rosserial_mbed</exec_depend>
 </package>

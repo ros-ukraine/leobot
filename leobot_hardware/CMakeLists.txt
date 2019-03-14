@@ -19,7 +19,7 @@ generate_dynamic_reconfigure_options(
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS hardware_interface controller_manager roscpp dynamic_reconfigure leobot_msgs
+  CATKIN_DEPENDS hardware_interface controller_manager roscpp dynamic_reconfigure leobot_msgs rosserial_mbed
 )
 
 include_directories(
