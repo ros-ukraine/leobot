@@ -4,7 +4,8 @@
 
 .actuometer {
   height: 10vw;
-  margin: 1% auto;
+  width: 0;
+  margin: 1% 0;
 }
 
 .actuometer.momentary {
@@ -12,6 +13,9 @@
 }
 
 .actuometer.maximum {
-  margin-left: 0;
   background: blue;
+}
+
+#reset {
+  float: right;
 }

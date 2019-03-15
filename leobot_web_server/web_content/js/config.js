@@ -1,19 +1,23 @@
 $(function(){
   var pitchThreshold = 0.1;
   var gamepads = [];
-  var gamepadAxes;
   var gamepadIndex;
+  var initialGamepadAxes;
   var listPlaceholder = { index: null, name: "[None connected]" };
-  var configuration = [
-    { role: "forward" },
-    { role: "backward" },
-    { role: "left" },
-    { role: "right" }
-  ];
-  var currentConfigStep = 0;
-  var lastEnterHitTimestamp = Date.now();
+
   var keypressTimeout = 1000;
-  var configTabIndex = 1;
+  var lastEnterHitTimestamp = Date.now();
+  var initialConfiguration = [
+      { role: "forward" },
+      { role: "backward" },
+      { role: "left" },
+      { role: "right" }];
+
+  // Current configuration
+  var configuration;
+  var currentConfigStep;
+  var lastEnterHitTimestamp;
+  var configTabIndex;
 
   Vue.use(VueFormWizard);
 
@@ -38,6 +42,7 @@ $(function(){
 
       showButtonsConfig: function() {
         console.log("Selected gamepad: ", getInitialGamepad());
+        resetConfiguration();
         askForButton(this, 0);
         requestAnimationFrame(updateActuometer);
         return true;
@@ -77,7 +82,7 @@ $(function(){
     gamepads[e.gamepad.index] = e.gamepad;
     // gamepads[e.gamepad.index+1] = "Two";
     // gamepads[e.gamepad.index+2] = "Three";
-    gamepadAxes = e.gamepad.axes;
+    initialGamepadAxes = e.gamepad.axes;
     gamepadIndex = e.gamepad.index;
     noneConnected = false;
     enableNextButton();
@@ -106,7 +111,7 @@ $(function(){
     }
   });
 
-  $(document).on("keypress",function(e) {
+  $(document).on("keypress", function(e) {
     var now = Date.now();
     if (e.which == 13 && now - lastEnterHitTimestamp > keypressTimeout) {
       vue.$refs.tabs.nextTab();
@@ -136,6 +141,12 @@ $(function(){
     vue.buttonRole = configuration[index].role;
   }
 
+  function resetActuometer() {
+    var pitchThresholdPercentage = 100 * pitchThreshold;
+    setActuometerPercentage("momentary", pitchThresholdPercentage);
+    setActuometerPercentage("maximum", pitchThresholdPercentage);
+  }
+
   function updateActuometer(){
     var gamepad;
     var initialGamepad = getInitialGamepad();
@@ -151,20 +162,40 @@ $(function(){
     }
 
     if (!gamepad) {
-      console.error("Selected gamepad is unavailable");
+      console.warn("Selected gamepad is unavailable");
+      alert("Sorry, Houston. This joystick was disconnected.");
+      vue.$refs.tabs.reset();
+      resetConfiguration();
+      return;
     }
 
     var configEntry = getCurrentConfigEntry();
 
     gamepad.axes.forEach(function(a, i) {
-      var pitch = a - gamepadAxes[i];
+      var pitch = a - initialGamepadAxes[i];
+      var absPitch = Math.abs(pitch);
 
-      if (Math.abs(pitch) > pitchThreshold) {
-        configEntry.type = "axis";
-        configEntry.index = i;
-        configEntry.releasedValue = a;
-        configEntry.pitchedValue = pitch;
-        updateConfiguredMessage();
+      if (absPitch > pitchThreshold && i!==9) {
+        if (!configEntry.releasedValue) {
+          configEntry.releasedValue = configEntry.pitchedValue = initialGamepadAxes[i];
+        }
+
+        var maxAbsPitch = Math.abs(configEntry.releasedValue - configEntry.pitchedValue);
+
+        // console.log(i, maxAbsPitch, absPitch);
+        // console.log(i, maxAbsPitch);
+        // console.log(configEntry);
+        // console.log(configEntry.releasedValue, configEntry.pitchedValue);
+
+        if (absPitch >= maxAbsPitch) {
+          configEntry.type = "axis";
+          configEntry.index = i;
+          // configEntry.releasedValue = a;
+          configEntry.pitchedValue = a;
+          maxAbsPitch = absPitch;
+        }
+
+        updateConfiguredMessage(absPitch);
       }
     });
 
@@ -190,27 +221,59 @@ $(function(){
     return configuration[currentConfigStep];
   }
 
-  function updateConfiguredMessage(){
+  function updateConfiguredMessage(currentPitch = null){
     var configEntry = getCurrentConfigEntry();
+    var index = configEntry.index;
     var type = configEntry.type;
+    var messageString = "";
 
     switch (type) {
       case "button":
         break;
 
       case "axis":
-        $(".actuometer.maximum").width("" + Math.abs(configEntry.pitchedValue)*100 + "%");
+        // console.log(`zzz ${index} ${initialGamepadAxes[index].toFixed(2)} ${configEntry.pitchedValue.toFixed(2)}`);
+        // var initialPitch = initialGamepadAxes[index];
+
+        // showPitch(, pitch, initialPitch);
+        var currentDeviation = getDeviationPercentage(currentPitch, configEntry.releasedValue);
+        var maxDeviation = getDeviationPercentage(configEntry.pitchedValue, configEntry.releasedValue);
+
+        // console.log(initialPitch, pitch, maxDeviation);
+        // console.log(currentDeviation, maxDeviation);
+
+        setActuometerPercentage("momentary", currentDeviation);
+        setActuometerPercentage("maximum", maxDeviation);
+
+        messageString = " " + maxDeviation.toFixed(1) + "%";
         break;
 
       default:
         console.error("Unknown gamepad sensor type: " + type);
     }
 
-    vue.configuredString = type + " #" + configEntry.index;
+    var messageString = type + " #" + index + messageString;
+
+    vue.configuredString = messageString;
+  }
+
+  function getDeviationPercentage(pitch, initialPitch) {
+    return 100 * Math.abs(pitch - initialPitch);
   }
 
   function getInitialGamepad() {
     return gamepads[gamepadIndex];
+  }
+
+  function setActuometerPercentage(className, percentage) {
+    $(".actuometer." + className).width(percentage + "%");
+  }
+
+  function resetConfiguration() {
+    configuration = initialConfiguration;
+    currentConfigStep = 0;
+    configTabIndex = 1;
+    resetActuometer();
   }
 
   disableNextButton();
