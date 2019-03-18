@@ -23,7 +23,7 @@ $(function(){
       { role: "backward" },
       { role: "left" },
       { role: "right" }];
-  const finishRedirectionUrl = "/index.html";
+  const finishRedirectionUrl = "/vr.html";
 
   // Current configuration
   var configuration;
