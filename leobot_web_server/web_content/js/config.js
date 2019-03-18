@@ -3,31 +3,34 @@ $(function(){
   var gamepads = [];
   var gamepadIndex;
   var initialGamepadAxes;
-  var listPlaceholder = { index: null, name: "[None connected]" };
+  const listPlaceholder = { index: null, name: "[None connected]" };
 
-  var keypressTimeout = 1000;
-  var lastEnterHitTimestamp = Date.now();
-  var initialConfiguration = [
+  const configTabIndex = 1;
+  const checkTabIndex = 2;
+  const finishTabIndex = 3;
+  const keypressTimeout = 500;
+  var lastKeypressTimestamp = Date.now();
+  const noneConfiguredString = "[None]";
+  const initialConfiguration = [
       { role: "forward" },
       { role: "backward" },
       { role: "left" },
       { role: "right" }];
+  const finishRedirectionUrl = "/index.html";
 
   // Current configuration
   var configuration;
   var currentConfigStep;
-  var lastEnterHitTimestamp;
-  var configTabIndex;
 
   Vue.use(VueFormWizard);
 
   var vue = new Vue({
     el: "#wizard",
     data: {
-      // gamepads: [{ index: 1, name: "[None connected 1]" }, { index: 2, name: "[None connected 2]" }, { index: 3, name: "[None connected] 3" }],
       gamepads: [listPlaceholder],
       buttonRole: "",
-      configuredString: "[None]"
+      configuredString: "",
+      userConfiguration: null
     },
     methods: {
       gamepadClickHandler: function(e) {
@@ -49,26 +52,49 @@ $(function(){
       },
 
       askNextButton: function() {
-        currentConfigStep++;
-
-        if (currentConfigStep >= configuration.length) {
+        if (currentConfigStep >= configuration.length-1) {
           return true;
         }
 
+        currentConfigStep++;
         askForButton(this, currentConfigStep);
+        resetActuometer();
         return false;
       },
 
       onChange: function(prevIndex, nextIndex) {
         // When user goes back to config tab
-        if (nextIndex === configTabIndex && prevIndex > configTabIndex) {
-          currentConfigStep = 0;
-          this.showButtonsConfig();
+        switch (nextIndex) {
+          case configTabIndex:
+            if (prevIndex > configTabIndex) {
+              this.showButtonsConfig();
+            }
+            break;
+
+          case checkTabIndex:
+            console.log("Gamepad configuration results:", configuration);
+            var userConfiguration = [];
+
+            configuration.forEach(function(c) {
+              var role = capitalizeString(c.role);
+              var configuredString = c.type ? capitalizeString(c.type) + " #" + c.index : noneConfiguredString;
+              var currentDeviation = getDeviationPercentage(c.pitchedValue, c.releasedValue, false);
+              var direction = !currentDeviation ? "" : currentDeviation > 0 ? "↷" : "↶";
+              var deviationPercentage = currentDeviation ? Math.abs(currentDeviation).toFixed(1) + "%" : "";
+
+              userConfiguration.push([role, configuredString, direction, deviationPercentage]);
+            });
+
+            this.$set(this, "userConfiguration", userConfiguration);
+            break;
+
+          case finishTabIndex:
+            break;
         }
       },
 
       onComplete: function() {
-        alert("Yay. Done!");
+        window.location.href = finishRedirectionUrl;
       }
     }
   });
@@ -77,11 +103,7 @@ $(function(){
     logGamepad(e, "connected");
     vue.gamepads = [];
     vue.gamepads.push({ index: e.gamepad.index, name: e.gamepad.id });
-    // vue.gamepads.push({ index: e.gamepad.index+1, name: e.gamepad.id+" Y" });
-    // vue.gamepads.push({ index: e.gamepad.index+2, name: e.gamepad.id+" Z" });
     gamepads[e.gamepad.index] = e.gamepad;
-    // gamepads[e.gamepad.index+1] = "Two";
-    // gamepads[e.gamepad.index+2] = "Three";
     initialGamepadAxes = e.gamepad.axes;
     gamepadIndex = e.gamepad.index;
     noneConnected = false;
@@ -111,13 +133,31 @@ $(function(){
     }
   });
 
-  $(document).on("keypress", function(e) {
-    var now = Date.now();
-    if (e.which == 13 && now - lastEnterHitTimestamp > keypressTimeout) {
-      vue.$refs.tabs.nextTab();
-      lastEnterHitTimestamp = now;
-    }
+  $(document).on("keydown", function(e) {
+    var tabs = vue.$refs.tabs;
+
+    callIfReady(function(e, tabs) {
+      switch (e.which) {
+        case 8:
+          tabs.prevTab();
+          break;
+
+        case 13:
+        case 32:
+          tabs.nextTab();
+          break;
+      }
+    }, e, tabs);
   });
+
+  function callIfReady(f, ...args) {
+    var now = Date.now();
+
+    if (now - lastKeypressTimestamp > keypressTimeout) {
+      f.apply(null, args);
+      lastKeypressTimestamp = now;
+    }
+  }
 
   function logGamepad(e, state) {
     console.info("Gamepad %s at index %d: %s. %d buttons, %d axes.",
@@ -145,12 +185,14 @@ $(function(){
     var pitchThresholdPercentage = 100 * pitchThreshold;
     setActuometerPercentage("momentary", pitchThresholdPercentage);
     setActuometerPercentage("maximum", pitchThresholdPercentage);
+    vue.configuredString = noneConfiguredString;
   }
 
   function updateActuometer(){
     var gamepad;
     var initialGamepad = getInitialGamepad();
     var navGamepads = navigator.getGamepads();
+    var continueAnimation = true;
 
     // getGamepads() returns a GamepadList which is not really an Array
     // and we cannot iterate over it with forEach method
@@ -182,15 +224,9 @@ $(function(){
 
         var maxAbsPitch = Math.abs(configEntry.releasedValue - configEntry.pitchedValue);
 
-        // console.log(i, maxAbsPitch, absPitch);
-        // console.log(i, maxAbsPitch);
-        // console.log(configEntry);
-        // console.log(configEntry.releasedValue, configEntry.pitchedValue);
-
         if (absPitch >= maxAbsPitch) {
           configEntry.type = "axis";
           configEntry.index = i;
-          // configEntry.releasedValue = a;
           configEntry.pitchedValue = a;
           maxAbsPitch = absPitch;
         }
@@ -199,7 +235,6 @@ $(function(){
       }
     });
 
-    // var values = [].concat(gamepad.buttons.value, gamepad.axes);
     gamepad.buttons.forEach(function(button, index){
       var pressed = button.value;
 
@@ -211,6 +246,9 @@ $(function(){
         configEntry.type = "button";
         configEntry.index = index;
         updateConfiguredMessage();
+        callIfReady(function(v) {
+          v.$refs.tabs.nextTab();
+        }, vue);
       }
     });
 
@@ -232,15 +270,8 @@ $(function(){
         break;
 
       case "axis":
-        // console.log(`zzz ${index} ${initialGamepadAxes[index].toFixed(2)} ${configEntry.pitchedValue.toFixed(2)}`);
-        // var initialPitch = initialGamepadAxes[index];
-
-        // showPitch(, pitch, initialPitch);
         var currentDeviation = getDeviationPercentage(currentPitch, configEntry.releasedValue);
         var maxDeviation = getDeviationPercentage(configEntry.pitchedValue, configEntry.releasedValue);
-
-        // console.log(initialPitch, pitch, maxDeviation);
-        // console.log(currentDeviation, maxDeviation);
 
         setActuometerPercentage("momentary", currentDeviation);
         setActuometerPercentage("maximum", maxDeviation);
@@ -257,8 +288,10 @@ $(function(){
     vue.configuredString = messageString;
   }
 
-  function getDeviationPercentage(pitch, initialPitch) {
-    return 100 * Math.abs(pitch - initialPitch);
+  function getDeviationPercentage(pitch, initialPitch, absolute = true) {
+    var pitchDifference = pitch - initialPitch;
+    var adjustedPitchDifference = absolute ? Math.abs(pitchDifference) : pitchDifference;
+    return 100 * adjustedPitchDifference;
   }
 
   function getInitialGamepad() {
@@ -266,15 +299,28 @@ $(function(){
   }
 
   function setActuometerPercentage(className, percentage) {
-    $(".actuometer." + className).width(percentage + "%");
+    $(".actuometer." + className + " .overlap").css("margin-left", percentage + "%");
   }
 
   function resetConfiguration() {
-    configuration = initialConfiguration;
+    // Deep copy of array objects
+    configuration = $.map(initialConfiguration,
+      function (obj) {
+        return $.extend(true, {}, obj);
+      });
     currentConfigStep = 0;
-    configTabIndex = 1;
+    resetConfigurationStep();
+  }
+
+  function resetConfigurationStep() {
+    configuration[currentConfigStep] = Object.assign({}, initialConfiguration[currentConfigStep]);
     resetActuometer();
   }
 
+  $("#reset").click(resetConfigurationStep);
   disableNextButton();
 })
+
+function capitalizeString(s) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}

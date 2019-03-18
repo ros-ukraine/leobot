@@ -33,8 +33,12 @@
         <tab-content title="Configure" icon="ti-settings" :before-change="askNextButton">
             <h5>Press the {{buttonRole}} button and hit Next</h5>
             <div id="actuometer">
-              <div class="actuometer momentary"></div>
-              <div class="actuometer maximum"></div>
+              <div class="actuometer momentary">
+                <div class="overlap"></div>
+              </div>
+              <div class="actuometer maximum">
+                <div class="overlap"></div>
+              </div>
             </div>
             <p>
               Configured value: {{configuredString}}
@@ -42,8 +46,28 @@
             </p>
         </tab-content>
 
+        <tab-content title="Check" icon="ti-check">
+          <table id="config-table" class="table">
+            <thead>
+              <tr>
+                <th>Button Role</th>
+                <th>Joystick Action</th>
+                <th>Axis Direction</th>
+                <th>Sensivity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="config in userConfiguration">
+                <td v-for="s in config">{{s}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Press Next to save the configuration</p>
+        </tab-content>
+
         <tab-content title="Finish" icon="ti-check">
-            Yuhuuu! This seems pretty damn simple
+            <p>Joystick configuration saved!</p>
+            <p>Close this page or press Finish to enter the VR</p>
         </tab-content>
     </form-wizard>
 </div>
