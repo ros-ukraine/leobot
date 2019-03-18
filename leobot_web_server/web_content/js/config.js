@@ -1,13 +1,20 @@
 $(function(){
   var pitchThreshold = 0.1;
   var gamepads = [];
-  var gamepadIndex;
+  var gamepadIndex = null;
   var initialGamepadAxes;
   const listPlaceholder = { index: null, name: "[None connected]" };
+  const actuometerLowColor = [100, 100, 160];
+  const actuometerHighColor = [0, 160, 0];
+  const localStorageKey = "Gamepad configuration";
 
-  const configTabIndex = 1;
-  const checkTabIndex = 2;
-  const finishTabIndex = 3;
+  const TABS = {
+    select: 0,
+    config: 1,
+    check: 2,
+    finish: 3
+  };
+
   const keypressTimeout = 500;
   var lastKeypressTimestamp = Date.now();
   const noneConfiguredString = "[None]";
@@ -20,7 +27,7 @@ $(function(){
 
   // Current configuration
   var configuration;
-  var currentConfigStep;
+  var currentConfigStep = null;
 
   Vue.use(VueFormWizard);
 
@@ -47,16 +54,23 @@ $(function(){
         console.log("Selected gamepad: ", getInitialGamepad());
         resetConfiguration();
         askForButton(this, 0);
-        requestAnimationFrame(updateActuometer);
+        requestAnimationFrame(updateConfig);
+
+        var lowRgbColorString = getColorRgbString(actuometerLowColor);
+        var highRgbColorString = getColorRgbString(actuometerHighColor);
+        var colorGradientString = `linear-gradient(to right, ${lowRgbColorString}, ${highRgbColorString})`;
+        $(".actuometer.momentary").css("background-image", colorGradientString);
+
         return true;
       },
 
       askNextButton: function() {
         if (currentConfigStep >= configuration.length-1) {
+          currentConfigStep = null;
           return true;
         }
 
-        currentConfigStep++;
+        currentConfigStep = currentConfigStep === null ? 0 : 1 + currentConfigStep;
         askForButton(this, currentConfigStep);
         resetActuometer();
         return false;
@@ -65,30 +79,35 @@ $(function(){
       onChange: function(prevIndex, nextIndex) {
         // When user goes back to config tab
         switch (nextIndex) {
-          case configTabIndex:
-            if (prevIndex > configTabIndex) {
+          case TABS.select:
+            initGamepadSelection();
+            break;
+
+          case TABS.config:
+            if (prevIndex > TABS.config) {
               this.showButtonsConfig();
             }
             break;
 
-          case checkTabIndex:
+          case TABS.check:
             console.log("Gamepad configuration results:", configuration);
             var userConfiguration = [];
 
             configuration.forEach(function(c) {
               var role = capitalizeString(c.role);
               var configuredString = c.type ? capitalizeString(c.type) + " #" + c.index : noneConfiguredString;
-              var currentDeviation = getDeviationPercentage(c.pitchedValue, c.releasedValue, false);
-              var direction = !currentDeviation ? "" : currentDeviation > 0 ? "↷" : "↶";
-              var deviationPercentage = currentDeviation ? Math.abs(currentDeviation).toFixed(1) + "%" : "";
+              var currentTilt = getTiltPercentage(c.pitchedValue, c.releasedValue, false);
+              var direction = !currentTilt ? "" : currentTilt > 0 ? "↷" : "↶";
+              var tiltPercentage = currentTilt ? Math.abs(currentTilt).toFixed(1) + "%" : "";
 
-              userConfiguration.push([role, configuredString, direction, deviationPercentage]);
+              userConfiguration.push([role, configuredString, direction, tiltPercentage]);
             });
 
             this.$set(this, "userConfiguration", userConfiguration);
             break;
 
-          case finishTabIndex:
+          case TABS.finish:
+            localStorage.setItem(localStorageKey, JSON.stringify(configuration));
             break;
         }
       },
@@ -146,6 +165,10 @@ $(function(){
         case 32:
           tabs.nextTab();
           break;
+
+        case 82:
+          resetConfigurationStep();
+          break;
       }
     }, e, tabs);
   });
@@ -156,6 +179,30 @@ $(function(){
     if (now - lastKeypressTimestamp > keypressTimeout) {
       f.apply(null, args);
       lastKeypressTimestamp = now;
+    }
+  }
+
+  function initGamepadSelection() {
+    requestAnimationFrame(selectGamepadWithPressedButton);
+  }
+
+  function selectGamepadWithPressedButton() {
+    var gamepads = getGamepadsAsArray();
+    var index = null;
+
+    gamepads.forEach(function(gamepad) {
+      gamepad.buttons.forEach(function(button){
+        if (button.value) index = gamepad.index;
+      });
+    });
+
+    if (index !== null) {
+      gamepadIndex = index;
+      lastKeypressTimestamp = Date.now();
+      currentConfigStep = null;
+      vue.$refs.tabs.nextTab();
+    } else {
+      requestAnimationFrame(selectGamepadWithPressedButton);
     }
   }
 
@@ -183,25 +230,19 @@ $(function(){
 
   function resetActuometer() {
     var pitchThresholdPercentage = 100 * pitchThreshold;
-    setActuometerPercentage("momentary", pitchThresholdPercentage);
-    setActuometerPercentage("maximum", pitchThresholdPercentage);
+    showMomentaryPercentage(pitchThresholdPercentage);
+    showMaximumPercentage(pitchThresholdPercentage);
     vue.configuredString = noneConfiguredString;
   }
 
-  function updateActuometer(){
+  function updateConfig(){
     var gamepad;
     var initialGamepad = getInitialGamepad();
-    var navGamepads = navigator.getGamepads();
-    var continueAnimation = true;
+    var gamepads = getGamepadsAsArray();
 
-    // getGamepads() returns a GamepadList which is not really an Array
-    // and we cannot iterate over it with forEach method
-    for (var i=0; i<navGamepads.length; i++){
-      var g = navGamepads[i];
-      if (g && g.index === gamepadIndex) {
-        gamepad = g;
-      }
-    }
+    gamepads.forEach(function(g) {
+      if (g.index === gamepadIndex) gamepad = g;
+    });
 
     if (!gamepad) {
       console.warn("Selected gamepad is unavailable");
@@ -212,6 +253,10 @@ $(function(){
     }
 
     var configEntry = getCurrentConfigEntry();
+
+    // Prevent errors if requestAnimationFrame() called the function
+    // when all buttons are already configured (config results step)
+    if (!configEntry) return;
 
     gamepad.axes.forEach(function(a, i) {
       var pitch = a - initialGamepadAxes[i];
@@ -231,7 +276,7 @@ $(function(){
           maxAbsPitch = absPitch;
         }
 
-        updateConfiguredMessage(absPitch);
+        updateConfigurationMessage(absPitch);
       }
     });
 
@@ -243,23 +288,28 @@ $(function(){
         if (index !== configEntry.index) {
           console.log("Last pressed button ", index);
         }
+       // Erase the previous axis data for this step
+        resetConfigurationStep();
+        // Get the clean entry because now the configEntry contains a symbolic link to the old object
+        configEntry = getCurrentConfigEntry();
         configEntry.type = "button";
         configEntry.index = index;
-        updateConfiguredMessage();
         callIfReady(function(v) {
           v.$refs.tabs.nextTab();
         }, vue);
+        // Do not show the configured value for fraction of second before querying the next one
+        // updateConfigurationMessage();
       }
     });
 
-    requestAnimationFrame(updateActuometer);
+    requestAnimationFrame(updateConfig);
   }
 
   function getCurrentConfigEntry(){
     return configuration[currentConfigStep];
   }
 
-  function updateConfiguredMessage(currentPitch = null){
+  function updateConfigurationMessage(currentPitch = null){
     var configEntry = getCurrentConfigEntry();
     var index = configEntry.index;
     var type = configEntry.type;
@@ -270,13 +320,13 @@ $(function(){
         break;
 
       case "axis":
-        var currentDeviation = getDeviationPercentage(currentPitch, configEntry.releasedValue);
-        var maxDeviation = getDeviationPercentage(configEntry.pitchedValue, configEntry.releasedValue);
+        var currentTilt = getTiltPercentage(currentPitch, configEntry.releasedValue);
+        var maxTilt = getTiltPercentage(configEntry.pitchedValue, configEntry.releasedValue);
 
-        setActuometerPercentage("momentary", currentDeviation);
-        setActuometerPercentage("maximum", maxDeviation);
+        showMomentaryPercentage(currentTilt);
+        showMaximumPercentage(maxTilt);
 
-        messageString = " " + maxDeviation.toFixed(1) + "%";
+        messageString = " " + maxTilt.toFixed(1) + "%";
         break;
 
       default:
@@ -288,7 +338,7 @@ $(function(){
     vue.configuredString = messageString;
   }
 
-  function getDeviationPercentage(pitch, initialPitch, absolute = true) {
+  function getTiltPercentage(pitch, initialPitch, absolute = true) {
     var pitchDifference = pitch - initialPitch;
     var adjustedPitchDifference = absolute ? Math.abs(pitchDifference) : pitchDifference;
     return 100 * adjustedPitchDifference;
@@ -296,6 +346,18 @@ $(function(){
 
   function getInitialGamepad() {
     return gamepads[gamepadIndex];
+  }
+
+  function showMomentaryPercentage(momentaryPercentage) {
+    setActuometerPercentage("momentary", momentaryPercentage);
+  }
+
+  function showMaximumPercentage(maxPercentage) {
+    setActuometerPercentage("maximum", maxPercentage);
+
+    var color = getColorGradientValue(actuometerHighColor, actuometerLowColor, maxPercentage/100);
+    var colorRgbString = getColorRgbString(color);
+    $(".actuometer.maximum").css("background-color", colorRgbString);
   }
 
   function setActuometerPercentage(className, percentage) {
@@ -319,8 +381,40 @@ $(function(){
 
   $("#reset").click(resetConfigurationStep);
   disableNextButton();
+  initGamepadSelection();
 })
 
 function capitalizeString(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function getColorGradientValue(color1, color2, weight) {
+    var p = weight;
+    var w = p * 2 - 1;
+    var w1 = (w/1+1) / 2;
+    var w2 = 1 - w1;
+    var rgb = [Math.round(color1[0] * w1 + color2[0] * w2),
+        Math.round(color1[1] * w1 + color2[1] * w2),
+        Math.round(color1[2] * w1 + color2[2] * w2)];
+    return rgb;
+}
+
+function getColorRgbString(colorRgbArray) {
+  return `rgb(${colorRgbArray[0]}, ${colorRgbArray[1]}, ${colorRgbArray[2]})`;
+}
+
+function getGamepadsAsArray() {
+  var navGamepads = navigator.getGamepads();
+  var gamepads = [];
+
+  // getGamepads() returns a GamepadList which is not really an Array
+  // and we cannot iterate over it with forEach method
+  for (var i=0; i<navGamepads.length; i++){
+    var g = navGamepads[i];
+    if (g) {
+      gamepads.push(g);
+    }
+  }
+
+  return gamepads;
 }

@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,8 +17,8 @@
 <body>
 <div id="wizard">
     <form-wizard ref="tabs" title="Joystick Configuration" subtitle="" @on-change="onChange" @on-complete="onComplete">
-        <tab-content title="Select a Joystick" icon="ti-user" :before-change="showButtonsConfig">
-            <h5>Select a joystick to configure</h5>
+        <tab-content title="Select" icon="ti-user" :before-change="showButtonsConfig">
+            <h5>Select a joystick to configure or press any joystick button</h5>
             <div class="list-group gamepad-list">
                 <a v-for="(gamepad, index) in gamepads" v-on:click="gamepadClickHandler" href="#"
                    class="list-group-item list-group-item-action gamepad-name" :class="{'active': index===0&&gamepad.index!==null}">
@@ -31,7 +31,8 @@
         </tab-content>
 
         <tab-content title="Configure" icon="ti-settings" :before-change="askNextButton">
-            <h5>Press the {{buttonRole}} button and hit Next</h5>
+            <h5>Action: {{buttonRole}}</h5>
+            <p>Press the joystick button/axis to the maximum and hit Next</p>
             <div id="actuometer">
               <div class="actuometer momentary">
                 <div class="overlap"></div>
@@ -67,7 +68,7 @@
 
         <tab-content title="Finish" icon="ti-check">
             <p>Joystick configuration saved!</p>
-            <p>Close this page or press Finish to enter the VR</p>
+            <p>Press Finish to enter the VR or close this page.</p>
         </tab-content>
     </form-wizard>
 </div>

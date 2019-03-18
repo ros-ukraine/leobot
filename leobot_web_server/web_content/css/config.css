@@ -5,14 +5,7 @@
 .actuometer {
   height: 10vw;
   margin: 1% 0;
-}
-
-.actuometer.momentary {
-  background: linear-gradient(to right, blue, red);
-}
-
-.actuometer.maximum {
-  background: blue;
+  overflow: hidden;
 }
 
 .actuometer .overlap {
