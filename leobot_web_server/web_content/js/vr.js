@@ -93,34 +93,55 @@ var wheelControl = new ROSLIB.Topic({
     name : '/wheel_diff_drive_controller/cmd_vel',
     messageType : 'geometry_msgs/Twist'
 });
+
 document.body.addEventListener('keydown', function(e) {
+  switch (e.keyCode) {
+    case 38:
+      moveForward();
+      break;
 
+    case 40:
+      moveBackward();
+      break;
 
-	        if(e.keyCode == "38"){
-	               var twistMessageUp = new ROSLIB.Message({
-                            linear: { x:  1, y: 0, z: 0 }
-                        });
-                        wheelControl.publish(twistMessageUp);
+    case 37:
+      turnLeft();
+      break;
 
-	        }else if(e.keyCode == "40"){
-	           var twistMessageDown = new ROSLIB.Message({
-                            linear: { x:  -1, y: 0, z: 0 }
-                        });
-                        wheelControl.publish(twistMessageDown);
-
-	        }else if(e.keyCode == "37"){
-
-                var twistMessageLeft = new ROSLIB.Message({
-                            angular: { x:  0, y: 0, z: 1 }
-                        });
-                        wheelControl.publish(twistMessageLeft);
-	        }else if(e.keyCode == "39"){
-	             var twistMessageRight = new ROSLIB.Message({
-                            angular: { x:  0, y: 0, z: -1 }
-                        });
-                        wheelControl.publish(twistMessageRight);
-	        }
+    case 39:
+      turnRight();
+      break;
+  }
 });
+
+function moveForward() {
+   var twistMessageUp = new ROSLIB.Message({
+        linear: { x:  1, y: 0, z: 0 }
+    });
+    wheelControl.publish(twistMessageUp);
+}
+
+function moveBackward() {
+  var twistMessageDown = new ROSLIB.Message({
+    linear: { x:  -1, y: 0, z: 0 }
+  });
+  wheelControl.publish(twistMessageDown);
+}
+
+function turnLeft() {
+  var twistMessageLeft = new ROSLIB.Message({
+    angular: { x:  0, y: 0, z: 1 }
+  });
+  wheelControl.publish(twistMessageLeft);
+}
+
+function turnRight() {
+  var twistMessageRight = new ROSLIB.Message({
+    angular: { x:  0, y: 0, z: -1 }
+  });
+  wheelControl.publish(twistMessageRight);
+}
+
 function imusetorientation() {
     if(((alpha > 0 && alpha < 90) && (gamma >= (-90) && gamma <= 0))
     || ((alpha > 270 && alpha < 360) && (gamma >= (-90) && gamma <= 0))
@@ -143,6 +164,7 @@ function imusetorientation() {
          headControl.publish(imuMessage);
     }
 }
+
 setInterval(function(){
     imusetorientation();
 }, 500);
