@@ -6,6 +6,8 @@ var frameWidth = window.innerWidth;
 var frameWidthHalf = Math.round(frameWidth/2);
 var siteRoot = location.protocol + '//' + location.hostname + ':8090' + '/';
 
+var gamepadConfiguration = JSON.parse(localStorage.getItem("Gamepad configuration"));
+
 document.getElementById('right_iframe').src = siteRoot + "stream?topic=/stereocamera/right/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
 document.getElementById('left_iframe').src  = siteRoot + "stream?topic=/stereocamera/left/image_raw&width="+frameWidthHalf+"&height="+frameHeight;
 
@@ -114,7 +116,64 @@ document.body.addEventListener('keydown', function(e) {
   }
 });
 
+function processGamepadActions() {
+  var gamepad = getGamepadsAsArray()[0]; // Assume there's only one gamepad connected for now
+
+  if (gamepad) {
+    var action;
+
+    gamepadConfiguration.forEach(function(configEntry) {
+      switch (configEntry.type) {
+        case "button":
+          gamepad.buttons.forEach(function(button, index) {
+            if (configEntry.index === index && button.value) {
+              action = configEntry.role;
+            }
+          });
+          break;
+
+        case "axis":
+          gamepad.axes.forEach(function(axis, index) {
+            if (configEntry.index === index) {
+              var pitchedValue = configEntry.pitchedValue;
+              var releasedValue = configEntry.releasedValue;
+              var configThreshold = 0.5 * (pitchedValue + releasedValue);
+              var configStroke = pitchedValue - releasedValue;
+
+              if (axis > configThreshold && configStroke > 0 ||
+                  axis < configThreshold && configStroke < 0 ) {
+                action = configEntry.role;
+              }
+            }
+          });
+          break;
+      }
+    });
+
+    switch (action) {
+      case "forward":
+        moveForward();
+        break;
+
+      case "backward":
+        moveBackward();
+        break;
+
+      case "left":
+        turnLeft();
+        break;
+
+      case "right":
+        turnRight();
+        break;
+    }
+  }
+
+  requestAnimationFrame(processGamepadActions);
+}
+
 function moveForward() {
+   console.log("Moving forward");
    var twistMessageUp = new ROSLIB.Message({
         linear: { x:  1, y: 0, z: 0 }
     });
@@ -122,6 +181,7 @@ function moveForward() {
 }
 
 function moveBackward() {
+  console.log("Moving backward");
   var twistMessageDown = new ROSLIB.Message({
     linear: { x:  -1, y: 0, z: 0 }
   });
@@ -129,6 +189,7 @@ function moveBackward() {
 }
 
 function turnLeft() {
+  console.log("Turning left");
   var twistMessageLeft = new ROSLIB.Message({
     angular: { x:  0, y: 0, z: 1 }
   });
@@ -136,10 +197,26 @@ function turnLeft() {
 }
 
 function turnRight() {
+  console.log("Turning right");
   var twistMessageRight = new ROSLIB.Message({
     angular: { x:  0, y: 0, z: -1 }
   });
   wheelControl.publish(twistMessageRight);
+}
+
+function getGamepadsAsArray() {
+  var navGamepads = navigator.getGamepads();
+  var gamepads = [];
+
+  // getGamepads() returns a GamepadList which is not really an Array
+  // and we cannot iterate over it with forEach method
+  for (var i=0; i<navGamepads.length; i++){
+    var g = navGamepads[i];
+    if (g) {
+      gamepads.push(g);
+    }
+  }
+  return gamepads;
 }
 
 function imusetorientation() {
@@ -168,3 +245,5 @@ function imusetorientation() {
 setInterval(function(){
     imusetorientation();
 }, 500);
+
+processGamepadActions();
