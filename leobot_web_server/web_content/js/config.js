@@ -191,7 +191,7 @@ $(function(){
     var index = null;
 
     gamepads.forEach(function(gamepad) {
-      gamepad.buttons.forEach(function(button){
+      gamepad.buttons.forEach(function(button) {
         if (button.value) index = gamepad.index;
       });
     });
