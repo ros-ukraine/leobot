@@ -22,6 +22,7 @@
 */
 
 #include "leobot_hardware/robot_hardware.h"
+#include <string>
 #include <controller_manager/controller_manager.h>
 #include <hardware_interface/actuator_state_interface.h>
 #include <ros/callback_queue.h>
@@ -30,7 +31,7 @@ using leobot_hardware::LeobotRobotHW;
 
 int main(int argc, char **argv)
 {
-  const double ACTUAL_CYCLE = 0.75;  
+  const double ACTUAL_CYCLE = 0.75;
   std::string node_name = "leobot_hardware_node";
 
   ros::init(argc, argv, node_name);

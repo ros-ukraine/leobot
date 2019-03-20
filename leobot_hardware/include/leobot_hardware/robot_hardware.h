@@ -83,6 +83,6 @@ private:
   boost::recursive_mutex dynamic_reconfigure_mutex_;
 };
 
-}  // leobot_hardware
+}  // namespace leobot_hardware
 
 #endif  // LEOBOT_HARDWARE_ROBOT_HARDWARE_H
