@@ -66,7 +66,7 @@ namespace leobot_hardware
     firmware_command_message_.motor_2_p = config.motor_2_p;
     firmware_command_message_.motor_2_i = config.motor_2_i;
     firmware_command_message_.motor_2_d = config.motor_2_d;
-    
+
     firmware_command_message_.motor_3_p = config.motor_3_p;
     firmware_command_message_.motor_3_i = config.motor_3_i;
     firmware_command_message_.motor_3_d = config.motor_3_d;
@@ -83,19 +83,19 @@ namespace leobot_hardware
 
   void  LeobotRobotHW::setupHardwareInterfaces()
   {
-    hardware_interface::JointStateHandle front_right_wheel_joint_state_handle("front_right_wheel_motor_joint", 
+    hardware_interface::JointStateHandle front_right_wheel_joint_state_handle("front_right_wheel_motor_joint",
       &position[0], &velocity[0], &effort[0]);
     joint_state_interface.registerHandle(front_right_wheel_joint_state_handle);
 
-    hardware_interface::JointStateHandle front_left_wheel_joint_state_handle("front_left_wheel_motor_joint", 
+    hardware_interface::JointStateHandle front_left_wheel_joint_state_handle("front_left_wheel_motor_joint",
       &position[1], &velocity[1], &effort[1]);
     joint_state_interface.registerHandle(front_left_wheel_joint_state_handle);
 
-    hardware_interface::JointStateHandle rear_right_wheel_joint_state_handle("rear_right_wheel_motor_joint", 
+    hardware_interface::JointStateHandle rear_right_wheel_joint_state_handle("rear_right_wheel_motor_joint",
       &position[2], &velocity[2], &effort[2]);
     joint_state_interface.registerHandle(rear_right_wheel_joint_state_handle);
 
-    hardware_interface::JointStateHandle rear_left_wheel_joint_state_handle("rear_left_wheel_motor_joint", 
+    hardware_interface::JointStateHandle rear_left_wheel_joint_state_handle("rear_left_wheel_motor_joint",
       &position[3], &velocity[3], &effort[3]);
     joint_state_interface.registerHandle(rear_left_wheel_joint_state_handle);
 
@@ -157,4 +157,4 @@ namespace leobot_hardware
     command_publisher_.publish(firmware_command_message_);
   }
 
-}  // leobot_hardware
+}  // namespace leobot_hardware
