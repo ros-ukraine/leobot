@@ -2,9 +2,30 @@
   margin-bottom: 5%;
 }
 
+.thumbstick-hint {
+  display: flex;
+}
+
+.exclamation-triangle {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .exclamation-triangle:before {
   content: '⚠';
-  margin-right: 0.5ex;
+  font-size: 5vw;
+  display: block;
+  margin-right: 0.5em;
+  margin-top: -26%;
+  margin-bottom: -29%;
+}
+
+.thumbstick-hint-content {
+  margin: auto 0;
+}
+
+.thumbstick-hint-content p {
+  margin-bottom: 0;
 }
 
 .actuometer {

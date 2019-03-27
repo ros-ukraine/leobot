@@ -24,8 +24,13 @@
                     {{gamepad.name}}
                 </a>
             </div>
-            <p class="alert alert-warning" role="alert">
-              <span class="exclamation-triangle"></span>Please release all thumbsticks/analog controls before proceeding.</p>
+            <div class="alert alert-warning thumbstick-hint" role="alert">
+                <div class="exclamation-triangle"></div>
+                <div class="thumbstick-hint-content">
+                    <p>Please release all thumbsticks/analog controls before proceeding.</p>
+                    <p>This is important for correct gamepad calibration.</p>
+                </div>
+            </div>
         </tab-content>
 
         <tab-content title="Configure" icon="ti-settings" :before-change="askNextButton">
