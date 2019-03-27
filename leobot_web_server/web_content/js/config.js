@@ -98,8 +98,10 @@ $(function(){
               if (a >= -1 && a <= 1) {
                 axis = a;
               }
-              initialGamepadAxes.push(a);
+              initialGamepadAxes.push(axis);
             });
+
+            console.log("Initial gamepad axes values:", initialGamepadAxes);
             break;
 
           case TABS.check:
@@ -256,10 +258,12 @@ $(function(){
     if (!configEntry) return;
 
     gamepad.axes.forEach(function(a, i) {
-      var pitch = a - initialGamepadAxes[i];
+      // Can be null
+      var axis = initialGamepadAxes[i];
+      var pitch = a - axis;
       var absPitch = Math.abs(pitch);
 
-      if (absPitch > pitchThreshold && i!==9) {
+      if (axis !== null && absPitch > pitchThreshold) {
         if (!configEntry.releasedValue) {
           configEntry.releasedValue = configEntry.pitchedValue = initialGamepadAxes[i];
         }
