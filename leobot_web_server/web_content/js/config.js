@@ -87,6 +87,19 @@ $(function(){
             if (prevIndex > TABS.config) {
               this.showButtonsConfig();
             }
+
+            var gamepad = getCurrentGamepad();
+
+            initialGamepadAxes = [];
+            gamepad.axes.forEach(function(a) {
+              var axis = null;
+              // Ignore axes which return unuseful data out of the region [-1; 1]
+              // i.e. thumbstick angle in polar coordinate system
+              if (a >= -1 && a <= 1) {
+                axis = a;
+              }
+              initialGamepadAxes.push(a);
+            });
             break;
 
           case TABS.check:
@@ -123,7 +136,6 @@ $(function(){
     vue.gamepads = [];
     vue.gamepads.push({ index: e.gamepad.index, name: e.gamepad.id });
     gamepads[e.gamepad.index] = e.gamepad;
-    initialGamepadAxes = e.gamepad.axes;
     gamepadIndex = e.gamepad.index;
     noneConnected = false;
     enableNextButton();
@@ -236,22 +248,7 @@ $(function(){
   }
 
   function updateConfig(){
-    var gamepad;
-    var initialGamepad = getInitialGamepad();
-    var gamepads = getGamepadsAsArray();
-
-    gamepads.forEach(function(g) {
-      if (g.index === gamepadIndex) gamepad = g;
-    });
-
-    if (!gamepad) {
-      console.warn("Selected gamepad is unavailable");
-      alert("Sorry, Houston. This joystick was disconnected.");
-      vue.$refs.tabs.reset();
-      resetConfiguration();
-      return;
-    }
-
+    var gamepad = getCurrentGamepad();
     var configEntry = getCurrentConfigEntry();
 
     // Prevent errors if requestAnimationFrame() called the function
@@ -303,6 +300,27 @@ $(function(){
     });
 
     requestAnimationFrame(updateConfig);
+  }
+
+  function getCurrentGamepad() {
+    var gamepad;
+    var initialGamepad = getInitialGamepad();
+    var gamepads = getGamepadsAsArray();
+
+    // Use the last gamepad - which was attached later
+    gamepads.forEach(function(g) {
+      if (g.index === gamepadIndex) gamepad = g;
+    });
+
+    if (!gamepad) {
+      console.warn("Selected gamepad is unavailable");
+      alert("Sorry, Houston. This joystick was disconnected.");
+      vue.$refs.tabs.reset();
+      resetConfiguration();
+      return;
+    }
+
+    return gamepad;
   }
 
   function getCurrentConfigEntry(){
