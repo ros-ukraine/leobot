@@ -133,7 +133,7 @@ $(function(){
     }
   });
 
-  window.addEventListener("gamepadconnected", function(e) {
+  function connectGamepad(e) {
     logGamepad(e, "connected");
     vue.gamepads = [];
     vue.gamepads.push({ index: e.gamepad.index, name: e.gamepad.id });
@@ -141,9 +141,9 @@ $(function(){
     gamepadIndex = e.gamepad.index;
     noneConnected = false;
     enableNextButton();
-  });
+  }
 
-  window.addEventListener("gamepaddisconnected", function(e) {
+  function disconnectGamepad(e) {
     logGamepad(e, "disconnected");
 
     var deleted = false;
@@ -164,7 +164,7 @@ $(function(){
     if (!deleted) {
       console.error("Cannot delete the gamepad: ", e.gamepad);
     }
-  });
+  }
 
   $(document).on("keydown", function(e) {
     var tabs = vue.$refs.tabs;
@@ -289,7 +289,7 @@ $(function(){
         if (index !== configEntry.index) {
           console.log("Last pressed button ", index);
         }
-       // Erase the previous axis data for this step
+        // Erase the previous axis data for this step
         resetConfigurationStep();
         // Get the clean entry because now the configEntry contains a symbolic link to the old object
         configEntry = getCurrentConfigEntry();
@@ -403,6 +403,11 @@ $(function(){
 
   $("#reset").click(resetConfigurationStep);
   disableNextButton();
+  // Attach handlers only when the next button is already disabled to prevent early enabling on "gamepadconnected" event
+  // if gamepad is already connected. Otherwise it fires faster than this DOM ready handler has time to finish
+  // its execution which causes incorrect disabling of the next button when page has just been loaded
+  window.addEventListener("gamepadconnected", connectGamepad);
+  window.addEventListener("gamepaddisconnected", disconnectGamepad);
   initGamepadSelection();
 })
 
