@@ -2,6 +2,11 @@
   margin-bottom: 5%;
 }
 
+.exclamation-triangle:before {
+  content: '⚠';
+  margin-right: 0.5ex;
+}
+
 .actuometer {
   height: 10vw;
   margin: 1% 0;
