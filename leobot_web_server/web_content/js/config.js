@@ -105,6 +105,7 @@ $(function(){
             });
 
             console.log("Initial gamepad axes values:", initialGamepadAxes);
+            lastKeypressTimestamp = Date.now();
             break;
 
           case TABS.check:
@@ -215,7 +216,6 @@ $(function(){
 
     if (index !== null) {
       gamepadIndex = index;
-      lastKeypressTimestamp = Date.now();
       currentConfigStep = null;
       vue.$refs.tabs.nextTab();
     } else {
