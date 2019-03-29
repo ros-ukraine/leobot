@@ -41,13 +41,16 @@ $(function(){
     },
     methods: {
       gamepadClickHandler: function(e) {
-        target = $(e.currentTarget);
-        parent = target.parent();
-        parent.children("a").removeClass("active");
-        target.addClass("active");
+        // If user clicked on real gamepad rather than on placeholder
+        if (gamepads.length > 0) {
+          target = $(e.currentTarget);
+          parent = target.parent();
+          parent.children("a").removeClass("active");
+          target.addClass("active");
 
-        var position = target.prevAll().length;
-        gamepadIndex = gamepads[position].index;
+          var position = target.prevAll().length;
+          gamepadIndex = gamepads[position].index;
+        }
       },
 
       showButtonsConfig: function() {
