@@ -1,9 +1,40 @@
+.vue-form-wizard .wizard-title {
+  font-size: 5vw;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
+  top: 6vw;
+  height: 0.5vw;
+}
+
+.vue-form-wizard.md .wizard-icon-circle {
+  width: 10vw;
+  height: 10vw;
+}
+
+.stepTitle {
+  font-size: 3.5vw;
+}
+
+.select-heading {
+  margin-top: 3%;
+  font-size: 3.8vw;
+}
+
 .gamepad-list {
+  margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.gamepad-name {
+  font-size: 4vw;
 }
 
 .thumbstick-hint {
   display: flex;
+  margin-bottom: 5vw;
 }
 
 .exclamation-triangle {
@@ -22,10 +53,18 @@
 
 .thumbstick-hint-content {
   margin: auto 0;
+  font-size: 3vw;
 }
 
 .thumbstick-hint-content p {
   margin-bottom: 0;
+}
+
+.vue-form-wizard .wizard-btn {
+  width: 30vw;
+  height: 10vw;
+  font-size: 5vw;
+  border-radius: 1vw;
 }
 
 .actuometer {

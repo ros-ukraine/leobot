@@ -17,7 +17,7 @@
 <div id="wizard">
     <form-wizard ref="tabs" title="Joystick Configuration" subtitle="" @on-change="onChange" @on-complete="onComplete">
         <tab-content title="Select" icon="ti-user" :before-change="showButtonsConfig">
-            <h5>Select a joystick to configure or press any joystick button</h5>
+            <h5 class="select-heading">Select a joystick to configure or press any joystick button</h5>
             <div class="list-group gamepad-list">
                 <a v-for="(gamepad, index) in gamepads" v-on:click="gamepadClickHandler" href="#"
                    class="list-group-item list-group-item-action gamepad-name" :class="{'active': index===0&&gamepad.index!==null}">
