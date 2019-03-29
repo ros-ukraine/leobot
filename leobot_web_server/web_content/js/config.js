@@ -4,6 +4,7 @@ $(function(){
   var gamepadIndex = null;
   var initialGamepadAxes;
   var lastKeypressTimestamp = Date.now();
+  var lastPressedGamepadButton = null;
   var configuration;
   var currentConfigStep = null;
 
@@ -290,22 +291,26 @@ $(function(){
     gamepad.buttons.forEach(function(button, index){
       var pressed = button.value;
 
-      if (pressed) {
-        // Prevent duplicate messages
-        if (index !== configEntry.index) {
-          console.log("Last pressed button ", index);
-        }
+      if (pressed && !(lastPressedGamepadButton === index)) {
+        lastPressedGamepadButton = index;
+        console.log("Button %d pressed", index);
         // Erase the previous axis data for this step
         resetConfigurationStep();
         // Get the clean entry because now the configEntry contains a symbolic link to the old object
         configEntry = getCurrentConfigEntry();
         configEntry.type = "button";
         configEntry.index = index;
+        console.log("Created button binding:", configEntry);
         callIfReady(function(v) {
           v.$refs.tabs.nextTab();
         }, vue);
         // Do not show the configured value for fraction of second before querying the next one
         // updateConfigurationMessage();
+      }
+
+      if (!pressed && lastPressedGamepadButton === index) {
+        console.log("Button %d released", index);
+        lastPressedGamepadButton = null;
       }
     });
 
