@@ -1,33 +1,36 @@
 $(function(){
-  var pitchThreshold = 0.1;
+  // Current environment, state and configuration
   var gamepads = [];
   var gamepadIndex = null;
   var initialGamepadAxes;
+  var lastKeypressTimestamp = Date.now();
+  var configuration;
+  var currentConfigStep = null;
+
+  // Storage configuration
+  const localStorageKey = "Gamepad configuration";
+  const initialConfiguration = [
+      { role: "forward" },
+      { role: "backward" },
+      { role: "left" },
+      { role: "right" }];
+
+  // UI&UX configuration
+  const pitchThreshold = 0.1;
+  const keypressTimeout = 500;
   const listPlaceholder = { index: null, name: "[None connected]" };
+  const noneConfiguredString = "[None]";
+  const finishRedirectionUrl = "/vr.html";
   const actuometerLowColor = [100, 100, 160];
   const actuometerHighColor = [0, 160, 0];
-  const localStorageKey = "Gamepad configuration";
 
+  // Enumerated constants
   const TABS = {
     select: 0,
     config: 1,
     check: 2,
     finish: 3
   };
-
-  const keypressTimeout = 500;
-  var lastKeypressTimestamp = Date.now();
-  const noneConfiguredString = "[None]";
-  const initialConfiguration = [
-      { role: "forward" },
-      { role: "backward" },
-      { role: "left" },
-      { role: "right" }];
-  const finishRedirectionUrl = "/vr.html";
-
-  // Current configuration
-  var configuration;
-  var currentConfigStep = null;
 
   Vue.use(VueFormWizard);
 
