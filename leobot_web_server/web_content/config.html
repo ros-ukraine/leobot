@@ -34,8 +34,8 @@
         </tab-content>
 
         <tab-content title="Configure" icon="ti-settings" :before-change="askNextButton">
-            <h5>Action: {{buttonRole}}</h5>
-            <p>Press the joystick button/axis to the maximum and hit Next</p>
+            <h5 class="action-name">Action: {{buttonRole}}</h5>
+            <p class="press-hint">Press the joystick button/axis to the maximum and hit Next</p>
             <div id="actuometer">
               <div class="actuometer momentary">
                 <div class="overlap"></div>
@@ -44,14 +44,14 @@
                 <div class="overlap"></div>
               </div>
             </div>
-            <p>
+            <p class="configured-value">
               Configured value: {{configuredString}}
               <button id="reset" type="button" class="btn btn-outline-secondary btn-primary btn-sm">Reset</button>
             </p>
         </tab-content>
 
         <tab-content title="Check" icon="ti-check">
-          <table id="config-table" class="table">
+          <table id="config-table" class="table config-results">
             <thead>
               <tr>
                 <th>Button Role</th>
@@ -66,7 +66,7 @@
               </tr>
             </tbody>
           </table>
-          <p>Press Next to save the configuration</p>
+          <p class="press-next">Press Next to save the configuration</p>
         </tab-content>
 
         <tab-content title="Finish" icon="ti-check">

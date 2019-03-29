@@ -1,3 +1,10 @@
+/* Generic rule */
+.wizard-tab-content p {
+  font-size: 4vw;
+  margin-bottom: 4%;
+}
+
+/* Specific rules */
 .vue-form-wizard .wizard-title {
   font-size: 5vw;
   margin-top: 3%;
@@ -34,7 +41,6 @@
 
 .thumbstick-hint {
   display: flex;
-  margin-bottom: 5vw;
 }
 
 .exclamation-triangle {
@@ -51,13 +57,18 @@
   margin-bottom: -29%;
 }
 
-.thumbstick-hint-content {
+.wizard-tab-content .thumbstick-hint .thumbstick-hint-content {
   margin: auto 0;
   font-size: 3vw;
 }
 
-.thumbstick-hint-content p {
+.wizard-tab-content .thumbstick-hint .thumbstick-hint-content p {
+  font-size: inherit;
   margin-bottom: 0;
+}
+
+.wizard-card-footer {
+  margin-top: 1%;
 }
 
 .vue-form-wizard .wizard-btn {
@@ -65,6 +76,14 @@
   height: 10vw;
   font-size: 5vw;
   border-radius: 1vw;
+}
+
+.action-name {
+  font-size: 5vw;
+}
+
+.press-hint {
+  font-size: 3.8vw;
 }
 
 .actuometer {
@@ -81,4 +100,11 @@
 
 #reset {
   float: right;
+  font-size: 4vw;
+  padding: 1vw 3vw;
+  border-radius: 1vw;
+}
+
+.config-results {
+  font-size: 3vw;
 }
