@@ -23,7 +23,7 @@ RUN set -x && \
     chmod 755 /tmp/oneliner && \
     \
     echo "Installing IDEs and AWS CLI" && \
-    /tmp/oneliner install_software --debug-branch $leobot_aurora_branch software=[cloud9] && \
+    /tmp/oneliner install_software --debug-branch $leobot_aurora_branch software=[cloud9,gzweb] && \
     \
     echo "Clean up" && \
     sudo apt-get clean && \
@@ -34,5 +34,7 @@ USER root
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 EXPOSE 8181
+
+EXPOSE 8282
 
 CMD node /home/user/c9sdk/server.js --listen 0.0.0.0 --port 8181 -w /home/user/workspace -a :
