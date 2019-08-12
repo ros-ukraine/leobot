@@ -1,10 +1,11 @@
 <launch>
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
-  <arg name="gui" default="true"/>
-  <arg name="headless" default="false"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="true"/>
   <arg name="debug" default="false"/>
   <arg name="verbose" default="true"/>
+  <arg name="gzweb" default="true"/>
   <arg name="world_file" default="office"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -20,8 +21,21 @@
   <param name="robot_description"
          command="$(find xacro)/xacro --inorder '$(find leobot_description)/robot/leobot.gazebo.xacro'"/>
 
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-        args="-urdf -model leobot -param robot_description"/>
+        
+  <group unless="$(arg gzweb)">
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -model leobot -param robot_description"/>
+  </group>
+
+  <group if="$(arg gzweb)">
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+      args="-urdf -model leobot -file /tmp/leobot.gazebo.urdf -package_to_model" respawn="false" output="screen" >
+      <param name="dummy_to_generate_gazebo_urdf_file"
+        command="rosrun xacro xacro.py -o /tmp/leobot.gazebo.urdf '$(find leobot_description)/robot/robot.gazebo.xacro'" />
+      <param name="dummy_to_convert_package_to_model"
+        command="sed -i s@package://@model://@g /tmp/leobot.gazebo.urdf" />
+    </node>
+  </group>        
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
