@@ -31,7 +31,7 @@
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
       args="-urdf -model leobot -file /tmp/leobot.gazebo.urdf -package_to_model" respawn="false" output="screen" >
       <param name="dummy_to_generate_gazebo_urdf_file"
-        command="rosrun xacro xacro.py -o /tmp/leobot.gazebo.urdf '$(find leobot_description)/robot/robot.gazebo.xacro'" />
+        command="rosrun xacro xacro.py -o /tmp/leobot.gazebo.urdf '$(find leobot_description)/robot/leobot.gazebo.xacro'" />
       <param name="dummy_to_convert_package_to_model"
         command="sed -i s@package://@model://@g /tmp/leobot.gazebo.urdf" />
     </node>
