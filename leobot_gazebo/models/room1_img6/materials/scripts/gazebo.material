@@ -1,4 +1,4 @@
-material room3/img4p
+material room1/img6
 {
   technique
   {
@@ -6,7 +6,7 @@ material room3/img4p
     {
       texture_unit
       {
-        texture room3_img4p.jpg
+        texture room1_img6.png
       }
     }
   }
