@@ -1,7 +1,7 @@
 FROM rosukraine/leobot:latest
 
 MAINTAINER "ROS Ukraine Community"
-
+ln -s /home/user/workspace/leobot/base/src/leobot/leobot_gazebo /home/user/gzweb/http/client/assets/leobot_gazebo
 LABEL Description="This ROS Kinetic image for LeoBot development with Cloud 9 Web IDE" Vendor="ROS Ukraine" Version="1.0"
 
 ARG leobot_aurora_branch
@@ -24,6 +24,12 @@ RUN set -x && \
     \
     echo "Installing IDEs and AWS CLI" && \
     /tmp/oneliner install_software --debug-branch $leobot_aurora_branch software=[cloud9,gzweb] && \
+    \
+    echo "Link models to gzweb folders" && \
+    pushd /home/user/gzweb/http/client/assets && \
+    ln -s /home/user/workspace/leobot/base/src/leobot/leobot_description ./leobot_description && \
+    ln -s /home/user/workspace/leobot/base/src/leobot/leobot_gazebo ./leobot_gazebo && \
+    popd && \
     \
     echo "Clean up" && \
     sudo apt-get clean && \
