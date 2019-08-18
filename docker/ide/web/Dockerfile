@@ -1,7 +1,7 @@
 FROM rosukraine/leobot:latest
 
 MAINTAINER "ROS Ukraine Community"
-ln -s /home/user/workspace/leobot/base/src/leobot/leobot_gazebo /home/user/gzweb/http/client/assets/leobot_gazebo
+
 LABEL Description="This ROS Kinetic image for LeoBot development with Cloud 9 Web IDE" Vendor="ROS Ukraine" Version="1.0"
 
 ARG leobot_aurora_branch
