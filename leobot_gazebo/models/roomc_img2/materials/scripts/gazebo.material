@@ -6,7 +6,7 @@ material roomc/img2
     {
       texture_unit
       {
-        texture roomc_img2.jpg
+        texture roomc_img2.png
       }
     }
   }

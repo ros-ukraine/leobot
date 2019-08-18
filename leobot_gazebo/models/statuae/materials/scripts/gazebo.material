@@ -6,7 +6,7 @@ material statuae/img1
     {
       texture_unit
       {
-        texture statuae.jpg
+        texture statuae.png
 	filtering anistropic
         max_anisotropy 16
       }
