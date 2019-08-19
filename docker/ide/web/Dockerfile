@@ -31,6 +31,11 @@ RUN set -x && \
     ln -s /home/user/workspace/leobot/base/src/leobot/leobot_gazebo ./leobot_gazebo && \
     popd && \
     \
+    echo "Generating models for visualization" && \
+    pushd /home/user/gzweb && \
+    GAZEBO_MODEL_PATH=/home/user/workspace/leobot/base/src/leobot/leobot_gazebo/models npm run deploy --- -m local && \
+    popd && \
+    \
     echo "Clean up" && \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.ansible /root/.gitconfig /root/.cache
