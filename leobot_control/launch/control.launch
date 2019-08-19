@@ -6,6 +6,7 @@
 
     <group if="$(arg sim)">
         <rosparam file="$(find leobot_control)/config/gazebo/head_controller.yml" command="load" ns="/"/>
+        <rosparam file="$(find leobot_control)/config/gazebo/gazebo_controller.yml" command="load" ns="/"/>
         <group if="$(arg velocity_control)">
             <rosparam file="$(find leobot_control)/config/common/velocity_controllers.yml" command="load" ns="/"/>
             <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
