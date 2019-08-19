@@ -43,4 +43,4 @@ EXPOSE 8181
 
 EXPOSE 8282
 
-CMD node /home/user/c9sdk/server.js --listen 0.0.0.0 --port 8181 -w /home/user/workspace -a :
+CMD node /home/user/c9sdk/server.js --listen 0.0.0.0 --port 8181 -w /home/user/workspace/leobot/base/src/leobot/ -a :
