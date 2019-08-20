@@ -14,6 +14,10 @@ ENV LOCAL_USER_ID 1000
 
 ENV MY_USERNAME user
 
+ENV DISPLAY :1.0
+
+ENV QT_X11_NO_MITSHM 1
+
 USER user
 
 RUN set -x && \
@@ -36,6 +40,9 @@ RUN set -x && \
     GAZEBO_MODEL_PATH=/home/user/workspace/leobot/base/src/leobot/leobot_gazebo/models npm run deploy --- -m local && \
     popd && \
     \
+    echo "Starting virtual X server" && \
+    nohup Xvfb :1 -screen 0 1024x768x16 &> /home/user/gzweb/xvfb.log & && \
+    \
     echo "Clean up" && \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.ansible /root/.gitconfig /root/.cache
@@ -44,8 +51,6 @@ USER root
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-EXPOSE 8181
-
-EXPOSE 8282
+EXPOSE 8080 8181 8282 8090 9090
 
 CMD node /home/user/c9sdk/server.js --listen 0.0.0.0 --port 8181 -w /home/user/workspace/leobot/base/src/leobot/ -a :
