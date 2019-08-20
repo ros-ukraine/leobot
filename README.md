@@ -114,7 +114,7 @@ docker start leobot_dev
 ## IDEs
 
 In Docker Desktop only Cloud9 web IDE is available.
-Open [this](http://localhost:8181/) url in your browser.
+Open http://localhost:8181 in your browser.
 
 
 # General
@@ -142,6 +142,7 @@ After that the web server will become available on your host Ubuntu OS at http:/
 ## Navigating on known map
 
 Start office simulation 
+
 **Linux** in Terminator
 
 ```bash
@@ -175,8 +176,11 @@ roslaunch leobot_launch gzweb.launch world_file:=artgallery
 
 
 Launch navigation stack 
-**Linux** in Terminator
-Please note that in order to launch second command split Terminator window by two using Ctrl-Shift-E. More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
+
+**Linux** in Terminator 
+
+Please note that in order to launch second command split Terminator window by two using Ctrl-Shift-E.
+ More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
 
 ```bash
 roslaunch leobot_launch navigation.launch
@@ -185,7 +189,8 @@ roslaunch leobot_launch navigation.launch
 In RViz which appear after some time select "2D Nav Goal" and robot will travel to it.
 Like it is shown in [this video](https://www.youtube.com/watch?v=xSdHlC2ISq8).
 
-**Windows** in Cloud9 IDE Terminal
+**Windows** in Cloud9 IDE Terminal 
+
 Please create another terminal in Cloud9 IDE. More details could be found [here](https://docs.c9.io/docs/terminal).
 
 ```bash
