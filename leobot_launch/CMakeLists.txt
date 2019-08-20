@@ -16,5 +16,6 @@ install(FILES
   launch/teleop.launch
   launch/view_urdf.launch
   launch/web_server.launch
+  launch/gzweb.launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
