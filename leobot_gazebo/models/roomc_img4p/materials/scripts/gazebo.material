@@ -6,7 +6,7 @@ material roomc/img4p
     {
       texture_unit
       {
-        texture roomc_img4p.jpg
+        texture roomc_img4p.png
       }
     }
   }

@@ -6,7 +6,7 @@ material rooma/img2p
     {
       texture_unit
       {
-        texture rooma_img2p.jpg
+        texture rooma_img2p.png
       }
     }
   }

@@ -88,3 +88,7 @@ qtcreator-*
 
 # FreeCAD backup files
 *.fcstd1
+
+#Cloud9
+.c9
+
