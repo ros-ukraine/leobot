@@ -41,7 +41,7 @@ RUN set -x && \
     popd && \
     \
     echo "Starting virtual X server" && \
-    nohup Xvfb :1 -screen 0 1024x768x16 &> /home/user/gzweb/xvfb.log & && \
+    (nohup Xvfb :1 -screen 0 1024x768x16 &> /home/user/gzweb/xvfb.log &) && \
     \
     echo "Clean up" && \
     sudo apt-get clean && \
