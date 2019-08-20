@@ -14,7 +14,11 @@ LeoBot telepresence robot
 [![License](https://img.shields.io/github/license/ros-ukraine/leobot.svg)](https://github.com/ros-ukraine/leobot/blob/kinetic-devel/LICENSE)
 
 
+
+# Linux
+
 ## Docker
+
 For convenience it is recommended to use Docker containers.
 Please follow these steps to run Docker container on your machine.
 
@@ -86,26 +90,94 @@ To have a look on the state of the robot in RViz run
 roslaunch leobot_launch rviz.launch
 ```
 
+# Windows
+
+## Docker Desktop
+
+For OS Windows it is recommended to use Docker Desktop containers.
+Please follow these steps to run Docker container on your machine.
+
+ 1. Install Windows 10 on your machine or in virtual machine
+ 2. Install Docker Desktop using these [instructions](https://docs.docker.com/docker-for-windows/install/)
+ 3. For development [the following](https://cloud.docker.com/u/rosukraine/repository/docker/rosukraine/leobot-dev-web/) docker image will be used.
+ 4. Use the following command to start ordinary Docker container
+```powershell
+docker run -d --name leobot_dev -p 8080:8080 -p 8181:8181 -p 8282:8282 -p 8090:8090 -p 9090:9090 rosukraine/leobot-dev-web:latest
+```
+ 5. Command will spawn Docker container and exit.
+
+In order to relaunch docker container please run
+```bash
+docker start leobot_dev
+```
+
+## IDEs
+
+In Docker Desktop only Cloud9 web IDE is available.
+Open [this](http://localhost:8181/) url in your browser.
+
+
+# General
+
+## Starting the web server
+
+Once you install all project dependencies, you can start the web server with such command
+```bash
+roslaunch leobot_launch web_server.launch
+```
+
+Additionally you can specify a custom port for the web server in docker container
+```bash
+roslaunch leobot_launch web_server.launch port:=1234
+```
+In this case you'll need to re-build the docker container
+to publish the specified port to your host machine (see `docker run -p` command at [Docker](##docker) section).
+
+If everything goes well, you'll see the message
+```
+Web server started at port 8080
+```
+After that the web server will become available on your host Ubuntu OS at http://localhost:8080 as well as from LAN.
+
 ## Navigating on known map
 
-Start office simulation
+Start office simulation 
+**Linux** in Terminator
 
 ```bash
 roslaunch leobot_launch simulation.launch
 ```
 
-If you want to reduce usage of machine's resources and increase simulation speed you could run it without GUI in headless mode.
+**Windows** in Cloud9 IDE Terminal
+```bash
+roslaunch leobot_launch gzweb.launch
+```
+
+
+If you want to reduce usage of machine's resources and increase simulation speed on Linux machine you could run it without GUI in headless mode.
 For these purposes you could use the following command
 ```bash
 roslaunch leobot_launch simulation.launch headless:=true gui:=false
 ```
+*Please note that Windows based Docker container is already running Gazebo in headless mode* 
 
-Start art gallery simulation
+Start art gallery simulation 
+
+**Linux** in Terminator
 ```bash
 roslaunch leobot_launch simulation.launch world_file:=artgallery
 ```
 
-Launch navigation stack (in order to launch second command split Terminator window by two using Ctrl-Shift-E. More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
+**Windows** in Cloud9 IDE Terminal
+```bash
+roslaunch leobot_launch gzweb.launch world_file:=artgallery
+```
+
+
+Launch navigation stack 
+**Linux** in Terminator
+Please note that in order to launch second command split Terminator window by two using Ctrl-Shift-E. More information on Terminator shortcuts can be found [here](https://dmaricic.wordpress.com/2011/01/28/terminator-keyboard-shortcuts/))
+
 ```bash
 roslaunch leobot_launch navigation.launch
 ```
@@ -113,7 +185,16 @@ roslaunch leobot_launch navigation.launch
 In RViz which appear after some time select "2D Nav Goal" and robot will travel to it.
 Like it is shown in [this video](https://www.youtube.com/watch?v=xSdHlC2ISq8).
 
-## Building the map
+**Windows** in Cloud9 IDE Terminal
+Please create another terminal in Cloud9 IDE. More details could be found [here](https://docs.c9.io/docs/terminal).
+
+```bash
+roslaunch leobot_launch navigation.launch gui:=False
+```
+
+You could send Goal commands manually using command **rostopic**.
+
+## Building the map (Linux only)
 
 Start simulation
 
@@ -135,28 +216,9 @@ Save map to file
 rosrun map_server map_saver -f <map_file_name>
 ```
 
-## Starting the web server
 
-Once you install all project dependencies, you can start the web server with such command
-```bash
-roslaunch leobot_launch web_server.launch
-```
+## Using a _USB_ joystick (Linux only)
 
-Additionally you can specify a custom port for the web server in docker container
-```bash
-roslaunch leobot_launch web_server.launch port:=1234
-```
-In this case you'll need to re-build the docker container
-to publish the specified port to your host machine (see `docker run -p` command at [Docker](#docker) section).
-
-If everything goes well, you'll see the message
-```
-Web server started at port 8080
-```
-After that the web server will become available on your host Ubuntu OS at http://localhost:8080 as well as from LAN.
-
-
-## Using a _USB_ joystick
 To use a _USB_ joystick you need to rebuild the docker container.
 See item 7 in [Docker](#docker).
 

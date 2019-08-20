@@ -1,7 +1,10 @@
 <launch>
     <arg name="map_file" default="office"/>
+    <arg name="gui" default="true"/>
     <include file="$(find leobot_2dnav)/launch/move_base.launch">
         <arg name="map_file" value="$(arg map_file)"/>
     </include>
-    <include file="$(find leobot_2dnav)/launch/rviz.launch" />
+    <group if="$(arg gui)">
+        <include file="$(find leobot_2dnav)/launch/rviz.launch" />
+    </group>
 </launch>
