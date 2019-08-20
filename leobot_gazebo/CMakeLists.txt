@@ -10,5 +10,6 @@ catkin_package(
 install(FILES
   launch/gazebo.launch
   worlds/office.world
+  scripts/launch_gzweb.sh
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

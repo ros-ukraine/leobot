@@ -1,0 +1,26 @@
+
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="true"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="true"/>
+  <arg name="world_file" default="office"/>
+  <arg name="gzweb_home" default="/home/user/gzweb"/>
+  <arg name="gzweb_port" default="8282"/>
+
+  <include file="$(find leobot_gazebo)/launch/gazebo.launch">
+    <arg name="world_file" value="$(arg world_file)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="gzweb" value="true"/>
+  </include>
+
+  <node name="gzweb" pkg="leobot_gazebo" type="launch_gzweb.sh"
+    args="$(arg gzweb_home) $(arg gzweb_port)" output="screen"/>
+</launch>
