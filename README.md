@@ -153,7 +153,7 @@ roslaunch leobot_launch simulation.launch
 ```bash
 roslaunch leobot_launch gzweb.launch
 ```
-
+*Please note that simulation URL is http://localhost:8282*
 
 If you want to reduce usage of machine's resources and increase simulation speed on Linux machine you could run it without GUI in headless mode.
 For these purposes you could use the following command
@@ -173,6 +173,7 @@ roslaunch leobot_launch simulation.launch world_file:=artgallery
 ```bash
 roslaunch leobot_launch gzweb.launch world_file:=artgallery
 ```
+*Please note that simulation URL is http://localhost:8282*
 
 
 Launch navigation stack 
