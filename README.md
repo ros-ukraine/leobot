@@ -13,6 +13,38 @@ LeoBot telepresence robot
 
 [![License](https://img.shields.io/github/license/ros-ukraine/leobot.svg)](https://github.com/ros-ukraine/leobot/blob/kinetic-devel/LICENSE)
 
+# Java
+
+## Docker Desktop
+
+Please follow these steps to run Docker container on your machine.
+
+ 1. Windows 10 on your machine or in virtual machine
+ 2. Install Docker Desktop using these [instructions](https://docs.docker.com/docker-for-windows/install/)
+ 3. For development [the following](https://cloud.docker.com/u/rosukraine/repository/docker/rosukraine/leobot-dev-java/) docker image will be used.
+ 4. Use the following command to start ordinary Docker container
+```powershell
+docker run -d --name leobot_dev -p 8080:8080 -p 8181:8181 -p 8282:8282 -p 8090:8090 -p 9090:9090 rosukraine/leobot-dev-java:latest
+```
+ 5. Command will spawn Docker container and exit.
+
+In order to relaunch docker container please run
+```bash
+docker start leobot_dev
+```
+
+## Execute examples 
+
+Talker 
+
+```bash
+rosrun leobot_java example com.github.rosjava.leobot_java.example.Talker
+```
+
+Listener 
+```bash
+rosrun leobot_java example com.github.rosjava.leobot_java.example.Listener
+```
 
 
 # Linux
