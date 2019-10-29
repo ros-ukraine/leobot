@@ -33,13 +33,20 @@ In order to relaunch docker container please run
 docker start leobot_dev
 ```
 
-## Execute example
+## Execute examples
 
-Auto Pilot 
+Simple Auto Pilot 
 
 ```bash
-rosrun leobot_java example com.github.rosjava.leobot_java.example.AutoPilot
+rosrun leobot_java example com.github.rosjava.leobot_java.example.SimpleAutoPilot
 ```
+
+Crazy Auto Pilot 
+
+```bash
+rosrun leobot_java example com.github.rosjava.leobot_java.example.CrazyAutoPilot
+```
+
 
 
 # Linux

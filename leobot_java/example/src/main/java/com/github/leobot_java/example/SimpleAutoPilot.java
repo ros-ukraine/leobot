@@ -33,13 +33,13 @@ import org.ros.node.NodeMain;
 import org.ros.node.topic.Publisher;
 
 /**
- * A simple AutoPilot {@link NodeMain}.
+ * A simple SimpleAutoPilot {@link NodeMain}.
  */
-public class AutoPilot extends AbstractNodeMain {
+public class SimpleAutoPilot extends AbstractNodeMain {
 
   @Override
   public GraphName getDefaultNodeName() {
-    return GraphName.of("rosjava/autopilot");
+    return GraphName.of("rosjava/simpleautopilot");
   }
 
   @Override
